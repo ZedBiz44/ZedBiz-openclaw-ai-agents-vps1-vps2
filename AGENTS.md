@@ -60,7 +60,9 @@ Use `docs/templates/skill-addition-template.md` or `docs/templates/feature-chang
 
 - Main Docker VPS work belongs under `ai-agent-sops/zedbiz-main-vps/`.
 - Secondary VPS work for Harry and Edith belongs under `ai-agent-sops/zedbiz-secondary-vps/`.
-- Hermes work belongs under `ai-agent-sops/hermes/`.
+- Third VPS work belongs under `ai-agent-sops/zedbiz-third-vps/`.
+- Hermes platform 1 work belongs under `ai-agent-sops/hermes1/`.
+- Hermes platform 2 work belongs under `ai-agent-sops/hermes2/`.
 - Shared scripts belong under `ai-agent-sops/shared-scripts/`.
 
 Use `docs/templates/vps-change-template.md` for server-level changes.
@@ -81,4 +83,3 @@ Commit only safe references:
 - credential location
 - permission needed
 - date verified
-

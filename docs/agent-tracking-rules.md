@@ -55,6 +55,14 @@ Each tracked item needs:
 - Use SOP files for the current tested procedure.
 - Use Notion only for dashboard summaries and review links.
 
+## VPS And Hermes Lanes
+
+- Main Docker VPS work goes in `ai-agent-sops/zedbiz-main-vps/`.
+- Secondary VPS work, including Harry and Edith, goes in `ai-agent-sops/zedbiz-secondary-vps/`.
+- Third VPS work goes in `ai-agent-sops/zedbiz-third-vps/`.
+- Hermes platform 1 work goes in `ai-agent-sops/hermes1/`.
+- Hermes platform 2 work goes in `ai-agent-sops/hermes2/`.
+
 ## Commit Message Standard
 
 Use practical commit messages:
@@ -80,7 +88,8 @@ Every agent entry should name itself clearly:
 - OpenClaw Terry
 - OpenClaw Harry
 - OpenClaw Edith
-- Hermes agent name
+- Hermes1 agent name
+- Hermes2 agent name
 - Human name
 
 ## Secret Handling
@@ -100,4 +109,3 @@ Use references instead:
 - credential location
 - permission needed
 - date verified
-

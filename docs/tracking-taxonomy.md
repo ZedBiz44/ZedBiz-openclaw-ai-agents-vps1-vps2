@@ -4,8 +4,10 @@
 
 - `main-vps`
 - `secondary-vps`
+- `third-vps`
 - `openclaw`
-- `hermes`
+- `hermes1`
+- `hermes2`
 - `notion`
 - `github`
 - `cloudflare`
@@ -28,6 +30,8 @@
 - `maggie`
 - `marsha`
 - `hermes`
+- `hermes1`
+- `hermes2`
 
 ## Change Types
 
@@ -62,4 +66,3 @@
 - `p1-high`
 - `p2-normal`
 - `p3-low`
-

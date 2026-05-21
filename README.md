@@ -26,7 +26,16 @@ ai-agent-sops/
 |   |-- sops/
 |   |-- agent-specific/
 |   `-- tracking/
-|-- hermes/                      # Hermes agents and orchestration
+|-- zedbiz-third-vps/            # Third VPS and domain-specific agent work
+|   |-- deployment/
+|   |-- sops/
+|   |-- agent-specific/
+|   `-- tracking/
+|-- hermes1/                     # Hermes agent/platform 1
+|   |-- routing-logic.md
+|   |-- orchestration/
+|   `-- tracking/
+|-- hermes2/                     # Hermes agent/platform 2
 |   |-- routing-logic.md
 |   |-- orchestration/
 |   `-- tracking/
@@ -46,8 +55,9 @@ ai-agent-sops/
 
 - Main Docker VPS testing and changes
 - Secondary VPS setup for Harry and Edith
+- Third VPS setup and domain-specific agent work
 - OpenClaw agent changes
-- Hermes agent changes
+- Hermes1 and Hermes2 agent changes
 - skill additions and updates
 - feature additions and updates
 - Docker, Caddy, routing, cron, permissions, and folder structure changes
@@ -81,4 +91,3 @@ ai-agent-sops/
 - `docs/guide-change-log.md` - Plain-English summary of meaningful guide changes.
 - `docs/decision-log.md` - Durable operating decisions.
 - `docs/templates/` - Reusable SOP, bug report, skill, feature, VPS, incident, and handoff templates.
-
