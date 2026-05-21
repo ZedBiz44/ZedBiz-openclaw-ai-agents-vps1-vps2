@@ -1,0 +1,42 @@
+name: SOP bug or failed step
+description: Track a broken, unclear, or untested SOP step.
+title: "[SOP Bug] "
+labels: ["sop-bug", "needs-review"]
+body:
+  - type: input
+    id: guide
+    attributes:
+      label: Guide or file
+      description: Which SOP, guide, or Markdown file has the problem?
+      placeholder: agent-sops/agent-creation/base-build.md
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What failed or caused confusion?
+      description: Describe the exact step, command, or assumption that failed.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Paste the short error message, failed command, screenshot summary, or observed result.
+    validations:
+      required: false
+  - type: textarea
+    id: fix
+    attributes:
+      label: Proposed fix
+      description: What should the guide say instead?
+    validations:
+      required: false
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification needed
+      description: What should be tested before this becomes the live guide?
+    validations:
+      required: false
+

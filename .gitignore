@@ -1,0 +1,16 @@
+# Local access files and secrets
+Cody_key.txt
+.ssh-agent/
+.ssh-new/
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Local operating exports and scratch pulls
+*.log
+*.tmp
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

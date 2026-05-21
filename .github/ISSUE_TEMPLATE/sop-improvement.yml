@@ -1,0 +1,27 @@
+name: SOP improvement
+description: Suggest a clearer, faster, or safer way to run an agent SOP.
+title: "[SOP Improvement] "
+labels: ["sop-improvement"]
+body:
+  - type: input
+    id: guide
+    attributes:
+      label: Guide or file
+      placeholder: agent-sops/agent-creation/base-build.md
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Improvement
+      description: What should be clearer, faster, or easier to follow?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Business reason
+      description: Why does this save time, reduce risk, or make agent setup easier?
+    validations:
+      required: false
+
