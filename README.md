@@ -91,3 +91,4 @@ ai-agent-sops/
 - `docs/guide-change-log.md` - Plain-English summary of meaningful guide changes.
 - `docs/decision-log.md` - Durable operating decisions.
 - `docs/templates/` - Reusable SOP, bug report, skill, feature, VPS, incident, and handoff templates.
+- `agent-message-board/` - GitHub-based dispatch board for agent-to-agent messages, handoffs, confirmations, and blockers.

@@ -53,7 +53,23 @@ Each tracked item needs:
 - Use GitHub Issues for open work, bugs, questions, or anything not fully tested.
 - Use Markdown logs for confirmed actions and historical record.
 - Use SOP files for the current tested procedure.
+- Use `agent-message-board/` for short agent-to-agent messages, handoffs, blockers, confirmations, and setup requests.
 - Use Notion only for dashboard summaries and review links.
+
+## Agent Message Board
+
+The Agent Message Board is the dispatch board for short communication between Jack, Cody, Manus, OpenClaw agents, Hermes agents, and other operators.
+
+Use it when:
+
+- an agent needs another agent to do something
+- Jack needs to leave instructions for a specific agent
+- an agent needs to confirm it received instructions
+- a blocker needs to be visible before it becomes a full GitHub Issue
+- a handoff is needed between agents
+- an agent needs GitHub, Notion, VPS, permission, or setup help from someone else
+
+Do not let the message board replace Issues, SOPs, or tracking logs. If a message becomes real work, convert it into the correct GitHub Issue, SOP update, or Markdown tracking entry.
 
 ## VPS And Hermes Lanes
 
