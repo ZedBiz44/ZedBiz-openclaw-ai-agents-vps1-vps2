@@ -131,30 +131,44 @@ echo "Token: $NEW_TOKEN"
 ## Step 7: 1Password Secret Injection Wrapper
 **PAUSE — human action required.** Jack must provide the 1Password Service Account token for this agent before continuing. Do not proceed until the token is received.
 
-Once the token is received, save it:
+Once the token is received, save it and create the `.env` file with 1Password secret references:
 ```bash
 # Replace [RECEIVED_TOKEN] with the actual token provided by Jack
 echo "[RECEIVED_TOKEN]" > /root/.openclaw-${AGENT_ID}/.op.token
 chmod 600 /root/.openclaw-${AGENT_ID}/.op.token
 
+# Create the .env file with 1Password secret references
+cat > /root/.openclaw-${AGENT_ID}/.env << ENV_EOF
+OPENAI_API_KEY=op://openclaw-agents-shared/openai-api-key/credential
+OPENROUTER_API_KEY=op://openclaw-agents-shared/openrouter-api-key/credential
+NOTION_API_TOKEN=op://agent-${AGENT_ID}/notion-api-token/credential
+ENV_EOF
+chmod 600 /root/.openclaw-${AGENT_ID}/.env
+
 # Assert
 [ -f "/root/.openclaw-${AGENT_ID}/.op.token" ] && echo "PASS: Token saved" || echo "FAIL: Token missing"
+[ -f "/root/.openclaw-${AGENT_ID}/.env" ] && echo "PASS: .env saved" || echo "FAIL: .env missing"
 ```
 
-Create the 1Password wrapper script. This is required because `systemctl start` cannot inject secrets directly into the service process.
+Create the 1Password wrapper script. This is required because `systemctl start` cannot inject secrets directly into the service process — the wrapper reads the token, resolves `op://` references, then starts OpenClaw with real environment values.
 ```bash
-cat > /opt/openclaw-${AGENT_ID}/start.sh << SCRIPT_EOF
-#!/bin/bash
-export OP_SERVICE_ACCOUNT_TOKEN=\$(cat /root/.openclaw-${AGENT_ID}/.op.token)
+cat > /opt/openclaw-${AGENT_ID}/start-${AGENT_ID}.sh << SCRIPT_EOF
+#!/usr/bin/env bash
+set -euo pipefail
+
+export OP_SERVICE_ACCOUNT_TOKEN="\$(cat /root/.openclaw-${AGENT_ID}/.op.token)"
+
 exec op run \\
   --env-file=/root/.openclaw-${AGENT_ID}/.env \\
-  -- \\
-  /opt/openclaw-${AGENT_ID}/node_modules/.bin/openclaw gateway run \\
+  -- /opt/openclaw-${AGENT_ID}/node_modules/.bin/openclaw gateway run \\
     --bind lan \\
     --port ${AGENT_PORT}
 SCRIPT_EOF
 
-chmod +x /opt/openclaw-${AGENT_ID}/start.sh
+chmod 700 /opt/openclaw-${AGENT_ID}/start-${AGENT_ID}.sh
+
+# Assert
+[ -x "/opt/openclaw-${AGENT_ID}/start-${AGENT_ID}.sh" ] && echo "PASS: wrapper executable" || echo "FAIL: wrapper not executable"
 ```
 For full 1Password CLI install and vault setup, see **Phase 1.2 1Password SOP**.
 ---
@@ -173,7 +187,7 @@ Environment=HOME=/root
 Environment=OPENCLAW_STATE_DIR=/root/.openclaw-${AGENT_ID}
 Environment=OPENCLAW_CONFIG_PATH=/root/.openclaw-${AGENT_ID}/openclaw.json
 Environment=OPENCLAW_GATEWAY_PORT=${AGENT_PORT}
-ExecStart=/opt/openclaw-${AGENT_ID}/start.sh
+ExecStart=/opt/openclaw-${AGENT_ID}/start-${AGENT_ID}.sh
 Restart=always
 RestartSec=5
 MemoryMax=1.5G
