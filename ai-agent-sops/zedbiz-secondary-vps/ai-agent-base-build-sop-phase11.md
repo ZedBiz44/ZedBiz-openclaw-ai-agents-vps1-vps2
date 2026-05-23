@@ -35,11 +35,10 @@ Each agent on VPS-2 gets its own isolated OpenClaw program install under `/opt/o
 By the end of Phase 1.1, the agent is:
 - Running on its own isolated OpenClaw install
 - All data (workspace, memory, skills) in one clean directory
-- Accessible in browser at `http://[VPS_IP]:[port]`
+- Accessible in browser at `http://[VPS_IP]:[port]` (temporary test) and `https://[agent-name].zbiz.ca`
 - Token generated and saved
-- Caddy routing active at `https://[agent-name].zbiz.ca`
-- 1Password secrets injected on startup
-- OpenAI API key configured, default model GPT-4o, fallback GPT-4.5
+- 1Password secrets injected on startup via wrapper script
+- OpenAI API key configured via 1Password, default model GPT-4o, fallback GPT-5.2
 - Ready for Phase 2 (skills, Asana, Notion)
 ---
 ## Step 1: Set Variables
@@ -129,7 +128,37 @@ echo "Token: $NEW_TOKEN"
 [ -f /root/.openclaw-${AGENT_ID}/openclaw.json ] && echo "OK: config exists" || echo "FAIL"
 ```
 ---
-## Step 7: Create systemd Service File
+## Step 7: 1Password Secret Injection Wrapper
+**PAUSE — human action required.** Jack must provide the 1Password Service Account token for this agent before continuing. Do not proceed until the token is received.
+
+Once the token is received, save it:
+```bash
+# Replace [RECEIVED_TOKEN] with the actual token provided by Jack
+echo "[RECEIVED_TOKEN]" > /root/.openclaw-${AGENT_ID}/.op.token
+chmod 600 /root/.openclaw-${AGENT_ID}/.op.token
+
+# Assert
+[ -f "/root/.openclaw-${AGENT_ID}/.op.token" ] && echo "PASS: Token saved" || echo "FAIL: Token missing"
+```
+
+Create the 1Password wrapper script. This is required because `systemctl start` cannot inject secrets directly into the service process.
+```bash
+cat > /opt/openclaw-${AGENT_ID}/start.sh << SCRIPT_EOF
+#!/bin/bash
+export OP_SERVICE_ACCOUNT_TOKEN=\$(cat /root/.openclaw-${AGENT_ID}/.op.token)
+exec op run \\
+  --env-file=/root/.openclaw-${AGENT_ID}/.env \\
+  -- \\
+  /opt/openclaw-${AGENT_ID}/node_modules/.bin/openclaw gateway run \\
+    --bind lan \\
+    --port ${AGENT_PORT}
+SCRIPT_EOF
+
+chmod +x /opt/openclaw-${AGENT_ID}/start.sh
+```
+For full 1Password CLI install and vault setup, see **Phase 1.2 1Password SOP**.
+---
+## Step 8: Create systemd Service File
 ```bash
 cat > /etc/systemd/system/openclaw-${AGENT_ID}.service << SERVICE_EOF
 [Unit]
@@ -144,7 +173,7 @@ Environment=HOME=/root
 Environment=OPENCLAW_STATE_DIR=/root/.openclaw-${AGENT_ID}
 Environment=OPENCLAW_CONFIG_PATH=/root/.openclaw-${AGENT_ID}/openclaw.json
 Environment=OPENCLAW_GATEWAY_PORT=${AGENT_PORT}
-ExecStart=/opt/openclaw-${AGENT_ID}/node_modules/.bin/openclaw gateway run --bind lan --port ${AGENT_PORT}
+ExecStart=/opt/openclaw-${AGENT_ID}/start.sh
 Restart=always
 RestartSec=5
 MemoryMax=1.5G
@@ -158,7 +187,52 @@ grep OPENCLAW_STATE_DIR /etc/systemd/system/openclaw-${AGENT_ID}.service && echo
 grep OPENCLAW_CONFIG_PATH /etc/systemd/system/openclaw-${AGENT_ID}.service && echo "OK: OPENCLAW_CONFIG_PATH present" || echo "FAIL: missing critical env var"
 ```
 ---
-## Step 8: Add Caddy Route
+## Step 9: Enable and Start Service
+```bash
+systemctl daemon-reload
+systemctl enable openclaw-${AGENT_ID}
+systemctl start openclaw-${AGENT_ID}
+sleep 10
+systemctl status openclaw-${AGENT_ID} --no-pager | head -5
+
+# Assert
+systemctl is-active openclaw-${AGENT_ID} && echo "OK: service active" || echo "FAIL: service not active"
+```
+---
+## Step 10: Open Firewall Port (Temporary Test Access)
+We open the port temporarily to verify the service is running locally before Caddy is configured.
+```bash
+ufw allow ${AGENT_PORT}/tcp
+ufw reload
+ufw status | grep ${AGENT_PORT}
+
+# Assert HTTP response
+curl -s -o /dev/null -w "%{http_code}" http://localhost:${AGENT_PORT}/ | grep -q "200\|301\|302" && echo "OK: port responding" || echo "FAIL: port not responding"
+```
+---
+## Step 11: Verify State Directory Layout
+After the service starts, verify all state writes are landing in the correct location:
+```bash
+# Check state dir exists and is populated
+ls /root/.openclaw-${AGENT_ID}/
+
+# Critical: verify workspace is NOT in the wrong place
+ls /root/.openclaw/ 2>/dev/null | grep workspace-${AGENT_ID} && echo "FAIL: workspace in wrong location" || echo "OK: workspace not split"
+
+# After first browser connect, check all folders are created
+# Expected: agents/ canvas/ flows/ identity/ logs/ memory/ plugin-runtime-deps/ plugin-skills/ tasks/ workspace/
+```
+Note: Some folders (canvas, flows, memory, workspace) are created by OpenClaw during first browser initialization. The service environment must first prove all state writes land under `/root/.openclaw-[agent]/` before trusting the layout is correct.
+---
+## Step 12: Browser First-Run Setup
+- Open `http://[VPS_IP]:[port]` in your browser
+- Enter the Gateway Token you saved in Step 6
+- Click Connect
+- Complete the first-run setup wizard
+
+This step generates the remaining state directories (workspace, memory, canvas, flows, etc.). After connecting, wait 15-20 seconds then run the Step 11 verification again.
+---
+## Step 13: Add Caddy Route
 Ensure the DNS A record for `${AGENT_ID}.zbiz.ca` is already pointing to `2.24.104.80` before this step. Then append the new agent route to the Caddyfile and reload Caddy.
 ```bash
 cat >> /opt/caddy/Caddyfile << EOF
@@ -178,95 +252,31 @@ if curl -sI https://${AGENT_ID}.zbiz.ca | grep -q "HTTP/2 200\|200 OK"; then ech
 ```
 For full Caddy install and configuration, see **Phase 1.3 Caddy Routing SOP**.
 ---
-## Step 9: 1Password Secret Injection
-**PAUSE — human action required.** Jack must provide the 1Password Service Account token for this agent before continuing. Do not proceed until the token is received.
-
-Once the token is received, save it and restart the service with secrets injected:
-```bash
-# Replace [RECEIVED_TOKEN] with the actual token provided by Jack
-echo "[RECEIVED_TOKEN]" > /root/.openclaw-${AGENT_ID}/.op.token
-chmod 600 /root/.openclaw-${AGENT_ID}/.op.token
-
-# Assert
-[ -f "/root/.openclaw-${AGENT_ID}/.op.token" ] && echo "PASS: Token saved" || echo "FAIL: Token missing"
-```
-Restart the service with 1Password secret injection:
-```bash
-systemctl stop openclaw-${AGENT_ID}
-
-OP_SERVICE_ACCOUNT_TOKEN=$(cat /root/.openclaw-${AGENT_ID}/.op.token) \
-  op run --env-file=/root/.openclaw-${AGENT_ID}/.env -- \
-  systemctl start openclaw-${AGENT_ID}
-
-sleep 10
-
-# Assert secrets injected
-systemctl is-active openclaw-${AGENT_ID} && echo "OK: service active with secrets" || echo "FAIL: service not active"
-```
-For full 1Password CLI install and vault setup, see **Phase 1.2 1Password SOP**.
----
-## Step 10: Configure OpenAI API Key and Models
-The OpenAI API key is injected via the `.env` file used by 1Password in Step 9. Verify it is present in the running service environment:
+## Step 14: Configure OpenAI Models
+The OpenAI API key is injected via the `.env` file used by 1Password in Step 7. Verify it is present in the running service environment:
 ```bash
 # Assert API key is available to the service
 systemctl show openclaw-${AGENT_ID} --property=Environment | grep -q "OPENAI_API_KEY" && echo "PASS: API key present" || echo "NOTE: Key may be injected at runtime via op run — verify in browser"
 ```
-In the OpenClaw browser UI:
+In the OpenClaw browser UI (`https://[agent-name].zbiz.ca`):
 - Go to **Settings > Models**
-- Add OpenAI as a provider
+- Add OpenAI as a provider (the key should be auto-detected from the environment)
 - Set **default model** to `gpt-4o`
-- Set **fallback model** to `gpt-4.5-preview`
+- Set **fallback model** to `gpt-5.2`
 - Test that both models respond
 
 For detailed step-by-step model configuration, see **Phase 1.4 LLM Model Picker SOP**.
 ---
-## Step 11: Enable and Start Service
-```bash
-systemctl daemon-reload
-systemctl enable openclaw-${AGENT_ID}
-systemctl start openclaw-${AGENT_ID}
-sleep 10
-systemctl status openclaw-${AGENT_ID} --no-pager | head -5
-
-# Assert
-systemctl is-active openclaw-${AGENT_ID} && echo "OK: service active" || echo "FAIL: service not active"
-```
----
-## Step 12: Open Firewall Port
-```bash
-ufw allow ${AGENT_PORT}/tcp
-ufw reload
-ufw status | grep ${AGENT_PORT}
-
-# Assert HTTP response
-curl -s -o /dev/null -w "%{http_code}" http://localhost:${AGENT_PORT}/ | grep -q "200\|301\|302" && echo "OK: port responding" || echo "FAIL: port not responding"
-```
----
-## Step 13: Verify State Directory Layout
-After the service starts, verify all state writes are landing in the correct location:
-```bash
-# Check state dir exists and is populated
-ls /root/.openclaw-${AGENT_ID}/
-
-# Critical: verify workspace is NOT in the wrong place
-ls /root/.openclaw/ 2>/dev/null | grep workspace-${AGENT_ID} && echo "FAIL: workspace in wrong location" || echo "OK: workspace not split"
-
-# After first browser connect, check all folders are created
-# Expected: agents/ canvas/ flows/ identity/ logs/ memory/ plugin-runtime-deps/ plugin-skills/ tasks/ workspace/
-```
-Note: Some folders (canvas, flows, memory, workspace) are created by OpenClaw during first browser initialization. The service environment must first prove all state writes land under `/root/.openclaw-[agent]/` before trusting the layout is correct.
----
 ## Phase 1.1 Done When
 - Service is `Active: active (running)` in systemd
-- Browser connects at `http://[VPS_IP]:[port]`
 - HTTPS routing active at `https://[agent-name].zbiz.ca`
 - All state directories exist under `/root/.openclaw-[agent-name]/` including `workspace/` and `memory/`
 - No workspace or memory files exist under `/root/.openclaw/workspace-[agent-name]`
 - Token is saved to `/root/.openclaw-[agent-name]/token.txt`
 - Memory limit is 1.5G
-- 1Password secrets injected on startup
-- OpenAI API key configured in browser
-- Default model: GPT-4o, Fallback: GPT-4.5
+- 1Password secrets injected on startup via wrapper script
+- OpenAI API key configured via 1Password
+- Default model: GPT-4o, Fallback: GPT-5.2
 ---
 ## Phase 1 — All Phases
 Phase 1.1 (this page) is complete. Continue with:
