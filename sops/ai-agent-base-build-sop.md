@@ -47,11 +47,12 @@ export AGENT_ID="[agent-name-lowercase]"     # e.g. harry, edith, victor
 export AGENT_NAME="[Agent Display Name]"     # e.g. Harry, Edith, Victor
 export VPS_IP="2.24.104.80"
 
-# Find the next available port (VPS-2 uses 4000+)
-ss -tlnp | grep 40
-
-# Set the port manually based on what is free
-export AGENT_PORT=[next-available-port]      # e.g. 4002 for the third agent
+# Use fixed VPS-2 port assignments:
+# Harry = 4100
+# Suzy  = 4200
+# Edith = 4300
+# (next agent = 4400, etc.)
+export AGENT_PORT=[assigned-fixed-port]      # e.g. 4100 for Harry
 
 echo "Building $AGENT_NAME ($AGENT_ID) on port $AGENT_PORT at http://$VPS_IP:$AGENT_PORT"
 ```
@@ -327,7 +328,8 @@ For full Caddy install and configuration, see **Phase 1.3 Caddy Routing SOP**.
 - Service is `Active: active (running)` in systemd
 - HTTPS routing active at `https://[agent-name].zbiz.ca`
 - All state directories exist under `/root/.openclaw-[agent-name]/` including `workspace/` and `memory/`
-- No workspace or memory files exist under `/root/.openclaw/workspace-[agent-name]`
+- No global fallback workspace exists at `/root/.openclaw/workspace`
+- No agent memory or workspace data exists under `/root/.openclaw/` unless intentionally documented
 - Token is saved to `/root/.openclaw-[agent-name]/token.txt`
 - Memory limit is 1.5G
 - 1Password secrets injected on startup via wrapper script
