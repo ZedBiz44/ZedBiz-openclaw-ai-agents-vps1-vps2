@@ -41,7 +41,7 @@ By the end of Phase 1.1, the agent is:
 - Token generated and saved
 - 1Password secrets injected on startup via wrapper script
 - OpenAI API key configured via 1Password, default model GPT-4o, fallback GPT-5.2
-- Workspace files (`IDENTITY.md`, `USER.md`, `SOUL.md`, `AGENTS.md`) pre-seeded before first launch
+- Instruction files (`IDENTITY.md`, `USER.md`, `SOUL.md`, `AGENTS.md`) pre-seeded before first launch
 - Ready for Phase 2 (skills, Asana, Notion)
 ---
 ## Step 1: Set Variables
@@ -191,7 +191,8 @@ Do NOT rely on the agent to write its own identity from chat. Pre-seed all four 
 **For Harry:**
 ```bash
 # IDENTITY.md — who Harry is
-cat > /root/.openclaw-${AGENT_ID}/workspace/IDENTITY.md << 'IDENTITY_EOF'
+mkdir -p /root/.openclaw-${AGENT_ID}/agents/main/agent
+cat > /root/.openclaw-${AGENT_ID}/agents/main/agent/IDENTITY.md << 'IDENTITY_EOF'
 # Harry the Handyman
 
 I am Harry, an AI business and marketing assistant built on OpenClaw and deployed by ZedBiz.
@@ -213,7 +214,7 @@ I help Jack and his clients with marketing strategy, content, automation, and bu
 IDENTITY_EOF
 
 # USER.md — who Jack is
-cat > /root/.openclaw-${AGENT_ID}/workspace/USER.md << 'USER_EOF'
+cat > /root/.openclaw-${AGENT_ID}/agents/main/agent/USER.md << 'USER_EOF'
 # Jack Zenert — My Operator
 
 ## Who Jack Is
@@ -244,7 +245,7 @@ Jack operates in Rapid Execution Mode. Build the simplest functional version fir
 USER_EOF
 
 # SOUL.md — Harry's operating principles
-cat > /root/.openclaw-${AGENT_ID}/workspace/SOUL.md << 'SOUL_EOF'
+cat > /root/.openclaw-${AGENT_ID}/agents/main/agent/SOUL.md << 'SOUL_EOF'
 # Harry's Soul — Operating Principles
 
 ## Core Character
@@ -271,7 +272,7 @@ I am the business and marketing handyman. I fix what is broken, build what is mi
 SOUL_EOF
 
 # AGENTS.md — Harry's operating instructions for skills and tools
-cat > /root/.openclaw-${AGENT_ID}/workspace/AGENTS.md << 'AGENTS_EOF'
+cat > /root/.openclaw-${AGENT_ID}/agents/main/agent/AGENTS.md << 'AGENTS_EOF'
 # Harry — Agent Operating Instructions
 
 ## Skills Rule
@@ -292,7 +293,7 @@ Do not guess what tools are available. Check first. If a tool call fails, report
 Use memory to track ongoing work, client context, and follow-up commitments. Update memory after significant conversations or completed tasks.
 
 ## Workspace Rule
-My workspace is at `/root/.openclaw-harry/workspace`. All files I create or reference should live here unless a skill or integration specifies otherwise.
+My workspace is at `/root/.openclaw-harry/workspace`. All files I create or reference should live there unless a skill or integration specifies otherwise. My instructions live in `/root/.openclaw-harry/agents/main/agent/`.
 
 ## 1Password Rule
 API keys and secrets are injected at startup via 1Password. I do not have direct access to read `.op.token` or `.env` files. If a secret is missing, the issue is in the service startup — not something I can fix from chat.
@@ -306,21 +307,21 @@ API keys and secrets are injected at startup via 1Password. I do not have direct
 AGENTS_EOF
 
 # Verify all four files exist
-[ -f /root/.openclaw-${AGENT_ID}/workspace/IDENTITY.md ] && echo "OK: IDENTITY.md" || echo "FAIL: IDENTITY.md missing"
-[ -f /root/.openclaw-${AGENT_ID}/workspace/USER.md ] && echo "OK: USER.md" || echo "FAIL: USER.md missing"
-[ -f /root/.openclaw-${AGENT_ID}/workspace/SOUL.md ] && echo "OK: SOUL.md" || echo "FAIL: SOUL.md missing"
-[ -f /root/.openclaw-${AGENT_ID}/workspace/AGENTS.md ] && echo "OK: AGENTS.md" || echo "FAIL: AGENTS.md missing"
+[ -f /root/.openclaw-${AGENT_ID}/agents/main/agent/IDENTITY.md ] && echo "OK: IDENTITY.md" || echo "FAIL: IDENTITY.md missing"
+[ -f /root/.openclaw-${AGENT_ID}/agents/main/agent/USER.md ] && echo "OK: USER.md" || echo "FAIL: USER.md missing"
+[ -f /root/.openclaw-${AGENT_ID}/agents/main/agent/SOUL.md ] && echo "OK: SOUL.md" || echo "FAIL: SOUL.md missing"
+[ -f /root/.openclaw-${AGENT_ID}/agents/main/agent/AGENTS.md ] && echo "OK: AGENTS.md" || echo "FAIL: AGENTS.md missing"
 ```
 
 Initialize git in the workspace and make the first commit:
 ```bash
-cd /root/.openclaw-${AGENT_ID}/workspace
+cd /root/.openclaw-${AGENT_ID}/agents/main/agent
 git init
 git config user.name "${AGENT_NAME}"
 git config user.email "${AGENT_ID}@zedbiz.local"
 git add .
 git commit -m "Initial workspace seed: IDENTITY.md USER.md SOUL.md AGENTS.md"
-echo "OK: workspace git initialized with first commit"
+echo "OK: instructions git initialized with first commit"
 ```
 ---
 ## Step 7: 1Password CLI Install
@@ -566,8 +567,8 @@ For full Caddy install and configuration, see **Phase 1.3 Caddy Routing SOP**.
 - 1Password secrets injected on startup via wrapper script
 - Default model: GPT-4o, Fallback: GPT-5.2
 - Fail2Ban active, Hostinger firewall managing port access
-- All four workspace files present: `IDENTITY.md`, `USER.md`, `SOUL.md`, `AGENTS.md`
-- Workspace git initialized with first commit
+- All four instruction files present: `IDENTITY.md`, `USER.md`, `SOUL.md`, `AGENTS.md`
+- Instructions git initialized with first commit
 - GitHub tracking note created under `ai-agent-sops/zedbiz-secondary-vps/tracking/`
 ---
 ## Phase 1 — All Phases
