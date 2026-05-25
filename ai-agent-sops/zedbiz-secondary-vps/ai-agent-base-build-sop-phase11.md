@@ -537,7 +537,7 @@ Port access for agents is managed via the Hostinger firewall panel (not UFW). En
 ## Step 15: Add Caddy Route
 Ensure the DNS A record for `${AGENT_ID}.zbiz.ca` is already pointing to `2.24.104.80` before this step.
 ```bash
-cat >> /opt/caddy/Caddyfile << EOF
+cat >> /etc/caddy/Caddyfile << EOF
 
 ${AGENT_ID}.zbiz.ca {
     reverse_proxy localhost:${AGENT_PORT}
@@ -550,6 +550,8 @@ sleep 10
 # Assert
 if curl -sI https://${AGENT_ID}.zbiz.ca | grep -q "HTTP/2 200\|200 OK"; then echo "PASS: HTTPS routing active"; else echo "FAIL: check DNS propagation and Caddy logs"; fi
 ```
+Note: Caddy's config file is at `/etc/caddy/Caddyfile` (installed via apt). The SOP previously referenced `/opt/caddy/Caddyfile` which was incorrect.
+
 For full Caddy install and configuration, see **Phase 1.3 Caddy Routing SOP**.
 ---
 ## Phase 1.1 Done When
