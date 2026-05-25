@@ -248,8 +248,17 @@ systemctl start openclaw-${AGENT_ID}
 sleep 10
 systemctl status openclaw-${AGENT_ID} --no-pager | head -10
 
-# Assert
+# Assert service is active
 systemctl is-active openclaw-${AGENT_ID} && echo "OK: service active" || echo "FAIL: service not active"
+
+# Assert service is using the correct environment
+systemctl show openclaw-${AGENT_ID} -p Environment
+
+# Assert port listener is on the correct port
+ss -ltnp | grep ":${AGENT_PORT}"
+
+# Check for unexpected nearby internal listeners (should only show the one assigned port)
+ss -ltnp | grep -E ':41|:42|:43'
 ```
 If the service fails, check logs:
 ```bash
@@ -263,7 +272,13 @@ ls /root/.openclaw-${AGENT_ID}/
 # Verify workspace is NOT in the wrong place
 [ -d /root/.openclaw-${AGENT_ID}/workspace ] || { echo "FAIL: workspace missing"; exit 1; }
 [ ! -d /root/.openclaw/workspace ] || { echo "FAIL: using global workspace"; exit 1; }
+
+# Verify no global fallback data exists
+find /root/.openclaw -maxdepth 3 -type f -o -type d 2>/dev/null
+# If anything meaningful appears here, STOP and investigate before continuing.
 ```
+
+> **HARRY FIRST GATE (AI agents only):** If this is the first agent being installed on this VPS, STOP here. Verify Harry is fully functional before proceeding to Suzy or Edith. Do not install the next agent until Harry passes all checks in this step and Step 13.
 ---
 ## Step 12: Configure OpenAI Models
 The OpenAI API key is injected via 1Password. Verify it is available:
@@ -290,6 +305,19 @@ After connecting, wait 15-20 seconds then verify state directories were created:
 ls /root/.openclaw-${AGENT_ID}/
 # Expected: agents/ canvas/ flows/ identity/ logs/ memory/ plugin-runtime-deps/ plugin-skills/ tasks/ workspace/
 ```
+
+Create a per-agent identity marker to confirm workspace isolation:
+```bash
+cat > /root/.openclaw-${AGENT_ID}/workspace/IDENTITY.md << ID_EOF
+# ${AGENT_NAME}
+This workspace belongs to ${AGENT_NAME} (${AGENT_ID}).
+Created: $(date)
+VPS: 2.24.104.80
+Port: ${AGENT_PORT}
+ID_EOF
+cat /root/.openclaw-${AGENT_ID}/workspace/IDENTITY.md
+```
+This file confirms the workspace is agent-specific. If the wrong agent name appears, workspace isolation has failed.
 ---
 ## Step 14: Fail2Ban Security Setup
 VPS-2 uses Fail2Ban + the Hostinger firewall panel instead of UFW. UFW is disabled.
@@ -337,6 +365,8 @@ For full Caddy install and configuration, see **Phase 1.3 Caddy Routing SOP**.
 - OpenAI API key configured via 1Password
 - Default model: GPT-4o, Fallback: GPT-5.2
 - Fail2Ban active, Hostinger firewall managing port access
+- `IDENTITY.md` exists in `/root/.openclaw-[agent-name]/workspace/` with correct agent name
+- GitHub tracking note created under `ai-agent-sops/zedbiz-secondary-vps/tracking/`
 ---
 ## Phase 1 — All Phases
 - **Phase 1.2** — 1Password Secrets Setup
