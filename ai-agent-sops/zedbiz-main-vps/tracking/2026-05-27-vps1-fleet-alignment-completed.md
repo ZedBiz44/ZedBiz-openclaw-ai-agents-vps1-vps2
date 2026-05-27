@@ -50,3 +50,30 @@ All **10 OpenClaw Agents** on **VPS1** (187.77.210.223) have been fully aligned 
 - Vivian, Marsha, and Maggie were restarted, successfully loaded their new configurations, and re-registered with Discord and their Gateways.
 - The fleet is now completely standardized and ready for customized business instructions!
 
+
+---
+
+## 4. Model Config Fix — All 9 Agents (2026-05-27)
+
+**Problem:** All 9 non-Terry agents had broken model configuration syntax:
+- `models` dict keys were missing the `openrouter/` prefix (e.g. `nvidia/nemotron-3-super-120b-a12b:free` instead of `openrouter/nvidia/nemotron-3-super-120b-a12b:free`)
+- `model.primary` and `model.fallbacks` had the same missing prefix issue
+- Some stale model IDs present (e.g. `openrouter/free` instead of `openrouter/free-models`)
+
+**Fix Applied:**
+- Replaced the entire `agents.defaults.models` dict on all 9 agents with the correct 63-model list matching Terry's working config (44 paid + 19 free models)
+- Fixed `model.primary` and `model.fallbacks` on all 9 agents to include the correct `openrouter/` prefix
+- All 9 agents restarted and confirmed running
+
+**Per-Agent Primary Model (preserved, prefix corrected):**
+| Agent | Primary Model |
+|---|---|
+| amanda | openrouter/inclusionai/ling-2.6-flash |
+| victor | openrouter/minimax/minimax-m2.5:free |
+| wilma | openrouter/minimax/minimax-m2.5:free |
+| inga | openrouter/inclusionai/ring-2.6-1t:free |
+| marsha | openrouter/nvidia/nemotron-3-super-120b-a12b:free |
+| gohzed | openrouter/nvidia/nemotron-3-super-120b-a12b:free |
+| grogar | openrouter/tencent/hy3-preview |
+| maggie | openrouter/google/gemma-4-31b-it:free |
+| vivian | openrouter/google/gemma-4-31b-it:free |
