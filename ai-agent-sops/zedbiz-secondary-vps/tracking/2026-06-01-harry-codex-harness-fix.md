@@ -189,3 +189,34 @@ This is expected behavior for Harry's auth setup.
 - Service: `active (running)`
 - Doctor: `Errors: 0`
 - Logs: `[gateway] ready` -- clean
+
+---
+
+## Update 5 -- Memory Setup (2026-06-01 MST)
+
+### Pre-Fix State
+- Dreaming: configured and running (was already correct)
+- Memory Wiki: NOT enabled -- `memory-wiki` plugin missing from config, vault not created
+- People Wiki (entities): not initialized
+
+### Changes Made
+
+**memory-wiki plugin added to openclaw.json:**
+- `enabled: true`
+- `vault.path: /root/.openclaw-harry/wiki/main`
+- `vaultMode: isolated`
+- `bridge.enabled: true` (reads memory artifacts, dream reports, daily notes)
+
+**Vault initialized:**
+- Created all 7 required subfolders: `concepts/`, `entities/`, `reports/`, `sources/`, `syntheses/`, `_views/`, `_attachments/`
+- Created `entities/index.md`
+
+**rem phase added to dreaming config:**
+- `enabled: true`, `lookbackDays: 14`, `limit: 20`, `minPatternStrength: 0.6`
+
+### Verification (All 3 Checklist Items Pass)
+- Dreaming: `0 2 * * * (America/Edmonton)` ✅
+- Vault: `ready (/root/.openclaw-harry/wiki/main)` ✅
+- Entities: `index.md` present ✅
+- Doctor: `Errors: 0` ✅
+- Plugins: 13 active including `memory-wiki` ✅
