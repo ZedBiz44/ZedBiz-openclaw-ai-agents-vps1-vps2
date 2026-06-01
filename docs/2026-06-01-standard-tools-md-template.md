@@ -45,6 +45,12 @@
 - Added a fork-and-remove-unused-categories note for each agent copy.
 - Tightened category descriptions while preserving the tool inventory block.
 - Updated the shared template version to `v2026.6.1-general-2`.
+- Integrated Tactical Economy doctrine into the shared template.
+- Added Look-Before-Leap Protocol.
+- Added strict file, install, command, script, automation, and reversibility boundaries.
+- Added Web and External Action Rules, including the external action air-gap.
+- Added Final Tool Action Filter.
+- Updated the shared template version to `v2026.6.1-general-3`.
 
 ## Design Notes
 
@@ -55,10 +61,11 @@
 - Added placeholder blocks so each agent can document real tools instead of only high-level categories.
 - Split the general agent template from Victor's infrastructure reference so non-technical agents do not carry unnecessary VPS or Docker instructions.
 - Kept the inventory block intact because it is the operational core of `TOOLS.md`.
+- Kept scope, communication, and general behavior rules out of `TOOLS.md` unless they directly affect tool use.
 
 ## Test Result
 
-- **What was tested:** Notion page creation, database placement, page rendering, Victor reference copy creation, shared template slimming, startup verification revision, and Technical Documentation journal update.
+- **What was tested:** Notion page creation, database placement, page rendering, Victor reference copy creation, shared template slimming, startup verification revision, Tactical Economy integration, and Technical Documentation journal update.
 - **Result:** Shared template and Victor reference template were created and verified.
 - **Evidence:** Created Notion pages `Standard-TOOLS-MD-Template` and `Victor-Tools-Template`, then updated the Technical Documentation journal record.
 
