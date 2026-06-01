@@ -21,7 +21,6 @@
 - Set the shared template version to `v2026.6.1-standard`.
 - Built the template around:
   - Purpose
-  - Environment summary
   - Capability gates
   - Tool selection priority
   - Read-only versus action tools
@@ -30,6 +29,17 @@
   - Error handling and fallbacks
   - Credential and secret rules
   - Maintenance checklist
+- Removed non-relevant references from the shared template:
+  - Git and GitHub sections
+  - Anthropic API access
+  - Slack
+  - Telegram
+  - Environment summary
+  - VPS, Docker, and OpenClaw runtime section
+- Updated the shared template version to `v2026.6.1-general`.
+- Created `Victor-Tools-Template` as a reference copy before removing the infrastructure sections from the shared template.
+- Kept environment summary plus VPS, Docker, and OpenClaw runtime guidance in Victor's version for infrastructure work.
+- Set Victor's template version to `v2026.6.1-victor`.
 
 ## Design Notes
 
@@ -38,15 +48,17 @@
 - Kept Skills as the home for reusable task methods.
 - Kept `TOOLS.md` focused on actual capabilities, invocation details, access requirements, gotchas, and boundaries.
 - Added placeholder blocks so each agent can document real tools instead of only high-level categories.
+- Split the general agent template from Victor's infrastructure reference so non-technical agents do not carry unnecessary VPS or Docker instructions.
 
 ## Test Result
 
-- **What was tested:** Notion page creation, database placement, page rendering, and Technical Documentation journal update.
-- **Result:** Notion template was created and verified.
-- **Evidence:** Created Notion page `Standard-TOOLS-MD-Template` and updated the Technical Documentation journal record.
+- **What was tested:** Notion page creation, database placement, page rendering, Victor reference copy creation, shared template slimming, and Technical Documentation journal update.
+- **Result:** Shared template and Victor reference template were created and verified.
+- **Evidence:** Created Notion pages `Standard-TOOLS-MD-Template` and `Victor-Tools-Template`, then updated the Technical Documentation journal record.
 
 ## Links
 
 - Notion template page: https://www.notion.so/372a3e33d581817e8ca4f7cd1e2541bf
+- Victor template page: https://www.notion.so/372a3e33d58181eda6fdd81636bf7bd6
 - Agent-Documents database: https://www.notion.so/141ff5e3dfea492f8004afece936204e
 - AI-Agent-Databases page: https://www.notion.so/371a3e33d58180b7b7b0fa140cbfea3c
