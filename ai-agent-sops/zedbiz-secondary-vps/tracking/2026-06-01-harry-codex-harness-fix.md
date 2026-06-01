@@ -118,3 +118,30 @@ Suzy was installed fresh with v2026.5.28 and should not have this issue. Verify 
 ```bash
 cat /root/.openclaw-suzy/npm/node_modules/@openclaw/codex/package.json | grep version
 ```
+
+---
+
+## Update 3 -- Model List Cleanup per Jack
+
+**Date:** 2026-06-01 MST
+
+### Changes Made
+- Removed `openai/gpt-5.5-pro` (not wanted)
+- Added back `codex/gpt-5.3-codex-spark` (correct prefix from codex plugin catalog)
+- Added back `codex/gpt-5.2` (correct prefix from codex plugin catalog)
+- `openai/gpt-5.3-codex` confirmed working via openai plugin catalog
+
+### Final Model List
+| Model Ref | Source Catalog | Status |
+|---|---|---|
+| openai/gpt-5.5 | openai plugin | primary + fallback |
+| openai/gpt-5.4 | openai plugin | fallback |
+| openai/gpt-5.4-mini | openai plugin | fallback |
+| openai/gpt-5.3-codex | openai plugin | fallback |
+| codex/gpt-5.3-codex-spark | codex plugin | fallback |
+| codex/gpt-5.2 | codex plugin | fallback |
+
+### Verification
+- Service: `active (running)`
+- Doctor: `Errors: 0`, no Legacy or Unknown model warnings
+- Logs: `[gateway] ready` -- clean startup
