@@ -27,16 +27,20 @@
   - Agent setup
   - Priorities
   - Startup rules
+  - Decision framework
   - Memory rules
   - Skill rules
   - Tool rules
+  - Execution and completion rules
+  - Proactive improvement loop
   - Security rules
   - Routing rules
   - Communication standards
-  - Completion rules
   - Maintenance rules
 - Reworked the template from `Agents MD - Structured Summary.pdf` into a more concise version focused on durable operating constraints.
 - Updated the shared Notion template version to `v2026.6.1-concise`.
+- Applied final feedback revision with a concise decision framework, proactive improvement loop, startup context priority rule, and tighter execution/completion section.
+- Updated the shared Notion template version to `v2026.6.1-concise-2`.
 
 ## Important Correction
 
@@ -44,10 +48,11 @@
 - Reusable process logic should be handled through OpenClaw skills and the relevant `SKILL.md` files.
 - The template was updated to use skill-checking rules and relevant `SKILL.md` guidance.
 - The concise revision keeps reusable process details out of `AGENTS.md` and pushes specialized methods into Skills.
+- The final revision keeps the file concise while restoring the highest-value behavior rules for ambiguity and proactive improvement.
 
 ## Test Result
 
-- **What was tested:** Notion page creation, Agent-Documents database placement, Technical Documentation journal update, GitHub repo availability, concise template rewrite, and final Notion template verification.
+- **What was tested:** Notion page creation, Agent-Documents database placement, Technical Documentation journal update, GitHub repo availability, concise template rewrite, feedback revision, and final Notion template verification.
 - **Result:** Notion template update succeeded. GitHub documentation file was committed and pushed to the remote repo.
 - **Evidence:** Created and updated Notion page `Standard-AGENTS-MD-Template`, updated the Technical Documentation journal record, and pushed this GitHub tracking note.
 
