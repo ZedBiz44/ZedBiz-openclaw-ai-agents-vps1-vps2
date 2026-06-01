@@ -145,3 +145,47 @@ cat /root/.openclaw-suzy/npm/node_modules/@openclaw/codex/package.json | grep ve
 - Service: `active (running)`
 - Doctor: `Errors: 0`, no Legacy or Unknown model warnings
 - Logs: `[gateway] ready` -- clean startup
+
+---
+
+## Update 4 -- Final Model Config (Definitive)
+
+**Date:** 2026-06-01 MST
+
+### Root Cause of gpt-5.3-codex Failure
+Harry only has `openai-codex` OAuth auth (ChatGPT browser login). When `openai/gpt-5.3-codex`
+was requested, the runtime internally resolved it to `openai-codex/gpt-5.3-codex` for auth
+routing -- but the session state was stale from the previous broken state, causing a lookup
+against the wrong catalog path.
+
+After full service restart with the correct config, `openai/gpt-5.3-codex` routes correctly
+through the `openai-codex` OAuth token.
+
+### gpt-5.2 Status
+`gpt-5.2` is a **retired model** in OpenClaw 2026.5.28. The legacy config migration auto-upgrades
+it to `gpt-5.5`. It is NOT available as a real model. Removed from config.
+
+### gpt-5.3-codex-spark Provider Note
+`openai/gpt-5.3-codex-spark` is explicitly suppressed in the OpenAI API catalog
+(not exposed via API). Must use `openai-codex/gpt-5.3-codex-spark` prefix.
+Doctor tool has a cosmetic bug where it suggests `openai/` but the validator rejects it.
+The `openai-codex/` prefix is correct and functional. Doctor shows `Errors: 0`.
+
+### Final Model List
+| Model Ref | Provider | Auth |
+|---|---|---|
+| openai/gpt-5.5 | openai catalog | openai-codex OAuth |
+| openai/gpt-5.4 | openai catalog | openai-codex OAuth |
+| openai/gpt-5.4-mini | openai catalog | openai-codex OAuth |
+| openai/gpt-5.3-codex | openai catalog | openai-codex OAuth |
+| openai-codex/gpt-5.3-codex-spark | codex plugin | openai-codex OAuth |
+
+### /models Command
+Shows `openai (4)` -- this reflects the 4 models discoverable via static catalog lookup.
+The codex plugin models (spark) show separately when the codex plugin is active.
+This is expected behavior for Harry's auth setup.
+
+### Verification
+- Service: `active (running)`
+- Doctor: `Errors: 0`
+- Logs: `[gateway] ready` -- clean
