@@ -70,3 +70,30 @@ Gateway token: 21f32ff5333123d8b8f1a38e11ff5decb4eb52b3f9409f25
 - Asana setup (Phase 2.3)
 - Agent branding (Phase 2.4)
 - Discord bot setup (Phase 3)
+
+---
+
+## Phase 2.1a — OpenAI Codex OAuth Setup: DONE ✅
+**Completed:** 2026-06-02 MST
+
+### Method Used
+Path A — Copied auth-profiles.json and auth-state.json from Harry (existing valid token).
+
+### Results
+- auth-profiles.json: copied to /root/.openclaw-edith/agents/main/agent/auth-profiles.json (chmod 600)
+- auth-state.json: lastGood = openai-codex:jzedbiz@gmail.com
+- Token: openai-codex:jzedbiz@gmail.com [openai-codex/oauth; expires 2026-06-06T23:57:52.103Z]
+- Token valid for: 4 days at time of setup
+- @openclaw/codex npm plugin: installed at /root/.openclaw-edith/npm/node_modules/@openclaw/codex
+- codex-home dir: /root/.openclaw-edith/agents/main/agent/codex-home
+
+### Renewal Note
+Token expires 2026-06-06. Renew on Harry first (device code login), then copy to Suzy and Edith:
+```bash
+for agent in suzy edith; do
+  cp /root/.openclaw-harry/agents/main/agent/auth-profiles.json \
+     /root/.openclaw-${agent}/agents/main/agent/auth-profiles.json
+  chmod 600 /root/.openclaw-${agent}/agents/main/agent/auth-profiles.json
+  systemctl restart openclaw-${agent}
+done
+```
