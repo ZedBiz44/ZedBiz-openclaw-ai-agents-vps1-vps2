@@ -36,6 +36,22 @@ Use this file for human-readable summaries of meaningful SOP changes. Git commit
 - **Test Result:** 8/8 checks on agent SOP, 10/10 on human SOP. All original steps intact.
 - **Related Links:** Notion ai-agent-base-build-sop (c3fa3e33), Notion human-agent-base-build-sop (287a3e33), tracking/2026-06-02-vps1-sop-memory-wiki-addition.md
 
+### 2026-06-01 - Standard AGENTS.MD Template
+
+- **Agent:** Manus
+- **Problem:** Draft template (v2026.6.1-draft) had no Skills reference, a buried customization checklist, no authority conflict rule, and passive startup rules.
+- **Fix:** Reviewed two versions. Concise version (v2026.6.1-concise) addressed most gaps. Remaining recommendations: add Skills discovery method and restore authority conflict rule.
+- **Test Result:** Template reviewed live against Notion page. Gaps documented. Template marked Current in Notion.
+- **Related Links:** Notion 372a3e33d581814fb813cd0ff647579d, docs/2026-06-01-standard-agents-md-template.md
+
+### 2026-06-01 - Standard TOOLS.MD Template (Review Session)
+
+- **Agent:** Manus
+- **Problem:** Three versions reviewed. First version was a policy doc with no actual tool map content, citation artifacts, and no Skills reference. Later versions improved significantly with Tactical Economy doctrine, Final Tool Action Filter, and Look-Before-Leap Protocol.
+- **Fix:** Feedback delivered on each version. Key remaining gaps: no filled-in example tool entry, Skills invoke path still a placeholder in v2026.6.1-general-3.
+- **Test Result:** Template reviewed live against Notion page across three passes. Gaps documented per version.
+- **Related Links:** Notion 372a3e33d581817e8ca4f7cd1e2541bf, docs/2026-06-01-standard-tools-md-template.md
+
 ---
 
 ## Change Entry Template

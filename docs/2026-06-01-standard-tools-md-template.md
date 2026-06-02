@@ -88,3 +88,32 @@
 - Victor template page: https://www.notion.so/372a3e33d58181eda6fdd81636bf7bd6
 - Agent-Documents database: https://www.notion.so/141ff5e3dfea492f8004afece936204e
 - AI-Agent-Databases page: https://www.notion.so/371a3e33d58180b7b7b0fa140cbfea3c
+
+## Review Session - 2026-06-01 (Manus)
+
+Three versions of the shared template were reviewed in sequence during a live feedback session.
+
+**v2026.6.1-general (first review):**
+- Template read as a policy document rather than a tool map. Core tools, commands, and invocation details were missing.
+- Raw citation artifacts (`[cite: 103]` etc.) were present and needed removal.
+- Trigger conditions were inconsistent across tool categories.
+- Capability gate key-to-capability mapping was missing.
+- Tool categories were too generic with no invocation examples.
+- Skills were not referenced.
+- No example tool inventory entry existed.
+
+**v2026.6.1-general-3 (second review):**
+- Tactical Economy doctrine was the strongest new addition.
+- Final Tool Action Filter was a clean close.
+- Look-Before-Leap Protocol and Web And External Action Rules were solid improvements.
+- Startup Verification Rule was a smart addition.
+- Remaining gaps: Skills category still had no invoke path, no filled-in example tool entry, fork instruction buried in Purpose, no maintenance frequency trigger.
+
+**v2026.6.1-general-3 (third review, same version re-read):**
+- Confirmed the same gaps. No new version was pushed between second and third review.
+- Recommendation: add one filled-in Notion MCP example entry and make Skills invoke path concrete.
+
+**Skills Invoke Path Discussion:**
+- Clarified that the Skills invoke path should be the actual OpenClaw skills discovery command, not a placeholder, because it is the same across all OpenClaw agents.
+- If OpenClaw handles discovery in code, the template instruction is fine as-is.
+- If prompt-driven, the actual command or path belongs in the template by default.
