@@ -97,3 +97,30 @@ for agent in suzy edith; do
   systemctl restart openclaw-${agent}
 done
 ```
+
+---
+
+## Fix: Model Dropdown Correction
+**Date:** 2026-06-02 MST
+
+### Root Cause
+Phase 1.1 SOP did not include the `agents.defaults.models` curated list in the initial `openclaw.json` template. The config only had a bare `model: "openrouter/..."` string. Without the explicit `models` object, OpenClaw falls back to showing the full raw API model catalogue from all enabled providers -- resulting in 100+ junk models in the dropdown.
+
+### Fix Applied
+Copied Harry's exact `agents.defaults` section to Edith:
+- `model.primary`: `openai/gpt-5.5`
+- `model.fallbacks`: `[gpt-5.5, gpt-5.4, gpt-5.4-mini, gpt-5.3-codex, gpt-5.2]`
+- `models`: 63 curated models (exact match to Harry and Suzy)
+- `workspace`: `/root/.openclaw-edith/workspace` (Edith-specific)
+- `contextLimits` and `bootstrapMaxChars` copied from Harry
+
+### Verification
+- Harry model count: 63
+- Suzy model count: 63
+- Edith model count: 63
+- Zero diff between Harry and Edith model lists
+- Primary model match: True
+- Fallbacks match: True
+
+### SOP Update Required
+The Phase 1.1 `openclaw.json` template in the VPS2 SOP must include the full `agents.defaults.models` section. The initial config must NOT use a bare model string -- it must use the `{primary, fallbacks, models}` structure from the start.
