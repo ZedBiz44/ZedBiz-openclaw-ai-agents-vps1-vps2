@@ -69,3 +69,24 @@ Compared current image tool versions against latest GitHub releases:
 New tool to add: `debugpy` 1.8.21 (Python debugging, referenced by OpenClaw Python Debugging Skill)
 
 Dockerfile.base and agent rebuild are pending Jack's go-ahead.
+
+---
+
+## 2026-06-10 Fleet Rollout Complete
+
+All 11 VPS1 agents confirmed healthy on OpenClaw 2026.6.5.
+Fleet count corrected: 11 agents (not 10). Edith was the 11th agent.
+
+| Agent | Image | Status |
+|---|---|---|
+| victor | zedbiz-openclaw-victor:2026.6.5-ssh | healthy |
+| edith | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| vivian | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| maggie | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| grogar | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| gohzed | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| marsha | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| inga | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| wilma | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| amanda | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
+| terry | ghcr.io/zedbiz44/openclaw-base:latest | healthy |
