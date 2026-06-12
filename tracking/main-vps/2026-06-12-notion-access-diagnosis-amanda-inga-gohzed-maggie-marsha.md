@@ -154,6 +154,38 @@ Date | Author | Status: 2026-06-12 | Cody | Fixed And Verified
   - Tools used: `codex_apps.notion_fetch` and `codex_apps.notion_notion-update-page`
 - No container restart or broader fleet change was required.
 
+## Discord Native Command Authorization Follow-Up
+
+- User reported native Discord slash commands were inconsistent across agents:
+  - `/model` returned `You are not authorized to use this command.`
+  - `/new` and `/reset` often returned `Command produced no visible reply.`
+- Confirmed the user was selecting the correct bot command in Discord, for example `terry-openclaw` inside `#terry`.
+- Tested Terry first.
+- Found Terry's `/model` failure was not caused by the wrong Discord user ID. The configured ID `864290378395025478` resolves to `jackz8802` / `JackZ`.
+- Found `commands.ownerAllowFrom` alone was not enough for native Discord slash-command authorization in this setup.
+- Proven Terry fix:
+  - `commands.ownerAllowFrom`: `discord:864290378395025478`, `user:864290378395025478`
+  - `commands.allowFrom.discord`: `discord:864290378395025478`, `user:864290378395025478`
+- Restarted Terry and user confirmed `/model` worked afterward.
+- Rolled the same narrow JackZ-only command authorization pattern to the rest of the VPS1 Discord fleet:
+  - `amanda`
+  - `inga`
+  - `gohzed`
+  - `maggie`
+  - `marsha`
+  - `victor`
+  - `vivian`
+  - `wilma`
+  - `grogar`
+  - `edith`
+- Terry already had the proven config from the one-agent test.
+- Restarted every updated agent.
+- Final fleet check:
+  - All 11 agents running healthy.
+  - All 11 Discord bots connected.
+  - All 11 agents now have the same native Discord command authorization pattern for JackZ.
+- Security note: this did not open native slash commands to everyone. It authorizes only JackZ's Discord user ID in the accepted `discord:` and `user:` forms.
+
 ## Operational Lesson
 
 - Do not install plain Notion MCP as the first fix for this workflow.
@@ -162,3 +194,4 @@ Date | Author | Status: 2026-06-12 | Cody | Fixed And Verified
 - If not, check for legacy `codex/gpt-*` refs, legacy `openai-codex:*` auth routing, and stale session route pins.
 - Use `openclaw doctor --fix` on one agent first, restart, then verify the exact page workflow before rolling out.
 - After repairing config/runtime routing, reset any existing Discord channel session that still fails, because old channel bindings may keep the previous Codex app/tool set.
+- For native Discord slash commands such as `/model`, use both `commands.ownerAllowFrom` and `commands.allowFrom.discord` with JackZ's Discord ID. In this setup, `commands.ownerAllowFrom` alone can still reject `/model`.
