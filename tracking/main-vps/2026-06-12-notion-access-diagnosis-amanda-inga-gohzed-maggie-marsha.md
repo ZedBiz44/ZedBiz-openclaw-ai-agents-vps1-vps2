@@ -186,6 +186,33 @@ Date | Author | Status: 2026-06-12 | Cody | Fixed And Verified
   - All 11 agents now have the same native Discord command authorization pattern for JackZ.
 - Security note: this did not open native slash commands to everyone. It authorizes only JackZ's Discord user ID in the accepted `discord:` and `user:` forms.
 
+## Amanda Control Panel GGG Notion Follow-Up
+
+- User reported Amanda still failed from the OpenClaw Control Panel web UI on the GHL Growth Garage Notion source page, while Maggie and Grogar could access it.
+- Exact URL checked:
+  - `https://app.notion.com/p/376a3e33d58180e8b0c5eb95169e478d?v=24aa3e33d58182149ed80884869183cc&source=copy_link`
+- Amanda's webchat session key `agent:main:main` was still pinned to:
+  - `modelProvider`: `codex`
+  - `model`: `gpt-5.4`
+  - `providerOverride`: `codex`
+  - `modelOverride`: `gpt-5.4`
+- This stale webchat override caused Amanda's Control Panel session to use the older plain Notion/API route and report that the page was not shared with the `openclaw` integration.
+- `/reset soft`, `/model openai/gpt-5.5`, and `/new openai/gpt-5.5` did not clear the override for this webchat key; `/new` created a new session but preserved the stale `codex/gpt-5.4` user override.
+- Backed up Amanda's session registry:
+  - `/home/node/.openclaw/agents/main/sessions/sessions.json.bak-amanda-webchat-route-2026-06-12T21-54-18-570Z`
+- Cleared only the stale `agent:main:main` webchat session override and reset it to the corrected route:
+  - `modelProvider`: `openai`
+  - `model`: `gpt-5.5`
+  - `agentRuntime`: `codex`
+- Verification from the exact Amanda Control Panel webchat session passed in read-only mode.
+- Amanda successfully accessed the GGG Notion source as:
+  - `ZPIM-GHL-Growth-Garage`
+- Amanda reported it resolves as a Notion database under parent page `GHL Growth Garage`, with properties including `Name`, `Tags`, `Created`, and `Updated`.
+- Tool family used in the successful verification:
+  - `mcp__codex_apps__notion`
+  - specifically the Notion fetch tool
+- No page or database edits were made during this verification.
+
 ## Operational Lesson
 
 - Do not install plain Notion MCP as the first fix for this workflow.
@@ -195,3 +222,4 @@ Date | Author | Status: 2026-06-12 | Cody | Fixed And Verified
 - Use `openclaw doctor --fix` on one agent first, restart, then verify the exact page workflow before rolling out.
 - After repairing config/runtime routing, reset any existing Discord channel session that still fails, because old channel bindings may keep the previous Codex app/tool set.
 - For native Discord slash commands such as `/model`, use both `commands.ownerAllowFrom` and `commands.allowFrom.discord` with JackZ's Discord ID. In this setup, `commands.ownerAllowFrom` alone can still reject `/model`.
+- Web Control Panel sessions can also retain stale model/provider overrides. If a corrected agent still fails only from Control Panel, inspect the exact webchat session key and clear stale `providerOverride` / `modelOverride` values if normal `/reset`, `/model`, or `/new` commands do not remove them.
