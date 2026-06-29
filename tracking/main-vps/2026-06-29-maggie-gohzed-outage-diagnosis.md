@@ -69,3 +69,42 @@ Date: 2026-06-29 MDT | Agent Name: Cody | Status: Diagnose
 
 - The one-agent test passed.
 - The durable fix needs to be made in each agent's Compose file, not just by changing a live container policy.
+
+## Fleet Rollout
+
+- User approved rolling the same restart policy across the remaining VPS1 agents.
+- Updated the remaining ten agent Compose files from `restart: "no"` to `restart: "unless-stopped"`:
+  - Amanda
+  - Edith
+  - Gohzed
+  - Grogar
+  - Inga
+  - Marsha
+  - Terry
+  - Victor
+  - Vivian
+  - Wilma
+- Maggie already had the tested `restart: "unless-stopped"` setting.
+- Created timestamped Compose backups for the rollout batch:
+  - `/opt/openclaw/agents/{agent}/docker-compose.yml.bak-20260629-1548`
+- Ran Compose config validation for each updated agent before recreating it.
+- Recreated each updated agent one at a time.
+
+## Fleet Verification
+
+- Verified all eleven VPS1 agents are running, healthy, and using restart policy `unless-stopped`.
+- Docker restart count after rollout:
+  - Maggie: `1` from the earlier crash-style restart-policy proof.
+  - All other agents: `0` after recreate.
+- Public URL verification returned `HTTP/1.1 200 OK` for:
+  - `https://amanda.zbiz.ca/`
+  - `https://edith.zbiz.ca/`
+  - `https://gohzed.zbiz.ca/`
+  - `https://grogar.zbiz.ca/`
+  - `https://inga.zbiz.ca/`
+  - `https://maggie.zbiz.ca/`
+  - `https://marsha.zbiz.ca/`
+  - `https://terry.zbiz.ca/`
+  - `https://victor.zbiz.ca/`
+  - `https://vivian.zbiz.ca/`
+  - `https://wilma.zbiz.ca/`
