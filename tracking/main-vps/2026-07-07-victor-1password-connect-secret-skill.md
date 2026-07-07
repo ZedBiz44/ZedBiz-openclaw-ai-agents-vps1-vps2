@@ -59,10 +59,26 @@ Date: 2026-07-07 Mountain Time | Agent Name: Cody | Status: Testing
 - Token authentication:
   - `GET /v1/vaults` returned `401` with the currently available token file.
 
+## 2026-07-07 Retest After Token Was Added To Victor Vault
+
+- Retrieved the `credential` field from the `victor_1password-token` item in the `agent-victor` 1Password vault using Victor's service-account token.
+- Wrote that value into Victor's mounted Connect-token path:
+  - `/home/node/.openclaw/credentials/1password-connect-token`
+- Restarted Victor.
+- Verified Victor returned to Docker health `healthy`.
+- Re-tested Connect health from Victor:
+  - `health` still succeeds.
+- Re-tested Connect authentication from Victor:
+  - `vaults` still fails with `401`.
+  - Error changed to `Authentication: (Invalid token signature), Each header's KID must match the KID of the public key`.
+- Metadata-only JWT/header check showed the token key ID does not match the key ID in the current VPS1 Connect credentials file.
+
 ## Current Blocker
 
-- The available token file is not accepted as a 1Password Connect API bearer token.
-- The next action is to replace `/home/node/.openclaw/credentials/1password-connect-token` with a valid Connect access token scoped to the intended agent/secrets vault.
+- The token in Victor's vault is not paired with the current VPS1 1Password Connect server credentials file.
+- The next action is one of:
+  - Generate a Connect API access token for the existing VPS1 Connect server credentials.
+  - Or replace `/opt/openclaw/1password-connect/1password-credentials.json` with the matching credentials file for the token now stored in Victor's vault, then restart the Connect API and sync containers.
 - After replacement, run:
 
 ```bash
