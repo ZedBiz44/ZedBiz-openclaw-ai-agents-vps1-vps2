@@ -17,7 +17,7 @@ This replaces the desktop-app 1Password MCP workflow for Victor. Victor is a hea
 
 ## Connection
 
-- Connect API URL from Victor: `http://172.18.0.3:8080`
+- Connect API URL from Victor: `http://1password-connect-api:8080`
 - Token file inside Victor: `/home/node/.openclaw/credentials/1password-connect-token`
 - Helper script: `/home/node/.openclaw/skills/onepassword-connect-secrets/scripts/op_connect.py`
 - The helper also accepts `OP_CONNECT_HOST`, `OP_CONNECT_TOKEN`, `ONEPASSWORD_CONNECT_TOKEN`, and `OP_CONNECT_TOKEN_FILE`.

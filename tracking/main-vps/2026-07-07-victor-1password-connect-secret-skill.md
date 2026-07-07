@@ -7,8 +7,9 @@ Date: 2026-07-07 Mountain Time | Agent Name: Cody | Status: Testing
 - Built Option A for Victor: a custom `onepassword-connect-secrets` skill that uses the existing VPS1 1Password Connect REST API instead of the desktop-only 1Password MCP workflow.
 - Added a small Python helper for Connect health checks, vault/item metadata, password-item creation, and field updates.
 - Installed the token file path expected by the skill inside Victor's mounted config space.
-- Verified the Connect server is reachable from Victor.
-- Authentication is not fully live yet because the available token file returns `401`.
+- Installed the matching 1Password Connect credentials file supplied by Jack.
+- Reset the stale local Connect cache volume after changing credentials.
+- Verified Victor can authenticate to 1Password Connect and list vault metadata.
 
 ## Skill Purpose
 
@@ -26,7 +27,7 @@ Date: 2026-07-07 Mountain Time | Agent Name: Cody | Status: Testing
 - Helper script:
   - `scripts/op_connect.py`
 - Connect API URL from Victor:
-  - `http://172.18.0.3:8080`
+  - `http://1password-connect-api:8080`
 - Token file path inside Victor:
   - `/home/node/.openclaw/credentials/1password-connect-token`
 
@@ -53,7 +54,7 @@ Date: 2026-07-07 Mountain Time | Agent Name: Cody | Status: Testing
   - `1password-connect-sync` running.
 - Docker network:
   - Victor is on `openclaw`.
-  - `1password-connect-api` is on `openclaw` at `172.18.0.3`.
+  - `1password-connect-api` is on `openclaw`; Victor reaches it by Docker DNS name `1password-connect-api`.
 - Connect health from Victor:
   - `GET /health` succeeded and returned 1Password Connect API `1.8.2`.
 - Token authentication:
@@ -73,13 +74,23 @@ Date: 2026-07-07 Mountain Time | Agent Name: Cody | Status: Testing
   - Error changed to `Authentication: (Invalid token signature), Each header's KID must match the KID of the public key`.
 - Metadata-only JWT/header check showed the token key ID does not match the key ID in the current VPS1 Connect credentials file.
 
-## Current Blocker
+## 2026-07-07 Credentials File Replacement And Cache Reset
 
-- The token in Victor's vault is not paired with the current VPS1 1Password Connect server credentials file.
-- The next action is one of:
-  - Generate a Connect API access token for the existing VPS1 Connect server credentials.
-  - Or replace `/opt/openclaw/1password-connect/1password-credentials.json` with the matching credentials file for the token now stored in Victor's vault, then restart the Connect API and sync containers.
-- After replacement, run:
+- Replaced `/opt/openclaw/1password-connect/1password-credentials.json` with the matching credentials file supplied by Jack.
+- Backup created:
+  - `/opt/openclaw/1password-connect/1password-credentials.json.bak-victor-connect-token-20260707T224936Z`
+- Restarted `1password-connect-api` and `1password-connect-sync`.
+- The old local Connect data volume had a different local account UUID and failed with a SQLite foreign-key error.
+- Backed up and recreated the local cache volume.
+- Cache backup created:
+  - `/opt/openclaw/1password-connect/1password-data-volume-backup-20260707T225049Z.tgz`
+- Updated Victor's helper default host from fragile IP `http://172.18.0.3:8080` to Docker DNS name `http://1password-connect-api:8080`.
+- Verified `vaults` succeeds from Victor and returns vault metadata.
+
+## Current Status
+
+- Resolved.
+- Ongoing verification command:
 
 ```bash
 python3 /home/node/.openclaw/skills/onepassword-connect-secrets/scripts/op_connect.py vaults

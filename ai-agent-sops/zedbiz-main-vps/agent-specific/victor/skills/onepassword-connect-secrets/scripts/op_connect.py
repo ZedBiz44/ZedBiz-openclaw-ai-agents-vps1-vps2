@@ -17,7 +17,7 @@ import urllib.request
 from pathlib import Path
 
 
-DEFAULT_HOST = "http://172.18.0.3:8080"
+DEFAULT_HOST = "http://1password-connect-api:8080"
 DEFAULT_TOKEN_FILE = Path.home() / ".openclaw" / "credentials" / "1password-connect-token"
 REDACTED = "[redacted]"
 
