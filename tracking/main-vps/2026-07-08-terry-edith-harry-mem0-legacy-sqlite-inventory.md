@@ -54,6 +54,25 @@ Jack asked whether Terry, Edith, and Harry still had useful content inside the o
 - Process the old memory into clean, durable summaries first, then store those summaries in Mem0.
 - Harry does not appear to have an old SQLite store to migrate on VPS1; verify the intended Harry runtime location before spending time on him.
 
+## Follow-Up Correction From Agent Registry
+
+- The live Notion Agent Registry confirms Harry is a VPS2 / Harry VPS agent, not a VPS1 Docker agent.
+- Harry registry row:
+  - URL: `https://harry.zbiz.ca`
+  - Port: `4100`
+  - Workspace: `/root/.openclaw-harry/workspace`
+  - Config path: `/root/.openclaw-harry/`
+  - Runtime: bare-metal/systemd
+  - Service: `openclaw-harry.service`
+  - Status in registry: `Degraded`
+- Live VPS2 check on `2026-07-08` confirmed:
+  - Host: `srv1677638`
+  - `openclaw-harry.service` is active and enabled.
+  - `/root/.openclaw-harry` exists.
+  - `/root/.openclaw-harry/workspace` exists.
+  - `/root/.openclaw-harry/openclaw.json` exists.
+- Practical lesson: when Terry, Edith, and Harry are mentioned together, split the investigation by host. Terry and Edith are VPS1 Docker agents; Harry is a VPS2 systemd agent.
+
 ## Proposed Migration Method
 
 - Export Terry and Edith SQLite chunks read-only into JSONL with source metadata.
