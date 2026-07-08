@@ -78,6 +78,12 @@ Guardrails added:
 
 ## Legacy Memory Inventory
 
+Correction from later live check on 2026-07-08:
+
+- The original note below missed active SQLite files because the first inspection looked at too narrow a path.
+- The live source of truth check across the Hindsight-connected agents found legacy OpenClaw memory databases at each agent's `memory/main.sqlite`.
+- The Markdown `MEMORY.md` and daily memory files should remain in place. They are still part of the OpenClaw/Hindsight operating lane and should not be cleaned up as part of SQLite migration.
+
 No SQLite database files were found in the inspected Inga agent or shared external-memory paths.
 
 Found legacy/non-Hindsight material:
@@ -118,3 +124,78 @@ Pilot one small migration batch first:
 - Import the latest 5 daily memory files.
 - Dry-run extract first, review the extracted facts, then retain.
 - Verify recall before processing the rest.
+
+## 2026-07-08 Live SQLite Inventory Addendum
+
+Scope:
+
+- Hindsight-connected OpenClaw agents:
+  - Inga and Suzy: `internet-marketing` bank.
+  - GohZed and Grogar: `ghl` bank.
+  - Marsha, Maggie, and Frank: `zedbiz-shared` bank.
+- Ruby Hermes Hindsight state on VPS3.
+- Harry was not included in this Hindsight migration inventory because Harry is active on Mem0, not Hindsight.
+
+Primary migration targets:
+
+| Agent | VPS | Hindsight bank | Primary SQLite memory DB | Size | Knowledge rows |
+|---|---:|---|---|---:|---:|
+| Inga | VPS1 | `internet-marketing` | `/opt/openclaw/agents/inga/memory/main.sqlite` | 82,255,872 bytes | 1,215 chunks, 148 files |
+| Suzy | VPS2 | `internet-marketing` | `/root/.openclaw-suzy/memory/main.sqlite` | 60,485,632 bytes | 993 chunks, 136 files |
+| GohZed | VPS1 | `ghl` | `/opt/openclaw/agents/gohzed/memory/main.sqlite` | 57,823,232 bytes | 947 chunks, 123 files |
+| Grogar | VPS1 | `ghl` | `/opt/openclaw/agents/grogar/memory/main.sqlite` | 62,205,952 bytes | 924 chunks, 119 files |
+| Marsha | VPS1 | `zedbiz-shared` | `/opt/openclaw/agents/marsha/memory/main.sqlite` | 93,769,728 bytes | 1,324 chunks, 176 files |
+| Maggie | VPS1 | `zedbiz-shared` | `/opt/openclaw/agents/maggie/memory/main.sqlite` | 58,281,984 bytes | 952 chunks, 122 files |
+| Frank | VPS2 | `zedbiz-shared` | `/root/.openclaw-frank/memory/main.sqlite` | 65,986,560 bytes | 894 chunks, 121 files |
+| Ruby | VPS3 | `zedbiz-shared` | `/opt/hermes-ruby/memory_store.db` | 65,536 bytes | 1 fact, 1 entity |
+
+OpenClaw `memory/main.sqlite` schema:
+
+- `chunks` carries `id`, `path`, `source`, `start_line`, `end_line`, `hash`, `model`, `text`, `embedding`, and `updated_at`.
+- `files` carries `path`, `source`, `hash`, `mtime`, and `size`.
+- This is suitable for a controlled migration because source path, source type, line range, and chunk hash can be preserved.
+
+Secondary SQLite files found:
+
+| Agent | Runtime/session DB | Count | Log DB | Count | Codex memory job DB |
+|---|---|---:|---|---:|---|
+| Inga | `agents/main/agent/codex-home/state_5.sqlite` | 170 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 41,228 logs | 0 jobs, 0 stage1 outputs |
+| Suzy | `agents/main/agent/codex-home/state_5.sqlite` | 125 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 32,325 logs | 0 jobs, 0 stage1 outputs |
+| GohZed | `agents/main/agent/codex-home/state_5.sqlite` | 140 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 30,284 logs | 0 jobs, 0 stage1 outputs |
+| Grogar | `agents/main/agent/codex-home/state_5.sqlite` | 135 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 28,569 logs | 0 jobs, 0 stage1 outputs |
+| Marsha | `agents/main/agent/codex-home/state_5.sqlite` | 202 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 56,325 logs | 0 jobs, 0 stage1 outputs |
+| Maggie | `agents/main/agent/codex-home/state_5.sqlite` | 149 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 33,000 logs | 0 jobs, 0 stage1 outputs |
+| Frank | `agents/main/agent/codex-home/state_5.sqlite` | 126 threads | `agents/main/agent/codex-home/logs_2.sqlite` | 34,720 logs | 0 jobs, 0 stage1 outputs |
+| Ruby | `/opt/hermes-ruby/state.db` | 110 sessions, 4,397 messages | none targeted | n/a | n/a |
+
+Files that should not be bulk-migrated:
+
+- `config/state/openclaw.sqlite` and `state/openclaw.sqlite`: OpenClaw runtime state, not clean memory knowledge.
+- `codex-home/state_5.sqlite`: thread/session state. Use only if a specific thread needs to be summarized.
+- `codex-home/logs_2.sqlite`: logs. Too noisy for raw import.
+- `codex-home/memories_1.sqlite`: present but empty for inspected OpenClaw agents.
+- `tasks/runs.sqlite`, `kanban.db`, and response store databases: operational state, not memory facts.
+- VPS2 nested `.openclaw/memory/main.sqlite` for Suzy and Frank exists but is empty.
+
+Recommended migration approach:
+
+- Leave Markdown memory files and `MEMORY.md` in place.
+- Export rows from each agent's `memory/main.sqlite` `chunks` table.
+- Preserve source metadata:
+  - source path
+  - source type
+  - start and end line
+  - original chunk hash
+  - agent name
+  - bank name
+  - import batch date
+- Build stable Hindsight document IDs such as `legacy-sqlite:{agent}:memory-main:{chunk_hash}`.
+- Deduplicate against current Hindsight recall before retaining.
+- Run a small dry-run batch first, then retain only useful facts or summaries.
+- Consolidate and refresh mental models after each agent/bank batch.
+
+Recommended pilot order:
+
+- Ruby first if the goal is a very low-risk proof of process, because its Hindsight memory store contains only one fact.
+- Frank or Grogar first if the goal is to pilot the OpenClaw `memory/main.sqlite` migration on a smaller chunk set.
+- Inga/Suzy after the migration script is proven, because the `internet-marketing` bank was just cleaned and should not be polluted by a rough first import.
