@@ -4,7 +4,7 @@ Date: 2026-07-11 | Agent: Cody | Status: Complete
 
 ## Summary
 
-Updated the regular Asana Agent Control Skill and built out the Advanced Asana Skill page for Amanda, Marsha, and Ruby.
+Updated the regular Asana Agent Control Skill, built out the Advanced Asana Skill page for Amanda, Marsha, and Ruby, and synced local Codex skill files so future Codex sessions do not use stale Asana guidance.
 
 ## Work Completed
 
@@ -13,6 +13,9 @@ Updated the regular Asana Agent Control Skill and built out the Advanced Asana S
 - Added daily-agent skill boundaries, safe action levels, tool path audit, task claiming, completion rules, blocker handling, GID resolution, custom field enumeration, rich text mention guidance, attachments, and scheduled Events guidance.
 - Moved advanced Asana administration items into the Advanced Asana Skill page.
 - Built the Advanced Asana Skill page with overview, design, contents, actual skill copy, implementation SOP, user guide, and future enhancements.
+- Synced local Codex skills:
+  - `C:\Users\zener\.codex\skills\zedbiz-asana-agent-control\SKILL.md`
+  - `C:\Users\zener\.codex\skills\zedbiz-advanced-asana-control\SKILL.md`
 
 ## Related Notion Records
 
