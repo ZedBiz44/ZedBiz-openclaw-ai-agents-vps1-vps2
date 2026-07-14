@@ -17,6 +17,19 @@
 - Use short commit messages that explain the business reason for the fix.
 - Do not bury important changes in vague messages like `updates` or `fixed docs`.
 
+## GitHub Issue Filing Rules
+
+Before creating, updating, or closing any GitHub issue, follow `docs/github-issue-filing-sop.md`.
+
+Minimum behavior:
+
+- Search existing issues before creating a new one.
+- Use the correct repo lane or file in General Tech with `needs-routing` when unsure.
+- Add required `agent:`, `system:`, `type:`, and `status:` labels where available.
+- Keep ongoing work in one parent issue or workstream instead of making duplicate session issues.
+- Comment material attempts, failures, fixes, verification, and PR/main-branch status.
+- Do not close until the final comment says what was verified and whether SOPs, tracking files, registry, or Notion summaries were updated.
+
 ## Mandatory Tracking Rule
 
 If an action changes how an agent, VPS, SOP, skill, feature, route, cron job, Docker setup, or folder structure works, it must be tracked in GitHub.
