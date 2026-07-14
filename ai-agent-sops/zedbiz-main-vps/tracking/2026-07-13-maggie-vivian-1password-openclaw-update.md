@@ -67,3 +67,50 @@ Jack must complete Vivian's browser device-code authorization. After authorizati
 ## Rollback
 
 Restore the timestamped agent helper and `.env.resolved` backups plus the backed-up systemd service files, reload systemd, and restart only the affected agent. Do not restore or expose secret contents in GitHub.
+
+## Full VPS1 Fleet Rollout
+
+Jack approved extending the tested Maggie/Vivian correction to the remaining VPS1 agents on 2026-07-13.
+
+### Agents Added
+
+- Amanda
+- Gohzed
+- Grogar
+- Inga
+- Marsha
+- Victor
+- Wilma
+
+### Rollout Method
+
+- Verified every individual `.op.token` with `op whoami` before changing the agent.
+- Proved every `.env` resolved successfully in a temporary file with zero remaining `op://` references.
+- Applied the tested per-agent `op inject` startup helper and systemd service pattern.
+- Enabled and restarted the services in controlled batches.
+- Verified service state, image version, HTTP health, secret presence, generated-file ownership, and Discord startup.
+
+### Victor Custom Image Exception
+
+Victor's Compose file hard-coded `zedbiz-openclaw-victor:2026.6.8-ssh`, so changing his `.env` did not update the running image. His custom Dockerfile adds the Docker CLI and OpenSSH client required for his administrator role.
+
+The first rebuild attempt exposed two separate build-path problems:
+
+- GHCR rejected the anonymous metadata request with HTTP 403 even though the approved base image was already present locally.
+- Building from Victor's full workspace failed because protected backup files were incorrectly included in the Docker build context.
+
+The tested correction was to build from a temporary minimal context containing only `Dockerfile.victor`, use the already-downloaded `ghcr.io/zedbiz44/openclaw-base:latest` image, tag the result as `zedbiz-openclaw-victor:2026.7.1-ssh`, and recreate only Victor. Docker CLI and OpenSSH availability were reverified inside the new container.
+
+### Final Fleet Audit
+
+All ten primary VPS1 agents passed:
+
+- OpenClaw image label `2026.7.1`
+- Systemd service enabled and active
+- HTTP health endpoint returned 200
+- Container restart count zero
+- Zero unresolved `op://` references
+- `.env.resolved` owned by UID/GID `1001:1001`
+- `.env.resolved` mode `600`
+
+Agents audited: Amanda, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma.
