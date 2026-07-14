@@ -114,3 +114,31 @@ All ten primary VPS1 agents passed:
 - `.env.resolved` mode `600`
 
 Agents audited: Amanda, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma.
+
+## Edith Separate Deployment Update
+
+Edith was updated separately after the primary ten-agent fleet because she had no systemd service and was surviving through Docker's `unless-stopped` policy with a `.env.resolved` snapshot from 2026-06-23.
+
+### Correction
+
+- Verified Edith's individual 1Password service-account token.
+- Proved her `.env` resolved with zero remaining `op://` references.
+- Backed up her generated environment, startup helper, and Compose file.
+- Installed the tested per-agent `op inject` startup helper.
+- Created and enabled `openclaw-edith.service`.
+- Recreated Edith on the approved shared v2026.7.1 image.
+
+### Verification
+
+- OpenClaw image label: `2026.7.1`
+- Systemd service: enabled and active
+- HTTP health endpoint: 200
+- Container restart count: zero
+- Discord identity: `@edith-openclaw`
+- Required OpenAI, OpenRouter, Discord, and Notion environment values: present
+- Zero unresolved `op://` references
+- `.env.resolved`: `1001:1001`, mode `600`
+
+### OAuth Finding
+
+Edith's stored OAuth metadata reported an unexpired date, but the required live provider probe failed. OpenAI returned `refresh_token_invalidated` and stated that the session had ended and must be authorized again. This proves the stored expiry date was not a valid health test. Edith requires a new human device-code login before OAuth can be considered working; the API-key backup remains available in the meantime.
