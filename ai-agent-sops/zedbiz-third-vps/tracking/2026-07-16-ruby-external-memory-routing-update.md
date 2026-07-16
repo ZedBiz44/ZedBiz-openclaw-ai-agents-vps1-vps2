@@ -31,3 +31,11 @@ Ruby uses the Hermes skill layout. OpenClaw-specific skill folders were not inst
 - Confirmed the new heading and skill rule each appear exactly once.
 - Confirmed the `hermes-ruby` container remained running.
 - Backups were retained with the `bak-quick-recall-20260716` suffix.
+
+## Explicit Write Attempt Tightening
+
+- Updated Ruby's native routing skill to require an explicit active-provider store or ingest attempt before reporting that the provider tool is unavailable.
+- Added the same rule to `/opt/hermes-ruby/AGENTS.md` exactly once.
+- Clarified that automatic retention is not proof of explicit capture and that asynchronous Hindsight writes must be verified by operation completion or bank listing.
+- Verified Ruby's routing skill SHA-256 matches canonical `zedbiz-knowledge-routing` commit `877c7ff`.
+- Verified the `hermes-ruby` container remained running.

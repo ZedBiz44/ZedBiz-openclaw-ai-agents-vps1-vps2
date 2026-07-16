@@ -104,3 +104,68 @@ Verification:
 - Every OpenClaw agent `AGENTS.md` contained the `Quick Recall Activity Index` heading exactly once.
 - VPS1 containers remained healthy and VPS2 services remained active.
 - Backups were retained as `AGENTS.md.bak-quick-recall-20260716`.
+
+## Explicit Provider Write Enforcement And Live Verification
+
+Agent acknowledgements from Inga, Suzy, Harry, and Vivian exposed a second failure mode: agents could report that no provider-native write was available without first attempting the registered provider tool.
+
+Changes completed:
+
+- Updated all four canonical skills and every live agent `AGENTS.md` to require an explicit provider store or ingest attempt before declaring the capability unavailable.
+- Required the agent to name the exact failed tool and error or policy block when capture cannot run.
+- Clarified that automatic turn retention is not proof of explicit capture.
+- Clarified that Hindsight is asynchronous: an immediate empty recall does not prove failure; completion must be verified by operation status or direct bank listing.
+
+Canonical skill commits:
+
+- `zedbiz-knowledge-routing`: `877c7ff`
+- `zedbiz-wiki-research`: `d0e6dee`
+- `zedbiz-notion-knowledge-publishing`: `dcf0568`
+- `small-bite-wiki-research`: `41cf76c`
+
+Fleet verification:
+
+- The four deployed skill hashes match the canonical files on all 11 VPS1 agents and all 3 VPS2 agents.
+- The explicit-write-attempt rule appears exactly once in every live VPS1/VPS2 `AGENTS.md`.
+- The shared VPS1 deployment bundle was updated at `/opt/openclaw/shared/knowledge/z-knowledge/30_TEMPLATES/zedbiz-skills-master/`.
+
+Provider verification:
+
+- Hindsight: direct bank listing confirmed Quick Recall activity memories in `internet-marketing`, `ghl`, and `zedbiz-shared`. Suzy's and Inga's knowledge tools were registered; the apparent recall failure was asynchronous indexing, not missing write access.
+- Mem0: repaired Harry's shared Qdrant access, explicitly stored memory ID `2d65848a-1a78-4369-b754-653f9a8c13ce`, and recalled it from Harry, Terry, and Edith.
+- LanceDB: Amanda and Victor recalled the rule already stored in their agent databases; Wilma stored the missing rule and recalled it at 84% relevance; Vivian had already completed explicit store and recall.
+
+## Harry Mem0 Repair
+
+Root causes:
+
+- The installed Mem0 Qdrant adapter defaulted to port `6333` even for HTTPS URLs.
+- The Qdrant client removed the configured `/qdrant-api` path and called the root `/collections` endpoint.
+- Harry's embedding credential reference was unresolved in the service environment.
+
+Repairs:
+
+- Patched Harry's installed Mem0 adapter to select port `443` for HTTPS and `6333` for HTTP.
+- Added a Caddy `/collections*` route restricted to the VPS2 source IP and proxied it to Qdrant; other callers receive `401`.
+- Supplied the already-authorized resolved embedding credential to Harry's protected environment without logging it.
+- Retained backups as `.env.bak-mem0-openai-key-20260716`, `openclaw.json.bak-qdrant-https-port-20260716`, package `.bak-qdrant-https-port-20260716` files, and `/config/Caddyfile.bak-harry-mem0-qdrant-root-20260716`.
+
+Verification:
+
+- VPS2 can reach the authorized Qdrant collections route.
+- Harry successfully stored and recalled the compact fleet rule.
+- Terry and Edith recalled the same memory from the shared Mem0 lane.
+- Harry, Frank, and Suzy services remained active.
+
+## Inga Orphan Package Cleanup
+
+A final audit found that Inga's active slot and configuration were correct but the hashed npm project directory for LanceDB still remained. Removed only `/home/node/.openclaw/npm/projects/openclaw-memory-lancedb-6a4d78c41e`, restarted Inga, and verified:
+
+- Inga is running and healthy.
+- Active slot remains `hindsight-openclaw`.
+- No LanceDB package directory remains.
+- Historical LanceDB data outside the package directory remains preserved.
+
+## Test Load Incident And Recovery
+
+A five-agent parallel provider test left remote `openclaw agent` and hook subprocesses running after the client-side timeout, exhausting VPS1 memory and driving load sharply upward. The test subprocesses were terminated and only Grogar, Maggie, Amanda, Victor, and Wilma were restarted. VPS1 recovered, all 11 agent containers returned healthy, and subsequent LanceDB tests were run one agent at a time with `--local`.
