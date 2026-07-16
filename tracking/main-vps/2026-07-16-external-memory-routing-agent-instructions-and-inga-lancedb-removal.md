@@ -74,3 +74,33 @@ Verification:
 ## Remaining Boundary
 
 This work corrected instructions and removed Inga's inactive plugin. It did not perform the provider repair rollout for Victor, Grogar, or Terry beyond instruction changes. Those runtime repairs remain governed by the confirmation boundary in the canonical Notion plan.
+
+## Quick Recall Activity Index Expansion
+
+Jack clarified that the active external memory provider must be the agent's first recall surface and a compact activity index for all meaningful work, not only durable artifacts.
+
+Changes completed:
+
+- Updated all four canonical skills to require recall before every meaningful assignment, research request, client interaction, system update, decision, handoff, or continuation of earlier work.
+- Required one compact activity memory to be created or updated during the same interaction when meaningful work is assigned, important information or operating instructions are supplied, or work status changes.
+- Required the activity memory to include subject, event, status, source or agent, timestamp, authoritative location when available, and next action or handoff.
+- Explicitly made `no memories were changed` an incorrect completion response when meaningful information or instructions should have been remembered.
+- Required write verification and plain reporting when provider capture fails.
+- Preserved the boundary that external memory is the first recall surface, while live state, GitHub, Memory Wiki, and Z-Knowledge remain authoritative for their respective claim types.
+- Replaced the earlier `External-Memory Boundary And Promotion` block with `Quick Recall Activity Index` in every live VPS1/VPS2 agent `AGENTS.md`.
+- Deployed the four updated skills to Terry, Edith, Inga, GohZed, Grogar, Marsha, Maggie, Amanda, Victor, Vivian, Wilma, Harry, Frank, and Suzy.
+
+Canonical GitHub skill commits:
+
+- `zedbiz-knowledge-routing`: `cda8330`
+- `zedbiz-wiki-research`: `66abf2b`
+- `zedbiz-notion-knowledge-publishing`: `ab99186`
+- `small-bite-wiki-research`: `343e654`
+
+Verification:
+
+- All four skill repositories passed `quick_validate.py` before deployment.
+- Every deployed OpenClaw skill file matched the canonical SHA-256 hash.
+- Every OpenClaw agent `AGENTS.md` contained the `Quick Recall Activity Index` heading exactly once.
+- VPS1 containers remained healthy and VPS2 services remained active.
+- Backups were retained as `AGENTS.md.bak-quick-recall-20260716`.

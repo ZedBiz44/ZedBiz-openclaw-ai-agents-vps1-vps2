@@ -21,3 +21,13 @@ Status: Complete
 ## Boundary
 
 Ruby uses the Hermes skill layout. OpenClaw-specific skill folders were not installed blindly into Hermes; Ruby's existing ZedBiz routing skill was updated in its native location instead.
+
+## Quick Recall Activity Index Expansion
+
+- Replaced Ruby's earlier `External-Memory Boundary And Promotion` section with the mandatory `Quick Recall Activity Index` behavior.
+- Updated Ruby's native `/opt/hermes-ruby/skills/note-taking/zedbiz-knowledge-routing/SKILL.md` with the same recall-first and same-interaction memory-capture rule.
+- Removed the superseded rule that only created a provider pointer when a durable artifact was changed and future recall benefited.
+- Required Ruby to explicitly retain meaningful assignments, instructions, decisions, status changes, and handoffs in Hindsight and verify capture.
+- Confirmed the new heading and skill rule each appear exactly once.
+- Confirmed the `hermes-ruby` container remained running.
+- Backups were retained with the `bak-quick-recall-20260716` suffix.
