@@ -16,6 +16,7 @@
 - Use GitHub Issues for SOP bugs, failed steps, missing commands, unclear wording, and broken assumptions.
 - Use short commit messages that explain the business reason for the fix.
 - Do not bury important changes in vague messages like `updates` or `fixed docs`.
+- Do not use the `github:yeet` workflow in this workspace. Use the connected GitHub app for GitHub records and pull-request operations, and regular local `git` for staging, commits, and pushes. Missing `gh` is not loss of GitHub access and must not block normal tracking or publishing.
 
 ## GitHub Issue Filing Rules
 
