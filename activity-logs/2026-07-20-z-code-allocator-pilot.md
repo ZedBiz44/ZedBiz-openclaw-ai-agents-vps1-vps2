@@ -63,3 +63,11 @@
 - Confirmed Notion record: `https://app.notion.com/p/3a3a3e33d58181d29936e6047dfbfc11`
 - Notion registry: `https://app.notion.com/p/89267d1e18f84f669269c900dc730b08`
 - Owner and repair manual: `https://app.notion.com/p/3a3a3e33d581803e8c40ed6621b341ce`
+- Human and agent allocation SOP: `https://app.notion.com/p/3a3a3e33d58180f7bf5ed69f0a398b84`
+
+## Human And Agent SOP
+
+- Replaced the short Notion allocation outline with a complete SOP for people and agents.
+- Added raw-import, Brief, Biz-Plan, Research, multiple-record, duplicate, stale, failed, review, and reassignment workflows.
+- Added copy-ready human and agent prompts, a completion-report template, and final quality-control checklist.
+- Defined the integration boundary for Marsha's future Content Master Database record-creation skill: the broader skill owns intake, research, classification, database fields, relations, and content quality, while the existing `request-z-code` skill remains the only allocation mechanism.

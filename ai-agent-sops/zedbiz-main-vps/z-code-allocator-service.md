@@ -6,6 +6,8 @@ Date: 2026-07-20 | Author: Cody | Status: Pilot
 
 Issue unique Z-Codes through one transactional service so agents on VPS1, VPS2, and VPS3 never select the same Topic Identifier or record suffix.
 
+The human-and-agent allocation workflow, copy-ready prompts, imported-content rules, and integration contract for broader Content Master Database record-creation skills are maintained in the live [Z-Code Allocation SOP](https://app.notion.com/p/3a3a3e33d58180f7bf5ed69f0a398b84).
+
 ## Source Of Truth
 
 - Runtime allocation state: `/opt/zedbiz-services/z-code-allocator/data/zcode.db` on VPS1.
