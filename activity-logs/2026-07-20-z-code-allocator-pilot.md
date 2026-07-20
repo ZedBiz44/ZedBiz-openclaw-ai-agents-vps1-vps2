@@ -5,7 +5,7 @@
 - **Date:** 2026-07-20 Mountain Time
 - **Added By:** Cody
 - **System:** VPS1 shared services, VPS1/VPS2 OpenClaw, VPS3 Hermes
-- **Feature Status:** deployed and healthy; bootstrap complete; allocation locked pending three Notion conflict decisions
+- **Feature Status:** deployed, enabled, piloted, and rolled out to the six approved agents
 
 ## Feature Purpose
 
@@ -32,20 +32,25 @@
 - The Docker container is running and healthy on VPS1.
 - Internal and public HTTPS smoke tests passed for health, authentication rejection, and the bootstrap safety lock.
 - Pilot endpoint: `https://edith.zbiz.ca/_zedbiz-zcode`
-- No live Z-Code has been allocated.
+- Allocation is enabled through an explicit live environment setting; the source-controlled default remains disabled for safe fresh deployments.
 - Live deployment review found that an empty allocator could collide with existing Notion Z-Codes. A bootstrap import endpoint and default-off allocation lock were added before any live code was issued.
-- The current Notion inventory was imported and verified: 336 distinct Z-Codes across 78 topic groups.
-- Three duplicate-code groups were found in Notion. Each code was imported once to prevent reuse, but allocation remains locked until the conflicting Notion records are corrected.
+- The corrected Notion inventory was imported and verified: 349 distinct Z-Codes across 80 topic groups.
+- Final Notion scan found zero duplicate codes and zero invalid formats.
+- Marsha completed the one-agent pilot by allocating `Z1ST-80001-100001-010`, creating the Notion Tools record, confirming its exact page URL, and replaying the original request without receiving a second code.
+- The agent skill was then rolled out to Edith and Marsha on VPS1, Frank, Harry, and Suzy on VPS2, and Ruby on VPS3.
+- Every agent completed an authenticated lookup of the same confirmed allocator record.
+- Added a Node.js client helper for OpenClaw containers while retaining the Python helper for Python-based runtimes such as Hermes.
+- Temporary credential-transfer files were removed from all three servers and the local workstation after rollout.
 - Detailed bootstrap record: `activity-logs/2026-07-20-z-code-bootstrap-import.md`
 
 ## Rollback Note
 
 - Stop and remove the allocator container and Caddy route.
 - Preserve the SQLite database for audit.
-- Remove the pilot skill from the tested agent only.
+- Restore each agent's dated environment backup, remove the `request-z-code` skill, and restart that agent.
 
 ## Links
 
 - Notion journal: `https://app.notion.com/p/3a3a3e33d581817dbcaee4f8736e4df8`
 - Source branch: `codex/z-code-allocator`
-- Related commit: `7597ade`
+- Confirmed Notion record: `https://app.notion.com/p/3a3a3e33d58181d29936e6047dfbfc11`

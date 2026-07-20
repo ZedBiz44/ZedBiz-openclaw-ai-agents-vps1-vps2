@@ -5,7 +5,7 @@ description: Reserve, look up, confirm, or check authoritative Z-Codes through t
 
 # Request Z-Code
 
-Use the bundled `scripts/request_z_code.py`. Never calculate, guess, or increment a Z-Code manually.
+Use the bundled `scripts/request_z_code.mjs` on OpenClaw/Hermes agents. The Python helper is retained for Python-based runtimes. Never calculate, guess, or increment a Z-Code manually.
 
 ## Before Creating A Record
 
@@ -26,24 +26,24 @@ Use the bundled `scripts/request_z_code.py`. Never calculate, guess, or incremen
 ## Commands
 
 ```bash
-python scripts/request_z_code.py lookup --name-key Biz-Plan-Template
+node scripts/request_z_code.mjs lookup --name-key Biz-Plan-Template
 
-python scripts/request_z_code.py allocate \
+node scripts/request_z_code.mjs allocate \
   --request-id marsha-20260720-biz-plan-template \
   --name-key Biz-Plan-Template \
   --core Z1ST \
   --lane 80001 \
   --page-type Biz-Plan
 
-python scripts/request_z_code.py confirm \
+node scripts/request_z_code.mjs confirm \
   --z-code Z1ST-80001-100043-020 \
   --notion-url https://www.notion.so/example
 
-python scripts/request_z_code.py failed \
+node scripts/request_z_code.mjs failed \
   --z-code Z1ST-80001-100043-020 \
   --reason "Notion page creation failed"
 
-python scripts/request_z_code.py status \
+node scripts/request_z_code.mjs status \
   --request-id marsha-20260720-biz-plan-template
 ```
 
@@ -54,4 +54,3 @@ The runtime must provide:
 - `ZCODE_AGENT_NAME`
 
 Do not print or store the API key in a page, log, prompt, or GitHub file.
-

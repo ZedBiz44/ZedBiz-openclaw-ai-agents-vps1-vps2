@@ -5,38 +5,38 @@
 - **Date:** 2026-07-20 Mountain Time
 - **Agent:** Cody
 - **Source:** Live Notion `Content-Master-Databases` page and every linked Core Content Database
-- **Result:** Existing codes imported and verified; new allocation remains locked pending conflict resolution
+- **Result:** Existing codes corrected, imported, verified, and allocation enabled
 
 ## Source Inventory
 
-- Queried all nineteen linked database surfaces, including both linked Tools databases, Clients, Prospects, and archived-row views.
-- Rows inspected: 549
+- Queried every linked database surface, including Business, Prospects, Tools, Guides-Courses, and archived-row views.
+- Rows inspected: 548
 - Rows with a Z-Code: 349
 - Blank Z-Code rows: 200
 - Validly formatted Z-Code rows: 349
-- Distinct Z-Codes: 336
-- Distinct topic groups: 78
+- Distinct Z-Codes: 349
+- Distinct topic groups: 80
 - Archived rows found: 0
 - Invalid Z-Code formats found: 0
 
 ## Bootstrap Result
 
 - Imported one record first and verified its API lookup before continuing.
-- Imported 336 distinct Z-Codes as active historical allocations.
-- Imported 78 topic groups.
+- Imported 349 distinct Z-Codes as active historical allocations.
+- Imported 80 topic groups.
 - SQLite `PRAGMA quick_check`: `ok`
 - Duplicate codes in SQLite: 0
 - Duplicate topic/suffix pairs in SQLite: 0
-- Allocation remained disabled during and after import.
-- Post-import backup: `/opt/zedbiz-services/z-code-allocator/data/backups/zcode-bootstrap-20260720T202705Z.db`
-- Backup SHA-256: `51e4e6a18bf68c3cb1a944dc068a4f7a215196f45857a4757f0f07b1a3dfe2fb`
+- Allocation remained disabled during the import and was enabled only after the final integrity checks passed.
+- Clean post-import backup: `/opt/zedbiz-services/z-code-allocator/data/backups/zcode-clean-bootstrap-20260720.db`
+- Backup SHA-256: `6fe38d22c15ee834f986232a463c8578b007ef2fca6b1c49d099457c624df5c6`
 
 ## Name-Key Mapping
 
-- Derived the stable Name-Key from the canonical Brief title for seventy topic groups.
-- Derived the remaining eight from their Biz-Plan, Research, or Website title.
+- Derived stable Name-Keys from canonical Brief, Biz-Plan, Research, Website, and example records.
 - Disambiguated the existing Three-Ps records as `Three-Ps-Product`, `Three-Ps-Service`, and `Three-Ps-Prospect` because the allocator requires a globally unique Name-Key.
-- Used `Paradise-Lifestyle-Club` as the temporary canonical Name-Key for topic `ZVIM-20001-100009` because most records in that topic group belong to Paradise Lifestyle Club.
+- Kept Paradise Lifestyle Club at topic `ZVIM-20001-100009` and assigned Deals7 to its corrected topic.
+- Used `AA-Example` for the example topic `ZVIM-29999-109099`.
 
 ## Notion Conflicts Found
 
@@ -61,20 +61,16 @@
 - The Research record was used as the canonical imported URL so the suffix remains occupied.
 - One of the two Notion records requires a new suffix.
 
-## Safety Decision
+## Conflict Resolution
 
-- Each conflicting code was imported once so the allocator cannot issue it again.
-- No Notion record was changed during extraction or bootstrap.
-- New allocation remains locked until Jack approves the three Notion corrections.
+- Confirmed database `21b992db59654909b9a286f948e8ad08` is **Business**, not Clients.
+- Confirmed the conflicting Business example row was deleted.
+- Confirmed Jack's Deals7, Paradise Lifestyle Club, and Rocky Mountain Music Culture corrections live.
+- Corrected the eleven AA/example rows to six-digit topic `109099` and unique suffixes `039` through `049`.
+- Re-scanned all source databases after the edits: 349 populated codes, 349 unique codes, zero duplicate codes, zero invalid formats, and zero archived rows.
 
-## Owner Update Recheck
+## Final Safety Decision
 
-- Jack reported changing the AA-Example value to `ZVIM-29999-1090099-049` and correcting the other conflicts.
-- Re-queried all linked Content Master Databases and directly fetched the affected pages.
-- The proposed obscure value is not valid under the current Z-Code standard because `1090099` has seven digits; the Topic Identifier must have six digits.
-- The obscure value currently appears on eleven rows, so it is also not unique.
-- `AA-Example` in Clients still contains `ZVIM-20003-100003-020`, conflicting with the real LightningIM Biz-Plan.
-- Deals7 and Paradise Lifestyle Club still both contain `ZVIM-20001-100009-010`.
-- Both Rocky Mountain Music Culture records still contain `ZVIM-20001-100011-052`.
-- Recommended correction for example/template rows: leave Z-Code blank instead of using a shared fake code.
-- No Notion or allocator data was changed during this recheck.
+- Rebuilt the bootstrap database from the corrected Notion source rather than retaining the earlier conflict-collapsed import.
+- Verified `PRAGMA quick_check=ok`, zero duplicate codes, and zero duplicate topic/suffix pairs.
+- Enabled new allocation only after all checks passed.
