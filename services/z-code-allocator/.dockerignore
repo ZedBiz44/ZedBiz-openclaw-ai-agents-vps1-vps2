@@ -3,4 +3,3 @@ __pycache__/
 data/
 secrets/api_keys.json
 tests/
-

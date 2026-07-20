@@ -29,6 +29,12 @@ pytest -q
 
 Provide one unique bearer token per agent in `secrets/api_keys.json`. Never commit the real file.
 
+Generate the initial file without printing credentials:
+
+```bash
+python scripts/generate_api_keys.py secrets/api_keys.json edith marsha frank ruby harry suzy
+```
+
 ## Primary Endpoints
 
 - `POST /v1/allocate`
