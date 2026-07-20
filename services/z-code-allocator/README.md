@@ -4,6 +4,8 @@ Date: 2026-07-20 | Author: Cody | Status: Pilot
 
 The service is the transactional source of truth for Z-Code allocation. Notion is a non-blocking human-readable mirror processed from the durable `sync_outbox` table.
 
+The `z-code-notion-mirror` companion container drains that outbox and upserts allocator records into the Notion `Z-Code-Registry`. If Notion is unavailable, events remain in SQLite and retry later; allocation continues normally.
+
 Allocation starts disabled. Import and verify all existing Notion Z-Codes through `POST /v1/admin/bootstrap`, then set `ZCODE_ALLOCATION_ENABLED=true` and restart the container.
 
 ## Local Development

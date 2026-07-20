@@ -29,6 +29,28 @@ services:
     mem_limit: 128m
     cpus: 0.50
 
+  z-code-notion-mirror:
+    build: .
+    image: zedbiz-z-code-allocator:1.0.0
+    container_name: z-code-notion-mirror
+    restart: unless-stopped
+    command: ["python", "-m", "app.mirror_worker"]
+    environment:
+      ZCODE_DATABASE_PATH: /data/zcode.db
+      NOTION_API_TOKEN: ${NOTION_API_TOKEN}
+      NOTION_ZCODE_DATABASE_ID: ${NOTION_ZCODE_DATABASE_ID}
+      ZCODE_MIRROR_POLL_SECONDS: ${ZCODE_MIRROR_POLL_SECONDS:-15}
+    volumes:
+      - ./data:/data
+    networks:
+      - openclaw
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 96m
+    cpus: 0.25
+
 networks:
   openclaw:
     external: true

@@ -41,6 +41,9 @@
 - Every agent completed an authenticated lookup of the same confirmed allocator record.
 - Added a Node.js client helper for OpenClaw containers while retaining the Python helper for Python-based runtimes such as Hermes.
 - Temporary credential-transfer files were removed from all three servers and the local workstation after rollout.
+- Created the `Z-Code-Registry` database under `Z-Knowledge-Master-Databases` and deployed a separate non-blocking mirror worker container.
+- The mirror drained both pilot events, upserted one Active registry row, and left zero pending outbox events.
+- Verified the registry row contains the exact Z-Code, topic, suffix, source record URL, request ID, and Marsha ownership.
 - Detailed bootstrap record: `activity-logs/2026-07-20-z-code-bootstrap-import.md`
 
 ## Rollback Note
@@ -54,3 +57,4 @@
 - Notion journal: `https://app.notion.com/p/3a3a3e33d581817dbcaee4f8736e4df8`
 - Source branch: `codex/z-code-allocator`
 - Confirmed Notion record: `https://app.notion.com/p/3a3a3e33d58181d29936e6047dfbfc11`
+- Notion registry: `https://app.notion.com/p/89267d1e18f84f669269c900dc730b08`

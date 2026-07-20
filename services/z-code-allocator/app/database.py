@@ -534,6 +534,24 @@ class Database:
             ).fetchall()
             return [dict(row) | {"payload": json.loads(row["payload_json"])} for row in rows]
 
+    def record_details(self, z_code: str) -> dict[str, Any] | None:
+        with self.connect() as connection:
+            row = connection.execute(
+                """
+                SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane, t.topic_identifier
+                FROM records r
+                JOIN topics t ON t.id = r.topic_pk
+                WHERE r.z_code = ?
+                """,
+                (z_code,),
+            ).fetchone()
+            if not row:
+                return None
+            result = dict(row)
+            result["topic_identifier"] = f"{row['topic_identifier']:06d}"
+            result["record_suffix"] = f"{row['record_suffix']:03d}"
+            return result
+
     def complete_outbox(self, event_id: int) -> None:
         with self.write_transaction() as connection:
             changed = connection.execute(
