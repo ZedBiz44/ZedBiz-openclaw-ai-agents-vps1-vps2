@@ -44,6 +44,10 @@
 - Created the `Z-Code-Registry` database under `Z-Knowledge-Master-Databases` and deployed a separate non-blocking mirror worker container.
 - The mirror drained both pilot events, upserted one Active registry row, and left zero pending outbox events.
 - Verified the registry row contains the exact Z-Code, topic, suffix, source record URL, request ID, and Marsha ownership.
+- Created and verified the comprehensive Notion owner and repair manual at `https://app.notion.com/p/3a3a3e33d581803e8c40ed6621b341ce`.
+- The manual records architecture, ownership, sources of truth, allocation rules, agent installations, endpoints, database design, secrets handling, backup/restore procedures, troubleshooting, change control, verification, and handoff requirements.
+- Created a post-go-live SQLite recovery backup containing 81 topics and 350 records: `/opt/zedbiz-services/z-code-allocator/data/backups/zcode-post-go-live-20260720-1548MDT.db`.
+- Verified the new backup with `PRAGMA quick_check=ok`; SHA-256 is `b8a4149b9f3babff933092f39a93a24162d2205b83c2d64652ca8e0e3ba51d4c`.
 - Detailed bootstrap record: `activity-logs/2026-07-20-z-code-bootstrap-import.md`
 
 ## Rollback Note
@@ -58,3 +62,4 @@
 - Source branch: `codex/z-code-allocator`
 - Confirmed Notion record: `https://app.notion.com/p/3a3a3e33d58181d29936e6047dfbfc11`
 - Notion registry: `https://app.notion.com/p/89267d1e18f84f669269c900dc730b08`
+- Owner and repair manual: `https://app.notion.com/p/3a3a3e33d581803e8c40ed6621b341ce`
