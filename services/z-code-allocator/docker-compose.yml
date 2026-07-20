@@ -1,0 +1,34 @@
+services:
+  z-code-allocator:
+    build: .
+    image: zedbiz-z-code-allocator:1.0.0
+    container_name: z-code-allocator
+    restart: unless-stopped
+    environment:
+      ZCODE_DATABASE_PATH: /data/zcode.db
+      ZCODE_API_KEYS_FILE: /run/secrets/api_keys.json
+      ZCODE_ADMIN_AGENTS: edith
+      ZCODE_RESERVATION_TTL_MINUTES: 60
+      ZCODE_SWEEPER_INTERVAL_SECONDS: 60
+    volumes:
+      - ./data:/data
+      - ./secrets/api_keys.json:/run/secrets/api_keys.json:ro
+    networks:
+      - openclaw
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8788/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    cpus: 0.50
+
+networks:
+  openclaw:
+    external: true
+
