@@ -67,3 +67,14 @@
 - No Notion record was changed during extraction or bootstrap.
 - New allocation remains locked until Jack approves the three Notion corrections.
 
+## Owner Update Recheck
+
+- Jack reported changing the AA-Example value to `ZVIM-29999-1090099-049` and correcting the other conflicts.
+- Re-queried all linked Content Master Databases and directly fetched the affected pages.
+- The proposed obscure value is not valid under the current Z-Code standard because `1090099` has seven digits; the Topic Identifier must have six digits.
+- The obscure value currently appears on eleven rows, so it is also not unique.
+- `AA-Example` in Clients still contains `ZVIM-20003-100003-020`, conflicting with the real LightningIM Biz-Plan.
+- Deals7 and Paradise Lifestyle Club still both contain `ZVIM-20001-100009-010`.
+- Both Rocky Mountain Music Culture records still contain `ZVIM-20001-100011-052`.
+- Recommended correction for example/template rows: leave Z-Code blank instead of using a shared fake code.
+- No Notion or allocator data was changed during this recheck.
