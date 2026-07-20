@@ -5,7 +5,7 @@
 - **Date:** 2026-07-20 Mountain Time
 - **Added By:** Cody
 - **System:** VPS1 shared services, VPS1/VPS2 OpenClaw, VPS3 Hermes
-- **Feature Status:** testing
+- **Feature Status:** deployed and healthy; allocation locked pending bootstrap import
 
 ## Feature Purpose
 
@@ -26,11 +26,15 @@
 
 ## Verification
 
-- Local automated tests: six passed.
+- Local automated tests: seven passed.
 - Covered allocation ranges, idempotency, confirmation, review conflicts, stale and failed non-reuse, concurrent uniqueness, reassignment, and authentication.
 - Skill validation: passed.
-- Container and live pilot verification: pending.
+- The Docker container is running and healthy on VPS1.
+- Internal and public HTTPS smoke tests passed for health, authentication rejection, and the bootstrap safety lock.
+- Pilot endpoint: `https://edith.zbiz.ca/_zedbiz-zcode`
+- No live Z-Code has been allocated.
 - Live deployment review found that an empty allocator could collide with existing Notion Z-Codes. A bootstrap import endpoint and default-off allocation lock were added before any live code was issued.
+- Allocation must remain locked until the current Notion Z-Code inventory is imported and verified.
 
 ## Rollback Note
 
@@ -40,5 +44,6 @@
 
 ## Links
 
-- Notion journal: pending final deployment record
-- Related commit: pending
+- Notion journal: `https://app.notion.com/p/3a3a3e33d581817dbcaee4f8736e4df8`
+- Source branch: `codex/z-code-allocator`
+- Related commit: `7597ade`
