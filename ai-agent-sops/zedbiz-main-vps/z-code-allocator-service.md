@@ -60,6 +60,7 @@ docker logs --tail 100 z-code-allocator
 - A conflicting Name-Key returns `requires_review` and a queue ID.
 - Topic reassignment changes all related complete Z-Codes and preserves aliases.
 - Notion outbox failures do not stop allocations.
+- Before first allocation, all existing Notion Z-Codes are imported through the admin bootstrap endpoint and the service remains locked with `ZCODE_ALLOCATION_ENABLED=false`.
 
 ## Backup
 
@@ -78,4 +79,3 @@ Use SQLite's online backup method or stop the container briefly before copying t
 - Run `docker compose down` in the live directory.
 - Preserve `data/zcode.db` and the secret file for investigation.
 - Agents revert to draft-only record preparation; do not resume manual numbering without Jack's approval.
-

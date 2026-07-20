@@ -4,6 +4,8 @@ Date: 2026-07-20 | Author: Cody | Status: Pilot
 
 The service is the transactional source of truth for Z-Code allocation. Notion is a non-blocking human-readable mirror processed from the durable `sync_outbox` table.
 
+Allocation starts disabled. Import and verify all existing Notion Z-Codes through `POST /v1/admin/bootstrap`, then set `ZCODE_ALLOCATION_ENABLED=true` and restart the container.
+
 ## Local Development
 
 ```powershell
@@ -46,4 +48,5 @@ python scripts/generate_api_keys.py secrets/api_keys.json edith marsha frank rub
 - `POST /v1/admin/stale/sweep`
 - `GET /v1/admin/outbox`
 - `GET /v1/admin/metrics`
+- `POST /v1/admin/bootstrap`
 - `GET /health`

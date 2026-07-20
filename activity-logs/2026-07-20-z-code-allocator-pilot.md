@@ -30,6 +30,7 @@
 - Covered allocation ranges, idempotency, confirmation, review conflicts, stale and failed non-reuse, concurrent uniqueness, reassignment, and authentication.
 - Skill validation: passed.
 - Container and live pilot verification: pending.
+- Live deployment review found that an empty allocator could collide with existing Notion Z-Codes. A bootstrap import endpoint and default-off allocation lock were added before any live code was issued.
 
 ## Rollback Note
 
@@ -41,4 +42,3 @@
 
 - Notion journal: pending final deployment record
 - Related commit: pending
-

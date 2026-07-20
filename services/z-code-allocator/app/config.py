@@ -13,6 +13,7 @@ class Settings:
     admin_agents: set[str] = field(default_factory=lambda: {"edith"})
     reservation_ttl_minutes: int = 60
     sweeper_interval_seconds: int = 60
+    allocation_enabled: bool = False
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -32,5 +33,5 @@ class Settings:
             },
             reservation_ttl_minutes=int(os.getenv("ZCODE_RESERVATION_TTL_MINUTES", "60")),
             sweeper_interval_seconds=int(os.getenv("ZCODE_SWEEPER_INTERVAL_SECONDS", "60")),
+            allocation_enabled=os.getenv("ZCODE_ALLOCATION_ENABLED", "false").strip().lower() in {"1", "true", "yes"},
         )
-

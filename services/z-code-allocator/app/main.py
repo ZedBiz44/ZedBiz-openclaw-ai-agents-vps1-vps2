@@ -10,6 +10,7 @@ from .config import Settings
 from .database import AllocationConflict, Database, InvalidState, NotFound
 from .models import (
     AllocateRequest,
+    BootstrapRequest,
     ConfirmRequest,
     OutboxResultRequest,
     ReassignTopicRequest,
@@ -86,6 +87,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.post("/v1/allocate")
     def allocate(request: AllocateRequest, actor: str = Depends(authenticate)) -> dict[str, object]:
+        if not settings.allocation_enabled:
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "code": "bootstrap_required",
+                    "message": "Allocation is disabled until existing Z-Codes are imported and verified",
+                },
+            )
         try:
             return database.allocate(request.model_dump(mode="json"), actor)
         except Exception as exc:
@@ -174,7 +183,14 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get("/v1/admin/metrics")
     def metrics(_: str = Depends(require_admin)) -> dict[str, object]:
-        return database.metrics()
+        return database.metrics() | {"allocation_enabled": settings.allocation_enabled}
+
+    @app.post("/v1/admin/bootstrap")
+    def bootstrap(request: BootstrapRequest, actor: str = Depends(require_admin)) -> dict[str, object]:
+        try:
+            return database.bootstrap([item.model_dump(mode="json") for item in request.records], actor)
+        except Exception as exc:
+            raise translate_error(exc) from exc
 
     return app
 

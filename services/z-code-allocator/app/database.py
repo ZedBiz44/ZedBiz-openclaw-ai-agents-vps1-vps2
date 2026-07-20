@@ -569,3 +569,77 @@ class Database:
                 "SELECT COUNT(*) AS count FROM sync_outbox WHERE status IN ('pending', 'retry')"
             ).fetchone()["count"]
             return result
+
+    def bootstrap(self, records: list[dict[str, Any]], actor: str) -> dict[str, Any]:
+        imported = 0
+        skipped = 0
+        seen_codes: set[str] = set()
+        with self.write_transaction() as connection:
+            for item in records:
+                z_code = item["z_code"]
+                if z_code in seen_codes:
+                    raise AllocationConflict(f"Duplicate Z-Code in bootstrap payload: {z_code}")
+                seen_codes.add(z_code)
+                core, lane, topic_text, suffix_text = z_code.split("-")
+                topic_identifier = int(topic_text)
+                suffix = int(suffix_text)
+                existing_code = connection.execute("SELECT * FROM records WHERE z_code = ?", (z_code,)).fetchone()
+                if existing_code:
+                    topic = connection.execute("SELECT * FROM topics WHERE id = ?", (existing_code["topic_pk"],)).fetchone()
+                    if topic["name_key"].lower() != item["name_key"].lower() or normalize_page_type(existing_code["page_type"]) != normalize_page_type(item["page_type"]):
+                        raise AllocationConflict(f"Existing Z-Code does not match bootstrap payload: {z_code}")
+                    skipped += 1
+                    continue
+
+                topic = connection.execute(
+                    "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (item["name_key"],)
+                ).fetchone()
+                if topic and (
+                    topic["z_knowledge_core"] != core
+                    or topic["knowledge_lane"] != lane
+                    or topic["topic_identifier"] != topic_identifier
+                ):
+                    raise AllocationConflict(
+                        f"Name-Key {item['name_key']} is already mapped to a different core, lane, or Topic Identifier"
+                    )
+                if not topic:
+                    now = utc_now()
+                    try:
+                        cursor = connection.execute(
+                            "INSERT INTO topics(topic_identifier, name_key, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
+                            (topic_identifier, item["name_key"], core, lane, now, now),
+                        )
+                    except sqlite3.IntegrityError as exc:
+                        raise AllocationConflict(f"Topic collision while importing {z_code}") from exc
+                    topic = connection.execute("SELECT * FROM topics WHERE id = ?", (cursor.lastrowid,)).fetchone()
+                suffix_collision = connection.execute(
+                    "SELECT z_code FROM records WHERE topic_pk = ? AND record_suffix = ?", (topic["id"], suffix)
+                ).fetchone()
+                if suffix_collision:
+                    raise AllocationConflict(
+                        f"Suffix collision: {z_code} conflicts with {suffix_collision['z_code']}"
+                    )
+                now = utc_now()
+                connection.execute(
+                    """INSERT INTO records(
+                        z_code, topic_pk, page_type, record_suffix, request_id, reserved_by, status,
+                        notion_url, reserved_at, expires_at, confirmed_at, updated_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, 'active', ?, ?, ?, ?, ?)""",
+                    (
+                        z_code,
+                        topic["id"],
+                        item["page_type"],
+                        suffix,
+                        f"bootstrap:{z_code}",
+                        actor,
+                        item.get("notion_url"),
+                        now,
+                        now,
+                        now,
+                        now,
+                    ),
+                )
+                imported += 1
+            event = {"imported": imported, "skipped": skipped, "submitted": len(records)}
+            self.add_audit(connection, "bootstrap_import", actor, event)
+            return event

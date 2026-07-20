@@ -17,6 +17,7 @@ def build_client(tmp_path: Path, ttl: int = 60) -> TestClient:
             admin_agents={"edith"},
             reservation_ttl_minutes=ttl,
             sweeper_interval_seconds=0,
+            allocation_enabled=True,
         )
     )
     return TestClient(app)
@@ -136,3 +137,52 @@ def test_authentication_and_agent_identity_are_enforced(tmp_path: Path) -> None:
         mismatched = allocation("request-4002") | {"requested_by": "edith"}
         assert client.post("/v1/allocate", json=mismatched, headers=auth()).status_code == 409
 
+
+def test_bootstrap_lock_and_existing_code_import(tmp_path: Path) -> None:
+    database_path = str(tmp_path / "zcode.db")
+    locked_app = create_app(
+        Settings(
+            database_path=database_path,
+            api_keys={"marsha": "marsha-key", "edith": "edith-key"},
+            admin_agents={"edith"},
+            sweeper_interval_seconds=0,
+            allocation_enabled=False,
+        )
+    )
+    with TestClient(locked_app) as locked:
+        blocked = locked.post("/v1/allocate", json=allocation("request-5001"), headers=auth())
+        assert blocked.status_code == 503
+        imported = locked.post(
+            "/v1/admin/bootstrap",
+            json={
+                "records": [
+                    {
+                        "z_code": "Z1ST-80001-100042-050",
+                        "name_key": "Existing-Template",
+                        "page_type": "Template",
+                        "notion_url": "https://www.notion.so/existing",
+                    }
+                ]
+            },
+            headers=auth("edith"),
+        )
+        assert imported.status_code == 200, imported.text
+        assert imported.json()["imported"] == 1
+
+    enabled_app = create_app(
+        Settings(
+            database_path=database_path,
+            api_keys={"marsha": "marsha-key", "edith": "edith-key"},
+            admin_agents={"edith"},
+            sweeper_interval_seconds=0,
+            allocation_enabled=True,
+        )
+    )
+    with TestClient(enabled_app) as enabled:
+        new_topic = enabled.post(
+            "/v1/allocate",
+            json=allocation("request-5002", "Template", "New-Template"),
+            headers=auth(),
+        )
+        assert new_topic.status_code == 200, new_topic.text
+        assert new_topic.json()["topic_identifier"] == "100043"

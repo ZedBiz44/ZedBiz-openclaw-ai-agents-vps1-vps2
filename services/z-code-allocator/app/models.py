@@ -51,3 +51,13 @@ class ResolveReviewRequest(BaseModel):
 class OutboxResultRequest(BaseModel):
     error: str | None = Field(default=None, max_length=2000)
 
+
+class BootstrapRecord(BaseModel):
+    z_code: str = Field(pattern=Z_CODE_PATTERN)
+    name_key: str = Field(pattern=NAME_KEY_PATTERN)
+    page_type: str = Field(min_length=1, max_length=64)
+    notion_url: HttpUrl | None = None
+
+
+class BootstrapRequest(BaseModel):
+    records: list[BootstrapRecord] = Field(min_length=1, max_length=10000)

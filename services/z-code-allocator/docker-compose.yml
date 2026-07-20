@@ -10,6 +10,7 @@ services:
       ZCODE_ADMIN_AGENTS: edith
       ZCODE_RESERVATION_TTL_MINUTES: 60
       ZCODE_SWEEPER_INTERVAL_SECONDS: 60
+      ZCODE_ALLOCATION_ENABLED: "false"
     volumes:
       - ./data:/data
       - ./secrets/api_keys.json:/run/secrets/api_keys.json:ro
@@ -31,4 +32,3 @@ services:
 networks:
   openclaw:
     external: true
-
