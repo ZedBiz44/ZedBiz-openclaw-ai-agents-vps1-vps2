@@ -5,7 +5,7 @@
 - **Date:** 2026-07-20 Mountain Time
 - **Added By:** Cody
 - **System:** VPS1 shared services, VPS1/VPS2 OpenClaw, VPS3 Hermes
-- **Feature Status:** deployed and healthy; allocation locked pending bootstrap import
+- **Feature Status:** deployed and healthy; bootstrap complete; allocation locked pending three Notion conflict decisions
 
 ## Feature Purpose
 
@@ -34,7 +34,9 @@
 - Pilot endpoint: `https://edith.zbiz.ca/_zedbiz-zcode`
 - No live Z-Code has been allocated.
 - Live deployment review found that an empty allocator could collide with existing Notion Z-Codes. A bootstrap import endpoint and default-off allocation lock were added before any live code was issued.
-- Allocation must remain locked until the current Notion Z-Code inventory is imported and verified.
+- The current Notion inventory was imported and verified: 336 distinct Z-Codes across 78 topic groups.
+- Three duplicate-code groups were found in Notion. Each code was imported once to prevent reuse, but allocation remains locked until the conflicting Notion records are corrected.
+- Detailed bootstrap record: `activity-logs/2026-07-20-z-code-bootstrap-import.md`
 
 ## Rollback Note
 
