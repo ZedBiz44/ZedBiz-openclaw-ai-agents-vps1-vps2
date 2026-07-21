@@ -5,9 +5,12 @@ Create this internal manifest before mutations. Keep it in task working state or
 | Field | Required content |
 |---|---|
 | Source | Original page ID, URL, file, note, or research request |
-| Destination | Exact Content Master Database and live data source |
-| Record Type | Brief, Biz-Plan, Research, Jack, Source, or other supported type |
+| Destination Database | Exact subject-owning Content Master Database and live data source |
+| Page-Type | Actual live Notion Page-Type: Brief, Biz-Plan, Research, Jack, Source, or another supported value |
+| Allocator Page-Type | Page-Type sent to the Z-Code allocator; must exactly match the final Notion Page-Type |
 | Name-Key | Normalized allocator identity |
+| Descriptor | Short useful title descriptor without filler or repeated Name-Key words |
+| Proposed Page-Name | Exact `[Name-Key]-[Page-Type]-[Descriptor]` title, 3-8 dash-separated words total |
 | Core | Full Z-Knowledge Core |
 | Lane | Full Knowledge Lane |
 | Topic Identity | Core + Lane + Topic Identifier; never the six-digit number alone |
