@@ -60,13 +60,14 @@ The activity record must contain the subject, assignment, status, source or agen
 Before mutations, create an internal manifest using `references/record-manifest.md`.
 
 - Plan the complete record package, but execute one record at a time.
-- Record the source, destination, record type, Name-Key, Core, Lane, research mode, existing-record match, Z-Code state, final URL, mandatory Wiki artifact, and verification state.
+- Record the source, destination Core database, actual Page-Type, allocator Page-Type, Name-Key, descriptor, proposed Page-Name, Core, Lane, research mode, existing-record match, Z-Code state, final URL, mandatory Wiki artifact, and verification state.
 - Update the manifest after every allocator or publishing step so retries resume from known state.
 
 ### Route Only When Needed
 
 - If the destination database is specified and consistent with the source, validate it and continue.
 - Route by the durable subject, not by the activity. Research about a single tool belongs in Tools, a person in People, a business in Business, and a website in Websites. Use Research only when the research project or cross-topic investigation is itself the durable record.
+- Keep the destination database and Page-Type as two separate decisions. A `Research` Page-Type can live in Tools, People, Business, Websites, or another subject-owning database. The Research database is not the default home for pages whose Page-Type is Research.
 - If no destination is specified and the source could fit more than one Core, database, or durable layer, load and follow `zedbiz-knowledge-routing`.
 - Store in Notion when humans need to review, filter, decide, or act from the record.
 - Store in the Memory Wiki when agents need stable, reusable, source-backed retrieval.
@@ -121,8 +122,12 @@ Do not accept "first bite complete" or a recommended next bite as assignment com
 
 ### Name, Classify, And Connect Carefully
 
-- Follow the live naming SOP. Capitalize words and separate them with dashes.
-- Distinguish Brief, Biz-Plan, Jack note, Research, Source, and sibling records in Page-Name.
+- Freeze the allocator-authoritative Name-Key first, then choose the actual Page-Type from the live target schema, then add a short useful descriptor.
+- Compose every title exactly as `[Name-Key]-[Page-Type]-[Descriptor]`. The Page-Type must appear immediately after the complete Name-Key and must equal the record's actual `Page-Type` property.
+- Use 3-8 dash-separated words total. Capitalize meaningful words, remove filler, do not duplicate the Name-Key, and do not insert subject labels such as `Person`, `Tool`, or `Business` as a fake Page-Type.
+- Before writing, verify that the proposed Page-Name begins exactly with `${Name-Key}-${Page-Type}-`. After writing, fetch the page and verify the stored Page-Name against the same rule.
+- The Page-Type supplied to the allocator must equal the final Notion `Page-Type`. If they differ, stop before confirmation and correct the allocation through `request-z-code`; never accept a suffix for the wrong Page-Type.
+- Valid examples: `Emily-Hirsh-Brief-Embodied-Marketing-Profile`, `Doug-Boughton-Brief-Community-Marketing-Profile`, `Grok-AI-Research-ZedBiz-Tool-Assessment`, and `Trish-Lindsey-RVT-Services-Research-Website-Market-Recommendations`.
 - Use one stable topical icon across a record family unless the Page-Type rules require otherwise.
 - Fill every required operating field from the live schema and SOP.
 - Fill optional fields only when supported by evidence.
