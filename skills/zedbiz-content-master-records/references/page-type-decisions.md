@@ -13,7 +13,16 @@ Use the supported source or `Jack` Page-Type when the page is primarily Jack's o
 
 ## Brief
 
-Create or update a Brief when the assignment needs a durable, decision-oriented overview and the available evidence can responsibly explain:
+Brief is the foundational, first, and most general Page-Type under every Master Content Database.
+
+When the user asks to research an entity without definitive criteria for a more specific deliverable:
+
+- search for that owning entity's Brief;
+- create the Brief when none exists;
+- update the existing Brief when the new findings belong in its general overview;
+- create a separate Page-Type only when the requested output or depth justifies it.
+
+A useful Brief should explain:
 
 - what the topic, person, business, tool, venture, or subject is;
 - why it matters to ZedBiz;
@@ -24,7 +33,19 @@ Create or update a Brief when the assignment needs a durable, decision-oriented 
 
 Search first. Reuse a reliable existing Brief when it already serves the same topic and purpose.
 
-Do not automatically create a Brief for every imported source. When no Brief is justified yet, preserve the source and record `Brief recommended` as a next action when appropriate.
+Do not turn every imported source into a Brief. The default applies to generic research requests about an entity, not to preservation-only imports or explicitly requested Website, Content, Source, Biz-Plan, or other deliverables.
+
+## Website
+
+Use Website when the requested output analyzes website presentation, messaging, positioning, structure, content, conversion experience, or another website-specific aspect.
+
+The database still follows ownership and purpose. For example, a review of how Emily Hirsh portrays herself on her website is `People / Website`; a standalone record for managing or evaluating `embodiedmarketing.com` as a web property is `Websites / Brief` or another supported Website-owned Page-Type.
+
+## Content
+
+Use Content when the requested output is content ideas, themes, messages, posts, scripts, or an editorial asset.
+
+Place it under the entity or initiative that will use the content. General ideas about Emily are `People / Content`; ideas created to advance an existing Emily affiliate venture are `Ventures / Content` and use the venture's topic identity.
 
 ## Biz-Plan
 
@@ -43,7 +64,7 @@ Known gaps may remain, but they must be identified with validation actions. Do n
 
 ## Research
 
-Use Research when the primary output is source-backed findings, comparison, fact-checking, evaluation, recommendation development, or open-question analysis rather than an operating plan.
+Use Research when a distinct source-backed investigation, comparison, fact-check, evaluation, or evidence package should remain separate from the foundational Brief and no more specific Page-Type better describes the requested output.
 
 - Preserve sources and dates.
 - Separate source claims from conclusions.
@@ -61,5 +82,4 @@ Do not create a new record when:
 - a required identity, destination, allocator, or safety decision is unresolved.
 
 Update the existing record, preserve the source, or report the recommended next milestone instead.
-
 
