@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zedbiz-zcode-admin",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-21",
+  "workers_dev": true,
+  "preview_urls": false,
+  "routes": [
+    { "pattern": "zcode-admin.zbiz.ca", "custom_domain": true }
+  ],
+  "vars": {
+    "ORIGIN_BASE": "https://edith.zbiz.ca/_zedbiz-zcode-admin/"
+  }
+}

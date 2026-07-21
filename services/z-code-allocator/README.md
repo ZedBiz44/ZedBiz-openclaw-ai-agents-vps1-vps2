@@ -1,6 +1,6 @@
 # Z-Code Allocator Service
 
-Date: 2026-07-20 | Author: Cody | Status: Pilot
+Date: 2026-07-21 | Author: Cody | Status: Production
 
 The service is the transactional source of truth for Z-Code allocation. Notion is a non-blocking human-readable mirror processed from the durable `sync_outbox` table.
 
@@ -47,6 +47,16 @@ Generate the initial file without printing credentials:
 ```bash
 python scripts/generate_api_keys.py secrets/api_keys.json edith marsha frank ruby harry suzy
 ```
+
+## Browser Administration
+
+The normal write-capable dashboard is served by `z-code-admin`. It permits only controlled metadata edits and mirror resyncs; each action creates an audit event and a Notion outbox event.
+
+- Public path: `https://edith.zbiz.ca/_zedbiz-zcode-admin/`
+- Username and password: `ZCODE_ADMIN_USERNAME` and `ZCODE_ADMIN_PASSWORD` in the server `.env`
+- The raw SQLite editor is `z-code-db-emergency`, uses a separate password, and is disabled unless its Docker Compose profile is explicitly started.
+
+Raw editing requires a live SQLite backup, stopped allocator and mirror containers, foreign-key checks, `PRAGMA quick_check`, and a complete Notion reconciliation before allocation resumes. The raw editor supports writes by design and must never be left running after maintenance.
 
 ## Primary Endpoints
 

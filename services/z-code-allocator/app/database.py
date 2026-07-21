@@ -552,6 +552,68 @@ class Database:
             result["record_suffix"] = f"{row['record_suffix']:03d}"
             return result
 
+    def admin_records(self, search: str = "", limit: int = 200) -> list[dict[str, Any]]:
+        with self.connect() as connection:
+            pattern = f"%{search.strip()}%"
+            rows = connection.execute(
+                """
+                SELECT r.z_code, r.page_type, r.status, r.notion_url, r.reserved_by,
+                       r.request_id, r.updated_at, t.name_key, t.z_knowledge_core,
+                       t.knowledge_lane, t.topic_identifier
+                FROM records r JOIN topics t ON t.id = r.topic_pk
+                WHERE ? = '' OR r.z_code LIKE ? OR t.name_key LIKE ? OR r.notion_url LIKE ?
+                ORDER BY r.updated_at DESC LIMIT ?
+                """,
+                (search.strip(), pattern, pattern, pattern, limit),
+            ).fetchall()
+            return [dict(row) | {"topic_identifier": f"{row['topic_identifier']:06d}"} for row in rows]
+
+    def admin_audit(self, limit: int = 100) -> list[dict[str, Any]]:
+        with self.connect() as connection:
+            return [
+                dict(row)
+                for row in connection.execute(
+                    "SELECT * FROM audit_events ORDER BY id DESC LIMIT ?", (limit,)
+                ).fetchall()
+            ]
+
+    def admin_update_record(
+        self, z_code: str, page_type: str, notion_url: str | None, reason: str, actor: str
+    ) -> dict[str, Any]:
+        page_type = page_type.strip()
+        notion_url = (notion_url or "").strip() or None
+        reason = reason.strip()
+        if not page_type or not reason:
+            raise InvalidState("Page Type and change reason are required")
+        with self.write_transaction() as connection:
+            record = connection.execute("SELECT * FROM records WHERE z_code = ?", (z_code,)).fetchone()
+            if not record:
+                raise NotFound("Z-Code record was not found")
+            before = {"page_type": record["page_type"], "notion_url": record["notion_url"]}
+            now = utc_now()
+            connection.execute(
+                "UPDATE records SET page_type = ?, notion_url = ?, updated_at = ? WHERE id = ?",
+                (page_type, notion_url, now, record["id"]),
+            )
+            after = {"page_type": page_type, "notion_url": notion_url}
+            event = {"before": before, "after": after, "reason": reason}
+            self.add_outbox(connection, "record_admin_updated", z_code, event)
+            self.add_audit(connection, "record_admin_updated", actor, event, z_code=z_code, request_id=record["request_id"])
+        return self.record_details(z_code) or {}
+
+    def admin_resync_record(self, z_code: str, reason: str, actor: str) -> dict[str, Any]:
+        reason = reason.strip()
+        if not reason:
+            raise InvalidState("Resync reason is required")
+        with self.write_transaction() as connection:
+            record = connection.execute("SELECT * FROM records WHERE z_code = ?", (z_code,)).fetchone()
+            if not record:
+                raise NotFound("Z-Code record was not found")
+            event = {"reason": reason, "requested_by": actor}
+            self.add_outbox(connection, "record_admin_resync", z_code, event)
+            self.add_audit(connection, "record_admin_resync", actor, event, z_code=z_code, request_id=record["request_id"])
+            return event
+
     def complete_outbox(self, event_id: int) -> None:
         with self.write_transaction() as connection:
             changed = connection.execute(

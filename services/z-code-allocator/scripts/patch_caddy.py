@@ -13,7 +13,16 @@ OLD = """edith.zbiz.ca {
 """
 
 NEW = """edith.zbiz.ca {
-    # Z-Code Allocator pilot route. handle_path strips the public prefix.
+    # Human admin routes. Both services also require their own password.
+    handle_path /_zedbiz-zcode-admin/* {
+        reverse_proxy z-code-admin:8790
+    }
+
+    handle_path /_zedbiz-zcode-db/* {
+        reverse_proxy z-code-db-emergency:8080
+    }
+
+    # Z-Code Allocator API. This broader prefix must follow the admin routes.
     handle_path /_zedbiz-zcode/* {
         reverse_proxy z-code-allocator:8788
     }
@@ -45,4 +54,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
