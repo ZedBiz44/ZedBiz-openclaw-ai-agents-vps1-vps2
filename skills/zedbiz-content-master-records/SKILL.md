@@ -1,3 +1,6 @@
+Exit code: 0
+Wall time: 0.3 seconds
+Output:
 ---
 name: "zedbiz-content-master-records"
 description: "Use for importing, Z-Coding, publishing, mirroring, connecting, and verifying Briefs, Biz-Plans, Research, and other ZedBiz Core records."
@@ -16,7 +19,7 @@ This skill coordinates the assignment. Specialist skills own their detailed proc
 - Load `zedbiz-knowledge-routing` when the human has not specified a destination database and the material could plausibly belong to more than one Core, database, or durable layer. For Core records, use routing to select the correct Wiki artifact type and location; the Wiki mirror itself is mandatory.
 - Skip a full routing pass when the destination database is explicitly stated or unambiguous from the source. Still verify that the destination exists and fits the live schema.
 - Load either `small-bite-wiki-research` or `zedbiz-wiki-research` when research is required. Do not load both by default.
-- Use `small-bite-wiki-research` for a narrow first pass, a broad task likely to time out, or the smallest useful durable research artifact.
+- Use `small-bite-wiki-research` for checkpointed sequential research when a task is broad or likely to time out. Its bites control work size, not user authorization: it must continue autonomously until the assigned research outcome is complete.
 - Use `zedbiz-wiki-research` for substantial source-backed research, conflicting evidence, important verification, or a durable synthesis.
 - When a Core record needs its mandatory Memory Wiki mirror without new research, use `wiki-maintainer` as the technical Wiki operator.
 
@@ -29,6 +32,7 @@ If a required specialist skill is unavailable, stop before its governed mutation
 - Stop and escalate if the source exposes secrets or sensitive material that should not be copied into a durable system.
 - Search before creating. Reuse or update a matching record when it represents the same item and purpose.
 - Never calculate, guess, increment, copy, or reuse a Z-Code. Use the centralized allocator.
+- Never create or complete a Core record with a blank Z-Code. If the allocator cannot be invoked, stop before creating the new record and report the allocator as the genuine blocker.
 - Never identify or connect a topic using the six-digit Topic Identifier alone. Use the complete Core + Lane + Topic Identifier identity and the allocator-authoritative Name-Key or topic record.
 - Create only records justified by the assignment and evidence. Do not automatically create a Brief, Biz-Plan, Research page, relation, or extra Wiki artifact beyond the mandatory mirror for each Core record.
 - Every record created, moved into, or materially updated in a Core Content Database must have a corresponding Memory Wiki record for agent retrieval. Process the Notion record and Wiki mirror as one completion unit.
@@ -65,6 +69,7 @@ Before mutations, create an internal manifest using `references/record-manifest.
 ### Route Only When Needed
 
 - If the destination database is specified and consistent with the source, validate it and continue.
+- Route by the durable subject, not by the activity. Research about a single tool belongs in Tools, a person in People, a business in Business, and a website in Websites. Use Research only when the research project or cross-topic investigation is itself the durable record.
 - If no destination is specified and the source could fit more than one Core, database, or durable layer, load and follow `zedbiz-knowledge-routing`.
 - Store in Notion when humans need to review, filter, decide, or act from the record.
 - Store in the Memory Wiki when agents need stable, reusable, source-backed retrieval.
@@ -107,10 +112,13 @@ Before mutations, create an internal manifest using `references/record-manifest.
 - If the allocator returns `requires_review`, stop that record and report the queue ID.
 - Load `zedbiz-notion-knowledge-publishing` and create, move, or update the record through the approved Notion route.
 - Immediately fetch the page and minimally verify its page ID, parent data source, Page-Name, Page-Type, and exact Z-Code.
+- A blank Z-Code fails this gate. Do not defer allocation as later cleanup or cite an uninvoked allocator after publishing.
 - Confirm the allocation only after that minimal verification succeeds.
 - If page creation fails, report allocator failure. Never recycle the code.
 - After confirmation, complete relations, content checks, icon verification, and the full quality gate.
 - Then continue to the next manifest record.
+
+Do not ask the user to say "continue" between records, research bites, routing, publishing, mirroring, or quality checks. The assignment authorizes ordinary sequential work through completion. Pause only for a genuine blocker requiring new authority or information, or when the user explicitly asks to pause.
 
 ### Name, Classify, And Connect Carefully
 
