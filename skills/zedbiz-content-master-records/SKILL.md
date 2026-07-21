@@ -1,6 +1,6 @@
 ---
 name: "zedbiz-content-master-records"
-description: "Use for importing, Z-Coding, publishing, mirroring, connecting, and verifying Briefs, Biz-Plans, Research, and other ZedBiz Core records."
+description: "Mandatory master workflow for every meaningful ZedBiz assignment, reusable finding, or durable fact supplied by the user. Use whenever an agent is asked to research, analyze, review, inspect, check, look up, investigate, compare, evaluate, audit, plan, recommend, figure something out, create a deliverable, perform project work, encounters a new durable entity, receives a useful fact about a person/business/tool/etc., or discovers uncaptured historical agent work. Create or update the correct Z-Knowledge Core record and Memory Wiki mirror even when the user never says Z-Knowledge."
 ---
 
 # ZedBiz Content Master Records
@@ -8,6 +8,18 @@ description: "Use for importing, Z-Coding, publishing, mirroring, connecting, an
 Use this skill as the master workflow for imported Evernote/Notion material and for Briefs, Biz-Plans, Research, Jack notes, Sources, and other records entering a ZedBiz Content Master Database.
 
 This skill coordinates the assignment. Specialist skills own their detailed procedures.
+
+## Always-On Capture Mandate
+
+- Treat every meaningful assignment as Z-Knowledge work regardless of the verb or wording used.
+- Never require the user to say `research`, `Z-Knowledge`, `save`, `publish`, or another trigger phrase.
+- Do not leave a substantive result only in chat. Create or update the correct Core record and mandatory Memory Wiki mirror in the same assignment.
+- Apply this rule to research, analysis, reviews, audits, comparisons, lookups, planning, recommendations, deliverables, project discoveries, and completed operational work.
+- Apply it when the user supplies a meaningful fact, capability, preference, relationship, observation, decision, or correction even without assigning follow-up work. For example, "Paul is really good at creating graphics" must update or create Paul's People Brief and its Wiki mirror.
+- When another project exposes a new person, business, website, venture, tool, product, service, source, or other durable entity, search for its record and create the foundational Brief when absent unless a more specific Page-Type is clearly required.
+- When recall, logs, chat history, or project work reveals older meaningful work that lacks its paired Core and Wiki records, backfill them automatically. Preserve the original work date, agent, sources, and confidence; never imply the record existed earlier than it did.
+- Continue the assigned work and knowledge capture autonomously. Do not ask whether the user wants the result saved.
+- Do not create separate junk records for acknowledgements, duplicated intermediate chatter, secrets, or raw transient logs. Store the useful sanitized result, decision, evidence, status, and next action in the owning Z-Knowledge record.
 
 ## Load Specialist Skills Only When Required
 
@@ -33,6 +45,8 @@ If a required specialist skill is unavailable, stop before its governed mutation
 - Never identify or connect a topic using the six-digit Topic Identifier alone. Use the complete Core + Lane + Topic Identifier identity and the allocator-authoritative Name-Key or topic record.
 - Create only records justified by the assignment and evidence. For a generic request to research an entity without a more specific requested output, create or update its foundational Brief; do not automatically create Biz-Plan, Research, relation, or extra Wiki artifacts beyond the mandatory mirror for each Core record.
 - Every record created, moved into, or materially updated in a Core Content Database must have a corresponding Memory Wiki record for agent retrieval. Process the Notion record and Wiki mirror as one completion unit.
+- Every meaningful assignment must end with a verified create or update to the appropriate Z-Knowledge Core record. A chat-only answer is incomplete.
+- Every meaningful durable fact supplied by the user must also end with a verified Core create or update and Wiki mirror, even when no separate assignment was requested.
 - Use the live database schema, current SOP, and correct template. Do not rely on remembered field names, data-source IDs, or select values.
 - Do not invent people, tools, businesses, relationships, claims, URLs, ownership, readiness, or commercial facts.
 - Limit concurrent Notion mutation calls to two. Process Z-Code allocation, page creation, minimal verification, and confirmation sequentially per record.
