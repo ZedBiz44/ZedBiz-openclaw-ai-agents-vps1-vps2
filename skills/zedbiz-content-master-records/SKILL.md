@@ -31,7 +31,7 @@ If a required specialist skill is unavailable, stop before its governed mutation
 - Never calculate, guess, increment, copy, or reuse a Z-Code. Use the centralized allocator.
 - Never create or complete a Core record with a blank Z-Code. If the allocator cannot be invoked, stop before creating the new record and report the allocator as the genuine blocker.
 - Never identify or connect a topic using the six-digit Topic Identifier alone. Use the complete Core + Lane + Topic Identifier identity and the allocator-authoritative Name-Key or topic record.
-- Create only records justified by the assignment and evidence. Do not automatically create a Brief, Biz-Plan, Research page, relation, or extra Wiki artifact beyond the mandatory mirror for each Core record.
+- Create only records justified by the assignment and evidence. For a generic request to research an entity without a more specific requested output, create or update its foundational Brief; do not automatically create Biz-Plan, Research, relation, or extra Wiki artifacts beyond the mandatory mirror for each Core record.
 - Every record created, moved into, or materially updated in a Core Content Database must have a corresponding Memory Wiki record for agent retrieval. Process the Notion record and Wiki mirror as one completion unit.
 - Use the live database schema, current SOP, and correct template. Do not rely on remembered field names, data-source IDs, or select values.
 - Do not invent people, tools, businesses, relationships, claims, URLs, ownership, readiness, or commercial facts.
@@ -60,13 +60,15 @@ The activity record must contain the subject, assignment, status, source or agen
 Before mutations, create an internal manifest using `references/record-manifest.md`.
 
 - Plan the complete record package, but execute one record at a time.
-- Record the source, destination Core database, actual Page-Type, allocator Page-Type, Name-Key, descriptor, proposed Page-Name, Core, Lane, research mode, existing-record match, Z-Code state, final URL, mandatory Wiki artifact, and verification state.
+- Record the source examined, requested purpose, owning entity or initiative, destination Core database, actual Page-Type, allocator Page-Type, Name-Key, descriptor, proposed Page-Name, Core, Lane, research mode, existing-record match, Z-Code state, final URL, mandatory Wiki artifact, and verification state.
 - Update the manifest after every allocator or publishing step so retries resume from known state.
 
 ### Route Only When Needed
 
-- If the destination database is specified and consistent with the source, validate it and continue.
-- Route by the durable subject, not by the activity. Research about a single tool belongs in Tools, a person in People, a business in Business, and a website in Websites. Use Research only when the research project or cross-topic investigation is itself the durable record.
+- If the destination database is specified and consistent with the assignment purpose and owning entity or initiative, validate it and continue.
+- Treat each Master Content Database as an encapsulating entity or operating context. Select the database that owns and will use the output, not merely the source being examined or the activity performed.
+- A website may be only evidence for a People, Business, or Ventures record. Use Websites when the website or web property itself is the owning entity being catalogued, managed, compared, or improved.
+- When a defined venture, campaign, or other initiative will use the output, route the record under that initiative's database even when the source material is a person, website, tool, or business.
 - Keep the destination database and Page-Type as two separate decisions. A `Research` Page-Type can live in Tools, People, Business, Websites, or another subject-owning database. The Research database is not the default home for pages whose Page-Type is Research.
 - If no destination is specified and the source could fit more than one Core, database, or durable layer, load and follow `zedbiz-knowledge-routing`.
 - Store in Notion when humans need to review, filter, decide, or act from the record.
@@ -88,8 +90,10 @@ Before mutations, create an internal manifest using `references/record-manifest.
 
 - Read `references/page-type-decisions.md`.
 - Preserve raw imported or Jack-authored source material as its appropriate source/Page-Type.
-- Reuse an existing reliable Brief when it already covers the topic and purpose.
-- Create or update a Brief only when the assignment needs a durable decision-oriented overview and the evidence supports one.
+- Treat Brief as the foundational and most general Page-Type under every Master Content Database.
+- For a generic request such as "research X" with no definitive output criteria, search for the owning entity's Brief. Create it when none exists; otherwise update it when the findings belong in the general overview.
+- Use a more specific Page-Type when the requested deliverable or operating purpose is specific, such as Website, Content, Biz-Plan, Source, or Research.
+- Use Research as a Page-Type only when a distinct evidence package, investigation, comparison, or analysis should remain separate from the Brief.
 - Create a Biz-Plan only when the record contains or can responsibly develop an executable marketing and action plan.
 - Use Research when the main output is source-backed findings, comparison, verification, or analysis rather than an operating plan.
 - If a useful record is not yet justified, record the gap and recommended next milestone instead of creating a placeholder.
@@ -127,7 +131,7 @@ Do not accept "first bite complete" or a recommended next bite as assignment com
 - Use 3-8 dash-separated words total. Capitalize meaningful words, remove filler, do not duplicate the Name-Key, and do not insert subject labels such as `Person`, `Tool`, or `Business` as a fake Page-Type.
 - Before writing, verify that the proposed Page-Name begins exactly with `${Name-Key}-${Page-Type}-`. After writing, fetch the page and verify the stored Page-Name against the same rule.
 - The Page-Type supplied to the allocator must equal the final Notion `Page-Type`. If they differ, stop before confirmation and correct the allocation through `request-z-code`; never accept a suffix for the wrong Page-Type.
-- Valid examples: `Emily-Hirsh-Brief-Embodied-Marketing-Profile`, `Doug-Boughton-Brief-Community-Marketing-Profile`, `Grok-AI-Research-ZedBiz-Tool-Assessment`, and `Trish-Lindsey-RVT-Services-Research-Website-Market-Recommendations`.
+- Valid examples include `Emily-Hirsh-Brief-Embodied-Marketing-Profile`, `Emily-Hirsh-Website-Positioning-Review`, and `Emily-Hirsh-Content-Website-Ideas`. A venture-owned content record must use the venture Name-Key and Page-Type, not Emily's Name-Key merely because her website supplied the ideas.
 - Use one stable topical icon across a record family unless the Page-Type rules require otherwise.
 - Fill every required operating field from the live schema and SOP.
 - Fill optional fields only when supported by evidence.
