@@ -1,0 +1,197 @@
+---
+name: "zedbiz-content-master-records"
+description: "Mandatory master workflow for every meaningful ZedBiz assignment, reusable finding, or durable fact supplied by the user. Use whenever an agent is asked to research, analyze, review, inspect, check, look up, investigate, compare, evaluate, audit, plan, recommend, figure something out, create a deliverable, perform project work, encounters a new durable entity, receives a useful fact about a person/business/tool/etc., or discovers uncaptured historical agent work. Create or update the correct Z-Knowledge Core record and Memory Wiki mirror even when the user never says Z-Knowledge."
+---
+
+# ZedBiz Content Master Records
+
+Use this skill as the master workflow for imported Evernote/Notion material and for Briefs, Biz-Plans, Research, Jack notes, Sources, and other records entering a ZedBiz Content Master Database.
+
+This skill coordinates the assignment. Specialist skills own their detailed procedures.
+
+## Always-On Capture Mandate
+
+- Treat every meaningful assignment as Z-Knowledge work regardless of the verb or wording used.
+- Never require the user to say `research`, `Z-Knowledge`, `save`, `publish`, or another trigger phrase.
+- Do not leave a substantive result only in chat. Create or update the correct Core record and mandatory Memory Wiki mirror in the same assignment.
+- Apply this rule to research, analysis, reviews, audits, comparisons, lookups, planning, recommendations, deliverables, project discoveries, and completed operational work.
+- Apply it when the user supplies a meaningful fact, capability, preference, relationship, observation, decision, or correction even without assigning follow-up work. For example, "Paul is really good at creating graphics" must update or create Paul's People Brief and its Wiki mirror.
+- When another project exposes a new person, business, website, venture, tool, product, service, source, or other durable entity, search for its record and create the foundational Brief when absent unless a more specific Page-Type is clearly required.
+- When recall, logs, chat history, or project work reveals older meaningful work that lacks its paired Core and Wiki records, backfill them automatically. Preserve the original work date, agent, sources, and confidence; never imply the record existed earlier than it did.
+- Continue the assigned work and knowledge capture autonomously. Do not ask whether the user wants the result saved.
+- Do not create separate junk records for acknowledgements, duplicated intermediate chatter, secrets, or raw transient logs. Store the useful sanitized result, decision, evidence, status, and next action in the owning Z-Knowledge record.
+
+## Load Specialist Skills Only When Required
+
+- Load `request-z-code` before assigning, reserving, confirming, failing, checking, or reassigning any Z-Code.
+- Load `zedbiz-notion-knowledge-publishing` before creating, moving, or materially updating a Content Master Database record. Follow its approved Codex Apps Notion access route.
+- Load `zedbiz-knowledge-routing` when the human has not specified a destination database and the material could plausibly belong to more than one Core, database, or durable layer. For Core records, use routing to select the correct Wiki artifact type and location; the Wiki mirror itself is mandatory.
+- Skip a full routing pass when the destination database is explicitly stated or unambiguous from the source. Still verify that the destination exists and fits the live schema.
+- Load either `small-bite-wiki-research` or `zedbiz-wiki-research` when research is required. Do not load both by default.
+- Use `small-bite-wiki-research` for checkpointed sequential research when a task is broad or likely to time out. Its bites control work size, not user authorization: it must continue autonomously until the assigned research outcome is complete.
+- Use `zedbiz-wiki-research` for substantial source-backed research, conflicting evidence, important verification, or a durable synthesis.
+- When a Core record needs its mandatory Memory Wiki mirror without new research, use `wiki-maintainer` as the technical Wiki operator.
+
+If a required specialist skill is unavailable, stop before its governed mutation and report the exact missing skill or tool.
+
+## Non-Negotiable Rules
+
+- Preserve an original imported page body exactly. Change only properties, title, icon, cover, or parent unless Jack explicitly authorizes body editing.
+- If a cleaned or synthesized version is needed, preserve the original and create a separate derivative record.
+- Stop and escalate if the source exposes secrets or sensitive material that should not be copied into a durable system.
+- Search before creating. Reuse or update a matching record when it represents the same item and purpose.
+- Never calculate, guess, increment, copy, or reuse a Z-Code. Use the centralized allocator.
+- Never create or complete a Core record with a blank Z-Code. If the allocator cannot be invoked, stop before creating the new record and report the allocator as the genuine blocker.
+- Never identify or connect a topic using the six-digit Topic Identifier alone. Use the complete Core + Lane + Topic Identifier identity and the allocator-authoritative Name-Key or topic record.
+- Create only records justified by the assignment and evidence. For a generic request to research an entity without a more specific requested output, create or update its foundational Brief; do not automatically create Biz-Plan, Research, relation, or extra Wiki artifacts beyond the mandatory mirror for each Core record.
+- Every record created, moved into, or materially updated in a Core Content Database must have a corresponding Memory Wiki record for agent retrieval. Process the Notion record and Wiki mirror as one completion unit.
+- Every meaningful assignment must end with a verified create or update to the appropriate Z-Knowledge Core record. A chat-only answer is incomplete.
+- Every meaningful durable fact supplied by the user must also end with a verified Core create or update and Wiki mirror, even when no separate assignment was requested.
+- Use the live database schema, current SOP, and correct template. Do not rely on remembered field names, data-source IDs, or select values.
+- Do not invent people, tools, businesses, relationships, claims, URLs, ownership, readiness, or commercial facts.
+- Limit concurrent Notion mutation calls to two. Process Z-Code allocation, page creation, minimal verification, and confirmation sequentially per record.
+- Never claim completion without fetching and checking every changed Notion record and validating every changed Wiki artifact.
+
+## Workflow
+
+### Recall And Open One Activity Record
+
+- Query the active external memory provider for the topic, source IDs, prior attempts, decisions, and handoffs.
+- Treat recalled content as a lead, not verified truth.
+- Open or update one compact activity record for the assignment. Do not create one memory per page or step.
+
+The activity record must contain the subject, assignment, status, source or agent, Mountain Time timestamp, authoritative location when available, and next action or handoff. At closeout, add affected page IDs or URLs, Z-Codes, decisions, verification results, unresolved gaps, and the final status.
+
+### Inspect Governing Sources
+
+- Fetch the source page or file.
+- Fetch the target Content Master Database or canonical routing page and resolve the live data source and schema.
+- Fetch the Z-Knowledge Database Record SOP and the current template or SOP for each intended Page-Type.
+- For an imported Notion page, retain its page ID and a pre-change body snapshot or reliable fingerprint.
+
+### Build The Working Record Manifest
+
+Before mutations, create an internal manifest using `references/record-manifest.md`.
+
+- Plan the complete record package, but execute one record at a time.
+- Record the source examined, requested purpose, owning entity or initiative, destination Core database, actual Page-Type, allocator Page-Type, Name-Key, descriptor, proposed Page-Name, Core, Lane, research mode, existing-record match, Z-Code state, final URL, mandatory Wiki artifact, and verification state.
+- Update the manifest after every allocator or publishing step so retries resume from known state.
+
+### Route Only When Needed
+
+- If the destination database is specified and consistent with the assignment purpose and owning entity or initiative, validate it and continue.
+- Treat each Master Content Database as an encapsulating entity or operating context. Select the database that owns and will use the output, not merely the source being examined or the activity performed.
+- A website may be only evidence for a People, Business, or Ventures record. Use Websites when the website or web property itself is the owning entity being catalogued, managed, compared, or improved.
+- When a defined venture, campaign, or other initiative will use the output, route the record under that initiative's database even when the source material is a person, website, tool, or business.
+- Keep the destination database and Page-Type as two separate decisions. A `Research` Page-Type can live in Tools, People, Business, Websites, or another subject-owning database. The Research database is not the default home for pages whose Page-Type is Research.
+- If no destination is specified and the source could fit more than one Core, database, or durable layer, load and follow `zedbiz-knowledge-routing`.
+- Store in Notion when humans need to review, filter, decide, or act from the record.
+- Store in the Memory Wiki when agents need stable, reusable, source-backed retrieval.
+- Every Core Content Database record must exist in both Notion and the Memory Wiki. Use routing to choose the correct Wiki artifact type and location.
+- Link the paired Notion and Wiki artifacts when useful.
+- For non-Core knowledge, follow the routing decision instead of creating unnecessary durable artifacts.
+
+### Search And Resolve Topic Identity
+
+- Search the target database and relevant related databases using topic names, aliases, domains, source URLs, and likely Name-Key values.
+- Fetch plausible matches. Titles alone are insufficient.
+- Use allocator lookup for likely existing Name-Keys before allocating anything.
+- Reuse the existing topic only after confirming the same full Core + Lane + Topic Identifier identity.
+- If the source and candidate are materially different, use a new topic.
+- If identity remains ambiguous, stop before merging, moving, relating, or allocating and request review.
+
+### Decide Which Records Are Justified
+
+- Read `references/page-type-decisions.md`.
+- Preserve raw imported or Jack-authored source material as its appropriate source/Page-Type.
+- Treat Brief as the foundational and most general Page-Type under every Master Content Database.
+- For a generic request such as "research X" with no definitive output criteria, search for the owning entity's Brief. Create it when none exists; otherwise update it when the findings belong in the general overview.
+- Use a more specific Page-Type when the requested deliverable or operating purpose is specific, such as Website, Content, Biz-Plan, Source, or Research.
+- Use Research as a Page-Type only when a distinct evidence package, investigation, comparison, or analysis should remain separate from the Brief.
+- Create a Biz-Plan only when the record contains or can responsibly develop an executable marketing and action plan.
+- Use Research when the main output is source-backed findings, comparison, verification, or analysis rather than an operating plan.
+- If a useful record is not yet justified, record the gap and recommended next milestone instead of creating a placeholder.
+
+### Select The Research Path
+
+- Do not call a research skill for a straight import or classification job that adds no new factual claims.
+- Use `small-bite-wiki-research` for the smallest useful first-pass artifact or timeout-prone broad research.
+- Use `zedbiz-wiki-research` for substantive source-backed research or synthesis.
+- Separate source statements, agent conclusions, verified facts, confidence, and verification gaps.
+- Use current authoritative sources for health, legal, financial, scientific, performance, ownership, rights, or other high-stakes claims.
+
+### Allocate, Publish, Verify, And Confirm One Record At A Time
+
+- Load `request-z-code` and use lookup before allocation.
+- Reuse the allocator-authoritative topic identity when the existing topic match is confirmed.
+- Allocate one new record and retain its stable `request_id`.
+- If the allocator returns `requires_review`, stop that record and report the queue ID.
+- Load `zedbiz-notion-knowledge-publishing` and create, move, or update the record through the approved Notion route.
+- Immediately fetch the page and minimally verify its page ID, parent data source, Page-Name, Page-Type, and exact Z-Code.
+- A blank Z-Code fails this gate. Do not defer allocation as later cleanup or cite an uninvoked allocator after publishing.
+- Confirm the allocation only after that minimal verification succeeds.
+- If page creation fails, report allocator failure. Never recycle the code.
+- After confirmation, complete relations, content checks, icon verification, and the full quality gate.
+- Then continue to the next manifest record.
+
+Do not ask the user to say "continue" between records, research bites, routing, publishing, mirroring, or quality checks. The assignment authorizes ordinary sequential work through completion. Pause only for a genuine blocker requiring new authority or information, or when the user explicitly asks to pause.
+
+Do not accept "first bite complete" or a recommended next bite as assignment completion. When a specialist returns an intermediate checkpoint and the manifest still contains required work, continue with the next bite automatically and provide the user only the final completion report or a genuine blocker report.
+
+### Name, Classify, And Connect Carefully
+
+- Freeze the allocator-authoritative Name-Key first, then choose the actual Page-Type from the live target schema, then add a short useful descriptor.
+- Compose every title exactly as `[Name-Key]-[Page-Type]-[Descriptor]`. The Page-Type must appear immediately after the complete Name-Key and must equal the record's actual `Page-Type` property.
+- Use 3-8 dash-separated words total. Capitalize meaningful words, remove filler, do not duplicate the Name-Key, and do not insert subject labels such as `Person`, `Tool`, or `Business` as a fake Page-Type.
+- Before writing, verify that the proposed Page-Name begins exactly with `${Name-Key}-${Page-Type}-`. After writing, fetch the page and verify the stored Page-Name against the same rule.
+- The Page-Type supplied to the allocator must equal the final Notion `Page-Type`. If they differ, stop before confirmation and correct the allocation through `request-z-code`; never accept a suffix for the wrong Page-Type.
+- Valid examples include `Emily-Hirsh-Brief-Embodied-Marketing-Profile`, `Emily-Hirsh-Website-Positioning-Review`, and `Emily-Hirsh-Content-Website-Ideas`. A venture-owned content record must use the venture Name-Key and Page-Type, not Emily's Name-Key merely because her website supplied the ideas.
+- Use one stable topical icon across a record family unless the Page-Type rules require otherwise.
+- Fill every required operating field from the live schema and SOP.
+- Fill optional fields only when supported by evidence.
+- Add a relation only after fetching the candidate and confirming its identity.
+- Connect same-topic records using the full allocator-authoritative topic identity plus explicit relations, never the six-digit identifier alone.
+
+### Create Or Verify The Mandatory Core Wiki Mirror
+
+- For every Core Content Database record, create or verify the corresponding Memory Wiki record in the same assignment.
+- Use the routing decision to select `sources/`, `entities/`, `concepts/`, `syntheses/`, or another approved Wiki location.
+- If new research is required, use the selected research skill; it should use `wiki-maintainer` for the technical Wiki operation when available.
+- If no new research is needed, use `wiki-maintainer` directly to create or update the mirror.
+- Prefer updating an existing canonical Wiki page over creating a duplicate.
+- Run standard Wiki status/lint and the ZedBiz frontmatter validation required by the active Wiki skill.
+- Do not mark a Core record complete until the exact Wiki file exists and the Notion/Wiki pair is reported.
+
+### Complete Quality Control And Closeout
+
+- Read `references/record-quality-gate.md`.
+- Fetch every changed Notion page after all mutations.
+- Verify the source page body remained unchanged when preservation was required.
+- Check for duplicate full Z-Codes and conflicting full topic identities.
+- Verify Wiki artifacts and lint results only when Wiki work occurred.
+- Update the single activity-memory record with final results and verify the memory write.
+- Report records moved, created, updated, reused, deliberately not created, and why.
+
+## Failure Handling
+
+- Invalid schema or select value: refetch the live schema, correct only the failed value, and retry only that record.
+- Connector timeout: inspect live state before retrying because the first mutation may have succeeded.
+- Duplicate or questionable Z-Code: stop, use allocator lookup/status, and do not patch around it.
+- Wrong or uncertain topic match: stop before moving, merging, connecting, or allocating.
+- Source-body mismatch: stop immediately and avoid additional mutations.
+- Missing exact relation: leave it unlinked and report the gap.
+- Wiki operation unavailable: do not invent a mirror or claim it exists. Report the exact unavailable skill, tool, or validation command.
+- Partial package failure: preserve the manifest state, verify completed records individually, and resume only from known state.
+
+## Completion Report
+
+- Record links, Page-Names, Page-Types, and destination databases.
+- Full Z-Codes and confirmed full topic identities.
+- Existing topics and records reused.
+- Records created, moved, updated, or deliberately not created.
+- Important verified relations.
+- Imported-body preservation and icon verification.
+- Research path and important verification gaps.
+- Mandatory Core Wiki artifact and exact lint results.
+- Activity-memory provider, verification result, and next action.
+
