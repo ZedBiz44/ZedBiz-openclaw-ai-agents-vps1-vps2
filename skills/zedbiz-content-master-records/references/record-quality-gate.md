@@ -12,6 +12,10 @@ Use this checklist before reporting completion.
 
 ## Classification And Identity
 
+- Destination database was chosen by the durable subject, independently from Page-Type. A Research Page-Type was not automatically routed to the Research database.
+- Stored Page-Name is exactly `[Name-Key]-[Page-Type]-[Descriptor]`, begins with the complete allocator Name-Key followed immediately by the actual Page-Type, and contains 3-8 dash-separated words.
+- Page-Name contains no filler, duplicated Name-Key, or fake Page-Type such as Person, Tool, or Business when the actual Page-Type is Brief or Research.
+- Allocator Page-Type exactly matches the final Notion Page-Type and the Z-Code suffix is valid for that Page-Type.
 - Correct database, Page-Type, current template, and naming rules.
 - Existing topic lookup completed before allocation.
 - Full topic identity uses Core + Lane + Topic Identifier, not the six-digit number alone.
