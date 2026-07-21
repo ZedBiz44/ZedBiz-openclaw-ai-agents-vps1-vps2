@@ -12,7 +12,11 @@ Use this checklist before reporting completion.
 
 ## Classification And Identity
 
-- Destination database was chosen by the durable subject, independently from Page-Type. A Research Page-Type was not automatically routed to the Research database.
+- Destination database was chosen by the owning entity or operating context that will use the output, independently from the source examined and Page-Type.
+- A website used as evidence did not automatically force Websites; a person-, business-, or venture-owned output remained with its owning entity.
+- A Research Page-Type was not automatically routed to the Research database.
+- A generic research request with no definitive output used the owning entity's existing Brief or created the foundational Brief when none existed.
+- A specific requested deliverable used its supported Page-Type, such as Website or Content, under the owning entity or initiative.
 - Stored Page-Name is exactly `[Name-Key]-[Page-Type]-[Descriptor]`, begins with the complete allocator Name-Key followed immediately by the actual Page-Type, and contains 3-8 dash-separated words.
 - Page-Name contains no filler, duplicated Name-Key, or fake Page-Type such as Person, Tool, or Business when the actual Page-Type is Brief or Research.
 - Allocator Page-Type exactly matches the final Notion Page-Type and the Z-Code suffix is valid for that Page-Type.
