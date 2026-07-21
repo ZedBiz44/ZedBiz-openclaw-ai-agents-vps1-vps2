@@ -25,33 +25,42 @@
 #   - git-cliff    Changelog generator from git commits
 #   - just         Task runner / command shortcuts
 #   - grex         Regex generator from examples
+#   - chromium     Browser automation runtime for OpenClaw browser tooling
+#   - chromedriver Browser automation driver
+#   - rsync        SSH-based file sync and backups
+#   - sqlite3      Local structured data inspection/storage
+#   - Asana MCP    Global npm package for Asana MCP integrations
+#   - Notion MCP   Global npm package for Notion MCP integrations
 
-ARG OPENCLAW_VERSION=2026.6.5
+ARG OPENCLAW_VERSION
 FROM ghcr.io/openclaw/openclaw:${OPENCLAW_VERSION}
 
 # Tool versions -- update these to upgrade
-ARG YTDLP_VERSION=2026.06.09
-ARG RCLONE_VERSION=1.74.3
-ARG GH_VERSION=2.94.0
+ARG YTDLP_VERSION=2026.07.04
+ARG RCLONE_VERSION=1.74.4
+ARG GH_VERSION=2.96.0
 ARG YQ_VERSION=4.53.3
 ARG PANDOC_VERSION=3.10
-ARG UV_VERSION=0.11.20
+ARG UV_VERSION=0.11.28
 ARG DEBUGPY_VERSION=1.8.21
 ARG GRON_VERSION=0.7.1
 ARG GLOW_VERSION=2.1.2
-ARG EZA_VERSION=0.23.4
+ARG EZA_VERSION=0.23.5
 ARG DUF_VERSION=0.9.1
-ARG FZF_VERSION=0.73.1
+ARG FZF_VERSION=0.74.0
 ARG FREEZE_VERSION=0.2.2
 ARG VHS_VERSION=0.11.0
 ARG GITCLIFF_VERSION=2.13.1
-ARG JUST_VERSION=1.52.0
+ARG JUST_VERSION=1.56.0
 ARG GREX_VERSION=1.4.6
+ARG ASANA_MCP_VERSION=1.8.0
+ARG NOTION_MCP_VERSION=2.4.1
 
 USER root
 
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     ca-certificates curl tar xz-utils \
+    chromium chromium-driver rsync sqlite3 libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # yt-dlp -- standalone binary, no Python needed
@@ -195,5 +204,11 @@ RUN curl -fsSL "https://github.com/pemistahl/grex/releases/download/v${GREX_VERS
     && tar -xzf /tmp/grex.tar.gz -C /usr/local/bin/ grex \
     && chmod 0755 /usr/local/bin/grex \
     && rm /tmp/grex.tar.gz
+
+# Shared MCP servers installed once at image build time to avoid slow/retry-prone npm installs during agent cold start.
+RUN npm install -g \
+    @roychri/mcp-server-asana@${ASANA_MCP_VERSION} \
+    @notionhq/notion-mcp-server@${NOTION_MCP_VERSION} \
+    && npm cache clean --force
 
 USER node
