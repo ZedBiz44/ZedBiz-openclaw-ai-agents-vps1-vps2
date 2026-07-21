@@ -1,0 +1,4 @@
+interface:
+  display_name: "Z-Code Allocator"
+  short_description: "Reserve and confirm authoritative Z-Codes"
+  default_prompt: "Use $request-z-code to reserve a Z-Code before creating a Z-Knowledge record."

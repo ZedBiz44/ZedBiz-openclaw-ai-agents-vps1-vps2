@@ -11,6 +11,12 @@ id_ed25519
 *.log
 *.tmp
 
+# Generated Python environments and caches
+**/.venv/
+**/__pycache__/
+**/.pytest_cache/
+*.pyc
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
