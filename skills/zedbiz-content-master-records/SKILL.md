@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.3 seconds
-Output:
 ---
 name: "zedbiz-content-master-records"
 description: "Use for importing, Z-Coding, publishing, mirroring, connecting, and verifying Briefs, Biz-Plans, Research, and other ZedBiz Core records."
