@@ -1,0 +1,5 @@
+interface:
+  display_name: "ZedBiz Content Master Records"
+  short_description: "Govern ZedBiz Core record creation and mirroring"
+  default_prompt: "Use $zedbiz-content-master-records to create or import this ZedBiz Core record with its Z-Code and Memory Wiki mirror."
+
