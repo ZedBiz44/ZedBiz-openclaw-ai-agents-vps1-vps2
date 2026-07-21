@@ -117,6 +117,8 @@ Before mutations, create an internal manifest using `references/record-manifest.
 
 Do not ask the user to say "continue" between records, research bites, routing, publishing, mirroring, or quality checks. The assignment authorizes ordinary sequential work through completion. Pause only for a genuine blocker requiring new authority or information, or when the user explicitly asks to pause.
 
+Do not accept "first bite complete" or a recommended next bite as assignment completion. When a specialist returns an intermediate checkpoint and the manifest still contains required work, continue with the next bite automatically and provide the user only the final completion report or a genuine blocker report.
+
 ### Name, Classify, And Connect Carefully
 
 - Follow the live naming SOP. Capitalize words and separate them with dashes.
