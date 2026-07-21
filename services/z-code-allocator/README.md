@@ -6,6 +6,15 @@ The service is the transactional source of truth for Z-Code allocation. Notion i
 
 The `z-code-notion-mirror` companion container drains that outbox and upserts allocator records into the Notion `Z-Code-Registry`. If Notion is unavailable, events remain in SQLite and retry later; allocation continues normally.
 
+Historical records imported before the mirror was enabled can be idempotently backfilled from authoritative SQLite. Test one record first, then require a complete reconciliation:
+
+```bash
+docker exec z-code-notion-mirror python -m app.backfill_registry --limit 1
+docker exec z-code-notion-mirror python -m app.backfill_registry --require-complete
+```
+
+Backfilled historical rows are labelled `Source = Bootstrap`; normal live events remain `Source = Allocator`.
+
 Allocation starts disabled. Import and verify all existing Notion Z-Codes through `POST /v1/admin/bootstrap`, then set `ZCODE_ALLOCATION_ENABLED=true` and restart the container.
 
 ## Local Development

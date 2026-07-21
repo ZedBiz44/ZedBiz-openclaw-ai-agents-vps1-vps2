@@ -20,22 +20,29 @@ class NotionMirror:
 
     def request(self, method: str, path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
         body = json.dumps(payload).encode("utf-8") if payload is not None else None
-        request = urllib.request.Request(
-            f"https://api.notion.com/v1{path}",
-            data=body,
-            method=method,
-            headers={
-                "Authorization": f"Bearer {self.token}",
-                "Notion-Version": NOTION_VERSION,
-                "Content-Type": "application/json",
-            },
-        )
-        try:
-            with urllib.request.urlopen(request, timeout=20) as response:
-                return json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", errors="replace")
-            raise RuntimeError(f"Notion API {exc.code}: {detail[:500]}") from exc
+        for attempt in range(6):
+            request = urllib.request.Request(
+                f"https://api.notion.com/v1{path}",
+                data=body,
+                method=method,
+                headers={
+                    "Authorization": f"Bearer {self.token}",
+                    "Notion-Version": NOTION_VERSION,
+                    "Content-Type": "application/json",
+                },
+            )
+            try:
+                with urllib.request.urlopen(request, timeout=20) as response:
+                    return json.loads(response.read().decode("utf-8"))
+            except urllib.error.HTTPError as exc:
+                detail = exc.read().decode("utf-8", errors="replace")
+                if attempt < 5 and (exc.code == 429 or exc.code >= 500):
+                    retry_after = exc.headers.get("Retry-After")
+                    delay = float(retry_after) if retry_after else min(2**attempt, 15)
+                    time.sleep(max(delay, 0.5))
+                    continue
+                raise RuntimeError(f"Notion API {exc.code}: {detail[:500]}") from exc
+        raise RuntimeError("Notion API retry limit exhausted")
 
     def find_page(self, z_code: str) -> str | None:
         result = self.request(
@@ -50,7 +57,7 @@ class NotionMirror:
     def text(value: str | None) -> dict[str, Any]:
         return {"rich_text": [{"type": "text", "text": {"content": value or ""}}]}
 
-    def properties(self, record: dict[str, Any], event_type: str) -> dict[str, Any]:
+    def properties(self, record: dict[str, Any], event_type: str, source: str = "Allocator") -> dict[str, Any]:
         properties: dict[str, Any] = {
             "Name-Key": {"title": [{"type": "text", "text": {"content": record["name_key"]}}]},
             "Z-Code": self.text(record["z_code"]),
@@ -64,17 +71,23 @@ class NotionMirror:
             "Request-ID": self.text(record["request_id"]),
             "Last-Event": self.text(event_type),
             "Last-Synced": {"date": {"start": utc_now()}},
-            "Source": {"select": {"name": "Allocator"}},
+            "Source": {"select": {"name": source}},
         }
         if record.get("notion_url"):
             properties["Notion-URL"] = {"url": record["notion_url"]}
         return properties
 
-    def upsert(self, record: dict[str, Any], event_type: str, old_z_code: str | None = None) -> None:
+    def upsert(
+        self,
+        record: dict[str, Any],
+        event_type: str,
+        old_z_code: str | None = None,
+        source: str = "Allocator",
+    ) -> None:
         page_id = self.find_page(record["z_code"])
         if not page_id and old_z_code:
             page_id = self.find_page(old_z_code)
-        properties = self.properties(record, event_type)
+        properties = self.properties(record, event_type, source)
         if page_id:
             self.request("PATCH", f"/pages/{page_id}", {"properties": properties})
         else:
