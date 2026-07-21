@@ -51,6 +51,46 @@ services:
     mem_limit: 96m
     cpus: 0.25
 
+  z-code-admin:
+    build: .
+    image: zedbiz-z-code-allocator:1.1.0
+    container_name: z-code-admin
+    restart: unless-stopped
+    command: ["uvicorn", "app.admin_web:app", "--host", "0.0.0.0", "--port", "8790", "--workers", "1"]
+    environment:
+      ZCODE_DATABASE_PATH: /data/zcode.db
+      ZCODE_ADMIN_USERNAME: "${ZCODE_ADMIN_USERNAME:-jack}"
+      ZCODE_ADMIN_PASSWORD: "${ZCODE_ADMIN_PASSWORD}"
+    volumes:
+      - ./data:/data
+    networks:
+      - openclaw
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 96m
+    cpus: 0.25
+
+  z-code-db-emergency:
+    image: ghcr.io/coleifer/sqlite-web:latest
+    container_name: z-code-db-emergency
+    profiles: ["emergency-db"]
+    user: "10001:10001"
+    command: ["zcode.db", "--host=0.0.0.0", "--port=8080", "--password", "--foreign-keys"]
+    environment:
+      SQLITE_WEB_PASSWORD: "${ZCODE_RAW_DB_PASSWORD}"
+    volumes:
+      - ./data:/data
+    networks:
+      - openclaw
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    mem_limit: 128m
+    cpus: 0.25
+
 networks:
   openclaw:
     external: true
