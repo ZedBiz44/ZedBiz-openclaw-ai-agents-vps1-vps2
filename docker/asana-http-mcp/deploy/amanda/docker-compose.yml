@@ -1,0 +1,116 @@
+services:
+  amanda:
+    image: ${OPENCLAW_IMAGE}
+    container_name: amanda
+    restart: "unless-stopped"
+    mem_limit: 2g
+    memswap_limit: 2560m
+    pids_limit: 160
+    networks:
+      - openclaw
+    depends_on:
+      amanda-asana-mcp:
+        condition: service_healthy
+      amanda-asana-team-mcp:
+        condition: service_healthy
+    environment:
+      TZ: ${TZ}
+      OPENCLAW_IMAGE: ${OPENCLAW_IMAGE}
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY}
+      NOTION_API_KEY: ${NOTION_API_KEY}
+      EMAIL_SERVER: ${EMAIL_SERVER}
+      EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT}
+      EMAIL_IMAP_PORT: ${EMAIL_IMAP_PORT}
+      DISCORD_BOT_TOKEN: ${DISCORD_BOT_TOKEN}
+      ASANA_ACCESS_TOKEN: ${ASANA_ACCESS_TOKEN}
+      EMAIL_ADDRESS: ${EMAIL_ADDRESS}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD}
+      AGENT_ID: ${AGENT_ID}
+      AGENT_NAME: ${AGENT_NAME}
+      AGENT_PORT: ${AGENT_PORT}
+      DISCORD_SERVER_ID: ${DISCORD_SERVER_ID}
+      DISCORD_CHANNEL_ID: ${DISCORD_CHANNEL_ID}
+      OPENAI_WHISPER_API_KEY: ${OPENAI_WHISPER_API_KEY}
+      PERPLEXITY_API_KEY: ${PERPLEXITY_API_KEY}
+      TAVILY_API_KEY: ${TAVILY_API_KEY}
+      NOTION_API_TOKEN: ${NOTION_API_KEY}
+      NOTION_API_VERSION: "2022-06-28"
+      ZCODE_ALLOCATOR_URL: ${ZCODE_ALLOCATOR_URL}
+      ZCODE_API_KEY: ${ZCODE_API_KEY}
+      ZCODE_AGENT_NAME: ${ZCODE_AGENT_NAME}
+      PATH: /home/node/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    volumes:
+      - /opt/openclaw/shared:/opt/openclaw/shared:rw
+      - /usr/local/bin/himalaya:/usr/local/bin/himalaya:ro
+      - /opt/openclaw/shared/bin/ffmpeg:/usr/local/bin/ffmpeg:ro
+      - /opt/openclaw/shared/bin/ntn:/usr/local/bin/ntn:ro
+      - /opt/openclaw/shared/bin/mcporter:/usr/local/bin/mcporter:ro
+      - /opt/openclaw/shared/bin/summarize:/usr/local/bin/summarize:ro
+      - /opt/openclaw/shared/bin/jq:/usr/local/bin/jq:ro
+      - /opt/openclaw/shared/bin/rg:/usr/local/bin/rg:ro
+      - ./workspace/.config/himalaya:/home/node/.config/himalaya:ro
+      - ./skills:/home/node/.openclaw/skills
+      - ./config:/home/node/.openclaw
+      - ./agents:/home/node/.openclaw/agents
+      - ./memory:/home/node/.openclaw/memory
+      - ./workspace:/home/node/.openclaw/workspace
+      - ./branding:/app/dist/control-ui/branding:ro
+      - ./npm:/home/node/.openclaw/npm
+      - ./tasks:/home/node/.openclaw/tasks
+      - ./session-delivery-queue:/home/node/.openclaw/session-delivery-queue
+      - ./plugin-skills:/home/node/.openclaw/plugin-skills
+      - ./media:/home/node/.openclaw/media
+      - ./logs:/home/node/.openclaw/logs
+      - ./identity:/home/node/.openclaw/identity
+      - ./flows:/home/node/.openclaw/flows
+    ports:
+      - "3000:3000"
+    command: >
+      sh -c "bash /home/node/.openclaw/workspace/post-start.sh && openclaw gateway run --bind lan --port ${AGENT_PORT}"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://127.0.0.1:3000/healthz || exit 1"]
+      interval: 3m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  amanda-asana-mcp:
+    build:
+      context: ./asana-http-mcp
+    image: zedbiz/asana-http-mcp:1.0.0-amanda-pilot
+    container_name: amanda-asana-mcp
+    restart: "unless-stopped"
+    mem_limit: 384m
+    pids_limit: 64
+    networks:
+      - openclaw
+    environment:
+      ASANA_ACCESS_TOKEN: ${ASANA_ACCESS_TOKEN}
+      MCP_AUTH_TOKEN: ${ASANA_ACCESS_TOKEN}
+      MCP_ALLOWED_HOSTS: amanda-asana-mcp,localhost,127.0.0.1
+      MCP_MAX_SESSIONS: "64"
+      MCP_SESSION_TTL_MS: "900000"
+      PORT: "8080"
+
+  amanda-asana-team-mcp:
+    image: zedbiz/asana-http-mcp:1.0.0-amanda-pilot
+    container_name: amanda-asana-team-mcp
+    restart: "unless-stopped"
+    mem_limit: 256m
+    pids_limit: 64
+    networks:
+      - openclaw
+    environment:
+      ASANA_ACCESS_TOKEN: ${ASANA_ACCESS_TOKEN}
+      ASANA_WORKSPACE_GID: "11298561585567"
+      MCP_AUTH_TOKEN: ${ASANA_ACCESS_TOKEN}
+      MCP_ALLOWED_HOSTS: amanda-asana-team-mcp,localhost,127.0.0.1
+      MCP_MAX_SESSIONS: "64"
+      MCP_SESSION_TTL_MS: "900000"
+      PORT: "8080"
+    command: ["node", "dist/team-server.js"]
+
+networks:
+  openclaw:
+    external: true
