@@ -9,9 +9,15 @@ description: Use whenever a ZedBiz or OpenClaw AI agent performs day-to-day Asan
 
 Use this skill for normal assigned Asana task work.
 
-This skill includes read-only navigation of teams and portfolios when normal task work or a direct question requires it.
+This skill uses the 76-tool Asana Standard HTTP MCP. It covers the normal work an
+agent needs inside teams, projects, tasks, and subtasks, including sections,
+project updates/statuses, project briefs, tags, attachments, dates,
+dependencies, blockers, task-level custom fields, read-only goals, and
+read-only portfolio navigation.
 
-It is not for project setup, portfolio changes, project briefs, project status updates, bulk timeline changes, custom field administration, team membership changes, or workflow redesign. Those belong in the Advanced Asana Skill.
+It is not for team administration, portfolio changes, workspace custom-field
+administration, goals administration, webhooks, organization-level operations,
+or unrestricted API operations. Those belong in the Advanced Asana Skill.
 
 ## Required Identity
 
@@ -45,7 +51,7 @@ If `mcp__codex_apps__asana` returns Jack, treat that connector as the wrong rout
 Preferred route names and checks:
 
 - OpenClaw MCP server named `asana`
-- Config entry using the approved PAT-backed stdio or Streamable HTTP service
+- Config entry using the approved persistent Streamable HTTP service
 - `openclaw mcp list`
 - MCP tools exposed from the `asana` server in the active agent runtime
 
@@ -84,7 +90,10 @@ Before work, identify:
 - workspace GID
 - whether this is PAT MCP or Codex connector
 
-Minimum required config: PAT MCP server, current-user lookup, assigned-task search, task read, task comment, task update/complete, workspace GID, team search, team-project listing, and read-only portfolio navigation.
+Minimum required config: PAT MCP server, current-user lookup, assigned-task
+search, task read/comment/update/complete, workspace GID, team search,
+team-project listing, sections, project statuses, project briefs, tags,
+attachments, dependencies/blockers, and read-only portfolio navigation.
 
 ## GID Rule
 
@@ -123,7 +132,14 @@ Normal: update assigned task, complete assigned task after done criteria, upload
 
 Risky: move between existing sections, update custom fields, add/remove dependencies, reassign tasks, change one task due date. Do only when the task explicitly says to do it, the work clearly requires it, or Jack approved.
 
-Restricted: bulk date shifts, project setup, project workflow changes, project briefs, project status updates, custom field administration, portfolio changes, deletes. Use Advanced Asana Skill or explicit Jack approval.
+Restricted: team administration, portfolio mutations, workspace custom-field
+administration, goals administration, webhooks, broad deletes, or unrestricted
+API requests. Use Advanced Asana Skill.
+
+Project briefs and project status updates are available in Standard. Draft
+first and publish only when the assignment or Jack authorizes the publication.
+Project setup, workflow changes, bulk date shifts, and deletes still require
+explicit authorization even when the Standard tool exists.
 
 ## Task Discovery
 
@@ -167,7 +183,8 @@ Use valid `html_notes` / `html_text` when needed. For reliable mentions, add fol
 
 ## Attachments
 
-Upload relevant task attachments when useful. Do not use project brief attachment/inline image workflows unless using Advanced Asana Skill.
+Upload relevant task, project, or project-brief attachments when the assignment
+requires them. Confirm the correct parent GID before upload.
 
 ## Scheduled Checks
 
@@ -179,7 +196,9 @@ Store sync tokens only in approved local runtime state, not in prompts, Notion p
 
 Allowed: check assigned incomplete tasks, comment with progress, upload proof, complete a task after done criteria are met.
 
-Forbidden without Jack/Advanced Skill: indiscriminately browse the whole workspace, redesign a project, bulk shift dates, delete items, create or change portfolios, or change custom field systems.
+Forbidden without Jack/Advanced Skill: indiscriminately browse the whole
+workspace, redesign a project, bulk shift dates, delete items, administer
+teams, create or change portfolios, or change workspace custom-field systems.
 
 ## Troubleshooting
 

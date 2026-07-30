@@ -12,6 +12,7 @@ import {
   ReadResourceRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { AsanaClientWrapper } from './asana-client-wrapper.js'
+import { AsanaRestClient } from './asana-rest-client.js';
 import { createPromptHandlers } from './prompt-handler.js';
 import { createResourceHandlers } from './resource-handler.js';
 import { startHttpMcpService } from './http-runtime.js';
@@ -38,10 +39,11 @@ function createAsanaServer() {
   );
 
   const asanaClient = new AsanaClientWrapper(asanaToken);
+  const restClient = new AsanaRestClient(asanaToken);
 
   server.setRequestHandler(
     CallToolRequestSchema,
-    tool_handler(asanaClient)
+    tool_handler(asanaClient, restClient)
   );
 
   server.setRequestHandler(ListToolsRequestSchema, async () => {

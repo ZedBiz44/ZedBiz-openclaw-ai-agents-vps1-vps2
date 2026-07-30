@@ -5,7 +5,7 @@ async function main() {
   const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
 
   await build({
-    entryPoints: ['src/index.ts', 'src/team-server.ts', 'src/smoke-test.ts'],
+    entryPoints: ['src/index.ts', 'src/advanced-server.ts', 'src/team-server.ts', 'src/smoke-test.ts', 'src/catalog-test.ts'],
     bundle: true,
     platform: 'node',
     target: 'node24',

@@ -32,17 +32,37 @@ Treat a successful PAT-backed identity call as authoritative. Do not block solel
 
 ## Automatic Skill And Tool Routing
 
-- Load this skill automatically for team membership, project structure, status, brief, custom field, dependency, blocker, task-ordering, bulk date-shift, and portfolio-level work.
-- Use the `asana-team` route only for its six team and membership tools.
-- Use the standard `asana` route for identity, workspace, read-only team/portfolio navigation, project, task, section, status, story, tag, dependency, and relationship operations.
-- A request may use both routes in the same turn. Verify identity once through the standard route, then use the narrowest tool that fits each operation.
-- Read-only team and portfolio questions do not require the advanced route. Team membership, portfolio sharing, roles, structure, and other mutations do.
+- Load this skill automatically for team administration, portfolio changes,
+  workspace custom-field administration, goals administration, webhooks,
+  workload allocations, templates, organization operations, unrestricted
+  public-API work, and broad structural changes.
+- Amanda and Marsha use one `asana` route backed by the 126-tool Asana Advanced
+  HTTP MCP. It is a complete superset of Standard; there is no separate
+  `asana-team` route.
+- Verify identity once through `asana_get_user`, then prefer the named tool that
+  matches the operation.
+- Use `asana_api_request` only when no named tool covers a supported public Asana
+  API endpoint. It is not a shortcut around confirmation, permissions, or
+  safety controls.
+- The route uses the agent's own PAT. The available authority is therefore the
+  intersection of this toolset, Asana's public API, the agent's Asana account
+  permissions, and the ZedBiz approval rules in this skill.
 
 ## Advanced Work Boundary
 
-This skill may handle project setup, project cleanup, project briefs, project status updates, custom field management, sections and task ordering, dependencies and blockers, bulk date shifts, timeline changes, workflow improvements, and cross-agent Asana coordination.
+This skill may handle every Standard operation plus team administration,
+portfolio creation and structure, project setup and cleanup, project briefs,
+project status updates, custom-field systems, goals, sections and task ordering,
+dependencies and blockers, bulk date shifts, timeline changes, templates,
+webhooks, allocations, exports, audit reads when the Asana plan and credential
+allow them, and cross-agent Asana coordination.
 
 It does not silently delete, archive, or restructure major systems. Ask first.
+
+Asana's public API does not provide general creation or editing of native Rules
+or dashboard layouts. The toolset can trigger an existing incoming-web-request
+rule and can perform all supported public API operations, but it must never
+claim that unsupported UI-only control exists.
 
 Read the current structure before cleanup, workflow changes, sections, fields, dependencies, or reporting edits.
 

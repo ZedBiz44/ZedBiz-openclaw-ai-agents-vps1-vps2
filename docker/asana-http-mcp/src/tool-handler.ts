@@ -1,5 +1,10 @@
 import { Tool, CallToolRequest, CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { AsanaClientWrapper } from './asana-client-wrapper.js';
+import { AsanaRestClient } from './asana-rest-client.js';
+import {
+  handleStandardExtraTool,
+  standardExtraTools,
+} from './standard-extra-tools.js';
 import { validateAsanaXml } from './asana-validate-xml.js';
 
 import { listWorkspacesTool } from './tools/workspace-tools.js';
@@ -117,6 +122,7 @@ const all_tools: Tool[] = [
   deleteSectionTool,
   addTaskToSectionTool,
   updateProjectTool,
+  ...standardExtraTools,
 ];
 
 // List of tools that only read Asana state
@@ -144,7 +150,25 @@ const READ_ONLY_TOOLS = [
   'asana_get_tags_for_task',
   'asana_get_tasks_for_tag',
   'asana_get_tags_for_workspace',
-  'asana_get_subtasks'
+  'asana_get_subtasks',
+  'asana_get_users',
+  'asana_get_user_task_list',
+  'asana_get_user_favorites',
+  'asana_search_objects',
+  'asana_get_attachments',
+  'asana_get_attachment',
+  'asana_get_project_brief',
+  'asana_get_project_memberships',
+  'asana_get_task_dependencies',
+  'asana_get_task_dependents',
+  'asana_get_status_overview',
+  'asana_get_goals',
+  'asana_get_goal',
+  'asana_get_custom_fields',
+  'asana_get_custom_field',
+  'asana_get_project_custom_field_settings',
+  'asana_get_portfolio_custom_field_settings',
+  'asana_preview_task_changes',
 ];
 
 // Filter tools based on READ_ONLY_MODE
@@ -155,7 +179,10 @@ export const list_of_tools = isReadOnlyMode
   ? all_tools.filter(tool => READ_ONLY_TOOLS.includes(tool.name))
   : all_tools;
 
-export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToolRequest) => Promise<CallToolResult> {
+export function tool_handler(
+  asanaClient: AsanaClientWrapper,
+  restClient: AsanaRestClient,
+): (request: CallToolRequest) => Promise<CallToolResult> {
   return async (request: CallToolRequest) => {
     const toolName = request.params.name;
     const startedAt = Date.now();
@@ -172,6 +199,10 @@ export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToo
       }
 
       const args = request.params.arguments as any;
+      const standardExtraResult = await handleStandardExtraTool(request, restClient);
+      if (standardExtraResult !== undefined) {
+        return standardExtraResult;
+      }
 
       switch (request.params.name) {
         case "asana_get_user": {
