@@ -10,6 +10,7 @@ export class AsanaClientWrapper {
   private customFieldSettings: any;
   private sections: any;
   private userTaskLists: any;
+  private users: any;
 
   constructor(token: string) {
     const client = Asana.ApiClient.instance;
@@ -25,6 +26,12 @@ export class AsanaClientWrapper {
     this.customFieldSettings = new Asana.CustomFieldSettingsApi();
     this.sections = new Asana.SectionsApi();
     this.userTaskLists = new Asana.UserTaskListsApi();
+    this.users = new Asana.UsersApi();
+  }
+
+  async getUser(userGid: string = 'me', opts: any = {}) {
+    const response = await this.users.getUser(userGid, opts);
+    return response.data;
   }
 
   async listWorkspaces(opts: any = {}) {
