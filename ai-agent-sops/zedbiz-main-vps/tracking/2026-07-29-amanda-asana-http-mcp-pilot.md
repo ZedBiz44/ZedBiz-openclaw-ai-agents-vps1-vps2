@@ -105,6 +105,21 @@ Validated backups:
 - The reusable standard HTTP service can be used for the other Asana agents.
 - Non-Asana MCPs need their own compatible HTTP service or gateway route; this Amanda image does not automatically convert WordPress or unrelated MCPs.
 
+## Post-Pilot Interruption Incident
+
+- At 17:54 MDT, Amanda acknowledged Jack's live Discord assignment and began the identity preflight and project audit.
+- Cody incorrectly treated Amanda's lower PID count as evidence that she was idle.
+- At 18:03 MDT, Cody ran the planned restart-persistence test.
+- The restart removed Amanda's container and terminated Jack's in-progress Discord/Codex task.
+- At 18:06 MDT, after Jack sent `??`, Amanda reported the interruption and started a new run using the updated connection.
+- Amanda recovered healthy and continued the assignment. The interruption was caused by Cody's maintenance restart, not by the new MCP services or renewed PID exhaustion.
+
+Corrective operating rule:
+
+- Never infer agent idleness from PID count, CPU use, or the absence of local MCP child processes.
+- Before maintenance that can terminate a container, verify the live task/session state and the user-facing channel, and obtain a clear maintenance window when a user has recently assigned work.
+- Do not run optional resilience tests while an agent is handling user work; wait until the assignment is visibly complete.
+
 ## Files
 
 - `docker/asana-http-mcp/`
