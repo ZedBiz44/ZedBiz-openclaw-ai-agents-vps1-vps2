@@ -56,6 +56,7 @@ Date: 2026-07-29 MDT | Agent: Cody | Status: Live rollout verified
 - Ten fresh MCP sessions did not increase the process counts.
 - Five repeated real Asana calls left Terry at 14 PIDs and the sidecar at 11 across five samples.
 - Terry had zero local `mcp-server-asana` or `npm exec @roychri` child processes after the cutover.
+- After the normal Codex app-server finished its delayed warm-up, Terry settled at 37 PIDs: 16 Codex binary threads, 12 gateway threads, seven Codex Node-wrapper threads, and two shell/init tasks. The sidecar remained at 11 and Terry still had zero local Asana children.
 - Stopping the sidecar did not stop Terry or make his container unhealthy; the service restarted and passed the 41-tool smoke test.
 - The original Compose file and OpenClaw JSON backup were both validated as usable rollback artifacts.
 
