@@ -34,8 +34,9 @@ Treat a successful PAT-backed identity call as authoritative. Do not block solel
 
 - Load this skill automatically for team membership, project structure, status, brief, custom field, dependency, blocker, task-ordering, bulk date-shift, and portfolio-level work.
 - Use the `asana-team` route only for its six team and membership tools.
-- Use the standard `asana` route for identity, workspace, project, task, section, status, story, tag, dependency, and relationship operations.
+- Use the standard `asana` route for identity, workspace, read-only team/portfolio navigation, project, task, section, status, story, tag, dependency, and relationship operations.
 - A request may use both routes in the same turn. Verify identity once through the standard route, then use the narrowest tool that fits each operation.
+- Read-only team and portfolio questions do not require the advanced route. Team membership, portfolio sharing, roles, structure, and other mutations do.
 
 ## Advanced Work Boundary
 

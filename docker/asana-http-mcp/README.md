@@ -4,7 +4,7 @@ Persistent Streamable HTTP MCP services for ZedBiz OpenClaw agents.
 
 ## Entry Points
 
-- `dist/index.js` - standard Asana task, project, section, story, tag, prompt, and resource tools derived from `@roychri/mcp-server-asana` 1.8.0.
+- `dist/index.js` - 47 standard Asana identity, workspace, team-navigation, portfolio-read, task, project, section, story, tag, prompt, and resource tools derived from `@roychri/mcp-server-asana` 1.8.0.
 - `dist/team-server.js` - Amanda's advanced team and membership tools.
 - `dist/smoke-test.js` - authenticated connection and tool-inventory test.
 

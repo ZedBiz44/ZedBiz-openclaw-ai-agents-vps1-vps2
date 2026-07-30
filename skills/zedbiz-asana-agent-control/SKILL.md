@@ -9,7 +9,9 @@ description: Use whenever a ZedBiz or OpenClaw AI agent performs day-to-day Asan
 
 Use this skill for normal assigned Asana task work.
 
-This skill is not for project setup, portfolios, project briefs, project status updates, bulk timeline changes, custom field administration, team management, or workflow redesign. Those belong in the Advanced Asana Skill.
+This skill includes read-only navigation of teams and portfolios when normal task work or a direct question requires it.
+
+It is not for project setup, portfolio changes, project briefs, project status updates, bulk timeline changes, custom field administration, team membership changes, or workflow redesign. Those belong in the Advanced Asana Skill.
 
 ## Required Identity
 
@@ -82,13 +84,36 @@ Before work, identify:
 - workspace GID
 - whether this is PAT MCP or Codex connector
 
-Minimum required config: PAT MCP server, current-user lookup, assigned-task search, task read, task comment, task update/complete, and workspace GID.
+Minimum required config: PAT MCP server, current-user lookup, assigned-task search, task read, task comment, task update/complete, workspace GID, team search, team-project listing, and read-only portfolio navigation.
 
 ## GID Rule
 
 Resolve names and emails to GIDs before task queries or updates.
 
 Use the agent user GID from `me` for the agent's own assigned tasks. Use typeahead/search for users, tasks, projects, sections, tags, and custom fields. If multiple matches exist, do not guess.
+
+## Object Type Resolution
+
+Never infer that an Asana name is a portfolio merely because project search returned no match.
+
+When the object type is unclear:
+
+- Search projects with `asana_search_projects`.
+- Search teams with `asana_search_teams`.
+- Inspect portfolios visible to the authenticated agent with `asana_list_accessible_portfolios`.
+- Compare exact names and report the confirmed object type and GID.
+
+For a team question such as "what projects are inside TEAM_NAME":
+
+- Resolve the team with `asana_search_teams`.
+- Pass the resolved team GID to `asana_get_projects_for_team`.
+- Report the returned projects without changing Asana.
+
+For a portfolio question:
+
+- Use `asana_list_accessible_portfolios`, `asana_get_portfolio`, and `asana_get_portfolio_items`.
+- Respect Asana permissions. An empty result means no visible portfolio membership or ownership; it does not prove that no portfolios exist.
+- Portfolio membership, sharing, role, or structure changes require the Advanced Asana Skill and confirmation.
 
 ## Safe Action Levels
 
@@ -98,7 +123,7 @@ Normal: update assigned task, complete assigned task after done criteria, upload
 
 Risky: move between existing sections, update custom fields, add/remove dependencies, reassign tasks, change one task due date. Do only when the task explicitly says to do it, the work clearly requires it, or Jack approved.
 
-Restricted: bulk date shifts, project setup, project workflow changes, project briefs, project status updates, custom field administration, portfolios, deletes. Use Advanced Asana Skill or explicit Jack approval.
+Restricted: bulk date shifts, project setup, project workflow changes, project briefs, project status updates, custom field administration, portfolio changes, deletes. Use Advanced Asana Skill or explicit Jack approval.
 
 ## Task Discovery
 
@@ -154,7 +179,7 @@ Store sync tokens only in approved local runtime state, not in prompts, Notion p
 
 Allowed: check assigned incomplete tasks, comment with progress, upload proof, complete a task after done criteria are met.
 
-Forbidden without Jack/Advanced Skill: browse the whole workspace, redesign a project, bulk shift dates, delete items, create portfolios, or change custom field systems.
+Forbidden without Jack/Advanced Skill: indiscriminately browse the whole workspace, redesign a project, bulk shift dates, delete items, create or change portfolios, or change custom field systems.
 
 ## Troubleshooting
 
