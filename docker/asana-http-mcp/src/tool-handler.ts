@@ -3,6 +3,7 @@ import { AsanaClientWrapper } from './asana-client-wrapper.js';
 import { validateAsanaXml } from './asana-validate-xml.js';
 
 import { listWorkspacesTool } from './tools/workspace-tools.js';
+import { getUserTool } from './tools/user-tools.js';
 import {
   searchProjectsTool,
   getProjectTool,
@@ -60,6 +61,7 @@ import {
 
 // List of all available tools
 const all_tools: Tool[] = [
+  getUserTool,
   listWorkspacesTool,
   searchProjectsTool,
   getMyTasksTool,
@@ -105,6 +107,7 @@ const all_tools: Tool[] = [
 
 // List of tools that only read Asana state
 const READ_ONLY_TOOLS = [
+  'asana_get_user',
   'asana_list_workspaces',
   'asana_search_projects',
   'asana_get_my_tasks',
@@ -135,7 +138,10 @@ export const list_of_tools = isReadOnlyMode
 
 export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToolRequest) => Promise<CallToolResult> {
   return async (request: CallToolRequest) => {
-    console.error("Received CallToolRequest:", request);
+    const toolName = request.params.name;
+    const startedAt = Date.now();
+    let outcome = "ok";
+    console.error(`[Asana MCP] tool start name=${toolName}`);
     try {
       if (!request.params.arguments) {
         throw new Error("No arguments provided");
@@ -149,6 +155,17 @@ export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToo
       const args = request.params.arguments as any;
 
       switch (request.params.name) {
+        case "asana_get_user": {
+          const {
+            user_gid = "me",
+            opt_fields = "gid,name,email,workspaces.gid,workspaces.name",
+          } = args;
+          const response = await asanaClient.getUser(user_gid, { opt_fields });
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
         case "asana_list_workspaces": {
           const response = await asanaClient.listWorkspaces(args);
           return {
@@ -695,11 +712,13 @@ export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToo
           throw new Error(`Unknown tool: ${request.params.name}`);
       }
     } catch (error) {
-      console.error("Error executing tool:", error);
+      outcome = "error";
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error(`[Asana MCP] tool error name=${toolName} message=${errorMessage}`);
 
       // Default error response
       const errorResponse = {
-        error: error instanceof Error ? error.message : String(error),
+        error: errorMessage,
       };
 
       return {
@@ -710,6 +729,10 @@ export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToo
           },
         ],
       };
+    } finally {
+      console.error(
+        `[Asana MCP] tool finish name=${toolName} outcome=${outcome} durationMs=${Date.now() - startedAt}`,
+      );
     }
   };
 }

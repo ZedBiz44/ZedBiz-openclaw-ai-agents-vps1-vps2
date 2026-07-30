@@ -78,7 +78,7 @@ services:
   amanda-asana-mcp:
     build:
       context: ./asana-http-mcp
-    image: zedbiz/asana-http-mcp:1.0.0-amanda-pilot
+    image: zedbiz/asana-http-mcp:1.0.1-amanda-identity
     container_name: amanda-asana-mcp
     restart: "unless-stopped"
     mem_limit: 384m
@@ -94,7 +94,7 @@ services:
       PORT: "8080"
 
   amanda-asana-team-mcp:
-    image: zedbiz/asana-http-mcp:1.0.0-amanda-pilot
+    image: zedbiz/asana-http-mcp:1.0.1-amanda-identity
     container_name: amanda-asana-team-mcp
     restart: "unless-stopped"
     mem_limit: 256m

@@ -1,0 +1,7 @@
+interface:
+  display_name: "ZedBiz Advanced Asana Control"
+  short_description: "Advanced Asana admin controls"
+  default_prompt: "Use $zedbiz-advanced-asana-control for approved advanced Asana project, workflow, and reporting work."
+
+policy:
+  allow_implicit_invocation: true
