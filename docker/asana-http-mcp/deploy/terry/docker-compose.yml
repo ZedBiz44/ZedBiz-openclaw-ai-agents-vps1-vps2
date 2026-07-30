@@ -80,7 +80,7 @@ services:
   terry-asana-mcp:
     build:
       context: ./asana-http-mcp
-    image: zedbiz/asana-http-mcp:1.0.0-terry-pilot
+    image: zedbiz/asana-http-mcp:1.1.0-terry-read-navigation
     container_name: terry-asana-mcp
     restart: "unless-stopped"
     mem_limit: 384m

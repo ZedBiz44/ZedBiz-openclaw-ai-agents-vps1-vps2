@@ -11,6 +11,9 @@ export class AsanaClientWrapper {
   private sections: any;
   private userTaskLists: any;
   private users: any;
+  private teams: any;
+  private portfolios: any;
+  private portfolioMemberships: any;
 
   constructor(token: string) {
     const client = Asana.ApiClient.instance;
@@ -27,6 +30,25 @@ export class AsanaClientWrapper {
     this.sections = new Asana.SectionsApi();
     this.userTaskLists = new Asana.UserTaskListsApi();
     this.users = new Asana.UsersApi();
+    this.teams = new Asana.TeamsApi();
+    this.portfolios = new Asana.PortfoliosApi();
+    this.portfolioMemberships = new Asana.PortfolioMembershipsApi();
+  }
+
+  private async collectPages(response: any): Promise<any[]> {
+    const MAX_PAGES = 50;
+    const items: any[] = [];
+    let current = response;
+    let pages = 0;
+
+    while (current && pages < MAX_PAGES) {
+      if (Array.isArray(current.data)) items.push(...current.data);
+      pages++;
+      if (!current._response?.next_page) break;
+      current = await current.nextPage();
+    }
+
+    return items;
   }
 
   async getUser(userGid: string = 'me', opts: any = {}) {
@@ -37,6 +59,85 @@ export class AsanaClientWrapper {
   async listWorkspaces(opts: any = {}) {
     const response = await this.workspaces.getWorkspaces(opts);
     return response.data;
+  }
+
+  async searchTeams(workspaceGid: string, namePattern: string, opts: any = {}) {
+    const response = await this.teams.getTeamsForWorkspace(workspaceGid, {
+      limit: 100,
+      ...opts,
+    });
+    const teams = await this.collectPages(response);
+    const pattern = new RegExp(namePattern, 'i');
+    return teams.filter((team: any) => pattern.test(team.name));
+  }
+
+  async getProjectsForTeam(teamGid: string, archived: boolean = false, opts: any = {}) {
+    const response = await this.projects.getProjectsForTeam(teamGid, {
+      archived,
+      limit: 100,
+      ...opts,
+    });
+    return this.collectPages(response);
+  }
+
+  async listAccessiblePortfolios(workspaceGid: string, userGid: string = 'me', opts: any = {}) {
+    const portfolioFields = (
+      opts.opt_fields || 'gid,name,owner.gid,owner.name,permalink_url,public'
+    )
+      .split(',')
+      .map((field: string) => field.trim())
+      .filter(Boolean)
+      .map((field: string) => `portfolio.${field}`)
+      .join(',');
+    const membershipResponse = await this.portfolioMemberships.getPortfolioMemberships({
+      workspace: workspaceGid,
+      user: userGid,
+      limit: 100,
+      opt_fields: `access_level,portfolio,${portfolioFields}`,
+    });
+    const memberships = await this.collectPages(membershipResponse);
+
+    const ownedResponse = await this.portfolios.getPortfolios(workspaceGid, {
+      owner: userGid,
+      limit: 100,
+      ...opts,
+    });
+    const owned = await this.collectPages(ownedResponse);
+
+    const byGid = new Map<string, any>();
+    for (const membership of memberships) {
+      if (membership.portfolio?.gid) {
+        byGid.set(membership.portfolio.gid, {
+          ...membership.portfolio,
+          access_source: 'membership',
+          access_level: membership.access_level,
+        });
+      }
+    }
+    for (const portfolio of owned) {
+      if (portfolio.gid) {
+        byGid.set(portfolio.gid, {
+          ...byGid.get(portfolio.gid),
+          ...portfolio,
+          access_source: byGid.has(portfolio.gid) ? 'owner_and_membership' : 'owner',
+        });
+      }
+    }
+
+    return Array.from(byGid.values());
+  }
+
+  async getPortfolio(portfolioGid: string, opts: any = {}) {
+    const response = await this.portfolios.getPortfolio(portfolioGid, opts);
+    return response.data;
+  }
+
+  async getPortfolioItems(portfolioGid: string, opts: any = {}) {
+    const response = await this.portfolios.getItemsForPortfolio(portfolioGid, {
+      limit: 100,
+      ...opts,
+    });
+    return this.collectPages(response);
   }
 
   async getMyTasks(workspace: string, opts: any = {}) {

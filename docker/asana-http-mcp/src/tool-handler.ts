@@ -5,6 +5,15 @@ import { validateAsanaXml } from './asana-validate-xml.js';
 import { listWorkspacesTool } from './tools/workspace-tools.js';
 import { getUserTool } from './tools/user-tools.js';
 import {
+  searchTeamsTool,
+  getProjectsForTeamTool
+} from './tools/team-navigation-tools.js';
+import {
+  listAccessiblePortfoliosTool,
+  getPortfolioTool,
+  getPortfolioItemsTool
+} from './tools/portfolio-tools.js';
+import {
   searchProjectsTool,
   getProjectTool,
   getProjectTaskCountsTool,
@@ -63,6 +72,11 @@ import {
 const all_tools: Tool[] = [
   getUserTool,
   listWorkspacesTool,
+  searchTeamsTool,
+  getProjectsForTeamTool,
+  listAccessiblePortfoliosTool,
+  getPortfolioTool,
+  getPortfolioItemsTool,
   searchProjectsTool,
   getMyTasksTool,
   searchTasksTool,
@@ -109,6 +123,11 @@ const all_tools: Tool[] = [
 const READ_ONLY_TOOLS = [
   'asana_get_user',
   'asana_list_workspaces',
+  'asana_search_teams',
+  'asana_get_projects_for_team',
+  'asana_list_accessible_portfolios',
+  'asana_get_portfolio',
+  'asana_get_portfolio_items',
   'asana_search_projects',
   'asana_get_my_tasks',
   'asana_search_tasks',
@@ -168,6 +187,79 @@ export function tool_handler(asanaClient: AsanaClientWrapper): (request: CallToo
 
         case "asana_list_workspaces": {
           const response = await asanaClient.listWorkspaces(args);
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
+        case "asana_search_teams": {
+          const {
+            workspace_gid,
+            name_pattern,
+            opt_fields = "gid,name,description,html_description",
+          } = args;
+          const response = await asanaClient.searchTeams(
+            workspace_gid,
+            name_pattern,
+            { opt_fields },
+          );
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
+        case "asana_get_projects_for_team": {
+          const {
+            team_gid,
+            archived = false,
+            opt_fields = "gid,name,archived,permalink_url,team.gid,team.name",
+          } = args;
+          const response = await asanaClient.getProjectsForTeam(
+            team_gid,
+            archived,
+            { opt_fields },
+          );
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
+        case "asana_list_accessible_portfolios": {
+          const {
+            workspace_gid,
+            user_gid = "me",
+            opt_fields = "gid,name,owner.gid,owner.name,permalink_url,public",
+          } = args;
+          const response = await asanaClient.listAccessiblePortfolios(
+            workspace_gid,
+            user_gid,
+            { opt_fields },
+          );
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
+        case "asana_get_portfolio": {
+          const {
+            portfolio_gid,
+            opt_fields = "gid,name,owner.gid,owner.name,permalink_url,public,created_at",
+          } = args;
+          const response = await asanaClient.getPortfolio(portfolio_gid, { opt_fields });
+          return {
+            content: [{ type: "text", text: JSON.stringify(response) }],
+          };
+        }
+
+        case "asana_get_portfolio_items": {
+          const {
+            portfolio_gid,
+            opt_fields =
+              "gid,name,resource_type,archived,completed,current_status.title,current_status.color,owner.gid,owner.name,team.gid,team.name,permalink_url",
+          } = args;
+          const response = await asanaClient.getPortfolioItems(portfolio_gid, {
+            opt_fields,
+          });
           return {
             content: [{ type: "text", text: JSON.stringify(response) }],
           };
