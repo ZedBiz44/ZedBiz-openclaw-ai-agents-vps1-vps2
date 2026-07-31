@@ -52,4 +52,5 @@
 
 - **GitHub Issue:** https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/104
 - **Notion page:** https://app.notion.com/p/3aea3e33d58181b0820ce7902f7db713
-- **Related commit:** to be added after publication
+- **Pull request:** https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/pull/105
+- **Related commit:** `fca9ae7`
