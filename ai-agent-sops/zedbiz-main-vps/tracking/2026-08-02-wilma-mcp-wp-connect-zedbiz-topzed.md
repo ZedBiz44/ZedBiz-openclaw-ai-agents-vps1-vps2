@@ -60,3 +60,7 @@
 
 - Update the two 1Password endpoint credential values from `/v1/http` to `/v2/http` so the vault matches the proven OpenClaw configuration.
 - Update the MCP-WP-Connect plugin labels and operator documentation so current OpenClaw users are directed to the full MCP endpoint.
+
+## Links
+
+- [Technical Documentation journal entry](https://app.notion.com/p/3b0a3e33d58181278e97e296243c2436)
