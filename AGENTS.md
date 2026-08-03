@@ -87,6 +87,14 @@ Use `docs/templates/vps-change-template.md` for server-level changes.
 - GitHub should hold the detailed step-by-step content and change history.
 - Notion pages should link to GitHub files and GitHub Issues instead of duplicating long SOP text.
 
+## Notion Authentication And Access
+
+- ZedBiz agents access Notion through the Codex OAuth passthrough, using the same full Notion access available to Cody.
+- The standalone `NOTION_API_TOKEN`, `ntn`, or an integration named `openclaw` is not the agents' normal Notion access route and must not be used to judge whether an agent can access a Notion page.
+- When an agent reports a Notion access failure, verify the Codex OAuth passthrough and the agent's use of that passthrough first.
+- A `404 object_not_found` returned by the standalone Notion integration proves only that the standalone integration cannot see the resource. It does not prove that the agent's Codex OAuth passthrough lacks access.
+- Do not ask Jack to share Notion pages with the `openclaw` integration unless he explicitly chooses to use that separate integration route.
+
 ## Secret Handling
 
 Never commit API keys, GitHub tokens, SSH private keys, passwords, session cookies, or full `.env` files.
