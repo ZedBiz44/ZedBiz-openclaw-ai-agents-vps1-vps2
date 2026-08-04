@@ -1,0 +1,32 @@
+services:
+  hindsight:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zedbiz/hindsight:0.8.4-flashrank-20260804
+    container_name: hindsight
+    restart: unless-stopped
+    env_file:
+      - /opt/openclaw/services/hindsight/.env
+    ports:
+      - "127.0.0.1:8898:8888"
+      - "127.0.0.1:9998:9999"
+    volumes:
+      - hindsight-data:/home/hindsight/.pg0
+    networks:
+      - openclaw
+    mem_limit: 3g
+    memswap_limit: 3584m
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+volumes:
+  hindsight-data:
+    external: true
+
+networks:
+  openclaw:
+    external: true
