@@ -87,3 +87,51 @@ GitHub workstream: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vp
 - Plugin inspection reported Mem0 `1.0.15` and Hindsight `0.10.0` on the updated agents.
 - LanceDB inspection reported `2026.7.1`, already current.
 - Notion pages were re-fetched after update and the Technical Documentation journal was completed.
+
+## Monthly Benchmark Results
+
+GitHub workstream: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/113
+
+- Scope: every external-memory agent — Hindsight 9, Mem0 3, LanceDB 4.
+- Common tests: write/retain, exact sentinel, paraphrase, freshness correction, authoritative pointer, unsafe-secret rejection, raw-log rejection, latency, and isolation where applicable.
+- All synthetic benchmark records were deleted after scoring.
+
+### Hindsight
+
+- Retain: 9/9.
+- Paraphrase: 9/9 at rank 1.
+- Freshness: 9/9 at rank 1; superseded Draft wording was not returned as current.
+- Exact synthetic sentinel: 6/9 at rank 1. Maggie, Frank, and Rocky did not reproduce the alphanumeric code verbatim.
+- Exact full Notion URL: 0/9. Meaning and next action were retained, but the full authoritative link was not reliably preserved.
+- Safety: 9/9 rejected the fake secret and raw log.
+- Isolation: cross-bank marker probes returned zero results.
+- Typical direct recall: 0.60–1.58 seconds. Typical retain: 3.02–6.93 seconds.
+- Result: Yellow. Strong contextual recall and safety; exact identifiers and links require structured companion fields or a second authoritative lookup.
+
+### Mem0
+
+- Terry, Edith, and Harry passed exact, paraphrase, freshness, full-pointer, fake-secret, and raw-log checks after compatibility repairs.
+- Direct search commonly took about 7.7–9.9 seconds.
+- Upgrade defect one: Mem0 plugin `1.0.15` resolved Qdrant JS client `1.19.0`, but Mem0 still calls the removed `client.search` method. Pinned `@qdrant/js-client-rest@1.18.0` on all three agents.
+- Upgrade defect two: Mem0 `3.0.7` treated an HTTPS URL with an implicit port as Qdrant port `6333`. Patched the active Harry runtime to default HTTPS to `443`; the approved reverse-proxy route then passed real searches.
+- The plugin status command can report connected before a real Qdrant operation; future acceptance must include an actual write and search.
+- Result: Yellow. High recall quality after repair, but the release needs a compatibility guard and remains slower than Hindsight.
+
+### LanceDB
+
+- Amanda, Victor, Vivian, and Wilma passed exact, paraphrase, freshness, exact-pointer, and independent-store isolation checks.
+- Direct search commonly took about 7.0–9.3 seconds.
+- Pre-fix safety gate: Fail. With `autoCapture=true`, each agent stored the entire benchmark prompt, including fake-secret and raw-log markers.
+- Tested correction on Amanda first: set `autoCapture=false`, restarted, explicitly stored one approved memory, and verified the new prompt itself was not captured.
+- Applied the verified setting to Victor, Vivian, and Wilma. All four now use explicit capture only.
+- Deleted the auto-captured prompts and all deliberate benchmark records through the provider's `memory_forget` tool, then verified the stores no longer list the synthetic records.
+- Result: Red before correction; Green operating posture after explicit-capture correction. Keep the historical Red result in reports because it is the reason the configuration changed.
+
+## Decisions And Next Review
+
+- Keep all three providers for now; they serve different roles and one test cycle is not enough evidence to consolidate.
+- Run this benchmark for every provider agent at least monthly and after major releases, incidents, architecture changes, or material performance changes.
+- Use Notion for human recall and decisions; keep raw technical evidence and reproducible fixes in GitHub.
+- Hindsight: add or preserve exact IDs and authoritative links as structured metadata instead of relying on semantic text alone.
+- Mem0: retain the Qdrant `1.18.0` compatibility pin and HTTPS-port patch until upstream releases remove both needs; test with a real write/search after every update.
+- LanceDB: leave `autoCapture=false`; store only compact, deliberate memories.
