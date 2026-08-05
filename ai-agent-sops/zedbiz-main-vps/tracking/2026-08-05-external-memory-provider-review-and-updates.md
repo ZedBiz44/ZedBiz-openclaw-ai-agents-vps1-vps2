@@ -135,3 +135,33 @@ GitHub workstream: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vp
 - Hindsight: add or preserve exact IDs and authoritative links as structured metadata instead of relying on semantic text alone.
 - Mem0: retain the Qdrant `1.18.0` compatibility pin and HTTPS-port patch until upstream releases remove both needs; test with a real write/search after every update.
 - LanceDB: leave `autoCapture=false`; store only compact, deliberate memories.
+
+## Green Improvement Run
+
+### Hindsight — Green 94/100
+
+- Added a second, structured exact-value benchmark using one atomic document for the identifier and one atomic document for the authoritative source URL.
+- All nine Hindsight agents returned the exact identifier at rank 1: Inga, Suzy, GohZed, Grogar, Marsha, Maggie, Frank, Ruby, and Rocky.
+- All nine agents returned the complete authoritative URL at rank 1.
+- Direct recall took approximately 0.70–1.14 seconds.
+- Rocky's restricted `coding` tool profile initially hid the supported `agent_knowledge_ingest` tool. Added only that tool to `tools.alsoAllow`, restarted the Gateway, and verified Rocky personally ingested and recalled both an exact identifier and full Notion URL through his normal Telegram-backed session.
+- Deleted all synthetic exact-value documents after verification.
+- Durable rule: exact IDs, URLs, legal or financial figures, and other verbatim values must be stored as small atomic documents with stable document IDs and source metadata. Narrative auto-retain remains appropriate for contextual recall.
+- Reproducible benchmark: `scripts/memory-benchmark-hindsight-exact-green-20260805.sh`.
+
+### Mem0 — Green 93/100
+
+- Added a permanent npm override for `@qdrant/js-client-rest@1.18.0` on Terry, Edith, and Harry so routine dependency resolution cannot silently restore the incompatible `1.19.x` client.
+- Preserved the Mem0 `1.0.15` HTTPS implicit-port correction so secure Qdrant URLs default to port `443`.
+- Terry, Edith, and Harry each passed a second real write → search → update → freshness search → delete lifecycle probe. All synthetic records were deleted.
+- Warm Gateway searches settled at approximately 0.4–1.1 seconds. The first initialization call took approximately 2.4–3.2 seconds and is tracked separately from steady-state performance.
+- Installed Harry's restart-time compatibility guard at `/opt/openclaw-harry/ensure-mem0-1015-compat.sh` with systemd `ExecStartPre`; the service will verify the version pin and HTTPS patch before every start.
+- Terry and Edith keep the permanent package override in the active plugin project. Harry has both the package override and restart guard because his systemd lane is the most likely to expose a regenerated runtime.
+- Reproducible repair: `scripts/repair-mem0-1015-qdrant-compat.sh`; systemd drop-in source: `services/mem0/openclaw-harry-mem0-compat.conf`.
+
+## Revised Operating Decision
+
+- Hindsight and Mem0 now meet the Green threshold in their intended roles.
+- Hindsight's Green status depends on the atomic exact-value rule for facts that must be reproduced verbatim.
+- Mem0's Green status depends on retaining the Qdrant compatibility override and running a real lifecycle probe after upgrades or regenerated plugin installs.
+- The original Yellow scores remain in this dated Results record as the baseline that explains why the changes were made.
