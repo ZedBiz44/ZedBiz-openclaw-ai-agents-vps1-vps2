@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: zedbiz/hindsight:0.8.4-flashrank-20260804
+    image: zedbiz/hindsight:0.8.6-flashrank-20260805
     container_name: hindsight
     restart: unless-stopped
     env_file:
