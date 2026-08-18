@@ -40,9 +40,13 @@ const obsoleteRules = [
   /^- Use the `message` tool directly for every Telegram reply;.*$/gm,
   /^- In Discord or Slack, one natural emoji reaction may replace an unnecessary acknowledgement\..*$/gm,
   /^- On Discord or Slack, a single natural emoji reaction may replace a text acknowledgement when appropriate;.*$/gm,
+  /^- On Discord or Slack, a single natural emoji reaction may replace a text acknowledgement when appropriate\.$/gm,
   /^- On Discord or Slack, a single natural reaction may replace a text-only acknowledgement when appropriate\.$/gm,
   /^- On Discord or Slack, a single natural emoji reaction may replace a text-only acknowledgement when no substantive response is needed\.$/gm,
   /^- Use at most one natural emoji reaction for simple Discord or Slack acknowledgement when a text response adds no value\.$/gm,
+  /^- Use at most one relevant emoji per message on Discord or Slack when a reaction is sufficient\.$/gm,
+  /^- Use at most one natural reaction emoji per Discord or Slack message when a reaction is sufficient\.$/gm,
+  /^- Use one relevant emoji reaction at most on Discord or Slack when a reaction is sufficient;.*$/gm,
   /^- \*\*Action:\*\* Use natural emoji reactions \([^\n]*\) on Discord and Slack to acknowledge[^\n]*$/gm,
   /^- Routine updates state what changed, what it means, and what happens next\. Use one relevant reaction instead of a text acknowledgement where channel norms support it\.$/gm,
 ];

@@ -19,6 +19,7 @@
 - Reusable script: `ai-agent-sops/shared-scripts/configure-assignment-continuity.mjs`
 - The script creates a timestamped sibling backup before writing and rolls back automatically if its managed-block checks fail.
 - Removed conflicting or partial acknowledgement rules, including Amanda's Telegram instruction to use the `message` tool for every reply.
+- A final comprehensive scan also found and removed leftover manual-reaction wording from Maggie, Marsha, and Terry.
 - No containers were restarted because OpenClaw reads the workspace policy for each new turn.
 
 ## Canonical Rule
@@ -35,8 +36,8 @@
 
 - Wilma was the required one-agent pilot.
 - Controlled fresh session `continuity-pilot-o6box0km` completed one `bash` tool call, returned `WILMA_CONTINUITY_OK`, made no acknowledgement-message call, reported zero tool failures, and completed normally.
-- All eleven VPS1 agents contain one identical managed block with SHA-256 `516516708cb9d62e78d9295055f9cb7837e6d3fe897008fd0160476cd2b87597`.
-- All eleven returned zero matches for the removed conflicting pre-work acknowledgement rules.
+- All eleven VPS1 agents contain one identical managed block with SHA-256 `0d16d526212051227649dd9e2cb279efb2e2846eab64bff99f96b1a162f1c4c5`.
+- The final comprehensive audit returned zero acknowledgement, reaction, or message-tool behavior lines outside the canonical block.
 - All eleven retain `messages.ackReactionScope = all`.
 - All eleven agent containers and Asana sidecars remained healthy.
 
