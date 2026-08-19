@@ -1,0 +1,23 @@
+{
+  "width": 360,
+  "height": 640,
+  "fps": 30,
+  "backgroundColor": "#101820",
+  "scenes": [
+    {
+      "type": "color",
+      "durationInFrames": 60,
+      "backgroundColor": "#101820"
+    }
+  ],
+  "captions": [
+    {
+      "startFrame": 5,
+      "endFrame": 55,
+      "text": "ZedBiz video template is working"
+    }
+  ],
+  "captionAccentColor": "#f4b400",
+  "captionTextColor": "#ffffff",
+  "captionBackgroundColor": "rgba(0, 0, 0, 0.72)"
+}
