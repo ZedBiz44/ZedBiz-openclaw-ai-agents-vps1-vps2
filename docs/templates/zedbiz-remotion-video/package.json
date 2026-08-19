@@ -1,0 +1,24 @@
+{
+  "name": "zedbiz-remotion-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reusable ZedBiz video assembly template for narration, scenes, captions, branding, and final rendering.",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "studio": "remotion studio src/index.ts",
+    "render": "node scripts/render.mjs",
+    "smoke": "node scripts/render.mjs examples/smoke.json outputs/smoke.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.513",
+    "@remotion/captions": "4.0.513",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.513"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "typescript": "5.9.3"
+  }
+}
