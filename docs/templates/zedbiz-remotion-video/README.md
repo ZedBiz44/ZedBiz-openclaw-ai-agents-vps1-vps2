@@ -8,6 +8,8 @@ Reusable vertical or horizontal video assembly for ZedBiz agents. It combines se
 npm ci
 ```
 
+The validation dependencies are production dependencies because ZedBiz agent containers run with `NODE_ENV=production` and must still be able to type-check the template.
+
 ## Verify
 
 ```bash
