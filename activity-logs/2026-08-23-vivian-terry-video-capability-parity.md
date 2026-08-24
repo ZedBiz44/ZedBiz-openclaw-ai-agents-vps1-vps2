@@ -19,6 +19,7 @@ Both agents already had `tools.profile: full`, the video skill, FFmpeg, Chromium
 - Updated Terry and Vivian to use that image.
 - Set the OpenAI Sol, Terra, and Luna model entries to `agentRuntime.id: openclaw`.
 - Set Percify transport to `streamable-http`.
+- Set the existing Asana HTTP MCP transport to `streamable-http` to avoid a native-runtime regression.
 - Restarted each agent through its normal 1Password-backed launcher.
 - No paid media generation was submitted.
 
@@ -31,6 +32,7 @@ Both agents already had `tools.profile: full`, the video skill, FFmpeg, Chromium
 - Native tools present: `read`, `edit`, `write`, `apply_patch`, `exec`, and `process`.
 - Creative tools present: image generation and video generation.
 - Percify probe: 11 approved tools, no diagnostics.
+- Asana probe: 76 tools plus resources and prompts, no diagnostics.
 - Live agent proof: `TERRY_PARITY_OK`.
 - Terry personally rendered, inspected, and deleted a one-second H.264/AAC test video and completed a read-only Percify avatar-list call with zero tool failures.
 
@@ -41,6 +43,7 @@ Both agents already had `tools.profile: full`, the video skill, FFmpeg, Chromium
 - Native tools present: `read`, `edit`, `write`, `apply_patch`, `exec`, and `process`.
 - Creative tools present: image generation and video generation.
 - Percify probe: 11 approved tools, no diagnostics.
+- Asana probe: 76 tools plus resources and prompts, no diagnostics.
 - Live agent proof: `VIVIAN_PARITY_OK`.
 - Vivian personally rendered, inspected, and deleted a one-second H.264/AAC test video and completed a read-only Percify avatar-list call with zero tool failures.
 
