@@ -51,6 +51,10 @@ Remove active VPS1 core instructions that cause forced replies, unsafe or ambigu
 - Removed false VPS1 systemd service statements for Amanda, Gohzed, Marsha, Terry, Vivian, and Wilma and corrected applicable `TOOLS.md` entries to Docker containers.
 - Removed transcript-summary lines from all eleven curated `MEMORY.md` files and removed clearly stale direct-Notion, obsolete-skill, model/runtime, and credential-like fragments.
 - Updated Edith's active knowledge-skill names to the current `z-*` names.
+- Physically deleted the disabled managed generic `notion` folders from Amanda, Inga, Victor, and Wilma.
+- Deleted Edith's obsolete `EDITH-KEY.md`; retained the current `EDITH_KEY.md`.
+- Deleted Marsha's wrong-agent `maggie-key.md`.
+- Removed unnecessary self-name and cross-agent wording from all eleven `AGENTS.md` files while preserving operational reporting, ownership, identity verification, record attribution, and literal paths or filenames.
 
 ## Verification Result
 
@@ -58,19 +62,22 @@ Remove active VPS1 core instructions that cause forced replies, unsafe or ambigu
 - Inga fresh-session behavior test returned only `READY` and the approved Codex OAuth route; no forced startup response appeared.
 - Inga completed a live read-only Codex Apps Notion OAuth fetch of page `7a1a3e33-d581-83e3-ae02-01de59538c3e` and returned the exact title `Technical Documentation`.
 - The Inga proof reported one successful `codex_apps.notion.fetch` call and zero tool failures; no fallback was used.
+- On 2026-08-26, Jack reported that his own post-repair Inga test worked correctly.
 - All eleven containers returned `healthy` after restart.
 - All eleven report generic `notion`: disabled `true`, eligible `false`, model-visible `false`.
 - All eleven report `z-notion-knowledge-publish`: eligible `true`, model-visible `true`, non-backup canonical path.
 - Live scans found zero targeted forced-response strings, obsolete tracker names, false VPS1 systemd service names, old mandatory-capture headings, transcript-summary lines, or partial Notion token strings in the corrected core files.
 
-## Remaining Work Outside This Repair
+## Deferred Core-File Planning
 
-- Decide whether to delete the now-disabled physical managed generic `notion` folders from Amanda, Inga, Victor, and Wilma; they are inactive and invisible, but still present on disk.
-- Consolidate Edith's two KEY files and remove Marsha's wrong-agent `maggie-key.md` after confirming which useful content should be preserved.
-- Reduce oversized always-loaded files, especially Vivian's `AGENTS.md`, the Terry/Vivian duplicated tool-policy block, Inga/Maggie/Grogar `SOUL.md`, and Victor's KEY files.
-- Review the large DREAMS and generated daily-memory corpora separately. This repair cleaned curated `MEMORY.md`; it did not rewrite historical source journals or dream corpora.
+Jack explicitly deferred further core Markdown architecture work to another issue and thread.
+
+- Review oversized always-loaded files, especially Vivian's `AGENTS.md`, Inga/Maggie/Grogar `SOUL.md`, and Victor's KEY files.
+- Treat identical policy requirements on separate agents as valid; duplication is not itself a defect. Consolidate only the authoring source when it can still deploy the required policy independently to each agent.
+- Review DREAMS and generated historical memory corpora separately. This repair cleaned curated `MEMORY.md`; it did not rewrite historical source journals or dream corpora.
+- Do not mix that later architecture work into this completed Notion-route repair.
 
 ## Rollback
 
-The pre-change files were captured outside the active agent workspaces for same-session rollback. Do not place rollback copies inside any active OpenClaw skill-discovery root.
+Temporary same-session rollback copies were removed after verification. GitHub and the canonical skill repository are the recovery sources; no backup copy was returned to an active workspace or skill-discovery root.
 
