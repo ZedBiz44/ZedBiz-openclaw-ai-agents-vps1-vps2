@@ -2,7 +2,7 @@
 
 Date: 2026-08-27  
 Agent: Cody  
-Status: Pilot draft reviewed against live file
+Status: Deployed and verified on Vivian
 
 ## Baseline
 
@@ -91,3 +91,12 @@ Status: Pilot draft reviewed against live file
 - Memory: recall when relevant, avoid forced writes on Q&A, and never store secrets.
 - Completion: report outputs, verification, approval/cost state, route, and remaining risk.
 - Fresh session: load without truncation and identify role, modes, critical approval gates, and approved routes.
+
+## Verified Pilot Result
+
+- Deployed SHA-256: `65a4592f176c112a1d8162bcb27abd79748b7a4d98e5131d875fe1d14bf0b4cc`
+- Deployed size: 13,117 bytes / 155 lines
+- OpenClaw system prompt report: 13,108 AGENTS.md characters injected; `truncated=false`.
+- Fresh Sol/Codex session correctly returned Vivian's role, reporting line, both operating modes, approved Notion route, stop-on-failure behavior, paid-media approval gate, Vivian PAT-backed Asana identity, ordinary-Q&A no-write boundary, video/audio boundary, media path, source ownership, and completion standard.
+- The test prompt explicitly prohibited tools and writes. The session completed normally without an external delivery or requested mutation.
+- Post-test live hash matched the committed candidate and the container returned healthy.
