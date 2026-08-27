@@ -2,7 +2,7 @@
 
 Date: 2026-08-27  
 Agent: Cody  
-Status: Candidate ready for deployment verification
+Status: Deployed and verified on Edith
 
 ## Baseline
 
@@ -70,3 +70,13 @@ Status: Candidate ready for deployment verification
 - Personnel context remains restricted to the approved audience and scope.
 - Asana work uses Edith's PAT-backed identity and respects Amanda's coordination ownership.
 - Completion reports sources, exact locations, read-back, confidentiality, and remaining gaps.
+
+## Verified Pilot Result
+
+- Deployed SHA-256: `c236d2497aa6ce7fb9cb2a021099b4cece4f137c2fcec010f3b7e037df3f2188`
+- Deployed size: 13,864 bytes / 158 lines
+- Backup: `/opt/openclaw/agents/edith/backups/20260827T232142Z-agents-preservation-pilot`
+- OpenClaw system prompt report: 13,851 AGENTS.md characters injected; `truncated=false`.
+- Fresh GPT-5.6 Sol/Codex session returned Edith's role, Jack/Marsha reporting, Amanda's Asana ownership, both operating modes, no-write boundary, governed Notion route, all-Codex model mapping, resident Asana MCP, research evidence categories, personnel confidentiality, PAT identity rule, and completion standard.
+- The test prompt prohibited tools, writes, mutation, and external delivery. The session completed normally.
+- Post-test live hash matched the committed candidate; ownership remained `1000:1000`, mode `0644`, restart count zero, and container healthy.

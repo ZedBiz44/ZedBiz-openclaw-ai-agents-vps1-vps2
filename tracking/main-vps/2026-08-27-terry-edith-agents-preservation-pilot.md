@@ -2,7 +2,7 @@
 
 Date: 2026-08-27 Mountain Time  
 Agent: Cody  
-Status: Candidates prepared; live deployment pending
+Status: Deployed and verified on Terry and Edith
 
 ## Purpose
 
@@ -45,6 +45,47 @@ Only Terry and Edith top-level `AGENTS.md` files are in scope. No other core fil
 - Fresh session loads without truncation and returns the agent-specific policy gates.
 - Container remains or returns healthy and the live hash matches the candidate.
 - GitHub and Notion records are updated and re-read.
+
+## Deployment
+
+### Terry
+
+- Exact baseline hash rechecked before writing.
+- Backup: `/opt/openclaw/agents/terry/backups/20260827T232014Z-agents-preservation-pilot`
+- New SHA-256: `c9e8e30a9b1a8994c59d1268b2fd0f4e910a6c78524f18b71f3371c3340e314d`
+- New size: 14,336 bytes / 169 lines
+- Ownership and mode: `1000:1000`, `0644`
+- No restart or configuration change was performed.
+
+### Edith
+
+- Terry passed all critical gates before Edith deployment began.
+- Exact Edith baseline hash rechecked before writing.
+- Backup: `/opt/openclaw/agents/edith/backups/20260827T232142Z-agents-preservation-pilot`
+- New SHA-256: `c236d2497aa6ce7fb9cb2a021099b4cece4f137c2fcec010f3b7e037df3f2188`
+- New size: 13,864 bytes / 158 lines
+- Ownership and mode: `1000:1000`, `0644`
+- No restart or configuration change was performed.
+
+## Fresh-Session Verification
+
+### Terry
+
+- Provider/model: OpenAI GPT-5.6 Sol through the Codex harness.
+- AGENTS.md injection: 14,325 characters; not truncated.
+- Correctly returned role/reporting, Get-er-Done, Diagnose/DSCA, no-write boundary, Codex Apps Notion, stop-without-fallback, Sol versus Terra/Luna routes, Asana/Percify, layered testing proof, partial-pass rule, paid-media gate, audio/video boundary, PAT Asana identity, and completion verification.
+
+### Edith
+
+- Provider/model: OpenAI GPT-5.6 Sol through the Codex harness.
+- AGENTS.md injection: 13,851 characters; not truncated.
+- Correctly returned role/reporting, Amanda's Asana ownership, Get-er-Done, Diagnose/DSCA, research/review no-write boundary, Codex Apps Notion, stop-without-fallback, Sol/Terra/Luna Codex routes, resident Asana MCP, fact/inference/conflict/gap separation, personnel confidentiality, PAT Asana identity, and completion verification.
+
+### Final Runtime State
+
+- Both review-only tests completed without requested tools, writes, mutations, paid generation, or external delivery.
+- Both live hashes matched the committed candidates after testing.
+- Both containers were running and healthy with restart count zero.
 
 ## Rollback
 

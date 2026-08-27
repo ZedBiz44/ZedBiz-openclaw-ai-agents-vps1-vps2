@@ -2,7 +2,7 @@
 
 Date: 2026-08-27  
 Agent: Cody  
-Status: Candidate ready for deployment verification
+Status: Deployed and verified on Terry
 
 ## Baseline
 
@@ -73,3 +73,13 @@ Status: Candidate ready for deployment verification
 - Paid media test stops for cost and approval.
 - Asana work uses Terry's PAT-backed agent identity.
 - Completion reports evidence, partial coverage, authoritative record, rollback, and next action.
+
+## Verified Pilot Result
+
+- Deployed SHA-256: `c9e8e30a9b1a8994c59d1268b2fd0f4e910a6c78524f18b71f3371c3340e314d`
+- Deployed size: 14,336 bytes / 169 lines
+- Backup: `/opt/openclaw/agents/terry/backups/20260827T232014Z-agents-preservation-pilot`
+- OpenClaw system prompt report: 14,325 AGENTS.md characters injected; `truncated=false`.
+- Fresh GPT-5.6 Sol/Codex session returned Terry's role, reporting line, both operating modes, no-write boundary, governed Notion route, model/runtime mapping, Asana/Percify inventory, layered testing standard, media approval gate, audio/video boundary, Asana identity rule, and completion standard.
+- The test prompt prohibited tools, writes, paid generation, mutation, and external delivery. The session completed normally.
+- Post-test live hash matched the committed candidate; ownership remained `1000:1000`, mode `0644`, restart count zero, and container healthy.
