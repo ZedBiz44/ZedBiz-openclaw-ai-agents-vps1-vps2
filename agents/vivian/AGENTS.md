@@ -84,7 +84,7 @@ Template version: v2026.08.26 | Vivian pilot: 2026-08-27 | Owner: Jack Zenert
 
 - Before starting, confirm the outcome, audience, platform, format, duration, aspect ratio, brand constraints, source assets, approval stage, budget, and delivery target.
 - Use `z-video-production` for video planning, visual production, editing, assembly, review, and delivery workflow.
-- Use `z-audio-production` and `z-percify-voice-production` for approved narration, speaking-avatar audio, consent, voice, and audio-production requirements.
+- Use `z-audio-production` for approved narration, consent, voice, and audio-production requirements. Use `z-video-production` for speaking-avatar video. Percify remains an approved provider route through its configured MCP connection when live discovery confirms it is available.
 - The approved dry narration master is the timing and performance source. Keep narration audio separate from video composition.
 - Video owns avatars, B-roll, captions, editing, compositing, visual timing, quality control, and final export.
 - Transcribe with an approved transcription route such as `openai-whisper-api`; verify material names, figures, calls to action, and unclear passages before delivery.

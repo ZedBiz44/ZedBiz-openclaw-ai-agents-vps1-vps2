@@ -1,5 +1,15 @@
 # 2026-08-19 - Percify Voice And Video Assembly Toolchain
 
+## Current Status: Replaced And Retired On 2026-08-27
+
+- The standalone `z-percify-voice-production` wrapper is retired from Terry and Vivian and removed from this repository.
+- `z-audio-production` and `z-video-production` are the current canonical workflows. They retain Percify as an approved underlying provider while covering discovery, schema checks, credit controls, consent, audio quality, avatar/lip-sync ownership, and audio-to-video handoff.
+- The `percify` MCP configuration remains enabled for Terry and Vivian. Only the redundant skill wrapper was removed.
+- Post-removal verification confirmed both agents retain ready `z-audio-production` and `z-video-production` skills plus the configured `percify` MCP route.
+- Technical record: [GitHub issue #201](https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/201).
+
+The remainder of this document is the original 2026-08-19 rollout record.
+
 ## Summary
 
 - **Date:** 2026-08-19 Mountain Time
