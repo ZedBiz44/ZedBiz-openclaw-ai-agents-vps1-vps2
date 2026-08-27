@@ -78,3 +78,18 @@ When an agent reports that the allocator is missing or unauthorized:
 - Run one real allocation only when required; immediately abandon synthetic test reservations.
 
 Never bypass the allocator, invent a Z-Code, or share another agent's credential.
+
+## 2026-08-27 Fleet Expansion
+
+The repaired `z-code-allocation` package from commit `4610bef71094409ea1d4e8b63f040bbab076726a` replaced the earlier client instructions across VPS1, VPS2, Ruby/Hermes, and Rocky/OpenClaw.
+
+- All eleven VPS1 agents were updated in both active Skill roots.
+- Frank, Harry, and Suzy were updated in both active VPS2 Skill roots.
+- Ruby was updated and reloaded through the attributed maintenance route.
+- Rocky was enrolled as a new allocator client with its own registered identity and protected credential injection.
+- Terry, Frank, Ruby, and Rocky passed authenticated lookup-miss checks with `found: false` and exit `0`.
+- Malformed requests remained nonzero.
+- Fresh Terry and Rocky agent sessions correctly treated the lookup miss as normal and made no mutation.
+- No test allocated, confirmed, failed, or published a Z-Code or Notion record.
+
+Completion evidence and rollback locations are recorded in GitHub issue #203 and `tracking/z-knowledge/2026-08-27-z-code-allocation-4610bef-rollout.md`.

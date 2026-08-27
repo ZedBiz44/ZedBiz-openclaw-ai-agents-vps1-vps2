@@ -1,10 +1,10 @@
 # Z-Code Allocator Service SOP
 
-Date: 2026-07-20 | Author: Cody | Status: Pilot
+Date: 2026-08-27 | Author: Cody | Status: Active
 
 ## Purpose
 
-Issue unique Z-Codes through one transactional service so agents on VPS1, VPS2, and VPS3 never select the same Topic Identifier or record suffix.
+Issue unique Z-Codes through one transactional service so authorized agents on VPS1, VPS2, VPS3, and VPS4 never select the same Topic Identifier or record suffix.
 
 The human-and-agent allocation workflow, copy-ready prompts, imported-content rules, and integration contract for broader Content Master Database record-creation skills are maintained in the live [Z-Code Allocation SOP](https://app.notion.com/p/3a3a3e33d58180f7bf5ed69f0a398b84).
 
@@ -12,7 +12,7 @@ The human-and-agent allocation workflow, copy-ready prompts, imported-content ru
 
 - Runtime allocation state: `/opt/zedbiz-services/z-code-allocator/data/zcode.db` on VPS1.
 - Code and configuration: `services/z-code-allocator/` in this repository.
-- Agent workflow: `skills/request-z-code/` in this repository.
+- Agent workflow: [`z-code-allocation-Skill`](https://github.com/ZedBiz44/z-code-allocation-Skill), deployed from its validated `dist/z-code-allocation` package.
 - Notion: asynchronous human-readable mirror only; it must never block allocation.
 
 ## Operating Rules
@@ -63,6 +63,20 @@ docker logs --tail 100 z-code-allocator
 - Topic reassignment changes all related complete Z-Codes and preserves aliases.
 - Notion outbox failures do not stop allocations.
 - Before first allocation, all existing Notion Z-Codes are imported through the admin bootstrap endpoint and the service remains locked with `ZCODE_ALLOCATION_ENABLED=false`.
+
+Every client must also pass an authenticated lookup-only check. A genuine miss must return `found: false` with exit `0`; authentication, configuration, malformed-command, transport, and server failures must remain nonzero.
+
+## Client Enrollment
+
+- Give every agent a unique registered key. Never share another agent's credential.
+- Store the allocator registry only in `/opt/zedbiz-services/z-code-allocator/secrets/api_keys.json` with mode `600`.
+- Store each client credential in that agent's protected runtime configuration and expose only `ZCODE_ALLOCATOR_URL`, `ZCODE_API_KEY`, and `ZCODE_AGENT_NAME` to its process.
+- Back up the registry and the client's prior service configuration before enrollment.
+- Restart the allocator after a registry change and reload or restart the client service after its environment changes.
+- Verify configuration by checking variable names and presence only. Never print values.
+- Use a deliberately nonexistent Name-Key for the first authenticated test. Do not allocate merely to prove connectivity.
+
+Rocky uses `/home/openclaw/.openclaw/.env.zcode` with mode `600` and the user-service drop-in `/home/openclaw/.config/systemd/user/openclaw-gateway.service.d/zcode-allocator.conf`.
 
 ## Backup
 
