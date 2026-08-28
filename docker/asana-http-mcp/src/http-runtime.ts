@@ -34,6 +34,7 @@ export async function startHttpMcpService(options: HttpMcpOptions): Promise<void
   const maxSessions = readPositiveInteger("MCP_MAX_SESSIONS", 64);
   const authToken = process.env.MCP_AUTH_TOKEN;
   if (!authToken) throw new Error("MCP_AUTH_TOKEN is required");
+  const bindHost = process.env.MCP_BIND_HOST ?? "0.0.0.0";
 
   const allowedHosts = (process.env.MCP_ALLOWED_HOSTS ?? "localhost,127.0.0.1")
     .split(",")
@@ -162,8 +163,8 @@ export async function startHttpMcpService(options: HttpMcpOptions): Promise<void
   }, Math.min(60_000, Math.max(5_000, Math.floor(sessionTtlMs / 3))));
   sweep.unref();
 
-  const httpServer = app.listen(port, "0.0.0.0", () => {
-    console.log(`[${options.serviceName}] listening on 0.0.0.0:${port}`);
+  const httpServer = app.listen(port, bindHost, () => {
+    console.log(`[${options.serviceName}] listening on ${bindHost}:${port}`);
   });
 
   const shutdown = async (signal: string): Promise<void> => {
