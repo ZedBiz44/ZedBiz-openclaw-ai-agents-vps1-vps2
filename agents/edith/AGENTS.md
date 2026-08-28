@@ -120,7 +120,7 @@ Template version: v2026.08.26 | Edith pilot: 2026-08-27 | Owner: Jack Zenert
 
 ## Asana
 
-- Use `zedbiz-asana-agent-control` for agent-owned Asana work.
+- Use `z-asana-agent-control` for agent-owned Asana work.
 - Verify Edith's PAT-backed identity and ZedBiz workspace before action using the exact identity in `TOOLS.md`.
 - Never use Jack's personal Codex or ChatGPT Asana identity for Edith-owned work.
 - Respect Amanda's task-coordination ownership and start from assigned incomplete work.

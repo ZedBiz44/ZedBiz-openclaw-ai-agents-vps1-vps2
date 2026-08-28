@@ -68,14 +68,14 @@ docker run --rm \
   -v "${deploy_dir}":/in:ro \
   alpine sh -lc "
     set -eu
-    if [ -d /agent/skills/zedbiz-asana-agent-control ] &&
-       [ ! -d /agent/skills/zedbiz-asana-agent-control.${stamp} ]; then
-      cp -a /agent/skills/zedbiz-asana-agent-control \
-        /agent/skills/zedbiz-asana-agent-control.${stamp}
+    if [ -d /agent/skills/z-asana-agent-control ] &&
+       [ ! -d /agent/skills/z-asana-agent-control.${stamp} ]; then
+      cp -a /agent/skills/z-asana-agent-control \
+        /agent/skills/z-asana-agent-control.${stamp}
     fi
-    tar -xzf /in/zedbiz-asana-agent-control.tar.gz -C /agent/skills
+    tar -xzf /in/z-asana-agent-control.tar.gz -C /agent/skills
     chown -R 1000:1000 \
-      /agent/skills/zedbiz-asana-agent-control \
+      /agent/skills/z-asana-agent-control \
       /agent/workspace/TOOLS.md \
       /agent/config/openclaw.json
   "

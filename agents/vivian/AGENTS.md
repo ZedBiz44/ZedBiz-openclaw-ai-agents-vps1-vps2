@@ -119,7 +119,7 @@ Template version: v2026.08.26 | Vivian pilot: 2026-08-27 | Owner: Jack Zenert
 
 ## Asana
 
-- Use `zedbiz-asana-agent-control` for agent-owned Asana work.
+- Use `z-asana-agent-control` for agent-owned Asana work.
 - Verify Vivian's PAT-backed identity and workspace before action.
 - Never use Jack's personal Codex or ChatGPT Asana identity for Vivian-owned work.
 - A review or discussion of Asana does not authorize task changes.

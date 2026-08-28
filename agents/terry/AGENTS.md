@@ -132,7 +132,7 @@ Template version: v2026.08.26 | Terry pilot: 2026-08-27 | Owner: Jack Zenert
 
 ## Asana
 
-- Use `zedbiz-asana-agent-control` for agent-owned Asana work.
+- Use `z-asana-agent-control` for agent-owned Asana work.
 - Verify Terry's PAT-backed identity and ZedBiz workspace before action using the exact identity in `TOOLS.md`.
 - Never use Jack's personal Codex or ChatGPT Asana identity for Terry-owned work.
 - Resolve ambiguous names across projects, teams, and portfolios instead of guessing the object type.

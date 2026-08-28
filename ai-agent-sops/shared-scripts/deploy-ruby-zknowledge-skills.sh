@@ -2,7 +2,7 @@
 
 # Purpose: Deploy the canonical modular Z-Knowledge skill set to Ruby/Hermes,
 # keep the Small Bite gate near the start of AGENTS.md, and retire the replaced
-# request-z-code package after backup.
+# superseded allocator-client package after backup.
 # Added by: Cody
 # Date added: 2026-08-27 Mountain Time
 # Tested on: Ruby VPS3, /opt/hermes-ruby
@@ -44,13 +44,6 @@ for skill in $skills; do
   chown -R 10000:10000 "$target_dir"
 done
 
-legacy_dir="$base/skills/request-z-code"
-if [ -e "$legacy_dir" ]; then
-  mkdir -p "$backup/legacy"
-  cp -a "$legacy_dir" "$backup/legacy/"
-  rm -rf -- "$legacy_dir"
-fi
-
 offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$base/AGENTS.md")"
 if [ -z "$offset" ] || [ "$offset" -ge 20000 ]; then
   temp_file="$base/.AGENTS.md.zk-gate.tmp"
@@ -63,4 +56,4 @@ new_offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0,
 test -n "$new_offset"
 test "$new_offset" -lt 20000
 
-echo "ruby: deployed modular Z-Knowledge skills; gate byte=$new_offset; request-z-code retired; backup=$backup"
+echo "ruby: deployed modular Z-Knowledge skills; gate byte=$new_offset; legacy retirement already complete; backup=$backup"

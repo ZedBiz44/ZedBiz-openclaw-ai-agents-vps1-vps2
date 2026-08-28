@@ -37,7 +37,7 @@ update("TOOLS.md", [
   ],
 ]);
 
-update("skills/zedbiz-advanced-asana-control/SKILL.md", [
+update("skills/z-advanced-asana-control/SKILL.md", [
   [
     "description: Use only for approved top-level ZedBiz Asana agents such as Amanda, Marsha, and Ruby when managing Asana projects, status updates, project briefs, custom fields, sections, task ordering, dependencies, blockers, bulk date shifts, and higher-level Asana workflow improvements.",
     "description: Use only for approved top-level ZedBiz Asana agents such as Amanda, Marsha, and Ruby when managing Asana teams or memberships, projects, status updates, project briefs, custom fields, sections, task ordering, dependencies, blockers, bulk date shifts, and higher-level Asana workflow improvements.",

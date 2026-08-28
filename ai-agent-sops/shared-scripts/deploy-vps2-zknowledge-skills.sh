@@ -14,7 +14,7 @@ set -eu
 
 all_agents="frank harry suzy"
 skills="${ZK_SKILLS:-z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research}"
-legacy_skills="zedbiz-content-master-records small-bite-wiki-research zedbiz-knowledge-routing zedbiz-notion-knowledge-publishing zedbiz-wiki-research"
+legacy_skills="small-bite-wiki-research zedbiz-knowledge-routing zedbiz-notion-knowledge-publishing zedbiz-wiki-research"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
 retire_legacy="${RETIRE_LEGACY:-0}"
 agents="${*:-$all_agents}"
