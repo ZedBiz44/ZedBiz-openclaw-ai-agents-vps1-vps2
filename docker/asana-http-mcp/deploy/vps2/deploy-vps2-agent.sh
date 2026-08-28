@@ -70,7 +70,7 @@ trap rollback ERR
 export OP_SERVICE_ACCOUNT_TOKEN="$(tr -d '\r\n' < "${state_dir}/.op.token")"
 op item get "$asana_item" --vault "$agent_vault" --format json >/dev/null
 op item get "$email_item" --vault "$agent_vault" --format json >/dev/null
-expected_email="$(op read "op://${agent_vault}/${email_item}/username")"
+expected_email="$(op read "op://${agent_vault}/${email_item}/credential")"
 test -n "$expected_email"
 
 # Keep credential references in the existing agent environment. The agent and
