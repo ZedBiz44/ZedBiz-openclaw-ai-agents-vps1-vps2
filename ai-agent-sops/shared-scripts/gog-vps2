@@ -1,0 +1,15 @@
+#!/bin/sh
+set -eu
+
+gog_home="${GOG_HOME:-${HOME}/.config/gogcli}"
+keyring_env="${gog_home}/keyring.env"
+
+if [ -r "${keyring_env}" ]; then
+  . "${keyring_env}"
+fi
+
+export GOG_HOME="${gog_home}"
+export GOG_KEYRING_BACKEND="${GOG_KEYRING_BACKEND:-file}"
+
+exec /usr/local/libexec/gog-real "$@"
+
