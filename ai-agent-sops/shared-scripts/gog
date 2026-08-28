@@ -1,0 +1,16 @@
+#!/bin/sh
+set -eu
+
+gog_home="${GOG_HOME:-${HOME}/.openclaw/gogcli}"
+keyring_env="${gog_home}/keyring.env"
+
+if [ -r "${keyring_env}" ]; then
+  # This file contains only the per-agent keyring password and is never committed.
+  . "${keyring_env}"
+fi
+
+export GOG_HOME="${gog_home}"
+export GOG_KEYRING_BACKEND="${GOG_KEYRING_BACKEND:-file}"
+
+exec /opt/openclaw/shared/bin/gog-real "$@"
+
