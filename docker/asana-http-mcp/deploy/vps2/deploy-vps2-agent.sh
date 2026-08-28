@@ -18,10 +18,9 @@ state_dir="/root/.openclaw-${agent}"
 openclaw_dir="/opt/openclaw-${agent}"
 openclaw_bin="${openclaw_dir}/node_modules/.bin/openclaw"
 openclaw_config="${state_dir}/openclaw.json"
+openclaw_env="${state_dir}/.env"
 workspace_skills="${state_dir}/workspace/skills"
 service_name="zedbiz-asana-mcp@${agent}.service"
-env_dir="/etc/zedbiz-asana-mcp"
-env_file="${env_dir}/${agent}.env"
 source_root="/opt/zedbiz-asana-http-mcp"
 verify_script="${source_root}/verify-vps2-agent.mjs"
 package_name="z-asana-agent-control"
@@ -29,14 +28,23 @@ legacy_name="zedbiz-asana-agent-control"
 package_source="/tmp/${package_name}.tar.gz"
 expected_skill_hash="${EXPECTED_SKILL_HASH:?EXPECTED_SKILL_HASH is required}"
 backup_dir="/root/zedbiz-asana-mcp-backups/${agent}-$(date -u +%Y%m%dT%H%M%SZ)"
+agent_vault="agent-${agent}"
+asana_item="asana-api-key-${agent}"
+email_item="email-address-${agent}"
 
-for path in "$state_dir" "$openclaw_dir" "$openclaw_bin" "$openclaw_config" "$workspace_skills" "$package_source" "$source_root/dist/index.js" "$verify_script"; do
+for path in "$state_dir" "$openclaw_dir" "$openclaw_bin" "$openclaw_config" "$openclaw_env" "$workspace_skills" "$package_source" "$source_root/dist/index.js" "$verify_script"; do
   test -e "$path"
 done
 test -s "${state_dir}/.op.token"
 systemctl is-active --quiet "openclaw-${agent}.service"
+if ss -ltn "sport = :${port}" | tail -n +2 | grep -q .; then
+  echo "Approved port ${port} is already in use" >&2
+  exit 1
+fi
+
 install -d -m 0700 "$backup_dir"
 cp "$openclaw_config" "$backup_dir/openclaw.json"
+cp "$openclaw_env" "$backup_dir/.env"
 if [ -d "${workspace_skills}/${package_name}" ]; then
   cp -a "${workspace_skills}/${package_name}" "$backup_dir/${package_name}"
 fi
@@ -45,12 +53,13 @@ rollback() {
   result=$?
   set +e
   systemctl disable --now "$service_name" >/dev/null 2>&1 || true
-  rm -f "$env_file"
+  rm -f /etc/systemd/system/zedbiz-asana-mcp@.service
   rm -rf "${workspace_skills}/${package_name}"
   if [ -d "$backup_dir/${package_name}" ]; then
     cp -a "$backup_dir/${package_name}" "${workspace_skills}/${package_name}"
   fi
   cp "$backup_dir/openclaw.json" "$openclaw_config"
+  cp "$backup_dir/.env" "$openclaw_env"
   systemctl daemon-reload
   systemctl restart "openclaw-${agent}.service" >/dev/null 2>&1 || true
   printf "Deployment rolled back for %s after failure.\n" "$agent" >&2
@@ -58,49 +67,26 @@ rollback() {
 }
 trap rollback ERR
 
-if ss -ltn "sport = :${port}" | tail -n +2 | grep -q .; then
-  echo "Approved port ${port} is already in use" >&2
-  exit 1
-fi
-
 export OP_SERVICE_ACCOUNT_TOKEN="$(tr -d '\r\n' < "${state_dir}/.op.token")"
-agent_vault="agent-${agent}"
-asana_item="asana-api-key-${agent}"
-email_item="email-address-${agent}"
 op item get "$asana_item" --vault "$agent_vault" --format json >/dev/null
 op item get "$email_item" --vault "$agent_vault" --format json >/dev/null
 expected_email="$(op read "op://${agent_vault}/${email_item}/username")"
 test -n "$expected_email"
 
-bearer_item="mcp-auth-token-${agent}"
-if ! op item get "$bearer_item" --vault "$agent_vault" --format json >/dev/null 2>&1; then
-  template="$(op item template get "API Credential")"
-  bearer="$(openssl rand -hex 32)"
-  printf '%s' "$template" | jq \
-    --arg title "$bearer_item" \
-    --arg bearer "$bearer" \
-    --arg agent "$agent" \
-    '.title = $title
-     | .fields = (.fields
-       | map(if .label == "username" then .value = "MCP_AUTH_TOKEN"
-             elif .label == "credential" then .value = $bearer
-             elif .label == "notesPlain" then .value = ("Internal bearer token for the " + $agent + " loopback-only ZedBiz Asana MCP service.")
-             else . end))' \
-    | op item create --vault "$agent_vault" - >/dev/null
-fi
-
-install -d -m 0700 "$env_dir"
-umask 077
-cat > "$env_file" <<EOF
-ASANA_ACCESS_TOKEN=$(op read "op://${agent_vault}/${asana_item}/credential")
-MCP_AUTH_TOKEN=$(op read "op://${agent_vault}/${bearer_item}/credential")
+# Keep credential references in the existing agent environment. The agent and
+# its local sidecar both resolve them only at process startup via `op run`.
+grep -v -E '^(ASANA_ACCESS_TOKEN|MCP_AUTH_TOKEN|MCP_ALLOWED_HOSTS|MCP_BIND_HOST|PORT|MCP_SESSION_TTL_MS|MCP_MAX_SESSIONS)=' "$openclaw_env" > "${openclaw_env}.new"
+cat >> "${openclaw_env}.new" <<EOF
+ASANA_ACCESS_TOKEN=op://${agent_vault}/${asana_item}/credential
+MCP_AUTH_TOKEN=op://${agent_vault}/${asana_item}/credential
 MCP_ALLOWED_HOSTS=localhost,127.0.0.1
 MCP_BIND_HOST=127.0.0.1
 PORT=${port}
 MCP_SESSION_TTL_MS=900000
 MCP_MAX_SESSIONS=16
 EOF
-chmod 0600 "$env_file"
+chmod 0600 "${openclaw_env}.new"
+mv "${openclaw_env}.new" "$openclaw_env"
 
 cat > /etc/systemd/system/zedbiz-asana-mcp@.service <<'EOF'
 [Unit]
@@ -112,8 +98,7 @@ Wants=network-online.target
 Type=simple
 User=root
 WorkingDirectory=/opt/zedbiz-asana-http-mcp
-EnvironmentFile=/etc/zedbiz-asana-mcp/%i.env
-ExecStart=/usr/bin/node /opt/zedbiz-asana-http-mcp/dist/index.js
+ExecStart=/bin/bash -lc 'export OP_SERVICE_ACCOUNT_TOKEN="$(tr -d "\r\n" < /root/.openclaw-%i/.op.token)"; exec /usr/bin/op run --env-file=/root/.openclaw-%i/.env -- /usr/bin/node /opt/zedbiz-asana-http-mcp/dist/index.js'
 Restart=on-failure
 RestartSec=5
 NoNewPrivileges=true
@@ -133,7 +118,7 @@ jq \
    | .mcp.servers = (.mcp.servers // {})
    | .mcp.servers.asana = {
        url: $url,
-       headers: {Authorization: "Bearer ${MCP_AUTH_TOKEN}"}
+       headers: {Authorization: "Bearer ${ASANA_ACCESS_TOKEN}"}
      }' \
   "$openclaw_config" > "${openclaw_config}.new"
 chmod 0600 "${openclaw_config}.new"
@@ -157,7 +142,8 @@ done
 systemctl is-active --quiet "$service_name"
 curl -fsS "http://127.0.0.1:${port}/healthz" | jq -e '.ok == true' >/dev/null
 
-export MCP_AUTH_TOKEN="$(op read "op://${agent_vault}/${bearer_item}/credential")"
+# Resolve only for this short-lived, local read-only verification process.
+export MCP_AUTH_TOKEN="$(op read "op://${agent_vault}/${asana_item}/credential")"
 node "$verify_script" "$agent" "http://127.0.0.1:${port}/mcp" "$expected_email" "$workspace_gid" > "/tmp/zedbiz-asana-${agent}-preflight.json"
 chmod 0600 "/tmp/zedbiz-asana-${agent}-preflight.json"
 
