@@ -28,12 +28,36 @@ package_name="z-asana-agent-control"
 legacy_name="zedbiz-asana-agent-control"
 package_source="/tmp/${package_name}.tar.gz"
 expected_skill_hash="${EXPECTED_SKILL_HASH:?EXPECTED_SKILL_HASH is required}"
+backup_dir="/root/zedbiz-asana-mcp-backups/${agent}-$(date -u +%Y%m%dT%H%M%SZ)"
 
 for path in "$state_dir" "$openclaw_dir" "$openclaw_bin" "$openclaw_config" "$workspace_skills" "$package_source" "$source_root/dist/index.js" "$verify_script"; do
   test -e "$path"
 done
 test -s "${state_dir}/.op.token"
 systemctl is-active --quiet "openclaw-${agent}.service"
+install -d -m 0700 "$backup_dir"
+cp "$openclaw_config" "$backup_dir/openclaw.json"
+if [ -d "${workspace_skills}/${package_name}" ]; then
+  cp -a "${workspace_skills}/${package_name}" "$backup_dir/${package_name}"
+fi
+
+rollback() {
+  result=$?
+  set +e
+  systemctl disable --now "$service_name" >/dev/null 2>&1 || true
+  rm -f "$env_file"
+  rm -rf "${workspace_skills}/${package_name}"
+  if [ -d "$backup_dir/${package_name}" ]; then
+    cp -a "$backup_dir/${package_name}" "${workspace_skills}/${package_name}"
+  fi
+  cp "$backup_dir/openclaw.json" "$openclaw_config"
+  systemctl daemon-reload
+  systemctl restart "openclaw-${agent}.service" >/dev/null 2>&1 || true
+  printf "Deployment rolled back for %s after failure.\n" "$agent" >&2
+  exit "$result"
+}
+trap rollback ERR
+
 if ss -ltn "sport = :${port}" | tail -n +2 | grep -q .; then
   echo "Approved port ${port} is already in use" >&2
   exit 1
@@ -152,4 +176,6 @@ jq --arg agent "$agent" --arg port "$port" --arg service "$service_name" \
   '. + {agent:$agent,port:($port|tonumber),service:$service,service_health:"active",openclaw_health:"active",skill:"z-asana-agent-control",legacy_skill:"absent"}' \
   "/tmp/zedbiz-asana-${agent}-preflight.json"
 rm -f "$package_source" "/tmp/zedbiz-asana-${agent}-preflight.json"
+rm -rf "$backup_dir"
+trap - ERR
 unset OP_SERVICE_ACCOUNT_TOKEN MCP_AUTH_TOKEN
