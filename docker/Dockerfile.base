@@ -26,32 +26,35 @@
 #   - just         Task runner / command shortcuts
 #   - grex         Regex generator from examples
 
-ARG OPENCLAW_VERSION=2026.6.5
+ARG OPENCLAW_VERSION=2026.8.2
 FROM ghcr.io/openclaw/openclaw:${OPENCLAW_VERSION}
 
 # Tool versions -- update these to upgrade
-ARG YTDLP_VERSION=2026.06.09
-ARG RCLONE_VERSION=1.74.3
-ARG GH_VERSION=2.94.0
-ARG YQ_VERSION=4.53.3
-ARG PANDOC_VERSION=3.10
-ARG UV_VERSION=0.11.20
+ARG YTDLP_VERSION=2026.08.19
+ARG RCLONE_VERSION=1.75.0
+ARG GH_VERSION=2.99.0
+ARG YQ_VERSION=4.53.6
+ARG PANDOC_VERSION=3.11
+ARG UV_VERSION=0.12.8
 ARG DEBUGPY_VERSION=1.8.21
 ARG GRON_VERSION=0.7.1
-ARG GLOW_VERSION=2.1.2
-ARG EZA_VERSION=0.23.4
+ARG GLOW_VERSION=3.0.0
+ARG EZA_VERSION=0.23.5
 ARG DUF_VERSION=0.9.1
-ARG FZF_VERSION=0.73.1
+ARG FZF_VERSION=0.74.3
 ARG FREEZE_VERSION=0.2.2
 ARG VHS_VERSION=0.11.0
-ARG GITCLIFF_VERSION=2.13.1
-ARG JUST_VERSION=1.52.0
+ARG GITCLIFF_VERSION=2.14.1
+ARG JUST_VERSION=1.58.0
 ARG GREX_VERSION=1.4.6
+ARG ASANA_MCP_VERSION=1.8.0
+ARG NOTION_MCP_VERSION=2.5.1
 
 USER root
 
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     ca-certificates curl tar xz-utils \
+    chromium chromium-driver rsync sqlite3 libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # yt-dlp -- standalone binary, no Python needed
@@ -69,14 +72,14 @@ RUN curl -fsSL "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-s
     && chmod 0755 /usr/local/bin/ffprobe \
     && rm -rf /tmp/ffmpeg-static.tar.xz /tmp/${FFDIR}
 
-# rclone -- archive: rclone-v1.74.3-linux-amd64.deb
+# rclone -- archive: rclone-vX.Y.Z-linux-amd64.deb
 RUN curl -fsSL "https://github.com/rclone/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-amd64.deb" \
     -o /tmp/rclone.deb \
     && dpkg -i /tmp/rclone.deb \
     && rm /tmp/rclone.deb
 
 # gh -- GitHub CLI
-# archive: gh_2.94.0_linux_amd64/bin/gh
+# archive: gh_X.Y.Z_linux_amd64/bin/gh
 RUN curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz" \
     -o /tmp/gh.tar.gz \
     && tar -xzf /tmp/gh.tar.gz -C /tmp/ \
@@ -195,5 +198,12 @@ RUN curl -fsSL "https://github.com/pemistahl/grex/releases/download/v${GREX_VERS
     && tar -xzf /tmp/grex.tar.gz -C /usr/local/bin/ grex \
     && chmod 0755 /usr/local/bin/grex \
     && rm /tmp/grex.tar.gz
+
+# Shared MCP servers are installed once during the controlled image build.
+# Agent-specific credentials and MCP configuration remain in mounted state.
+RUN npm install -g \
+    @roychri/mcp-server-asana@${ASANA_MCP_VERSION} \
+    @notionhq/notion-mcp-server@${NOTION_MCP_VERSION} \
+    && npm cache clean --force
 
 USER node
