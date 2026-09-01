@@ -62,7 +62,7 @@ done
 
 echo "${agent}: updating tracked plugins"
 docker exec "${agent}" openclaw plugins update --all || true
-for plugin in qwen memory-lancedb; do
+for plugin in qwen memory-lancedb slack; do
   if docker exec "${agent}" openclaw plugins inspect "${plugin}" --json >/dev/null 2>&1; then
     docker exec "${agent}" openclaw plugins update "${plugin}" --accept-capabilities || true
   fi
