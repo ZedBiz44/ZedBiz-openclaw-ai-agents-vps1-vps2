@@ -26,32 +26,43 @@
 #   - just         Task runner / command shortcuts
 #   - grex         Regex generator from examples
 
-ARG OPENCLAW_VERSION=2026.6.5
+ARG OPENCLAW_VERSION=2026.8.2
 FROM ghcr.io/openclaw/openclaw:${OPENCLAW_VERSION}
 
 # Tool versions -- update these to upgrade
-ARG YTDLP_VERSION=2026.06.09
-ARG RCLONE_VERSION=1.74.3
-ARG GH_VERSION=2.94.0
-ARG YQ_VERSION=4.53.3
-ARG PANDOC_VERSION=3.10
-ARG UV_VERSION=0.11.20
+ARG YTDLP_VERSION=2026.08.19
+ARG RCLONE_VERSION=1.75.0
+ARG GH_VERSION=2.99.0
+ARG YQ_VERSION=4.53.6
+ARG PANDOC_VERSION=3.11
+ARG UV_VERSION=0.12.8
 ARG DEBUGPY_VERSION=1.8.21
 ARG GRON_VERSION=0.7.1
-ARG GLOW_VERSION=2.1.2
-ARG EZA_VERSION=0.23.4
+ARG GLOW_VERSION=3.0.0
+ARG EZA_VERSION=0.23.5
 ARG DUF_VERSION=0.9.1
-ARG FZF_VERSION=0.73.1
+ARG FZF_VERSION=0.74.3
 ARG FREEZE_VERSION=0.2.2
 ARG VHS_VERSION=0.11.0
-ARG GITCLIFF_VERSION=2.13.1
-ARG JUST_VERSION=1.52.0
+ARG GITCLIFF_VERSION=2.14.1
+ARG JUST_VERSION=1.58.0
 ARG GREX_VERSION=1.4.6
+ARG ASANA_MCP_VERSION=1.8.0
+ARG NOTION_MCP_VERSION=2.5.1
+ARG CODEX_VERSION=0.152.0
+ARG GEMINI_CLI_VERSION=0.58.0
+ARG CLAWHUB_VERSION=0.23.3
+ARG XURL_VERSION=1.3.1
+ARG BLOGWATCHER_VERSION=0.0.4
+ARG CAMSNAP_VERSION=0.5.0
+ARG GOPLACES_VERSION=0.4.9
+ARG NANO_PDF_VERSION=0.2.1
 
 USER root
 
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     ca-certificates curl tar xz-utils \
+    chromium chromium-driver rsync sqlite3 libsqlite3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # yt-dlp -- standalone binary, no Python needed
@@ -69,14 +80,14 @@ RUN curl -fsSL "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-s
     && chmod 0755 /usr/local/bin/ffprobe \
     && rm -rf /tmp/ffmpeg-static.tar.xz /tmp/${FFDIR}
 
-# rclone -- archive: rclone-v1.74.3-linux-amd64.deb
+# rclone -- archive: rclone-vX.Y.Z-linux-amd64.deb
 RUN curl -fsSL "https://github.com/rclone/rclone/releases/download/v${RCLONE_VERSION}/rclone-v${RCLONE_VERSION}-linux-amd64.deb" \
     -o /tmp/rclone.deb \
     && dpkg -i /tmp/rclone.deb \
     && rm /tmp/rclone.deb
 
 # gh -- GitHub CLI
-# archive: gh_2.94.0_linux_amd64/bin/gh
+# archive: gh_X.Y.Z_linux_amd64/bin/gh
 RUN curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_amd64.tar.gz" \
     -o /tmp/gh.tar.gz \
     && tar -xzf /tmp/gh.tar.gz -C /tmp/ \
@@ -111,6 +122,28 @@ RUN curl -fsSL "https://github.com/astral-sh/uv/releases/download/${UV_VERSION}/
 # debugpy -- Python remote debugging (used by OpenClaw Python Debugging Skill)
 # installed via uv pip into system Python
 RUN uv pip install --system --break-system-packages debugpy==${DEBUGPY_VERSION}
+
+# nano-pdf -- PDF editing CLI required by the bundled nano-pdf skill
+RUN uv pip install --system --break-system-packages nano-pdf==${NANO_PDF_VERSION}
+
+# Optional bundled-skill CLIs. These are official release artifacts for Linux amd64.
+RUN curl -fsSL "https://github.com/Hyaxia/blogwatcher/releases/download/v${BLOGWATCHER_VERSION}/blogwatcher_${BLOGWATCHER_VERSION}_linux_amd64.tar.gz" \
+    -o /tmp/blogwatcher.tar.gz \
+    && tar -xzf /tmp/blogwatcher.tar.gz -C /usr/local/bin/ blogwatcher \
+    && chmod 0755 /usr/local/bin/blogwatcher \
+    && rm /tmp/blogwatcher.tar.gz
+
+RUN curl -fsSL "https://github.com/steipete/camsnap/releases/download/v${CAMSNAP_VERSION}/camsnap_${CAMSNAP_VERSION}_linux_amd64.tar.gz" \
+    -o /tmp/camsnap.tar.gz \
+    && tar -xzf /tmp/camsnap.tar.gz -C /usr/local/bin/ camsnap \
+    && chmod 0755 /usr/local/bin/camsnap \
+    && rm /tmp/camsnap.tar.gz
+
+RUN curl -fsSL "https://github.com/openclaw/goplaces/releases/download/v${GOPLACES_VERSION}/goplaces_${GOPLACES_VERSION}_linux_amd64.tar.gz" \
+    -o /tmp/goplaces.tar.gz \
+    && tar -xzf /tmp/goplaces.tar.gz -C /usr/local/bin/ goplaces \
+    && chmod 0755 /usr/local/bin/goplaces \
+    && rm /tmp/goplaces.tar.gz
 
 # gron -- JSON flattener for grep
 # archive: gron (flat, no subdirectory)
@@ -195,5 +228,16 @@ RUN curl -fsSL "https://github.com/pemistahl/grex/releases/download/v${GREX_VERS
     && tar -xzf /tmp/grex.tar.gz -C /usr/local/bin/ grex \
     && chmod 0755 /usr/local/bin/grex \
     && rm /tmp/grex.tar.gz
+
+# Shared MCP servers are installed once during the controlled image build.
+# Agent-specific credentials and MCP configuration remain in mounted state.
+RUN npm install -g --allow-scripts=@xdevplatform/xurl \
+    @roychri/mcp-server-asana@${ASANA_MCP_VERSION} \
+    @notionhq/notion-mcp-server@${NOTION_MCP_VERSION} \
+    @openai/codex@${CODEX_VERSION} \
+    @google/gemini-cli@${GEMINI_CLI_VERSION} \
+    clawhub@${CLAWHUB_VERSION} \
+    @xdevplatform/xurl@${XURL_VERSION} \
+    && npm cache clean --force
 
 USER node
