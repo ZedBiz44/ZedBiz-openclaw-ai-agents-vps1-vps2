@@ -1,5 +1,7 @@
 # VPS1 OpenClaw 2026.8.2 Full-Stack Update
 
+> Branding follow-up: see `2026-09-01-vps1-openclaw-2026-8-2-branding-correction.md` and GitHub issue `#239` for the runtime identity and workspace-icon correction required by the 2026.8.2 Control UI.
+
 Date: 2026-09-01 | Agent: Cody | Status: Complete With Host Maintenance Pending
 
 ## Authority And Scope
