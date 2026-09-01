@@ -28,6 +28,10 @@ sha256sum "${backup_file}"
 
 sed -i "s|^OPENCLAW_IMAGE=.*|OPENCLAW_IMAGE=${image}|" "${agent_root}/.env"
 grep '^OPENCLAW_IMAGE=' "${agent_root}/.env"
+if [[ "${agent}" == "victor" ]]; then
+  sed -i -E "0,/^([[:space:]]*)image: zedbiz-openclaw-victor:/s||\\1image: ${image}|" "${agent_root}/docker-compose.yml"
+  grep -q "^[[:space:]]*image: ${image}$" "${agent_root}/docker-compose.yml"
+fi
 
 echo "${agent}: creating the 2026.8.2 container for maintenance"
 "${start_wrapper}" up
@@ -67,6 +71,9 @@ for plugin in qwen memory-lancedb slack; do
     docker exec "${agent}" openclaw plugins update "${plugin}" --accept-capabilities || true
   fi
 done
+if docker exec "${agent}" openclaw plugins update --all --dry-run 2>&1 | grep -q 'Would update voice-call:'; then
+  docker exec "${agent}" openclaw plugins update @openclaw/voice-call@latest --accept-capabilities
+fi
 
 "${start_wrapper}" restart
 for _ in $(seq 1 60); do
