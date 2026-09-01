@@ -84,7 +84,8 @@ docker exec "${agent}" openclaw status --deep --timeout 15000 >/tmp/"${agent}"-s
 [[ "$(docker exec "${agent}" openclaw config get mcp.servers.asana.transport)" == "streamable-http" ]]
 docker exec "${agent}" openclaw config get gateway.trustedProxies --json | grep -q '172.18.0.0/16'
 docker exec "${agent}" openclaw --version | grep -q '2026.8.2'
-docker exec "${agent}" openclaw plugins list --json | grep -q '"version": "2026.8.2"'
+plugins_json="$(docker exec "${agent}" openclaw plugins list --json || true)"
+grep -q '"version": "2026.8.2"' <<<"${plugins_json}"
 docker exec "${agent}" openclaw skills check --agent main --json >/tmp/"${agent}"-skills.json
 
 echo "${agent}: COMPLETE image=${image} health=${health}"

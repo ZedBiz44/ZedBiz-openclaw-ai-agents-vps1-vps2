@@ -21,15 +21,21 @@ docker run --rm \
   alpine:3.22 sh -c "cp /dest/gog-real /dest/gog-real.backup-${stamp}; cp /src/gog-real /dest/gog-real; chown root:root /dest/gog-real; chmod 0755 /dest/gog-real"
 
 docker run --rm \
-  -v /opt/openclaw/shared/lib:/usr/local/lib \
-  node:24-bookworm sh -c 'npm install -g --prefix /usr/local @steipete/summarize@0.21.11 mcporter@0.13.8 && npm cache clean --force'
+  -v /opt/openclaw/shared/lib:/dest \
+  node:24-bookworm sh -c '
+    set -eu
+    npm install -g --prefix /tmp/stage @steipete/summarize@0.21.11 mcporter@0.13.8
+    rm -rf /dest/node_modules/@steipete/summarize /dest/node_modules/@steipete/summarize-core /dest/node_modules/mcporter
+    cp -a /tmp/stage/lib/node_modules/. /dest/node_modules/
+    npm cache clean --force
+  '
 
 docker run --rm \
   -v /opt/openclaw/shared/bin:/shared \
   alpine:3.22 sh -c "cp /shared/ntn /shared/ntn.backup-${stamp}"
 docker run --rm \
   -v /opt/openclaw/shared/bin:/shared \
-  --entrypoint /shared/ntn \
-  ghcr.io/zedbiz44/openclaw-base:2026.8.2 update --json
+  ghcr.io/zedbiz44/openclaw-base:2026.8.2 \
+  bash -lc 'curl -fsSL https://ntn.dev | NTN_VERSION=0.22.12 NTN_INSTALL_DIR=/shared bash'
 
 docker exec amanda sh -lc 'gog --version; summarize --version; mcporter --version; ntn --version'
