@@ -1,6 +1,6 @@
 # VPS1 OpenClaw 2026.8.2 Full-Stack Update
 
-Date: 2026-09-01 | Agent: Cody | Status: In Progress
+Date: 2026-09-01 | Agent: Cody | Status: Complete With Host Maintenance Pending
 
 ## Authority And Scope
 
@@ -67,5 +67,32 @@ Date: 2026-09-01 | Agent: Cody | Status: In Progress
 
 ## Completion Evidence
 
-- Every discovered component must end as Updated, Already Current, or Blocked with an exact reason.
-- Record Git commits, Dockerfile checksums, image digests, agent versions, plugin versions, skill results, Doctor results, route results, model proofs, dashboard/restart proof, backups, host package state, reboot result, and remaining advisory items.
+- All eleven agents are healthy with zero restart counts on exact OpenClaw `2026.8.2`.
+- Standard cohort: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha and Wilma use `ghcr.io/zedbiz44/openclaw-base:2026.8.2`, image `sha256:e4d1bc6332ad941f8a6b0c4fa3696aab8e7cef18363c9bdcf5b5c93f5ec38741`.
+- Video cohort: Terry and Vivian use `zedbiz/openclaw-base:2026.8.2-video`, image `sha256:eadb34d2b644567f6fa99b4830efba4eb8c8632309b91e3c8a0e7ff34da6e248`.
+- Victor uses `zedbiz-openclaw-victor:2026.8.2-ssh`, image `sha256:bae64d29a88e7dca82ab181d69a9ebf5bc503295039ff00365f5099a80f5fe6e`.
+- Every agent passed the final audit for `session.dmScope=per-channel-peer`, `tools.sessions.visibility=tree`, Asana `streamable-http`, Caddy trust `172.18.0.0/16`, plugin currency, gateway reachability, event-loop health and skill-check execution.
+- Core-aligned external plugins moved from `2026.7.1` to `2026.8.2`. Hindsight moved `0.10.0` to `0.11.1`, Mem0 moved `1.0.15` to `1.0.16`, Terry's Slack plugin moved to `2026.8.2`, and Marsha's pinned voice-call plugin moved to `2026.8.2`.
+- Shared tools are current at `gog 0.38.1`, `ntn 0.22.12`, `summarize 0.21.11` and `mcporter 0.13.8`.
+- Real model replies passed on the standard, video and Victor cohorts. Read-only Asana calls passed on Amanda, Terry and Victor.
+- Amanda's browser-visible Control UI displayed Telegram and Discord sessions. Device pairing, the Agents Dashboard, restart page and a real Dashboard-triggered restart completed successfully.
+- The Dashboard is reachable without an outer authentication challenge and exposes agent connection links. Follow-up security issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/237.
+
+## Runtime Corrections Found During Rollout
+
+- Wilma still had retired per-site WordPress environment and direct-MCP bindings after the newer restricted on-demand WordPress skill replaced them. The retired bindings were removed after preserving the original backup. The current `wordpress-allzed` and on-demand 1Password route remain.
+- Victor's Compose file hard-coded the old `2026.7.1` special image even after `.env` was updated. Compose was corrected to `2026.8.2`; the rollout script now validates and updates Victor's image pin.
+- Terry's Slack plugin and Marsha's pinned voice-call plugin required explicit capability/version handling. The rollout script now includes those cases.
+- VPS2 issue #234 was amended: `goplaces 1.0.2` was an unrelated npm package. The official `openclaw/goplaces` version installed in the VPS1 image is `0.4.9`; VPS2 needs a separate correction.
+
+## Recovery Evidence
+
+- Offline archives are stored in `/opt/openclaw/backups/2026-09-01-openclaw-2026.8.2/`.
+- Final archive checksums: Amanda `c8c77166…44be6`; Edith `34905c5e…6dda9`; Gohzed `dc250dcb…7573`; Grogar `e6966504…abe2`; Inga `cc5b6347…220a`; Maggie `6667d2b6…dd0a`; Marsha `1f372a56…0add`; Terry `07e8d1f2…b8cd`; Vivian `bdb681c6…18e4`; Wilma `770497b8…56e7`; Victor `0f82db61…ed60`.
+- Wilma's pre-cleanup archive and Victor's pre-Compose-fix archive were preserved separately from the final rerun backups.
+
+## Remaining Host Maintenance
+
+- VPS1 still has 31 Ubuntu/Docker-related package updates and reports that a reboot is required.
+- `jackadmin` does not have passwordless sudo, so host package installation and reboot could not be completed through the authorized SSH route.
+- This does not block the OpenClaw fleet: all eleven agents and integrations are healthy. It is a separate administrator-authority maintenance action.
