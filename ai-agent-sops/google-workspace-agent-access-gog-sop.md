@@ -20,14 +20,15 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 
 ## Current Fleet State
 
-- VPS1's eleven OpenClaw agents were verified on 2026-09-01 with GOG v0.38.1 after the fleet update.
-- VPS2's Harry, Frank, and Suzy and VPS4's Rocky were last verified on 2026-08-28 with GOG v0.34.1.
-- On every verified OpenClaw runtime, GOG is installed, enabled, eligible, and model-visible, with a separate persistent state directory and encrypted file-keyring route.
-- Recheck `gog --version` and live help before authorization; the installed version, not an old planning page, controls the command contract.
-- Ruby has the Hermes `google-workspace` skill v1.2.0.
-- No Google account is authenticated and no known-file Drive test has passed yet.
-- Software readiness is not account access.
+Live read-only verification completed 2026-09-01 at approximately 22:38 Mountain Time:
 
+- VPS1: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma are running, healthy, at zero restarts, and using GOG v0.38.1. The GOG skill is eligible and model-visible on all eleven. Every account check returned `No tokens stored`.
+- VPS2: Harry, Frank, and Suzy services are active and each runs GOG v0.38.1. Every account check returned `No tokens stored`. The current OpenClaw CLI cannot complete the GOG skill-info check because each config contains the unrecognized key `meta.lastTouchedAt`; skill visibility must be repaired and reverified before authorization.
+- VPS3: the `hermes-ruby` container is running. Ruby's Hermes `google-workspace` skill v1.2.0 is present inside the active container. Its live check reports `NOT_AUTHENTICATED: No token at /opt/data/google_token.json`.
+- VPS4: Rocky's OpenClaw gateway is active. GOG v0.38.1 is eligible and model-visible. The account check returned `No tokens stored`.
+- No audited agent is authenticated to Google.
+- No live Google Drive search or known-file read has passed.
+- Recheck `gog --version`, live help, skill visibility, and authentication state immediately before authorization.
 ## Confirmed ZedBiz Workspace And Shared Drives
 
 Jack confirmed the Google Workspace domain is `zbiz.work` and the current administrator/source account is `jack@zbiz.work`.
@@ -45,6 +46,15 @@ The Shared Drives visible in the supplied Google Drive screenshot are:
 - `Z-Ventures`
 
 Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the account currently used to view and administer them.
+
+### No-Cost Read-Only Identity Option
+
+- A normal `agents@zbiz.work` Google Workspace user consumes a paid Workspace licence.
+- A Google email alias or Google Group does not consume a licence, but it is not an independent sign-in/OAuth identity.
+- Cloud Identity Free can provide `agents@zbiz.work` as a separate no-cost identity.
+- For Shared Drives inside the `zbiz.work` organization, Google currently limits Cloud Identity Free members to Viewer access.
+- That limitation fits the first read-only GOG canary. If agents later need reliable upload, create, edit, move, or delete capabilities in Shared Drives, assign a paid Workspace licence or approve a different architecture.
+- Before creating the identity, verify Cloud Identity Free is available in the Admin console and prevent automatic assignment of a paid Workspace licence.
 
 ### Authentication Boundary
 
