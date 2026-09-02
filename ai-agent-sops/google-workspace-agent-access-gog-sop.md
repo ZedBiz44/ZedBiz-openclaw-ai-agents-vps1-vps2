@@ -8,14 +8,15 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 
 ## Decision
 
-- Create `agents@zbiz.work` as a paid, non-admin Google Workspace user because production agents require read/write access.
-- Give that identity Contributor access only to the approved Shared Drives. Contributor supports reading, creating, uploading, and editing without Shared Drive membership administration or trash authority.
+- Use the existing paid Google Workspace account `jack@zbiz.work`, as explicitly selected by Jack, for agent OAuth.
+- No additional Workspace licence is required.
+- Google permissions already assigned to `jack@zbiz.work` control what the agents can read or change. OAuth cannot narrow the account to selected Shared Drives.
 - Use GOG for OpenClaw agents on VPS1, VPS2, and VPS4.
 - Use Ruby's native Hermes `google-workspace` skill on VPS3.
 - Start the canary with Drive-only, read-only OAuth to prove identity and boundaries.
-- After the read-only canary passes, promote `agents@zbiz.work` to Contributor and reauthorize the canary with Drive full scope for a controlled write test.
+- After the read-only canary passes, promote `jack@zbiz.work` to Contributor and reauthorize the canary with Drive full scope for a controlled write test.
 - Roll out only after approved-file read, out-of-scope denial, create/upload, edit/read-back, audit-log, and revocation checks pass.
-- Do not connect `jack@zbiz.work` as the agent OAuth identity.
+- Jack explicitly accepted `jack@zbiz.work` as the agent OAuth identity and its broad visibility.
 - Do not use the Codex Google Drive connector as the credential route for persistent OpenClaw agents.
 - Do not use rclone or domain-wide delegation for the first implementation. Reserve rclone for approved bulk sync/backup and domain-wide delegation for a separately reviewed administrator use case.
 
@@ -48,23 +49,22 @@ The Shared Drives visible in the supplied Google Drive screenshot are:
 
 Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the account currently used to view and administer them.
 
-### Licence Decision
+### Account And Licence Decision
 
-- Jack confirmed the agents require read/write access.
-- Use a paid Google Workspace licence for `agents@zbiz.work`.
-- Cloud Identity Free is not the production choice because internal Shared Drive membership is limited to Viewer.
-- An alias or Google Group is not an OAuth identity and cannot replace the licensed account.
-- One paid shared identity is sufficient when all authorized agents have the same Drive boundary. Google audit logs will identify `agents@zbiz.work`; per-agent attribution must come from OpenClaw execution records.
-- If selected agents need different Drive boundaries or independent Google audit attribution, create separate licensed identities for those write-capable roles.
+- Jack selected the existing licensed account `jack@zbiz.work`.
+- No new Workspace user or additional paid licence is required.
+- Cloud Identity Free and a separate `agents@zbiz.work` account are not part of the selected implementation.
+- All Google audit events will identify `jack@zbiz.work`; individual AI-agent attribution must come from OpenClaw execution records and per-agent GOG token stores.
 
 ### Authentication Boundary
 
-- Use `jack@zbiz.work` to create/manage the dedicated agent identity and grant Shared Drive membership.
-- Use a dedicated non-admin identity such as `agents@zbiz.work` for agent OAuth.
-- Add `agents@zbiz.work` as Viewer for the security canary, then Contributor on the Shared Drives approved for production read/write access.
-- Google Drive read-only OAuth follows all files the authenticated identity can already access; it does not restrict access to a chosen list of Shared Drives.
-- Authorizing `jack@zbiz.work` would therefore expose its My Drive and every Shared Drive/file available to that account. Do not use it as the default agent OAuth identity unless Jack explicitly accepts that full visibility.
-- If different agents require different Drive boundaries or write attribution, use separate Workspace identities or groups rather than one shared token boundary.
+- Authenticate GOG and Ruby's Hermes skill as `jack@zbiz.work`.
+- The account's existing Google permissions remain the authority for My Drive and every Shared Drive.
+- Drive OAuth scope cannot be restricted to a selected list of Shared Drives.
+- The approved visibility boundary therefore includes Jack's My Drive and every Shared Drive/file accessible to `jack@zbiz.work`.
+- Use separate per-agent encrypted token stores; never clone a token store.
+- Keep delete, trash, permission changes, Shared Drive membership changes, external sharing, and structural reorganization behind explicit human confirmation.
+- Treat OpenClaw execution records as the per-agent audit layer because Google will record the common account identity.
 
 ## Scope
 
@@ -109,25 +109,24 @@ Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the acco
 
 ## Required Google Setup
 
-### Dedicated Workspace Identity
+### Selected Workspace Identity
 
-Create `agents@zbiz.work` as a paid, regular, non-admin Google Workspace user.
+Use the existing licensed account `jack@zbiz.work`.
 
-- Assign one paid Workspace licence with Drive support.
-- Use a ZedBiz-controlled password and MFA/passkey stored through the approved 1Password process.
-- Do not grant admin roles.
-- Do not add broad groups that expose unrelated Drives.
-- Record only the non-secret account name, owner, approved folder/Shared Drive, role, and review date.
+- Do not create another Workspace user.
+- Keep its password, MFA/passkey, recovery material, OAuth JSON, and refresh tokens in approved protected storage only.
+- Record the non-secret account name, current Shared Drive roles, OAuth client, token creation date, review date, and revocation status.
+- Before rollout, verify the exact role held by `jack@zbiz.work` on each Shared Drive; the screenshot confirms visibility but not Manager, Content manager, Contributor, Commenter, or Viewer role.
 
 ### Drive Boundary
 
-Create or select a dedicated Shared Drive or folder, such as `ZedBiz Agent Approved Files`.
+Use the nine confirmed ZedBiz Shared Drives already visible to `jack@zbiz.work`.
 
-- Put only approved, non-secret files inside.
-- Grant the automation identity Viewer access for the security canary, then Contributor for approved production read/write access.
-- Create one approved canary file inside the boundary.
-- Create or identify one out-of-scope canary elsewhere that the identity must not see.
+- Verify Jack's exact membership role on every drive before promising write capability.
+- Create one approved read/write canary folder and file in a low-risk Shared Drive.
+- Do not use `Z-Administrative` for the first write test.
 - Confirm external sharing is restricted by policy.
+- Because the selected identity already has broad visibility, use command policy and human confirmation—not OAuth scope—as the operational safety boundary.
 
 ### Google Cloud Project
 
@@ -180,7 +179,7 @@ gog auth credentials list
 Run:
 
 ```bash
-gog auth add agents@zbiz.work \
+gog auth add jack@zbiz.work \
   --services drive \
   --drive-scope readonly \
   --manual
@@ -196,7 +195,7 @@ gog auth add agents@zbiz.work \
 ### Verify Identity and Read Boundary
 
 ```bash
-export GOG_ACCOUNT='agents@zbiz.work'
+export GOG_ACCOUNT='jack@zbiz.work'
 gog auth list --check
 gog auth doctor --check
 gog --account "$GOG_ACCOUNT" --readonly --no-input --wrap-untrusted --json drive search "OpenClaw Drive Pilot Canary"
@@ -256,13 +255,13 @@ Read/write access is an approved business requirement. Preserve the read-only ca
 
 ### Promote The Canary
 
-- Assign the paid Workspace licence to `agents@zbiz.work`.
-- Promote its membership from Viewer to Contributor only on the approved Shared Drives.
+- Use the existing licensed `jack@zbiz.work` account.
+- Verify it has Contributor or higher access on the chosen write-test Shared Drive.
 - Confirm the live GOG v0.38.1 contract with `gog auth add --help`.
 - Reauthorize the canary:
 
 ```bash
-gog auth add agents@zbiz.work \
+gog auth add jack@zbiz.work \
   --services drive \
   --drive-scope full \
   --manual \
@@ -277,7 +276,7 @@ gog auth add agents@zbiz.work \
 - Create or upload one clearly named canary file in an approved test folder.
 - Read the file back and verify its content.
 - Edit or replace only that canary and verify the expected result.
-- Confirm Google audit logs identify `agents@zbiz.work`.
+- Confirm Google audit logs identify `jack@zbiz.work`.
 - Confirm the out-of-scope canary remains inaccessible.
 - Leave trash/delete, permission management, external sharing, and Shared Drive membership commands disabled.
 - Revoke the canary token and prove access fails, then reauthorize for production only after the revocation test passes.
@@ -320,7 +319,7 @@ gog auth add agents@zbiz.work \
 For GOG:
 
 ```bash
-gog auth remove agents@zbiz.work
+gog auth remove jack@zbiz.work
 ```
 
 For Ruby, use the installed Hermes setup script's revoke operation after confirming its live help.
