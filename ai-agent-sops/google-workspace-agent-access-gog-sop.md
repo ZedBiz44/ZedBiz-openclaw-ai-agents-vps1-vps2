@@ -139,6 +139,87 @@ Use the nine confirmed ZedBiz Shared Drives already visible to `jack@zbiz.work`.
 - Delete the unprotected browser download after the protected copy is verified.
 - Do not create an API key; Google Drive user access uses OAuth.
 
+## Combined Drive And Per-Agent Gmail OAuth
+
+Jack is creating one free consumer Gmail account for each AI agent. Configure Drive and Gmail together at the Google Cloud infrastructure layer, but authorize and route the accounts separately.
+
+### Shared Google Cloud Foundation
+
+Use one ZedBiz-controlled Google Cloud project owned by `jack@zbiz.work`.
+
+- Enable Google Drive API and Gmail API.
+- Enable Docs and Sheets APIs only when agent workflows require them.
+- Configure the OAuth audience as External because the per-agent `@gmail.com` accounts are outside the `zbiz.work` organization.
+- Create one Desktop app OAuth client and protect its JSON in 1Password.
+- Import the same approved OAuth client into each agent's isolated GOG store.
+- Add `jack@zbiz.work` and each agent Gmail address as test users during the canary stage.
+
+### Testing And Production Gate
+
+External apps in Testing accept up to 100 named test users, but authorizations requesting Gmail or Drive scopes expire after seven days, including refresh tokens.
+
+- Use Testing only for the Marsha canary.
+- Do not authorize the full fleet while the app remains in Testing.
+- Before fleet rollout, move to an approved Production design and document any Google verification, unverified-app warning, user cap, or security-assessment requirement triggered by the selected Gmail and Drive scopes.
+- Request only the minimum Gmail scope. Start with `read-send`; use `full` only if mailbox modification, labels, archiving, or other write operations are required.
+
+### Two Accounts Per OpenClaw Agent
+
+Each OpenClaw agent keeps two OAuth authorizations in its own encrypted GOG store:
+
+- `main-drive` -> `jack@zbiz.work`, Drive only, full Drive scope for approved read/write work.
+- `agent-mail` -> that agent's individual free Gmail account, Gmail only, initially `read-send`.
+
+Example for Marsha:
+
+```bash
+gog auth add jack@zbiz.work \
+  --services drive \
+  --drive-scope full \
+  --manual \
+  --force-consent
+
+gog auth alias set main-drive jack@zbiz.work
+
+gog auth add marshazagent@gmail.com \
+  --services gmail \
+  --gmail-scope read-send \
+  --manual \
+  --force-consent
+
+gog auth alias set agent-mail marshazagent@gmail.com
+
+gog auth list --check
+```
+
+Operating rules:
+
+- Every Drive command must explicitly use `--account main-drive`.
+- Every Gmail command must explicitly use `--account agent-mail`.
+- Never set one ambiguous global default for both services.
+- Never authorize Gmail on `jack@zbiz.work`.
+- Never authorize Drive on the agent Gmail account unless Jack later changes the architecture.
+- Never copy token stores between agents.
+
+### Canary Verification
+
+Marsha passes only when:
+
+- `main-drive` identifies `jack@zbiz.work` and passes the controlled Drive read/write canary.
+- `agent-mail` identifies `marshazagent@gmail.com` and can read and send a message only from that mailbox.
+- A Drive command using `agent-mail` is rejected by policy.
+- A Gmail command using `main-drive` is rejected by policy.
+- OpenClaw logs identify Marsha as the acting agent.
+- Revoking either token breaks only its corresponding route.
+
+### Ruby Exception
+
+Ruby is Hermes, not OpenClaw GOG. The live Hermes `google-workspace` skill uses one token file at `/opt/data/google_token.json`; do not assume it supports the same two-account GOG store.
+
+- Use Ruby's native Google Workspace token for the selected Drive identity.
+- Configure Ruby's individual Gmail through a separate approved mail route.
+- Test and document both routes independently before calling Ruby complete.
+
 ## OpenClaw GOG Canary
 
 Use Amanda as the first OpenClaw canary unless Jack selects another agent.
