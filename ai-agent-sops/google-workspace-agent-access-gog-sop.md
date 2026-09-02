@@ -20,8 +20,10 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 
 ## Current Fleet State
 
-- GOG v0.34.1 is installed, enabled, eligible, and model-visible on all OpenClaw agents across VPS1, VPS2, and VPS4.
-- Each OpenClaw agent has a separate persistent GOG state directory and encrypted file-keyring route.
+- VPS1's eleven OpenClaw agents were verified on 2026-09-01 with GOG v0.38.1 after the fleet update.
+- VPS2's Harry, Frank, and Suzy and VPS4's Rocky were last verified on 2026-08-28 with GOG v0.34.1.
+- On every verified OpenClaw runtime, GOG is installed, enabled, eligible, and model-visible, with a separate persistent state directory and encrypted file-keyring route.
+- Recheck `gog --version` and live help before authorization; the installed version, not an old planning page, controls the command contract.
 - Ruby has the Hermes `google-workspace` skill v1.2.0.
 - No Google account is authenticated and no known-file Drive test has passed yet.
 - Software readiness is not account access.
