@@ -2,21 +2,19 @@
 
 # Purpose: Deploy the canonical modular Z-Knowledge skill set to Ruby/Hermes,
 # keep the Small Bite gate near the start of AGENTS.md, and retire the replaced
-# superseded allocator-client package after backup.
+# superseded allocator-client package without server backups.
 # Added by: Cody
 # Date added: 2026-08-27 Mountain Time
 # Tested on: Ruby VPS3, /opt/hermes-ruby
-# Rollback: restore skills and AGENTS.md from the reported
-# /opt/hermes-ruby/backups/zk-rollout-* directory, then restart with
-# /usr/local/sbin/ruby-maintenance and re-run Hermes discovery and health.
+# Recovery: redeploy the required version from its authoritative GitHub
+# repository, then restart with /usr/local/sbin/ruby-maintenance and re-run
+# Hermes discovery and health. Never retain server-side skill backups.
 
 set -eu
 
 base=/opt/hermes-ruby
 skills="z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
-stamp="$(TZ=America/Edmonton date +%Y%m%d-%H%M%S-MDT)"
-backup="$base/backups/zk-rollout-$stamp"
 gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
 
 case "$(realpath -m "$base/skills")" in
@@ -29,16 +27,10 @@ case "$(realpath -m "$staging")" in
   *) echo "Unsafe staging directory: $staging" >&2; exit 2 ;;
 esac
 
-mkdir -p "$backup/skills"
-cp -a "$base/AGENTS.md" "$backup/AGENTS.md"
-
 for skill in $skills; do
   source_dir="$staging/$skill"
   target_dir="$base/skills/$skill"
   test -f "$source_dir/SKILL.md"
-  if [ -e "$target_dir" ]; then
-    cp -a "$target_dir" "$backup/skills/"
-  fi
   rm -rf -- "$target_dir"
   cp -a "$source_dir" "$target_dir"
   chown -R 10000:10000 "$target_dir"
@@ -56,4 +48,4 @@ new_offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0,
 test -n "$new_offset"
 test "$new_offset" -lt 20000
 
-echo "ruby: deployed modular Z-Knowledge skills; gate byte=$new_offset; legacy retirement already complete; backup=$backup"
+echo "ruby: deployed modular Z-Knowledge skills; gate byte=$new_offset; legacy retirement already complete; recovery=GitHub"

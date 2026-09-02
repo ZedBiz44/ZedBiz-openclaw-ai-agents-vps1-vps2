@@ -5,17 +5,15 @@
 # Added by: Cody
 # Date added: 2026-08-27 Mountain Time
 # Tested on: Rocky VPS4, /home/openclaw/.openclaw/workspace
-# Rollback: restore skills and AGENTS.md from the reported
-# /home/openclaw/.openclaw/backups/zk-rollout-* directory, restart the
-# openclaw user gateway, and re-run discovery and health checks.
+# Recovery: redeploy the required version from its authoritative GitHub
+# repository, restart the OpenClaw user gateway, and re-run discovery and
+# health checks. Never retain server-side skill backups.
 
 set -eu
 
 base=/home/openclaw/.openclaw
 skills="z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
-stamp="$(TZ=America/Edmonton date +%Y%m%d-%H%M%S-MDT)"
-backup="$base/backups/zk-rollout-$stamp"
 gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
 
 case "$(realpath -m "$base/workspace/skills")" in
@@ -28,16 +26,10 @@ case "$(realpath -m "$staging")" in
   *) echo "Unsafe staging directory: $staging" >&2; exit 2 ;;
 esac
 
-mkdir -p "$backup/skills"
-cp -a "$base/workspace/AGENTS.md" "$backup/AGENTS.md"
-
 for skill in $skills; do
   source_dir="$staging/$skill"
   target_dir="$base/workspace/skills/$skill"
   test -f "$source_dir/SKILL.md"
-  if [ -e "$target_dir" ]; then
-    cp -a "$target_dir" "$backup/skills/"
-  fi
   rm -rf -- "$target_dir"
   cp -a "$source_dir" "$target_dir"
   chown -R 1000:1000 "$target_dir"
@@ -55,4 +47,4 @@ new_offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0,
 test -n "$new_offset"
 test "$new_offset" -lt 20000
 
-echo "rocky: deployed modular Z-Knowledge skills; gate byte=$new_offset; backup=$backup"
+echo "rocky: deployed modular Z-Knowledge skills; gate byte=$new_offset; recovery=GitHub"

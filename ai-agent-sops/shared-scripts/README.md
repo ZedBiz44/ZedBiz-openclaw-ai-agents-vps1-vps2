@@ -12,6 +12,15 @@ Every script needs:
 - Where it has been tested
 - Rollback or removal note
 
+## Server Skill Storage
+
+- GitHub is the rollback and recovery source for every custom skill.
+- Never create server-side backup, retired, old, archive, or timestamped copies of a skill package.
+- Keep one active copy of each skill name in the runtime's canonical discovery root.
+- On VPS1, shared and fleet-maintained skills belong in `/opt/openclaw/agents/<agent>/skills`; `workspace/skills` is only for genuinely agent-specific skills that do not duplicate a managed name.
+- Replace a skill through a temporary same-filesystem staging directory, move it into the canonical path, and remove the temporary directory in the same operation.
+- After deployment, verify zero duplicate names across active discovery roots and zero `SKILL.md` files under agent backup or retired trees.
+
 ## VPS1 Memory Baseline
 
 - `set-vps1-agent-memory-baseline.sh` sets the 11 OpenClaw gateways to 3 GiB RAM plus 1 GiB swap headroom.
