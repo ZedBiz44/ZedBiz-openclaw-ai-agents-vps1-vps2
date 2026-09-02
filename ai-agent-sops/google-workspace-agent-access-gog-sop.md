@@ -28,6 +28,33 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 - No Google account is authenticated and no known-file Drive test has passed yet.
 - Software readiness is not account access.
 
+## Confirmed ZedBiz Workspace And Shared Drives
+
+Jack confirmed the Google Workspace domain is `zbiz.work` and the current administrator/source account is `jack@zbiz.work`.
+
+The Shared Drives visible in the supplied Google Drive screenshot are:
+
+- `Z-Administrative`
+- `Z-Clients`
+- `Z-Core-Ventures`
+- `Z-External`
+- `Z-Marketing`
+- `z-migration`
+- `Z-Operations`
+- `Z-Prospects`
+- `Z-Ventures`
+
+Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the account currently used to view and administer them.
+
+### Authentication Boundary
+
+- Use `jack@zbiz.work` to create/manage the dedicated agent identity and grant Shared Drive membership.
+- Use a dedicated non-admin identity such as `agents@zbiz.work` for agent OAuth.
+- Add `agents@zbiz.work` as Viewer only to the Shared Drives approved for agent access.
+- Google Drive read-only OAuth follows all files the authenticated identity can already access; it does not restrict access to a chosen list of Shared Drives.
+- Authorizing `jack@zbiz.work` would therefore expose its My Drive and every Shared Drive/file available to that account. Do not use it as the default agent OAuth identity unless Jack explicitly accepts that full visibility.
+- If different agents require different Drive boundaries or write attribution, use separate Workspace identities or groups rather than one shared token boundary.
+
 ## Scope
 
 ### Included
@@ -73,7 +100,7 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 
 ### Dedicated Workspace Identity
 
-Create a regular, non-admin user such as `agents@<zedbiz-domain>`.
+Create a regular, non-admin user such as `agents@zbiz.work`.
 
 - Use a ZedBiz-controlled password and MFA/passkey stored through the approved 1Password process.
 - Do not grant admin roles.
@@ -141,7 +168,7 @@ gog auth credentials list
 Run:
 
 ```bash
-gog auth add agents@<zedbiz-domain> \
+gog auth add agents@zbiz.work \
   --services drive \
   --drive-scope readonly \
   --manual
@@ -157,7 +184,7 @@ gog auth add agents@<zedbiz-domain> \
 ### Verify Identity and Read Boundary
 
 ```bash
-export GOG_ACCOUNT='agents@<zedbiz-domain>'
+export GOG_ACCOUNT='agents@zbiz.work'
 gog auth list --check
 gog auth doctor --check
 gog --account "$GOG_ACCOUNT" --readonly --no-input --wrap-untrusted --json drive search "OpenClaw Drive Pilot Canary"
@@ -256,7 +283,7 @@ If a role later needs file creation, upload, rename, move, or trash:
 For GOG:
 
 ```bash
-gog auth remove agents@<zedbiz-domain>
+gog auth remove agents@zbiz.work
 ```
 
 For Ruby, use the installed Hermes setup script's revoke operation after confirming its live help.
