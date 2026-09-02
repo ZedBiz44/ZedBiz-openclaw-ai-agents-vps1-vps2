@@ -14,8 +14,8 @@ Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, tes
 - Use GOG for OpenClaw agents on VPS1, VPS2, and VPS4.
 - Use Ruby's native Hermes `google-workspace` skill on VPS3.
 - Start the canary with Drive-only, read-only OAuth to prove identity and boundaries.
-- After the read-only canary passes, promote `jack@zbiz.work` to Contributor and reauthorize the canary with Drive full scope for a controlled write test.
-- Roll out only after approved-file read, out-of-scope denial, create/upload, edit/read-back, audit-log, and revocation checks pass.
+- After the read-only canary passes, verify `jack@zbiz.work` has Contributor or higher access on the write-test Shared Drive and reauthorize the canary with Drive full scope.
+- Roll out only after the visibility inventory, approved-file read, create/upload, edit/read-back, audit-log, and revocation checks pass.
 - Jack explicitly accepted `jack@zbiz.work` as the agent OAuth identity and its broad visibility.
 - Do not use the Codex Google Drive connector as the credential route for persistent OpenClaw agents.
 - Do not use rclone or domain-wide delegation for the first implementation. Reserve rclone for approved bulk sync/backup and domain-wide delegation for a separately reviewed administrator use case.
@@ -70,18 +70,19 @@ Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the acco
 
 ### Included
 
-- Google Drive search, metadata, file listing, download/export, and read-only access.
-- One dedicated Workspace automation identity.
-- One approved Shared Drive or folder.
+- Existing Workspace identity `jack@zbiz.work`.
+- Google Drive search, metadata, file listing, download/export, create/upload, and edit access.
+- The nine confirmed ZedBiz Shared Drives visible to Jack.
+- Technical visibility to Jack's My Drive, with writes prohibited unless a specific task explicitly includes it.
 - A protected Desktop OAuth client.
 - Separate per-agent token stores.
-- Canary-first rollout and revocation testing.
+- Canary-first read/write rollout and revocation testing.
 
 ### Excluded Until Separately Approved
 
 - Gmail, Calendar, Contacts, Admin SDK, Chat, YouTube, and other Google services.
 - Moving files to Trash, permanent deletion, Shared Drive membership changes, broad permission changes, or structural reorganization.
-- Jack's personal My Drive.
+- Routine writes to Jack's My Drive; the OAuth account can see it, but agents may write there only when a specific approved task names the target.
 - Domain-wide delegation.
 - Public links or external sharing.
 - Copying OAuth JSON, refresh tokens, service-account keys, passwords, or recovery codes into Notion, GitHub, chat, agent memory, logs, or ordinary configuration files.
@@ -277,7 +278,7 @@ gog auth add jack@zbiz.work \
 - Read the file back and verify its content.
 - Edit or replace only that canary and verify the expected result.
 - Confirm Google audit logs identify `jack@zbiz.work`.
-- Confirm the out-of-scope canary remains inaccessible.
+- Confirm no file outside the named canary target was changed.
 - Leave trash/delete, permission management, external sharing, and Shared Drive membership commands disabled.
 - Revoke the canary token and prove access fails, then reauthorize for production only after the revocation test passes.
 
@@ -336,12 +337,12 @@ Also:
 
 Google Drive access is complete only when:
 
-- The correct dedicated account is authenticated.
+- `jack@zbiz.work` is authenticated.
 - The client and skill are visible in the intended runtime.
-- Drive-only read-only scope is confirmed.
-- The approved canary can be read.
-- The out-of-scope canary is inaccessible.
-- Google audit logs show expected activity.
+- Drive full scope and the account's actual Shared Drive role are confirmed.
+- The approved canary can be read, created/uploaded, edited, and read back.
+- No file outside the named canary target was changed.
+- Google audit logs show `jack@zbiz.work`, and OpenClaw records identify the acting agent.
 - Revocation has been tested on the canary before fleet rollout.
 - Every authorized agent has an independent verification record.
 - No secret appears in Notion, GitHub, chat, logs, or agent memory.
