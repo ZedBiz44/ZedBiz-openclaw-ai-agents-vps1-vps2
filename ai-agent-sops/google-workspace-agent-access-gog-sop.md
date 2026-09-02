@@ -4,38 +4,53 @@ Date: 2026-09-01 | Agent: Cody | Status: Active
 
 ## Purpose
 
-Connect ZedBiz agents to an approved Google Workspace Drive in a controlled, testable way. This SOP is the technical source of truth for authorization, canary testing, fleet rollout, verification, revocation, and failure handling.
+Give every authorized ZedBiz agent maximum GOG access to both `jack@zbiz.work` and that agent's own Gmail account, while preserving separate credentials, explicit account routing, human consent, audit evidence, and confirmation gates for consequential actions.
 
-## Decision
+## Final Access Decision
 
-- Use the existing paid Google Workspace account `jack@zbiz.work`, as explicitly selected by Jack, for agent OAuth.
-- No additional Workspace licence is required.
-- Google permissions already assigned to `jack@zbiz.work` control what the agents can read or change. OAuth cannot narrow the account to selected Shared Drives.
+- Every agent receives two independent Google OAuth authorizations.
+- `main-google` points to `jack@zbiz.work`.
+- `agent-google` points to that agent's individual free Gmail account.
+- Both authorizations request GOG's `all-user` service bundle, `--drive-scope full`, and `--gmail-scope full`.
+- This replaces the former Drive-only/Gmail-only split and the former `main-drive` and `agent-mail` aliases.
+- No additional paid Google Workspace licence is required because the shared Workspace identity remains `jack@zbiz.work`; the individual agent identities are free consumer Gmail accounts.
 - Use GOG for OpenClaw agents on VPS1, VPS2, and VPS4.
-- Use Ruby's native Hermes `google-workspace` skill on VPS3.
-- Start the canary with Drive-only, read-only OAuth to prove identity and boundaries.
-- After the read-only canary passes, verify `jack@zbiz.work` has Contributor or higher access on the write-test Shared Drive and reauthorize the canary with Drive full scope.
-- Roll out only after the visibility inventory, approved-file read, create/upload, edit/read-back, audit-log, and revocation checks pass.
-- Jack explicitly accepted `jack@zbiz.work` as the agent OAuth identity and its broad visibility.
-- Do not use the Codex Google Drive connector as the credential route for persistent OpenClaw agents.
-- Do not use rclone or domain-wide delegation for the first implementation. Reserve rclone for approved bulk sync/backup and domain-wide delegation for a separately reviewed administrator use case.
+- Ruby on VPS3 uses Hermes and requires a separately validated two-account implementation; do not force the GOG procedure onto Ruby.
+- Test on one canary agent, prove both identities and revocation, then authorize agents one at a time.
+- Do not use the Codex Google Drive connector as the credential route for persistent server agents.
 
-## Current Fleet State
+## What Full GOG Access Means
 
-Live read-only verification completed 2026-09-01 at approximately 22:38 Mountain Time:
+Live GOG v0.38.1 checks on 2026-09-01 confirmed that `--services all-user` covers the normal user-OAuth catalogue, including Gmail, Calendar, Chat, Classroom, Drive, Drive Activity, Drive Labels, Docs, Slides, Contacts, Tasks, Sheets, People/Profile, Forms, Sites, Meet, Apps Script, Analytics, Search Console, Google Ads, YouTube, and Photos.
 
-- VPS1: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma are running, healthy, at zero restarts, and using GOG v0.38.1. The GOG skill is eligible and model-visible on all eleven. Every account check returned `No tokens stored`.
-- VPS2: Harry, Frank, and Suzy services are active and each runs GOG v0.38.1. Every account check returned `No tokens stored`. The current OpenClaw CLI cannot complete the GOG skill-info check because each config contains the unrecognized key `meta.lastTouchedAt`; skill visibility must be repaired and reverified before authorization.
-- VPS3: the `hermes-ruby` container is running. Ruby's Hermes `google-workspace` skill v1.2.0 is present inside the active container. Its live check reports `NOT_AUTHENTICATED: No token at /opt/data/google_token.json`.
-- VPS4: Rocky's OpenClaw gateway is active. GOG v0.38.1 is eligible and model-visible. The account check returned `No tokens stored`.
-- No audited agent is authenticated to Google.
-- No live Google Drive search or known-file read has passed.
-- Recheck `gog --version`, live help, skill visibility, and authentication state immediately before authorization.
-## Confirmed ZedBiz Workspace And Shared Drives
+- `--gmail-scope full` grants the maximum GOG Gmail scope.
+- `--drive-scope full` grants the maximum GOG Drive scope.
+- Some Google/GOG integrations are inherently read-only, including Analytics, YouTube, Photos, Drive Activity, Drive Labels, and Forms responses. “Full” means the maximum available capability for that service, not write access where Google exposes read-only scopes.
+- Consumer Gmail accounts may not have Workspace products, organization data, Ads accounts, Analytics properties, Search Console properties, Classroom data, or Shared Drive membership. OAuth permission does not create those entitlements.
+- Google Admin SDK, Cloud Identity Groups, and Google Keep are not normal user-OAuth GOG services. They require a service account with Google Workspace domain-wide delegation and a separate administrator-approved SOP.
+- Google Photo Picker is an explicit consumer-OAuth opt-in and is not assumed to be included in the default `all-user` bundle. Validate its live syntax and account compatibility separately before adding it.
+- Every corresponding Google API must be enabled in the selected Google Cloud project. OAuth scopes alone do not enable APIs.
 
-Jack confirmed the Google Workspace domain is `zbiz.work` and the current administrator/source account is `jack@zbiz.work`.
+## Consequences Jack Explicitly Accepted
 
-The Shared Drives visible in the supplied Google Drive screenshot are:
+Authorizing `jack@zbiz.work` this broadly means every authorized agent can potentially:
+
+- Read, send, organize, and modify Jack's Gmail.
+- Read and modify Jack's calendars, contacts, tasks, Drive files, Docs, Sheets, Slides, Forms, and other supported Google data.
+- Access every My Drive item and Shared Drive item visible to `jack@zbiz.work`.
+- Act under Jack's Google identity; Google audit logs will show `jack@zbiz.work`, while the agent name must come from OpenClaw/Hermes execution logs.
+
+Full OAuth permission is capability, not blanket business authorization. Agents must still obtain explicit human confirmation before:
+
+- Sending consequential external communications from Jack's mailbox.
+- Deleting, trashing, moving, or broadly reorganizing data.
+- Changing permissions, Shared Drive membership, external sharing, or public links.
+- Creating, changing, or cancelling meetings with external attendees.
+- Publishing scripts, changing Ads, or making other financially, legally, or reputationally consequential changes.
+
+## Confirmed Workspace Boundary
+
+The Shared Drives currently visible to `jack@zbiz.work` are:
 
 - `Z-Administrative`
 - `Z-Clients`
@@ -47,386 +62,173 @@ The Shared Drives visible in the supplied Google Drive screenshot are:
 - `Z-Prospects`
 - `Z-Ventures`
 
-Shared Drives belong to the Workspace organization; `jack@zbiz.work` is the account currently used to view and administer them.
+OAuth cannot restrict `jack@zbiz.work` to selected Shared Drives. The account's existing memberships and Google permissions determine actual access.
 
-### Account And Licence Decision
+## Current Live Fleet State
 
-- Jack selected the existing licensed account `jack@zbiz.work`.
-- No new Workspace user or additional paid licence is required.
-- Cloud Identity Free and a separate `agents@zbiz.work` account are not part of the selected implementation.
-- All Google audit events will identify `jack@zbiz.work`; individual AI-agent attribution must come from OpenClaw execution records and per-agent GOG token stores.
+Read-only checks completed 2026-09-01 Mountain Time:
 
-### Authentication Boundary
+- VPS1: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma are healthy on GOG v0.38.1; GOG is eligible/model-visible; no Google tokens are stored.
+- VPS2: Harry, Frank, and Suzy are active on GOG v0.38.1 with no tokens. Their current OpenClaw config contains the unrecognized key `meta.lastTouchedAt`; repair and reverify skill visibility before OAuth.
+- VPS3: Ruby's Hermes `google-workspace` v1.2.0 is present; no token exists at `/opt/data/google_token.json`.
+- VPS4: Rocky's gateway is active; GOG v0.38.1 is eligible/model-visible; no Google tokens are stored.
+- No audited agent is authenticated to Google, and no live Google service test has passed.
 
-- Authenticate GOG and Ruby's Hermes skill as `jack@zbiz.work`.
-- The account's existing Google permissions remain the authority for My Drive and every Shared Drive.
-- Drive OAuth scope cannot be restricted to a selected list of Shared Drives.
-- The approved visibility boundary therefore includes Jack's My Drive and every Shared Drive/file accessible to `jack@zbiz.work`.
-- Use separate per-agent encrypted token stores; never clone a token store.
-- Keep delete, trash, permission changes, Shared Drive membership changes, external sharing, and structural reorganization behind explicit human confirmation.
-- Treat OpenClaw execution records as the per-agent audit layer because Google will record the common account identity.
-
-## Scope
-
-### Included
-
-- Existing Workspace identity `jack@zbiz.work`.
-- Google Drive search, metadata, file listing, download/export, create/upload, and edit access.
-- The nine confirmed ZedBiz Shared Drives visible to Jack.
-- Technical visibility to Jack's My Drive, with writes prohibited unless a specific task explicitly includes it.
-- A protected Desktop OAuth client.
-- Separate per-agent token stores.
-- Canary-first read/write rollout and revocation testing.
-
-### Excluded Until Separately Approved
-
-- Gmail, Calendar, Contacts, Admin SDK, Chat, YouTube, and other Google services.
-- Moving files to Trash, permanent deletion, Shared Drive membership changes, broad permission changes, or structural reorganization.
-- Routine writes to Jack's My Drive; the OAuth account can see it, but agents may write there only when a specific approved task names the target.
-- Domain-wide delegation.
-- Public links or external sharing.
-- Copying OAuth JSON, refresh tokens, service-account keys, passwords, or recovery codes into Notion, GitHub, chat, agent memory, logs, or ordinary configuration files.
-
-## Roles
-
-### Human — Jack or Google Workspace Administrator
-
-- Select or create the dedicated automation identity.
-- Choose the exact Shared Drive or folder.
-- Configure Google Cloud and Google Workspace.
-- Review the account shown on Google's consent screen.
-- Approve the Drive-only read-only consent.
-- Approve any future permission or scope expansion.
-
-### AI Agent — Cody or Authorized Infrastructure Agent
-
-- Verify installed client and skill visibility.
-- Import the OAuth client through a protected temporary path.
-- Generate the headless authorization URL.
-- Pause for the human consent step.
-- Store tokens only in the agent-specific protected GOG or Hermes store.
-- Run boundary, read, audit, and revocation tests.
-- Stop on unexpected scope, account, visibility, or runtime behavior.
-
-## Required Google Setup
-
-### Selected Workspace Identity
-
-Use the existing licensed account `jack@zbiz.work`.
-
-- Do not create another Workspace user.
-- Keep its password, MFA/passkey, recovery material, OAuth JSON, and refresh tokens in approved protected storage only.
-- Record the non-secret account name, current Shared Drive roles, OAuth client, token creation date, review date, and revocation status.
-- Before rollout, verify the exact role held by `jack@zbiz.work` on each Shared Drive; the screenshot confirms visibility but not Manager, Content manager, Contributor, Commenter, or Viewer role.
-
-### Drive Boundary
-
-Use the nine confirmed ZedBiz Shared Drives already visible to `jack@zbiz.work`.
-
-- Verify Jack's exact membership role on every drive before promising write capability.
-- Create one approved read/write canary folder and file in a low-risk Shared Drive.
-- Do not use `Z-Administrative` for the first write test.
-- Confirm external sharing is restricted by policy.
-- Because the selected identity already has broad visibility, use command policy and human confirmation—not OAuth scope—as the operational safety boundary.
-
-### Google Cloud Project
-
-- Create or select a ZedBiz-controlled Google Cloud project.
-- Enable the Google Drive API.
-- Configure the OAuth consent screen as Internal when the automation account belongs to the Workspace organization.
-- Create an OAuth client with application type Desktop app.
-- Download the client JSON once and store it as a secure document in 1Password.
-- Delete the unprotected browser download after the protected copy is verified.
-- Do not create an API key; Google Drive user access uses OAuth.
-
-## Combined Drive And Per-Agent Gmail OAuth
-
-Jack is creating one free consumer Gmail account for each AI agent. Configure Drive and Gmail together at the Google Cloud infrastructure layer, but authorize and route the accounts separately.
-
-### Shared Google Cloud Foundation
+## Google Cloud Setup
 
 Use one ZedBiz-controlled Google Cloud project owned by `jack@zbiz.work`.
 
-- Enable Google Drive API and Gmail API.
-- Enable Docs and Sheets APIs only when agent workflows require them.
-- Configure the OAuth audience as External because the per-agent `@gmail.com` accounts are outside the `zbiz.work` organization.
-- Create one Desktop app OAuth client and protect its JSON in 1Password.
-- Import the same approved OAuth client into each agent's isolated GOG store.
-- Add `jack@zbiz.work` and each agent Gmail address as test users during the canary stage.
+- Enable every API needed by the live `all-user` catalogue.
+- Configure the OAuth audience as External because the free agent Gmail accounts are outside `zbiz.work`.
+- Create a Desktop app OAuth client.
+- Store the client JSON only in the approved 1Password item.
+- Import the same approved client into each agent's isolated token store.
+- Never store OAuth JSON, refresh tokens, service-account keys, authorization codes, passwords, or recovery codes in GitHub, Notion, chat, logs, or agent memory.
+- Add `jack@zbiz.work` and the canary agent Gmail as test users when the app is in Testing.
+- Google External apps left in Testing can issue refresh tokens that expire after seven days for sensitive/restricted scopes. Use Testing only for the canary and resolve the Production/verification design before fleet rollout.
 
-### Testing And Production Gate
+## OpenClaw Two-Account Authorization
 
-External apps in Testing accept up to 100 named test users, but authorizations requesting Gmail or Drive scopes expire after seven days, including refresh tokens.
-
-- Use Testing only for the Marsha canary.
-- Do not authorize the full fleet while the app remains in Testing.
-- Before fleet rollout, move to an approved Production design and document any Google verification, unverified-app warning, user cap, or security-assessment requirement triggered by the selected Gmail and Drive scopes.
-- Request only the minimum Gmail scope. Start with `read-send`; use `full` only if mailbox modification, labels, archiving, or other write operations are required.
-
-### Two Accounts Per OpenClaw Agent
-
-Each OpenClaw agent keeps two OAuth authorizations in its own encrypted GOG store:
-
-- `main-drive` -> `jack@zbiz.work`, Drive only, full Drive scope for approved read/write work.
-- `agent-mail` -> that agent's individual free Gmail account, Gmail only, initially `read-send`.
-
-Example for Marsha:
-
-```bash
-gog auth add jack@zbiz.work \
-  --services drive \
-  --drive-scope full \
-  --manual \
-  --force-consent
-
-gog auth alias set main-drive jack@zbiz.work
-
-gog auth add marshazagent@gmail.com \
-  --services gmail \
-  --gmail-scope read-send \
-  --manual \
-  --force-consent
-
-gog auth alias set agent-mail marshazagent@gmail.com
-
-gog auth list --check
-```
-
-Operating rules:
-
-- Every Drive command must explicitly use `--account main-drive`.
-- Every Gmail command must explicitly use `--account agent-mail`.
-- Never set one ambiguous global default for both services.
-- Never authorize Gmail on `jack@zbiz.work`.
-- Never authorize Drive on the agent Gmail account unless Jack later changes the architecture.
-- Never copy token stores between agents.
-
-### Canary Verification
-
-Marsha passes only when:
-
-- `main-drive` identifies `jack@zbiz.work` and passes the controlled Drive read/write canary.
-- `agent-mail` identifies `marshazagent@gmail.com` and can read and send a message only from that mailbox.
-- A Drive command using `agent-mail` is rejected by policy.
-- A Gmail command using `main-drive` is rejected by policy.
-- OpenClaw logs identify Marsha as the acting agent.
-- Revoking either token breaks only its corresponding route.
-
-### Ruby Exception
-
-Ruby is Hermes, not OpenClaw GOG. The live Hermes `google-workspace` skill uses one token file at `/opt/data/google_token.json`; do not assume it supports the same two-account GOG store.
-
-- Use Ruby's native Google Workspace token for the selected Drive identity.
-- Configure Ruby's individual Gmail through a separate approved mail route.
-- Test and document both routes independently before calling Ruby complete.
-
-## OpenClaw GOG Canary
-
-Use Amanda as the first OpenClaw canary unless Jack selects another agent.
+Use Marsha as the combined-access canary because her individual Gmail setup is already in progress.
 
 ### Preflight
 
-Inside the canary's normal protected runtime:
+Run inside Marsha's normal protected runtime:
 
 ```bash
 gog --version
 openclaw skills info gog --json
 gog auth list --check
 gog auth add --help
+gog auth services --json
 ```
 
-Pass conditions:
+Pass only when GOG is current, the skill is eligible/model-visible, the token store is Marsha-specific, no unexpected account exists, and the live help still confirms `all-user`, full Drive, and full Gmail scopes.
 
-- Expected GOG version is available.
-- The GOG skill reports `eligible: true` and `modelVisible: true`.
-- The agent has its own persistent `GOG_HOME`.
-- No account is unexpectedly present.
-- The installed help confirms the authorization flags before execution.
-
-### Import OAuth Client
-
-Expose the Desktop OAuth JSON through a temporary protected 1Password injection path, then run:
+### Import The OAuth Client
 
 ```bash
 gog auth credentials set /secure/temporary/client_secret.json
 gog auth credentials list
 ```
 
-- Never print the JSON.
-- Remove the temporary file or mount after the client is imported.
-- Do not copy another agent's token store.
+Remove the temporary protected file or mount after import. Never copy another agent's token store.
 
-### Human Authorization Gate
-
-Run:
+### Authorize Jack's Workspace Account
 
 ```bash
 gog auth add jack@zbiz.work \
-  --services drive \
-  --drive-scope readonly \
-  --manual
+  --services all-user \
+  --drive-scope full \
+  --gmail-scope full \
+  --manual \
+  --force-consent
+
+gog auth alias set main-google jack@zbiz.work
 ```
 
-- The agent sends Jack only the Google authorization URL.
-- Jack opens it in a trusted browser signed in as the dedicated automation user.
-- Jack verifies the displayed email and that only Drive read access is requested.
-- Jack approves consent and returns the full redirected loopback URL through the approved temporary authorization channel.
-- Treat the returned URL/code as sensitive until exchanged.
-- The agent completes the exchange and does not store the URL/code in Notion, GitHub, logs, or memory.
+### Authorize The Agent's Gmail Account
 
-### Verify Identity and Read Boundary
+Replace the example address with the agent's exact Gmail address:
 
 ```bash
-export GOG_ACCOUNT='jack@zbiz.work'
+gog auth add marshazagent@gmail.com \
+  --services all-user \
+  --drive-scope full \
+  --gmail-scope full \
+  --manual \
+  --force-consent
+
+gog auth alias set agent-google marshazagent@gmail.com
 gog auth list --check
-gog auth doctor --check
-gog --account "$GOG_ACCOUNT" --readonly --no-input --wrap-untrusted --json drive search "OpenClaw Drive Pilot Canary"
 ```
 
-The canary passes only when:
+For each authorization:
 
-- The authenticated email is the dedicated automation identity.
-- The approved canary file is found.
-- Its metadata and supported content can be read without editing.
-- The out-of-scope canary cannot be found or opened.
-- Jack's personal My Drive and unrelated Shared Drives are not visible.
-- Google audit logs show the expected identity and activity.
-- No write-capable Drive scope was granted.
+- The agent generates the Google URL and pauses.
+- Jack opens the URL in a trusted browser and deliberately selects the exact intended account.
+- Jack reviews and approves the consent screen.
+- Jack returns the full loopback redirect URL through the approved temporary channel.
+- Treat the redirect URL/code as sensitive until exchanged; do not record it.
+- If Google blocks a scope or displays a warning, stop and document the exact scope and app-publication requirement. Do not silently reduce access and call it complete.
+
+## Mandatory Account Routing
+
+Every GOG command must explicitly name one alias:
+
+- Use `--account main-google` for Jack's Workspace data and Jack's Gmail.
+- Use `--account agent-google` for the agent's own Gmail and consumer Google data.
+- Do not configure an ambiguous global default.
+- Do not infer the account from the service name.
+- Never copy `GOG_HOME`, keyring files, or refresh tokens between agents.
+
+## Canary Tests
+
+Marsha passes only when both routes independently prove:
+
+- `gog auth list --check` and `gog auth doctor --check` succeed.
+- The returned account identity exactly matches the intended alias.
+- `main-google` can read and modify one approved Drive canary, and read/send one controlled message from Jack's Gmail.
+- `agent-google` can read and modify one canary in its own Drive, and read/send one controlled message from its own Gmail.
+- Calendar, Contacts, Tasks, Docs, Sheets, and other enabled services pass one harmless read test; use a reversible canary write where the service supports writing.
+- OpenClaw logs identify Marsha as the acting agent.
+- Google activity/audit evidence shows the correct Google identity.
+- No unintended file, email, event, contact, task, permission, or external recipient changes.
+- Revoking one account breaks only that alias; reauthorization restores only that alias.
+- Photo Picker, Admin, Groups, and Keep are reported separately and are not falsely marked complete.
 
 ## Fleet Rollout
 
-After the canary passes:
+After the canary and Production OAuth design pass:
 
+- Repair and reverify the VPS2 config blocker before authorizing Harry, Frank, or Suzy.
 - Authorize one agent at a time.
-- Use the same approved OAuth client and Workspace identity only when every agent has the identical read boundary and individual Google audit attribution is not required.
-- Keep a separate encrypted token store for every agent.
-- Never clone `GOG_HOME`, keyring files, or refresh tokens between agents.
-- Verify each agent independently with `gog auth list --check`, `gog auth doctor --check`, and the known-file boundary test.
-- Stop the rollout on the first unexpected scope, account, file visibility, token, or audit result.
-- Recreate VPS1 containers only through `/opt/openclaw/agents/{agent}/op-start-{agent}.sh` or the equivalent 1Password-aware startup route. Bare `docker compose` bypasses protected secret resolution.
+- Give each agent its own encrypted token store and both aliases.
+- Require the identity, read, reversible-write, audit, and revocation checks for both accounts.
+- Stop on the first unexpected account, scope, visibility, mutation, API error, or audit result.
+- Recreate VPS1 containers only through `/opt/openclaw/agents/{agent}/op-start-{agent}.sh` or the equivalent 1Password-aware startup route.
 
-## Ruby on VPS3
+## Ruby On VPS3
 
-Ruby does not use GOG. Use the installed Hermes skill:
+Ruby is Hermes, not OpenClaw GOG. Her installed skill currently uses one token file at `/opt/data/google_token.json`.
 
-```bash
-python /opt/data/skills/productivity/google-workspace/scripts/setup.py --check
-python /opt/data/skills/productivity/google-workspace/scripts/setup.py \
-  --client-secret /secure/temporary/client_secret.json
-python /opt/data/skills/productivity/google-workspace/scripts/setup.py \
-  --auth-url --services drive --format json
-```
+- Do not overwrite one identity with the other.
+- First inspect the live Hermes skill and setup help for supported multi-account storage.
+- If it cannot isolate two tokens, keep `jack@zbiz.work` in the native Google Workspace route and configure the individual Gmail through a separate approved mail/Google route.
+- Test both identities independently against the same completion standard.
+- Record Ruby's exact routing in GitHub before declaring her complete.
 
-- Jack opens the returned authorization URL as the same dedicated automation identity.
-- Jack verifies Drive-only permissions and returns the redirected URL/code through the approved temporary channel.
-- Complete the exchange:
+## Failure And Revocation
 
-```bash
-python /opt/data/skills/productivity/google-workspace/scripts/setup.py \
-  --auth-code "FULL_REDIRECT_URL_OR_CODE" --format json
-python /opt/data/skills/productivity/google-workspace/scripts/setup.py --check
-```
-
-- Remove the temporary client JSON.
-- Run the same approved-file and out-of-scope boundary tests.
-- Treat Ruby's token store as separate from all GOG stores.
-
-## Production Read/Write Rollout
-
-Read/write access is an approved business requirement. Preserve the read-only canary as the first security gate, then expand deliberately.
-
-### Promote The Canary
-
-- Use the existing licensed `jack@zbiz.work` account.
-- Verify it has Contributor or higher access on the chosen write-test Shared Drive.
-- Confirm the live GOG v0.38.1 contract with `gog auth add --help`.
-- Reauthorize the canary:
-
-```bash
-gog auth add jack@zbiz.work \
-  --services drive \
-  --drive-scope full \
-  --manual \
-  --force-consent
-```
-
-- Do not apply the runtime `--readonly` flag when performing the approved write test.
-- Use exact command allowlists, `--no-input`, dry-run support where available, and explicit confirmation gates for destructive or sharing operations.
-
-### Controlled Write Test
-
-- Create or upload one clearly named canary file in an approved test folder.
-- Read the file back and verify its content.
-- Edit or replace only that canary and verify the expected result.
-- Confirm Google audit logs identify `jack@zbiz.work`.
-- Confirm no file outside the named canary target was changed.
-- Leave trash/delete, permission management, external sharing, and Shared Drive membership commands disabled.
-- Revoke the canary token and prove access fails, then reauthorize for production only after the revocation test passes.
-
-### Fleet Rollout
-
-- Authorize one agent at a time with a separate encrypted token store.
-- Require the approved read and controlled write tests for every agent.
-- Record the OpenClaw agent name, token creation date, approved Shared Drives, test file, audit evidence, and revocation result.
-- Stop on the first unexpected account, scope, visibility, mutation, or audit result.
-
-## Failure Handling
-
-### Wrong Account or Excess Visibility
+If the wrong account, unexpected data, blocked scope, or excessive capability appears:
 
 - Stop immediately.
-- Revoke the token.
-- Remove Drive/Shared Drive membership.
-- Inspect group membership and inherited permissions.
-- Redesign the boundary before retrying.
+- Revoke the affected token in GOG and Google Account/Workspace security controls.
+- Preserve the other account's token until its isolation is verified.
+- Record the exact account, requested scope, observed result, and decision required.
+- Return to Diagnose -> Solution -> Confirmation -> Act for any new material risk.
 
-### Authorization Denied or App Blocked
-
-- Confirm the automation identity belongs to the Workspace organization.
-- Confirm the consent screen is Internal or the user is an authorized test user.
-- Confirm Google Admin app-access controls permit the OAuth client and requested Drive scope.
-- Confirm Drive API is enabled.
-- Do not add broader scopes as a troubleshooting shortcut.
-
-### Token Exists but Drive Fails
-
-- Run `gog auth doctor --check`.
-- Confirm the selected account, OAuth client, and agent-specific state path.
-- Confirm the account still has access to the exact Shared Drive/folder.
-- Confirm installed command syntax with `gog auth add --help` and `gog schema --json`.
-- Reauthorize only after current scopes and revocation state are understood.
-
-### Revocation and Rollback
-
-For GOG:
+For GOG, confirm live help before removal, then use the exact email:
 
 ```bash
 gog auth remove jack@zbiz.work
+gog auth remove agent-address@gmail.com
 ```
-
-For Ruby, use the installed Hermes setup script's revoke operation after confirming its live help.
-
-Also:
-
-- Revoke the app/token in Google Account or Google Admin security controls.
-- Remove the identity from the Shared Drive/folder.
-- Suspend the identity if compromise is suspected.
-- Verify the former token can no longer list or read the canary file.
-- Record only non-secret revocation evidence.
 
 ## Completion Standard
 
-Google Drive access is complete only when:
+The rollout is complete only when:
 
-- `jack@zbiz.work` is authenticated.
-- The client and skill are visible in the intended runtime.
-- Drive full scope and the account's actual Shared Drive role are confirmed.
-- The approved canary can be read, created/uploaded, edited, and read back.
-- No file outside the named canary target was changed.
-- Google audit logs show `jack@zbiz.work`, and OpenClaw records identify the acting agent.
-- Revocation has been tested on the canary before fleet rollout.
-- Every authorized agent has an independent verification record.
-- No secret appears in Notion, GitHub, chat, logs, or agent memory.
+- Both identities are authorized for every intended agent.
+- Maximum available GOG user scopes are confirmed from the live client.
+- Both aliases are explicit and independently verified.
+- Supported read/write canaries pass without unintended changes.
+- Read-only-only services are accurately recorded as such.
+- Admin, Groups, Keep, and Photo Picker are not falsely included.
+- Revocation isolation passes.
+- Google and agent-level audit evidence is saved without secrets.
+- Every agent has an independent completion record.
+- No credential or authorization artifact appears in GitHub, Notion, chat, logs, or memory.
 
 ## Sources
 
