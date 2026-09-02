@@ -1,6 +1,6 @@
 # Wilma AGENTS.md Instruction Preservation Register
 
-Date: 2026-09-02 | Agent: Cody | Status: Candidate ready after Amanda gate
+Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified after Amanda gate
 
 ## Baseline
 
@@ -66,4 +66,10 @@ Date: 2026-09-02 | Agent: Cody | Status: Candidate ready after Amanda gate
 
 ## Pilot Result
 
-- Pending Amanda's successful pilot, then live deployment and fresh-session verification.
+- Amanda passed every critical gate before Wilma was deployed.
+- Deployed SHA-256: `f735583cd39fe450f755e321b5b1932a085644797b126f7730b959d16e5afd94`.
+- Deployed size: 13,964 bytes / 189 lines.
+- Backup: `/opt/openclaw/agents/wilma/backups/20260902T173328Z-agents-preservation-pilot`.
+- Fresh GPT-5.6 Sol/Codex review-only session returned Wilma's identity, reporting, modes, no-write boundary, `wordpress-allzed` route, other-site proof requirement, pre-write checks, WordPress approval gates, Asana Standard/Advanced boundary, governed Notion route, forbidden fallbacks, and completion evidence.
+- OpenClaw 2026.8.2 reported `rawChars=13955` and `injectionStatus=native_unverified`; it does not expose `injectedChars` or `truncated` for native AGENTS injection. The session correctly paraphrased the final Maintenance bullet, proving the file tail was available.
+- The test used no tools or writes. Post-test hash matched, owner/mode remained `1000:1000` and `0644`, container health was healthy, and restart count remained zero.

@@ -1,6 +1,6 @@
 # Amanda and Wilma AGENTS.md Preservation-First Pilot
 
-Date: 2026-09-02 Mountain Time | Agent: Cody | Status: Candidates ready for staged deployment
+Date: 2026-09-02 Mountain Time | Agent: Cody | Status: Deployed and verified
 
 ## Purpose
 
@@ -62,7 +62,29 @@ Supporting relocations for Amanda:
 
 ## Deployment And Fresh-Session Results
 
-- Pending staged deployment.
+### Amanda
+
+- Exact baseline hash was rechecked before writing.
+- Backup: `/opt/openclaw/agents/amanda/backups/20260902T173126Z-agents-preservation-pilot`.
+- New AGENTS SHA-256: `35c3dc93dcd8b49d14f691c87d1bf398fd87d99351cc23fa549513417c894258`.
+- New size: 14,000 bytes / 185 lines.
+- Restored `TOOLS.md`: 2,743 bytes; restored `HEARTBEAT.md`: 993 bytes.
+- Fresh GPT-5.6 Sol/Codex review-only sessions used no tools or writes and returned all critical Amanda-specific policy gates, including the final Maintenance rule.
+
+### Wilma
+
+- Amanda passed before Wilma deployment began.
+- Exact baseline hash was rechecked before writing.
+- Backup: `/opt/openclaw/agents/wilma/backups/20260902T173328Z-agents-preservation-pilot`.
+- New AGENTS SHA-256: `f735583cd39fe450f755e321b5b1932a085644797b126f7730b959d16e5afd94`.
+- New size: 13,964 bytes / 189 lines.
+- Fresh GPT-5.6 Sol/Codex review-only session used no tools or writes and returned all critical Wilma-specific policy gates, including the final Maintenance rule.
+
+### Runtime Result
+
+- Both files remained owner `1000:1000`, mode `0644`.
+- Both containers remained healthy on `ghcr.io/zedbiz44/openclaw-base:2026.8.2` with restart count zero. No restart or configuration change was performed.
+- OpenClaw 2026.8.2 reports native AGENTS injection as `native_unverified`; Amanda showed `rawChars=13991` and Wilma `rawChars=13955`, with no `injectedChars` or `truncated` value. Correct end-of-file paraphrases provide direct tail-availability evidence without misreporting the absent field.
 
 ## Rollback
 

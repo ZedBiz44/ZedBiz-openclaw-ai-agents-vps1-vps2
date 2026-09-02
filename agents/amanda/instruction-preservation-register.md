@@ -1,6 +1,6 @@
 # Amanda AGENTS.md Instruction Preservation Register
 
-Date: 2026-09-02 | Agent: Cody | Status: Candidate ready for pilot
+Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified
 
 ## Baseline
 
@@ -67,4 +67,10 @@ Date: 2026-09-02 | Agent: Cody | Status: Candidate ready for pilot
 
 ## Pilot Result
 
-- Pending live deployment and fresh-session verification.
+- Deployed SHA-256: `35c3dc93dcd8b49d14f691c87d1bf398fd87d99351cc23fa549513417c894258`.
+- Deployed size: 14,000 bytes / 185 lines.
+- Supporting files: `TOOLS.md` 2,743 bytes and `HEARTBEAT.md` 993 bytes.
+- Backup: `/opt/openclaw/agents/amanda/backups/20260902T173126Z-agents-preservation-pilot`.
+- Fresh GPT-5.6 Sol/Codex review-only session returned Amanda's identity, reporting, modes, no-write boundary, single Asana route, PAT preflight, advanced gates, Telegram delivery rule, governed Notion route, forbidden fallbacks, and completion evidence.
+- OpenClaw 2026.8.2 reported `rawChars=13991` and `injectionStatus=native_unverified`; it does not expose `injectedChars` or `truncated` for native AGENTS injection. A separate fresh session correctly paraphrased the final Maintenance bullet, proving the file tail was available.
+- The tests used no tools or writes. Post-test hash matched, owner/mode remained `1000:1000` and `0644`, container health was healthy, and restart count remained zero.
