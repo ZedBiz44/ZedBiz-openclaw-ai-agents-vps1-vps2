@@ -1,54 +1,189 @@
-# Google Workspace Agent Access — GOG SOP
+# Google Workspace Agent Access — GOG and IMAP SOP
 
-Date: 2026-09-01 | Agent: Cody | Status: Active
+Date: 2026-09-04 | Agent: Cody | Status: Active
 
 ## Purpose
 
-Give every authorized ZedBiz agent maximum GOG access to both `jack@zbiz.work` and that agent's own Gmail account, while preserving separate credentials, explicit account routing, human consent, audit evidence, and confirmation gates for consequential actions.
+Connect every ZedBiz OpenClaw agent to the shared Google Workspace account through GOG, give each agent a professional `name@zbiz.work` email alias, and route new alias mail to the correct agent through OpenClaw's bundled IMAP trigger.
 
-## Final Access Decision
+This is the single operating source for the Google account model, rollout order, human approvals, testing, security boundaries, and completion standard. VPS-specific Notion pages only summarize the local connection and link back here.
 
-- Every agent receives two independent Google OAuth authorizations.
-- `main-google` points to `jack@zbiz.work`.
-- `agent-google` points to that agent's individual free Gmail account.
-- Both authorizations request GOG's `all-user` service bundle, `--drive-scope full`, and `--gmail-scope full`.
-- This replaces the former Drive-only/Gmail-only split and the former `main-drive` and `agent-mail` aliases.
-- No additional paid Google Workspace licence is required because the shared Workspace identity remains `jack@zbiz.work`; the individual agent identities are free consumer Gmail accounts.
-- Use GOG for OpenClaw agents on VPS1, VPS2, and VPS4.
-- Ruby on VPS3 uses Hermes and requires a separately validated two-account implementation; do not force the GOG procedure onto Ruby.
-- Test on one canary agent, prove both identities and revocation, then authorize agents one at a time.
-- Do not use the Codex Google Drive connector as the credential route for persistent server agents.
+## Start Here — Final Design
 
-## What Full GOG Access Means
+- `jack@zbiz.work` is the only paid Google Workspace user and the only Google account used for this shared GOG rollout.
+- Every OpenClaw agent gets its own Workspace email alias, such as `marsha@zbiz.work`.
+- An alias is not a Google account. It has no password, separate inbox, Drive, Calendar, or OAuth login.
+- All alias mail arrives in the single `jack@zbiz.work` Gmail mailbox.
+- Gmail filters apply one agent-specific label to each alias.
+- Each OpenClaw instance uses the bundled IMAP trigger to watch only its assigned Gmail label and start a restricted mail-reader session for approved new mail.
+- GOG gives the agent access to `jack@zbiz.work` for Drive, Gmail, Calendar, Docs, Sheets, and other supported Google services.
+- GOG's automatic Gmail Pub/Sub watcher will not process the same messages as IMAP. Use one inbound trigger route per message.
+- Ruby on VPS3 is Hermes and is outside this OpenClaw procedure.
+- Any separately created consumer Gmail accounts are outside this shared-alias rollout. They are not required for the selected design and must not be confused with Workspace aliases.
 
-Live GOG v0.38.1 checks on 2026-09-01 confirmed that `--services all-user` covers the normal user-OAuth catalogue, including Gmail, Calendar, Chat, Classroom, Drive, Drive Activity, Drive Labels, Docs, Slides, Contacts, Tasks, Sheets, People/Profile, Forms, Sites, Meet, Apps Script, Analytics, Search Console, Google Ads, YouTube, and Photos.
+## Follow-Along Setup Roadmap
 
-- `--gmail-scope full` grants the maximum GOG Gmail scope.
-- `--drive-scope full` grants the maximum GOG Drive scope.
-- Some Google/GOG integrations are inherently read-only, including Analytics, YouTube, Photos, Drive Activity, Drive Labels, and Forms responses. “Full” means the maximum available capability for that service, not write access where Google exposes read-only scopes.
-- Consumer Gmail accounts may not have Workspace products, organization data, Ads accounts, Analytics properties, Search Console properties, Classroom data, or Shared Drive membership. OAuth permission does not create those entitlements.
-- Google Admin SDK, Cloud Identity Groups, and Google Keep are not normal user-OAuth GOG services. They require a service account with Google Workspace domain-wide delegation and a separate administrator-approved SOP.
-- Google Photo Picker is an explicit consumer-OAuth opt-in and is not assumed to be included in the default `all-user` bundle. Validate its live syntax and account compatibility separately before adding it.
-- Every corresponding Google API must be enabled in the selected Google Cloud project. OAuth scopes alone do not enable APIs.
+This is the ordered checklist Jack can follow while Cody performs as much of the work as the available access allows.
 
-## Consequences Jack Explicitly Accepted
+### Step 1 — Confirm The Agent Alias List
 
-Authorizing `jack@zbiz.work` this broadly means every authorized agent can potentially:
+**Cody prepares and checks:**
 
-- Read, send, organize, and modify Jack's Gmail.
-- Read and modify Jack's calendars, contacts, tasks, Drive files, Docs, Sheets, Slides, Forms, and other supported Google data.
-- Access every My Drive item and Shared Drive item visible to `jack@zbiz.work`.
-- Act under Jack's Google identity; Google audit logs will show `jack@zbiz.work`, while the agent name must come from OpenClaw/Hermes execution logs.
+- Amanda: `amanda@zbiz.work`
+- Edith: `edith@zbiz.work`
+- Gohzed: `gohzed@zbiz.work`
+- Grogar: `grogar@zbiz.work`
+- Inga: `inga@zbiz.work`
+- Maggie: `maggie@zbiz.work`
+- Marsha: `marsha@zbiz.work`
+- Terry: `terry@zbiz.work`
+- Victor: `victor@zbiz.work`
+- Vivian: `vivian@zbiz.work`
+- Wilma: `wilma@zbiz.work`
+- Frank: `frank@zbiz.work`
+- Harry: `harry@zbiz.work`
+- Suzy: `suzy@zbiz.work`
+- Rocky: `rocky@zbiz.work`
 
-Full OAuth permission is capability, not blanket business authorization. Agents must still obtain explicit human confirmation before:
+**Jack approves:**
 
-- Sending consequential external communications from Jack's mailbox.
-- Deleting, trashing, moving, or broadly reorganizing data.
-- Changing permissions, Shared Drive membership, external sharing, or public links.
-- Creating, changing, or cancelling meetings with external attendees.
-- Publishing scripts, changing Ads, or making other financially, legally, or reputationally consequential changes.
+- The spelling of every alias.
+- That none of these addresses must become a separate paid Workspace user.
 
-## Confirmed Workspace Boundary
+Google currently allows up to 30 aliases on one Workspace user at no extra cost, so this 15-alias plan fits within the current limit. Recheck the limit before future expansion.
+
+### Step 2 — Create The Workspace Aliases
+
+**Cody can perform the screen work when an authorized Google Admin browser session is available. Jack must:**
+
+- Sign in as the Workspace administrator.
+- Complete two-step verification.
+- Approve any account-security prompt.
+
+Create every approved alias on the existing `jack@zbiz.work` user. Do not create additional paid users. Confirm each alias appears in Google Admin before continuing.
+
+### Step 3 — Create Gmail Labels And Sorting Rules
+
+**Cody creates:**
+
+- One Gmail label per agent.
+- One Gmail filter per alias that applies the matching label.
+- A clear naming pattern that prevents two agents from sharing the same label.
+
+Send one harmless test email to each alias. Confirm that it reaches Jack's mailbox and receives only the correct agent label.
+
+### Step 4 — Prepare The Google Cloud OAuth Project
+
+**Cody prepares the project. Jack handles private sign-in and approval screens.**
+
+- Use one ZedBiz-controlled Google Cloud project owned by `jack@zbiz.work`.
+- Enable the APIs required by the selected GOG services.
+- Configure the OAuth audience as **Internal** because the selected GOG account is the Workspace user `jack@zbiz.work`.
+- Create a Desktop app OAuth client.
+- Store the downloaded client JSON in the approved 1Password item.
+- Remove any ordinary unprotected download after the protected copy is verified.
+
+If a consumer Gmail account is later added, stop and review the OAuth audience and publication requirements before authorizing it.
+
+### Step 5 — Prepare Protected Per-Agent Credentials
+
+**Cody prepares:**
+
+- A separate encrypted GOG token store for every agent.
+- A separate protected IMAP secret reference for every agent where Google's current authentication method permits it.
+- Clear account naming: `main-google` always means `jack@zbiz.work`.
+
+Never copy a completed token store between agents. Never place OAuth JSON, refresh tokens, app passwords, authorization codes, recovery codes, or complete configuration files in Notion, GitHub, chat, logs, or agent memory.
+
+### Step 6 — Connect Marsha To GOG First
+
+Marsha is the first test agent.
+
+**Cody:**
+
+- Confirms the live GOG version and skill visibility.
+- Imports the protected Desktop OAuth client into Marsha's isolated GOG store.
+- Starts authorization for `jack@zbiz.work` with maximum normal user access, full Drive scope, and full Gmail scope.
+- Assigns the `main-google` alias.
+- Pauses for Jack at Google's consent screen.
+
+**Jack:**
+
+- Opens the authorization link in a trusted browser.
+- Confirms the displayed account is exactly `jack@zbiz.work`.
+- Reviews and approves the requested Google permissions.
+- Completes any two-step verification.
+- Returns only the temporary redirect result through the approved protected channel.
+
+### Step 7 — Connect Marsha's Alias To IMAP
+
+**Cody:**
+
+- Enables OpenClaw's bundled IMAP trigger in Marsha's runtime.
+- Uses the protected `jack@zbiz.work` mailbox credential.
+- Points the watched mailbox to Marsha's Gmail label as exposed through IMAP.
+- Routes accepted messages to a restricted mail-reader agent.
+- Limits accepted senders and requires verified sender authentication.
+- Keeps delivery, file, browser, runtime, gateway, automation, and unrelated tools disabled in the mail-reader session.
+
+The label is a routing rule, not a security wall. The underlying mailbox credential can access Jack's mailbox and must be protected accordingly.
+
+### Step 8 — Run The Marsha Tests
+
+Marsha passes only when:
+
+- GOG proves the authenticated account is `jack@zbiz.work`.
+- GOG can read and make one reversible change to the approved Drive test item.
+- GOG can search/read controlled Gmail and complete one approved draft/send test.
+- A new message to `marsha@zbiz.work` receives the Marsha label.
+- Only Marsha's IMAP route starts.
+- A message for another alias does not start Marsha.
+- Messages already present before monitoring are not treated as new triggers.
+- OpenClaw's IMAP route does not send or modify mail.
+- The same message is not also processed by a GOG Pub/Sub watcher.
+- Restart persistence and revocation are proven.
+- Google records `jack@zbiz.work`; OpenClaw records Marsha as the acting agent.
+- No unintended file, email, label, event, permission, or recipient changes.
+
+### Step 9 — Roll Out One Agent At A Time
+
+After Jack accepts Marsha's test:
+
+- Roll through VPS1 agents one at a time.
+- Repair and reverify the known VPS2 configuration problem before connecting Frank, Harry, or Suzy.
+- Connect Rocky on VPS4 after the same preflight.
+- Give every agent its own GOG token store, IMAP secret reference, Gmail label, filter, and verification record.
+- Stop on the first wrong account, wrong label, duplicate processing, unexpected visibility, failed restart, or unplanned change.
+
+### Step 10 — Add Sending From Agent Aliases Only If Needed
+
+The IMAP trigger receives mail but does not send replies.
+
+- GOG can send through the authenticated `jack@zbiz.work` Gmail account.
+- Sending visibly from `name@zbiz.work` requires that alias to be configured and tested as a Gmail send-as identity.
+- Keep outbound alias sending separate from the inbound IMAP test.
+- Jack must approve the sending policy and the first external send for each use case.
+
+## What GOG Access Includes
+
+The selected authorization for `jack@zbiz.work` is maximum normal user OAuth:
+
+```bash
+gog auth add jack@zbiz.work \
+  --services all-user \
+  --drive-scope full \
+  --gmail-scope full \
+  --manual \
+  --force-consent
+
+gog auth alias set main-google jack@zbiz.work
+```
+
+`all-user` covers the supported user-facing Google catalogue available to the installed GOG version. Some services are read-only by Google's design, and OAuth does not create product entitlements or data that the account does not have.
+
+Google Admin SDK, Cloud Identity Groups, and Keep require service-account domain-wide delegation and are outside this user-OAuth rollout. Photo Picker remains a separate opt-in.
+
+## Google Workspace And Drive Boundary
 
 The Shared Drives currently visible to `jack@zbiz.work` are:
 
@@ -62,177 +197,91 @@ The Shared Drives currently visible to `jack@zbiz.work` are:
 - `Z-Prospects`
 - `Z-Ventures`
 
-OAuth cannot restrict `jack@zbiz.work` to selected Shared Drives. The account's existing memberships and Google permissions determine actual access.
+OAuth cannot limit `jack@zbiz.work` to selected Shared Drives. Every authorized agent can potentially access Jack's Gmail, My Drive, calendars, contacts, tasks, files, and every Shared Drive item visible to Jack.
 
-## Current Live Fleet State
+Google will show `jack@zbiz.work` in its activity and audit records. Per-agent attribution must come from isolated token stores and OpenClaw execution records.
 
-Read-only checks completed 2026-09-01 Mountain Time:
+## GOG And IMAP Have Different Jobs
 
-- VPS1: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian, and Wilma are healthy on GOG v0.38.1; GOG is eligible/model-visible; no Google tokens are stored.
-- VPS2: Harry, Frank, and Suzy are active on GOG v0.38.1 with no tokens. Their current OpenClaw config contains the unrecognized key `meta.lastTouchedAt`; repair and reverify skill visibility before OAuth.
-- VPS3: Ruby's Hermes `google-workspace` v1.2.0 is present; no token exists at `/opt/data/google_token.json`.
-- VPS4: Rocky's gateway is active; GOG v0.38.1 is eligible/model-visible; no Google tokens are stored.
-- No audited agent is authenticated to Google, and no live Google service test has passed.
+### GOG
 
-## Google Cloud Setup
+Use GOG when an agent deliberately needs to:
 
-Use one ZedBiz-controlled Google Cloud project owned by `jack@zbiz.work`.
+- Search or read Gmail.
+- Create a draft, send, or reply after the required approval.
+- Work with Drive, Docs, Sheets, Slides, Calendar, Contacts, Tasks, and other supported Google services.
+- Perform an account-specific, auditable command.
 
-- Enable every API needed by the live `all-user` catalogue.
-- Configure the OAuth audience as External because the free agent Gmail accounts are outside `zbiz.work`.
-- Create a Desktop app OAuth client.
-- Store the client JSON only in the approved 1Password item.
-- Import the same approved client into each agent's isolated token store.
-- Never store OAuth JSON, refresh tokens, service-account keys, authorization codes, passwords, or recovery codes in GitHub, Notion, chat, logs, or agent memory.
-- Add `jack@zbiz.work` and the canary agent Gmail as test users when the app is in Testing.
-- Google External apps left in Testing can issue refresh tokens that expire after seven days for sensitive/restricted scopes. Use Testing only for the canary and resolve the Production/verification design before fleet rollout.
+### OpenClaw IMAP Trigger
 
-## OpenClaw Two-Account Authorization
+Use IMAP when:
 
-Use Marsha as the combined-access canary because her individual Gmail setup is already in progress.
+- A new allowed email arrives for an agent alias.
+- That arrival should immediately start a restricted reader session.
+- No public webhook is wanted.
 
-### Preflight
+The bundled IMAP trigger does not send, reply, change message flags, or backfill old mail.
 
-Run inside Marsha's normal protected runtime:
+### Do Not Double-Trigger
 
-```bash
-gog --version
-openclaw skills info gog --json
-gog auth list --check
-gog auth add --help
-gog auth services --json
-```
+Do not enable both OpenClaw IMAP and GOG Gmail Pub/Sub watch for the same mailbox labels and messages. GOG's normal search/read/send tools may remain available on demand.
 
-Pass only when GOG is current, the skill is eligible/model-visible, the token store is Marsha-specific, no unexpected account exists, and the live help still confirms `all-user`, full Drive, and full Gmail scopes.
+## Human Approval And Safety Rules
 
-### Import The OAuth Client
+Maximum Google permission is capability, not blanket authority. Agents still need Jack's approval before:
 
-```bash
-gog auth credentials set /secure/temporary/client_secret.json
-gog auth credentials list
-```
+- Sending consequential external communications.
+- Deleting, trashing, moving, or broadly reorganizing data.
+- Changing permissions, Shared Drive membership, external sharing, or public links.
+- Creating, changing, or cancelling meetings with outside attendees.
+- Publishing Apps Script changes or changing Ads.
+- Making financially, legally, or reputationally consequential changes.
 
-Remove the temporary protected file or mount after import. Never copy another agent's token store.
+Jack must personally handle Google sign-in, two-step verification, OAuth consent, and any prompt requesting a password or recovery method. Never send a Google password in chat.
 
-### Authorize Jack's Workspace Account
+## VPS Connection Pages
 
-```bash
-gog auth add jack@zbiz.work \
-  --services all-user \
-  --drive-scope full \
-  --gmail-scope full \
-  --manual \
-  --force-consent
+These pages contain only host-specific connection summaries and point back to this SOP:
 
-gog auth alias set main-google jack@zbiz.work
-```
+- VPS1 Google Workspace, GOG, and IMAP Connection.
+- VPS2 Google Workspace, GOG, and IMAP Connection.
+- Rocky Google Workspace, GOG, and IMAP Connection — VPS4.
 
-### Authorize The Agent's Gmail Account
-
-Replace the example address with the agent's exact Gmail address:
-
-```bash
-gog auth add marshazagent@gmail.com \
-  --services all-user \
-  --drive-scope full \
-  --gmail-scope full \
-  --manual \
-  --force-consent
-
-gog auth alias set agent-google marshazagent@gmail.com
-gog auth list --check
-```
-
-For each authorization:
-
-- The agent generates the Google URL and pauses.
-- Jack opens the URL in a trusted browser and deliberately selects the exact intended account.
-- Jack reviews and approves the consent screen.
-- Jack returns the full loopback redirect URL through the approved temporary channel.
-- Treat the redirect URL/code as sensitive until exchanged; do not record it.
-- If Google blocks a scope or displays a warning, stop and document the exact scope and app-publication requirement. Do not silently reduce access and call it complete.
-
-## Mandatory Account Routing
-
-Every GOG command must explicitly name one alias:
-
-- Use `--account main-google` for Jack's Workspace data and Jack's Gmail.
-- Use `--account agent-google` for the agent's own Gmail and consumer Google data.
-- Do not configure an ambiguous global default.
-- Do not infer the account from the service name.
-- Never copy `GOG_HOME`, keyring files, or refresh tokens between agents.
-
-## Canary Tests
-
-Marsha passes only when both routes independently prove:
-
-- `gog auth list --check` and `gog auth doctor --check` succeed.
-- The returned account identity exactly matches the intended alias.
-- `main-google` can read and modify one approved Drive canary, and read/send one controlled message from Jack's Gmail.
-- `agent-google` can read and modify one canary in its own Drive, and read/send one controlled message from its own Gmail.
-- Calendar, Contacts, Tasks, Docs, Sheets, and other enabled services pass one harmless read test; use a reversible canary write where the service supports writing.
-- OpenClaw logs identify Marsha as the acting agent.
-- Google activity/audit evidence shows the correct Google identity.
-- No unintended file, email, event, contact, task, permission, or external recipient changes.
-- Revoking one account breaks only that alias; reauthorization restores only that alias.
-- Photo Picker, Admin, Groups, and Keep are reported separately and are not falsely marked complete.
-
-## Fleet Rollout
-
-After the canary and Production OAuth design pass:
-
-- Repair and reverify the VPS2 config blocker before authorizing Harry, Frank, or Suzy.
-- Authorize one agent at a time.
-- Give each agent its own encrypted token store and both aliases.
-- Require the identity, read, reversible-write, audit, and revocation checks for both accounts.
-- Stop on the first unexpected account, scope, visibility, mutation, API error, or audit result.
-- Recreate VPS1 containers only through `/opt/openclaw/agents/{agent}/op-start-{agent}.sh` or the equivalent 1Password-aware startup route.
-
-## Ruby On VPS3
-
-Ruby is Hermes, not OpenClaw GOG. Her installed skill currently uses one token file at `/opt/data/google_token.json`.
-
-- Do not overwrite one identity with the other.
-- First inspect the live Hermes skill and setup help for supported multi-account storage.
-- If it cannot isolate two tokens, keep `jack@zbiz.work` in the native Google Workspace route and configure the individual Gmail through a separate approved mail/Google route.
-- Test both identities independently against the same completion standard.
-- Record Ruby's exact routing in GitHub before declaring her complete.
+Do not copy the full authorization procedure into VPS setup pages.
 
 ## Failure And Revocation
 
-If the wrong account, unexpected data, blocked scope, or excessive capability appears:
+Stop immediately if the wrong Google account, wrong label, unexpected mail, duplicate trigger, excessive visibility, blocked scope, or unplanned change appears.
 
-- Stop immediately.
-- Revoke the affected token in GOG and Google Account/Workspace security controls.
-- Preserve the other account's token until its isolation is verified.
-- Record the exact account, requested scope, observed result, and decision required.
-- Return to Diagnose -> Solution -> Confirmation -> Act for any new material risk.
-
-For GOG, confirm live help before removal, then use the exact email:
-
-```bash
-gog auth remove jack@zbiz.work
-gog auth remove agent-address@gmail.com
-```
+- Revoke the affected GOG token.
+- Remove or disable the affected IMAP secret reference.
+- Disable the affected Gmail filter or alias when necessary.
+- Preserve the other agents' credentials until isolation is verified.
+- Record what happened without recording secret values.
+- Return to Diagnose -> Solution -> Confirmation -> Act when a new material risk appears.
 
 ## Completion Standard
 
 The rollout is complete only when:
 
-- Both identities are authorized for every intended agent.
-- Maximum available GOG user scopes are confirmed from the live client.
-- Both aliases are explicit and independently verified.
-- Supported read/write canaries pass without unintended changes.
-- Read-only-only services are accurately recorded as such.
-- Admin, Groups, Keep, and Photo Picker are not falsely included.
-- Revocation isolation passes.
-- Google and agent-level audit evidence is saved without secrets.
+- The approved aliases exist on `jack@zbiz.work`.
+- Every alias routes to exactly one tested Gmail label.
+- Every OpenClaw agent has an isolated GOG store authorized as `jack@zbiz.work`.
+- Every OpenClaw agent watches only its assigned IMAP mailbox/label.
+- GOG read/write tests and IMAP new-message tests pass.
+- Duplicate GOG/IMAP triggering is prevented.
+- Restart persistence and revocation are proven.
+- Google and OpenClaw records identify the account and acting agent without exposing secrets.
 - Every agent has an independent completion record.
-- No credential or authorization artifact appears in GitHub, Notion, chat, logs, or memory.
+- Any untested feature remains marked pending.
 
 ## Sources
 
+- Main Notion SOP: https://app.notion.com/p/3cfa3e33d5818176ab4ee0922cc85c50
 - Official GOG documentation: https://github.com/openclaw/gogcli/blob/main/README.md
+- Official GOG Gmail watch documentation: https://github.com/openclaw/gogcli/blob/main/docs/watch.md
+- Official OpenClaw IMAP documentation: https://docs.openclaw.ai/automation/imap
+- Google Workspace alias documentation: https://support.google.com/a/answer/33327
 - Google installed-app OAuth documentation: https://developers.google.com/identity/protocols/oauth2/native-app
 - Fleet activation record: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/blob/main/ai-agent-sops/zedbiz-main-vps/tracking/2026-08-28-google-drive-gog-fleet-activation.md
 - Tracking issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/87
