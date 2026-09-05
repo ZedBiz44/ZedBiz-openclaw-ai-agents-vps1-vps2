@@ -21,6 +21,11 @@ case "$(realpath -m "$base/workspace/skills")" in
   *) echo "Unsafe Rocky skill root" >&2; exit 2 ;;
 esac
 
+case "$(realpath -m "$base/skills")" in
+  /home/openclaw/.openclaw/skills) ;;
+  *) echo "Unsafe Rocky managed skill root" >&2; exit 2 ;;
+esac
+
 case "$(realpath -m "$staging")" in
   /tmp/zk-rollout-*) ;;
   *) echo "Unsafe staging directory: $staging" >&2; exit 2 ;;
@@ -33,6 +38,7 @@ for skill in $skills; do
   rm -rf -- "$target_dir"
   cp -a "$source_dir" "$target_dir"
   chown -R 1000:1000 "$target_dir"
+  rm -rf -- "$base/skills/$skill"
 done
 
 offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$base/workspace/AGENTS.md")"

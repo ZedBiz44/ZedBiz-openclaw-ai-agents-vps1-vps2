@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Purpose: Deploy the canonical modular Z-Knowledge skill set to approved VPS1
-# OpenClaw agents with one canonical managed copy and path safety checks.
+# OpenClaw agents with one canonical workspace copy and path safety checks.
 # Added by: Cody
 # Date added: 2026-08-27 Mountain Time
 # Tested on: VPS1, /opt/openclaw/agents
@@ -34,13 +34,13 @@ for agent in $agents; do
   esac
 
   agent_dir="/opt/openclaw/agents/$agent"
-  case "$(realpath -m "$agent_dir/skills")" in
-    "/opt/openclaw/agents/$agent/skills") ;;
-    *) echo "Unsafe skill root: $agent_dir/skills" >&2; exit 2 ;;
-  esac
   case "$(realpath -m "$agent_dir/workspace/skills")" in
     "/opt/openclaw/agents/$agent/workspace/skills") ;;
     *) echo "Unsafe workspace skill root: $agent_dir/workspace/skills" >&2; exit 2 ;;
+  esac
+  case "$(realpath -m "$agent_dir/skills")" in
+    "/opt/openclaw/agents/$agent/skills") ;;
+    *) echo "Unsafe managed skill root: $agent_dir/skills" >&2; exit 2 ;;
   esac
 
   docker run --rm \
@@ -48,23 +48,23 @@ for agent in $agents; do
     -v "$agent_dir:/target" \
     -v "$staging:/source:ro" \
     alpine sh -euc '
-      mkdir -p /target/skills /target/workspace/skills
+      mkdir -p /target/workspace/skills /target/skills
       for skill in $SKILLS; do
         source_dir="/source/$skill"
-        target_dir="/target/skills/$skill"
-        temp_dir="/target/skills/.${skill}.deploy.$$"
-        workspace_duplicate="/target/workspace/skills/$skill"
+        target_dir="/target/workspace/skills/$skill"
+        temp_dir="/target/workspace/skills/.${skill}.deploy.$$"
+        managed_duplicate="/target/skills/$skill"
         test -f "$source_dir/SKILL.md"
-        case "$target_dir" in /target/skills/*) ;; *) exit 2 ;; esac
-        case "$workspace_duplicate" in /target/workspace/skills/*) ;; *) exit 2 ;; esac
+        case "$target_dir" in /target/workspace/skills/*) ;; *) exit 2 ;; esac
+        case "$managed_duplicate" in /target/skills/*) ;; *) exit 2 ;; esac
         rm -rf -- "$temp_dir"
         cp -a "$source_dir" "$temp_dir"
-        chown -R 1001:1001 "$temp_dir"
+        chown -R 1000:1000 "$temp_dir"
         rm -rf -- "$target_dir"
         mv "$temp_dir" "$target_dir"
-        rm -rf -- "$workspace_duplicate"
+        rm -rf -- "$managed_duplicate"
       done
     '
 
-  echo "$agent: deployed modular Z-Knowledge skills to managed root; workspace duplicates removed; recovery=GitHub"
+  echo "$agent: deployed modular Z-Knowledge skills to workspace root; managed duplicates removed; recovery=GitHub"
 done
