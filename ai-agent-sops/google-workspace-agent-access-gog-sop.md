@@ -1,172 +1,101 @@
-# Google Workspace Agent Access — GOG and IMAP SOP
+# Google Workspace Agent Access Through GOG SOP
 
-Date: 2026-09-04 | Agent: Cody | Status: Active
+Date: 2026-09-04 | Agent: Documentation maintainer | Status: Active
 
 ## Purpose
 
-Connect every ZedBiz OpenClaw agent to the shared Google Workspace account through GOG, give each agent a professional `name@zbiz.work` email alias, and route new alias mail to the correct agent through OpenClaw's bundled IMAP trigger.
+This SOP explains how to connect approved AI agents to the ZedBiz Google Workspace account through GOG and give each agent its approved Gmail alias.
 
-This is the single operating source for the Google account model, rollout order, human approvals, testing, security boundaries, and completion standard. VPS-specific Notion pages only summarize the local connection and link back here.
+It is written to stay useful when agents, servers, or test groups change. Current names, rollout groups, host paths, and test results belong in the linked GitHub issue and separate rollout records.
 
-## Start Here — Final Design
+IMAP and automatic Gmail watching are not part of this setup.
 
-- `jack@zbiz.work` is the only paid Google Workspace user and the only Google account used for this shared GOG rollout.
-- Every OpenClaw agent gets its own Workspace email alias, such as `marsha@zbiz.work`.
-- An alias is not a Google account. It has no password, separate inbox, Drive, Calendar, or OAuth login.
-- All alias mail arrives in the single `jack@zbiz.work` Gmail mailbox.
-- Gmail filters apply one agent-specific label to each alias.
-- Each OpenClaw instance uses the bundled IMAP trigger to watch only its assigned Gmail label and start a restricted mail-reader session for approved new mail.
-- GOG gives the agent access to `jack@zbiz.work` for Drive, Gmail, Calendar, Docs, Sheets, and other supported Google services.
-- GOG's automatic Gmail Pub/Sub watcher will not process the same messages as IMAP. Use one inbound trigger route per message.
-- Ruby on VPS3 is Hermes and is outside this OpenClaw procedure.
-- Any separately created consumer Gmail accounts are outside this shared-alias rollout. They are not required for the selected design and must not be confused with Workspace aliases.
+## What We Are Building
 
-## Follow-Along Setup Roadmap
+- One paid Google Workspace user: `jack@zbiz.work`.
+- One approved Gmail alias for each selected agent, using the pattern `{agent-name}@zbiz.work`.
+- One Gmail owner label for each selected agent, using the pattern `Agent/{AgentName}`.
+- A small shared set of status labels.
+- One isolated GOG credential store for each agent.
+- Maximum normal user access through GOG for the approved Google services.
+- One outside Gmail profile per agent.
+- The reusable `z-gmail-gog` Skill in every approved agent workspace.
+- `draft_only` or `send_allowed` mode chosen separately for each agent.
 
-This is the ordered checklist Jack can follow while Cody performs as much of the work as the available access allows.
+An alias is an extra address on the shared account. It is not a separate Google user, password, inbox, Drive, Calendar, or OAuth login. Mail sent to an alias arrives in the `jack@zbiz.work` Gmail mailbox.
 
-### Step 1 — Confirm The Agent Alias List
+## Who Does What
 
-**Cody prepares and checks:**
+| Role | Responsibility |
+|---|---|
+| Authorized human approver | Approves aliases, completes private Google sign-in and consent, chooses each agent's sending mode, and accepts test results. |
+| Google Workspace administrator | Creates aliases and checks the Google account settings. |
+| Implementation operator | Creates labels and filters, prepares GOG, installs profiles and the skill, runs tests, and records proof. |
+| AI agent | Uses only its assigned alias and label and follows its active profile and skill. |
 
-- Amanda: `amanda@zbiz.work`
-- Edith: `edith@zbiz.work`
-- Gohzed: `gohzed@zbiz.work`
-- Grogar: `grogar@zbiz.work`
-- Inga: `inga@zbiz.work`
-- Maggie: `maggie@zbiz.work`
-- Marsha: `marsha@zbiz.work`
-- Terry: `terry@zbiz.work`
-- Victor: `victor@zbiz.work`
-- Vivian: `vivian@zbiz.work`
-- Wilma: `wilma@zbiz.work`
-- Frank: `frank@zbiz.work`
-- Harry: `harry@zbiz.work`
-- Suzy: `suzy@zbiz.work`
-- Rocky: `rocky@zbiz.work`
+One person may hold more than one role. Current people and agent names are recorded outside this evergreen SOP.
 
-**Jack approves:**
+## Ordered Setup Checklist
 
-- The spelling of every alias.
-- That none of these addresses must become a separate paid Workspace user.
+### Step 1 — Record The Approved Rollout Group
 
-Google currently allows up to 30 aliases on one Workspace user at no extra cost, so this 15-alias plan fits within the current limit. Recheck the limit before future expansion.
+In the tracking issue, record every selected agent, approved alias, platform and host, expected workspace and GOG credential-store location, and starting email mode.
 
-### Step 2 — Create The Workspace Aliases
+Do not hard-code the current roster into this SOP.
 
-**Cody can perform the screen work when an authorized Google Admin browser session is available. Jack must:**
+### Step 2 — Create Every Approved Gmail Alias
 
-- Sign in as the Workspace administrator.
-- Complete two-step verification.
-- Approve any account-security prompt.
+In Google Admin, add each approved `{agent-name}@zbiz.work` alias to the existing `jack@zbiz.work` user.
 
-Create every approved alias on the existing `jack@zbiz.work` user. Do not create additional paid users. Confirm each alias appears in Google Admin before continuing.
+- Do not create another paid user unless separately approved.
+- Inspect the existing aliases first and create only missing ones.
+- Confirm every saved alias appears on the correct Workspace user.
+- Record the completed alias list in the rollout issue.
 
-### Step 3 — Create Gmail Labels And Sorting Rules
+### Step 3 — Create The Gmail Labels
 
-**Cody creates:**
+Create one owner label for each selected agent:
 
-- One Gmail label per agent.
-- One Gmail filter per alias that applies the matching label.
-- A clear naming pattern that prevents two agents from sharing the same label.
+- `Agent/{AgentName}`
 
-Send one harmless test email to each alias. Confirm that it reaches Jack's mailbox and receives only the correct agent label.
+Create these shared status labels once:
 
-### Step 4 — Prepare The Google Cloud OAuth Project
+- `Status/Needs-Reply`
+- `Status/Waiting-On-Them`
+- `Status/Waiting-On-Approver`
+- `Status/Done`
+- `Status/Noise`
 
-**Cody prepares the project. Jack handles private sign-in and approval screens.**
+These are Gmail labels—the folders shown beside messages in Gmail. They are not printed labels and are not security walls.
 
-- Use one ZedBiz-controlled Google Cloud project owned by `jack@zbiz.work`.
-- Enable the APIs required by the selected GOG services.
-- Configure the OAuth audience as **Internal** because the selected GOG account is the Workspace user `jack@zbiz.work`.
-- Create a Desktop app OAuth client.
-- Store the downloaded client JSON in the approved 1Password item.
-- Remove any ordinary unprotected download after the protected copy is verified.
+### Step 4 — Create One Sorting Filter Per Alias
 
-If a consumer Gmail account is later added, stop and review the OAuth audience and publication requirements before authorizing it.
+For each alias, create a Gmail filter that matches mail addressed to that exact alias and applies only the matching `Agent/{AgentName}` label.
 
-### Step 5 — Prepare Protected Per-Agent Credentials
+The filter must not delete, archive, forward, mark read, or change unrelated mail unless a later approved rule says so.
 
-**Cody prepares:**
+Send one harmless test message to every alias. Confirm the message reaches the shared mailbox and receives the correct owner label.
 
-- A separate encrypted GOG token store for every agent.
-- A separate protected IMAP secret reference for every agent where Google's current authentication method permits it.
-- Clear account naming: `main-google` always means `jack@zbiz.work`.
+### Step 5 — Prepare Google OAuth
 
-Never copy a completed token store between agents. Never place OAuth JSON, refresh tokens, app passwords, authorization codes, recovery codes, or complete configuration files in Notion, GitHub, chat, logs, or agent memory.
+Use the approved ZedBiz Google Cloud project and Desktop OAuth client.
 
-### Step 6 — Connect Marsha To GOG First
+- Enable the APIs required by the installed GOG version.
+- Use the Workspace-controlled OAuth audience approved for `jack@zbiz.work`.
+- Store the OAuth client securely.
+- Never put the client secret, authorization code, refresh token, recovery code, password, or full credential file in GitHub, Notion, chat, logs, or agent memory.
+- Stop if Google asks for billing, a paid service, another paid user, or an unexpected account.
 
-Marsha is the first test agent.
+### Step 6 — Prepare One Isolated GOG Store Per Agent
 
-**Cody:**
+Each agent must have its own encrypted GOG credential store.
 
-- Confirms the live GOG version and skill visibility.
-- Imports the protected Desktop OAuth client into Marsha's isolated GOG store.
-- Starts authorization for `jack@zbiz.work` with maximum normal user access, full Drive scope, and full Gmail scope.
-- Assigns the `main-google` alias.
-- Pauses for Jack at Google's consent screen.
+- Never copy a completed token store from one agent to another.
+- Use the account alias `main-google` for `jack@zbiz.work`.
+- Confirm the actual runtime path before changing anything.
+- Preserve unrelated credentials and configuration.
 
-**Jack:**
-
-- Opens the authorization link in a trusted browser.
-- Confirms the displayed account is exactly `jack@zbiz.work`.
-- Reviews and approves the requested Google permissions.
-- Completes any two-step verification.
-- Returns only the temporary redirect result through the approved protected channel.
-
-### Step 7 — Connect Marsha's Alias To IMAP
-
-**Cody:**
-
-- Enables OpenClaw's bundled IMAP trigger in Marsha's runtime.
-- Uses the protected `jack@zbiz.work` mailbox credential.
-- Points the watched mailbox to Marsha's Gmail label as exposed through IMAP.
-- Routes accepted messages to a restricted mail-reader agent.
-- Limits accepted senders and requires verified sender authentication.
-- Keeps delivery, file, browser, runtime, gateway, automation, and unrelated tools disabled in the mail-reader session.
-
-The label is a routing rule, not a security wall. The underlying mailbox credential can access Jack's mailbox and must be protected accordingly.
-
-### Step 8 — Run The Marsha Tests
-
-Marsha passes only when:
-
-- GOG proves the authenticated account is `jack@zbiz.work`.
-- GOG can read and make one reversible change to the approved Drive test item.
-- GOG can search/read controlled Gmail and complete one approved draft/send test.
-- A new message to `marsha@zbiz.work` receives the Marsha label.
-- Only Marsha's IMAP route starts.
-- A message for another alias does not start Marsha.
-- Messages already present before monitoring are not treated as new triggers.
-- OpenClaw's IMAP route does not send or modify mail.
-- The same message is not also processed by a GOG Pub/Sub watcher.
-- Restart persistence and revocation are proven.
-- Google records `jack@zbiz.work`; OpenClaw records Marsha as the acting agent.
-- No unintended file, email, label, event, permission, or recipient changes.
-
-### Step 9 — Roll Out One Agent At A Time
-
-After Jack accepts Marsha's test:
-
-- Roll through VPS1 agents one at a time.
-- Repair and reverify the known VPS2 configuration problem before connecting Frank, Harry, or Suzy.
-- Connect Rocky on VPS4 after the same preflight.
-- Give every agent its own GOG token store, IMAP secret reference, Gmail label, filter, and verification record.
-- Stop on the first wrong account, wrong label, duplicate processing, unexpected visibility, failed restart, or unplanned change.
-
-### Step 10 — Add Sending From Agent Aliases Only If Needed
-
-The IMAP trigger receives mail but does not send replies.
-
-- GOG can send through the authenticated `jack@zbiz.work` Gmail account.
-- Sending visibly from `name@zbiz.work` requires that alias to be configured and tested as a Gmail send-as identity.
-- Keep outbound alias sending separate from the inbound IMAP test.
-- Jack must approve the sending policy and the first external send for each use case.
-
-## What GOG Access Includes
-
-The selected authorization for `jack@zbiz.work` is maximum normal user OAuth:
+The approved authorization shape is:
 
 ```bash
 gog auth add jack@zbiz.work \
@@ -179,109 +108,116 @@ gog auth add jack@zbiz.work \
 gog auth alias set main-google jack@zbiz.work
 ```
 
-`all-user` covers the supported user-facing Google catalogue available to the installed GOG version. Some services are read-only by Google's design, and OAuth does not create product entitlements or data that the account does not have.
+Confirm these flags against the installed GOG version before running them.
 
-Google Admin SDK, Cloud Identity Groups, and Keep require service-account domain-wide delegation and are outside this user-OAuth rollout. Photo Picker remains a separate opt-in.
+### Step 7 — Complete Private Google Consent
 
-## Google Workspace And Drive Boundary
+For each isolated agent store:
 
-The Shared Drives currently visible to `jack@zbiz.work` are:
+- The implementation operator starts authorization.
+- The authorized human approver opens the Google link in a trusted browser.
+- Confirm the displayed account is exactly `jack@zbiz.work`.
+- Review and approve the requested permissions.
+- Complete password and two-step verification privately.
+- Return only the temporary authorization result through the approved protected route.
 
-- `Z-Administrative`
-- `Z-Clients`
-- `Z-Core-Ventures`
-- `Z-External`
-- `Z-Marketing`
-- `z-migration`
-- `Z-Operations`
-- `Z-Prospects`
-- `Z-Ventures`
+Never ask anyone to paste a Google password or two-factor code into chat.
 
-OAuth cannot limit `jack@zbiz.work` to selected Shared Drives. Every authorized agent can potentially access Jack's Gmail, My Drive, calendars, contacts, tasks, files, and every Shared Drive item visible to Jack.
+### Step 8 — Create The Outside Agent Profile
 
-Google will show `jack@zbiz.work` in its activity and audit records. Per-agent attribution must come from isolated token stores and OpenClaw execution records.
+Create a profile outside the reusable skill package for each agent. It must contain the agent display name, sender alias, owner label, email mode, normal email responsibilities, human approval contact or role, and stop rules.
 
-## GOG And IMAP Have Different Jobs
+The YAML profile is strong operating guidance, but it is not the technical send lock. GOG permissions enforce whether sending is possible.
 
-### GOG
+### Step 9 — Configure Sending From The Correct Alias
 
-Use GOG when an agent deliberately needs to:
+Confirm the alias is available as a Gmail sending identity for the shared account. Then configure the agent and GOG command to use the profile's exact sender alias.
 
-- Search or read Gmail.
-- Create a draft, send, or reply after the required approval.
-- Work with Drive, Docs, Sheets, Slides, Calendar, Contacts, Tasks, and other supported Google services.
-- Perform an account-specific, auditable command.
+- Drafts and sent messages must use the assigned alias.
+- Never silently fall back to `jack@zbiz.work` or another agent's alias.
+- If the requested alias is unavailable or rejected, stop and report the problem.
+- GOG may help select the addressed alias, but profile guidance alone cannot guarantee the sender identity. Real send testing is required.
 
-### OpenClaw IMAP Trigger
+### Step 10 — Install The Gmail Skill
 
-Use IMAP when:
+Install the validated `z-gmail-gog` package in each approved agent workspace only after that agent has a working isolated GOG connection, confirmed outside profile, confirmed owner label and alias, recorded sending mode, and known rollback method.
 
-- A new allowed email arrives for an agent alias.
-- That arrival should immediately start a restricted reader session.
-- No public webhook is wanted.
+Start a fresh agent session and confirm the skill loads.
 
-The bundled IMAP trigger does not send, reply, change message flags, or backfill old mail.
+### Step 11 — Test One Agent First
 
-### Do Not Double-Trigger
+Use one selected agent as the first live test. The selected name belongs in the tracking issue, not in this SOP.
 
-Do not enable both OpenClaw IMAP and GOG Gmail Pub/Sub watch for the same mailbox labels and messages. GOG's normal search/read/send tools may remain available on demand.
+The first agent must prove:
 
-## Human Approval And Safety Rules
+- GOG identifies the account as `jack@zbiz.work`.
+- The isolated credential store survives a restart.
+- Gmail search and read work.
+- The agent sees and uses only its assigned owner label during the test.
+- A draft uses the correct alias.
+- `draft_only` mode technically blocks sending when selected.
+- `send_allowed` mode sends one harmless approved message from the correct alias when selected.
+- A different agent's alias is not used.
+- The agent stops for money, legal, security, sensitive, angry-client, unapproved-price, and unclear requests.
+- Revocation or removal works.
+- No unrelated email, file, event, permission, label, or recipient changes.
 
-Maximum Google permission is capability, not blanket authority. Agents still need Jack's approval before:
+Stop and diagnose any failure before rolling the same setup to the remaining group.
 
-- Sending consequential external communications.
-- Deleting, trashing, moving, or broadly reorganizing data.
-- Changing permissions, Shared Drive membership, external sharing, or public links.
-- Creating, changing, or cancelling meetings with outside attendees.
-- Publishing Apps Script changes or changing Ads.
-- Making financially, legally, or reputationally consequential changes.
+### Step 12 — Roll Out To The Remaining Approved Agents
 
-Jack must personally handle Google sign-in, two-step verification, OAuth consent, and any prompt requesting a password or recovery method. Never send a Google password in chat.
+After the first agent passes:
 
-## VPS Connection Pages
+- Repeat the same isolated setup for every agent in the approved rollout group.
+- Test each alias, owner label, profile, credential store, Gmail read, draft, send mode, restart, and rollback.
+- Record proof separately for every agent.
+- Do not mark the group complete because only one agent worked.
 
-These pages contain only host-specific connection summaries and point back to this SOP:
+## How Agents Use Gmail
 
-- VPS1 Google Workspace, GOG, and IMAP Connection.
-- VPS2 Google Workspace, GOG, and IMAP Connection.
-- Rocky Google Workspace, GOG, and IMAP Connection — VPS4.
+GOG lets an authorized agent deliberately search, read, label, draft, reply, and—when technically allowed—send Gmail messages in the shared account.
 
-Do not copy the full authorization procedure into VPS setup pages.
+The owner label tells the agent which mail it is responsible for. The outside profile tells it which alias to use and what it may do. The skill explains the safe working process. GOG provides the actual Google access and the technical send capability.
 
-## Failure And Revocation
+There is no automatic inbox watcher in this rollout. An agent handles Gmail when it is given a Gmail task or an approved scheduler starts one later.
 
-Stop immediately if the wrong Google account, wrong label, unexpected mail, duplicate trigger, excessive visibility, blocked scope, or unplanned change appears.
+## Permission And Safety Boundary
 
-- Revoke the affected GOG token.
-- Remove or disable the affected IMAP secret reference.
-- Disable the affected Gmail filter or alias when necessary.
-- Preserve the other agents' credentials until isolation is verified.
-- Record what happened without recording secret values.
-- Return to Diagnose -> Solution -> Confirmation -> Act when a new material risk appears.
+Maximum normal Google access is capability, not blanket business approval. An agent still needs human approval before consequential external messages; destructive or broad data changes; sharing or permission changes; outside-attendee calendar changes; money, contracts, legal issues, security, sensitive information, angry clients, refunds, unapproved prices; or any unclear action.
+
+OAuth for `jack@zbiz.work` can expose Gmail, My Drive, calendars, contacts, tasks, and Shared Drive content visible to that account. Gmail labels organize work; they do not prevent an OAuth-authorized agent from seeing the wider mailbox. Isolation depends on separate credential stores, runtime controls, profiles, skill rules, and testing.
+
+Google records the shared account as the Google actor. Per-agent attribution must come from the isolated GOG stores and the agent runtime records.
+
+## Failure And Rollback
+
+Stop immediately for a wrong account, wrong alias, wrong label, unexpected data access, failed send block, unwanted message, exposed secret, failed restart, or unplanned change.
+
+- Revoke the affected GOG authorization.
+- Disable sending or remove the skill for that agent.
+- Preserve other agents' stores until isolation is verified.
+- Record the failure without secret values.
+- Diagnose the cause, propose the fix, get approval when required, and retest one agent before continuing.
 
 ## Completion Standard
 
 The rollout is complete only when:
 
-- The approved aliases exist on `jack@zbiz.work`.
-- Every alias routes to exactly one tested Gmail label.
-- Every OpenClaw agent has an isolated GOG store authorized as `jack@zbiz.work`.
-- Every OpenClaw agent watches only its assigned IMAP mailbox/label.
-- GOG read/write tests and IMAP new-message tests pass.
-- Duplicate GOG/IMAP triggering is prevented.
-- Restart persistence and revocation are proven.
-- Google and OpenClaw records identify the account and acting agent without exposing secrets.
-- Every agent has an independent completion record.
-- Any untested feature remains marked pending.
+- Every approved alias exists on `jack@zbiz.work`.
+- Every alias routes to exactly one tested `Agent/{AgentName}` Gmail label.
+- The shared status labels exist.
+- Every approved agent has an isolated GOG store authorized as `jack@zbiz.work`.
+- Every agent has an outside profile with the correct alias, label, and sending mode.
+- The validated `z-gmail-gog` Skill loads in every approved agent runtime.
+- Gmail read, label, draft, correct-alias sending, send blocking, restart, and rollback tests pass as applicable.
+- Every agent has its own completion record.
+- Any untested item remains marked pending.
 
 ## Sources
 
 - Main Notion SOP: https://app.notion.com/p/3cfa3e33d5818176ab4ee0922cc85c50
+- Gmail skill repository: https://github.com/ZedBiz44/z-gmail-gog-Skill
 - Official GOG documentation: https://github.com/openclaw/gogcli/blob/main/README.md
-- Official GOG Gmail watch documentation: https://github.com/openclaw/gogcli/blob/main/docs/watch.md
-- Official OpenClaw IMAP documentation: https://docs.openclaw.ai/automation/imap
 - Google Workspace alias documentation: https://support.google.com/a/answer/33327
 - Google installed-app OAuth documentation: https://developers.google.com/identity/protocols/oauth2/native-app
-- Fleet activation record: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/blob/main/ai-agent-sops/zedbiz-main-vps/tracking/2026-08-28-google-drive-gog-fleet-activation.md
-- Tracking issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/87
+- Fleet tracking issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/87
