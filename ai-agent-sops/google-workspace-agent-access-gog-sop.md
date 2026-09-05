@@ -1,6 +1,6 @@
 # Google Workspace Agent Access Through GOG SOP
 
-Date: 2026-09-04 | Agent: Documentation maintainer | Status: Active
+Date: 2026-09-05 | Agent: Documentation maintainer | Status: Active
 
 ## Purpose
 
@@ -220,4 +220,4 @@ The rollout is complete only when:
 - Official GOG documentation: https://github.com/openclaw/gogcli/blob/main/README.md
 - Google Workspace alias documentation: https://support.google.com/a/answer/33327
 - Google installed-app OAuth documentation: https://developers.google.com/identity/protocols/oauth2/native-app
-- Fleet tracking issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/87
+- Fleet tracking issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/250
