@@ -45,29 +45,42 @@ for agent in $agents; do
   base="/root/.openclaw-$agent"
   agents_file="$base/workspace/AGENTS.md"
 
-  for root in workspace/skills .openclaw/skills; do
-    case "$(realpath -m "$base/$root")" in
-      "/root/.openclaw-$agent/workspace/skills"|"/root/.openclaw-$agent/.openclaw/skills") ;;
-      *) echo "Unsafe skill root: $base/$root" >&2; exit 2 ;;
-    esac
-    mkdir -p "$base/$root"
+  workspace_skills="$base/workspace/skills"
+  managed_skills="$base/skills"
+  legacy_nested_skills="$base/.openclaw/skills"
+  case "$(realpath -m "$workspace_skills")" in
+    "/root/.openclaw-$agent/workspace/skills") ;;
+    *) echo "Unsafe workspace skill root: $workspace_skills" >&2; exit 2 ;;
+  esac
+  case "$(realpath -m "$managed_skills")" in
+    "/root/.openclaw-$agent/skills") ;;
+    *) echo "Unsafe managed skill root: $managed_skills" >&2; exit 2 ;;
+  esac
+  case "$(realpath -m "$legacy_nested_skills")" in
+    "/root/.openclaw-$agent/.openclaw/skills") ;;
+    *) echo "Unsafe legacy nested skill root: $legacy_nested_skills" >&2; exit 2 ;;
+  esac
+  mkdir -p "$workspace_skills" "$managed_skills" "$legacy_nested_skills"
 
-    for skill in $skills; do
-      source_dir="$staging/$skill"
-      target_dir="$base/$root/$skill"
-      rm -rf -- "$target_dir"
-      cp -a "$source_dir" "$target_dir"
-    done
-
-    if [ "$retire_legacy" = 1 ]; then
-      for legacy_skill in $legacy_skills; do
-        legacy_dir="$base/$root/$legacy_skill"
-        if [ -e "$legacy_dir" ]; then
-          rm -rf -- "$legacy_dir"
-        fi
-      done
-    fi
+  for skill in $skills; do
+    source_dir="$staging/$skill"
+    target_dir="$workspace_skills/$skill"
+    temp_dir="$workspace_skills/.${skill}.deploy.$$"
+    rm -rf -- "$temp_dir"
+    cp -a "$source_dir" "$temp_dir"
+    rm -rf -- "$target_dir"
+    mv "$temp_dir" "$target_dir"
+    rm -rf -- "$managed_skills/$skill" "$legacy_nested_skills/$skill"
   done
+
+  if [ "$retire_legacy" = 1 ]; then
+    for legacy_skill in $legacy_skills; do
+      rm -rf -- \
+        "$workspace_skills/$legacy_skill" \
+        "$managed_skills/$legacy_skill" \
+        "$legacy_nested_skills/$legacy_skill"
+    done
+  fi
 
   test -f "$agents_file"
   offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$agents_file")"

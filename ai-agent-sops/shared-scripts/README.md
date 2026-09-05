@@ -16,10 +16,13 @@ Every script needs:
 
 - GitHub is the rollback and recovery source for every custom skill.
 - Never create server-side backup, retired, old, archive, or timestamped copies of a skill package.
-- Keep one active copy of each skill name in the runtime's canonical discovery root.
-- On VPS1, shared and fleet-maintained skills belong in `/opt/openclaw/agents/<agent>/skills`; `workspace/skills` is only for genuinely agent-specific skills that do not duplicate a managed name.
+- Keep one active copy of each custom skill in the agent's OpenClaw workspace `skills` directory.
+- VPS1 uses `/opt/openclaw/agents/<agent>/workspace/skills` on the host and `/home/node/.openclaw/workspace/skills` in the container.
+- VPS2 uses `/root/.openclaw-<agent>/workspace/skills`.
+- Rocky on VPS4 uses `/home/openclaw/.openclaw/workspace/skills`.
+- Do not deploy ZedBiz custom skills to `<state-dir>/skills` or another managed/global root. The ZedBiz OpenClaw runtimes are isolated per agent, so the global location adds no useful sharing and creates a second place to inspect.
 - Replace a skill through a temporary same-filesystem staging directory, move it into the canonical path, and remove the temporary directory in the same operation.
-- After deployment, verify zero duplicate names across active discovery roots and zero `SKILL.md` files under agent backup or retired trees.
+- After deployment, verify that the workspace copy is eligible and model-visible, no custom skills remain in managed/global roots, and no `SKILL.md` files remain under agent backup or retired trees.
 
 ## VPS1 Memory Baseline
 
