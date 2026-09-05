@@ -6,10 +6,16 @@ keyring_env="${gog_home}/keyring.env"
 
 if [ -r "${keyring_env}" ]; then
   . "${keyring_env}"
+  export GOG_KEYRING_PASSWORD
 fi
 
 export GOG_HOME="${gog_home}"
 export GOG_KEYRING_BACKEND="${GOG_KEYRING_BACKEND:-file}"
+
+email_mode_file="${gog_home}/email-mode"
+if [ -r "${email_mode_file}" ] && [ "$(tr -d '\r\n' < "${email_mode_file}")" = "draft_only" ]; then
+  set -- --gmail-no-send "$@"
+fi
 
 exec /usr/local/libexec/gog-real "$@"
 
