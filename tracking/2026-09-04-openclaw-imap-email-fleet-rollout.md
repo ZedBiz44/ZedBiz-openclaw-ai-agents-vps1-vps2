@@ -1,6 +1,6 @@
 # OpenClaw IMAP Email-to-Action Fleet Rollout
 
-Date: 2026-09-04 Mountain Time | Agent: Cody | Status: Partially complete
+Date: 2026-09-04 Mountain Time | Agent: Cody | Status: Complete
 
 ## Purpose
 
@@ -42,22 +42,28 @@ Amanda and Marsha passed real email-to-action tests from Jack. Jack independentl
 
 The other nine agents passed configuration validation, protected restart, normal Gateway startup, IMAP login, push-mode watcher startup, sender-list verification, and work-rule verification.
 
-## VPS2 And VPS4 Finding
+## VPS2 And VPS4 Rollout
 
-Harry, Suzy, Frank, and Rocky have OpenClaw 2026.8.2 and the bundled IMAP plugin. Their running OpenClaw services do not currently receive `EMAIL_ADDRESS`, `EMAIL_PASSWORD`, `EMAIL_SERVER`, or `EMAIL_IMAP_PORT` from 1Password.
+Harry, Suzy, Frank, and Rocky already had working 1Password startup paths and access to their own email items plus the shared email-server items. The first audit checked the service's first process and incorrectly concluded that new vault access was needed. A second check followed the complete startup chain and proved the existing access was sufficient.
 
-Their mailbox credentials remain stored in their separate 1Password vaults. No password was copied into GitHub, Notion, chat, or an unprotected file. Their live OpenClaw configurations were not changed because the mailbox would fail to log in without the missing startup connection.
+- Added the four email item references to Harry, Suzy, and Frank's existing `op run` startup files.
+- Added the four email reads to Rocky's existing 1Password startup wrapper.
+- Connected each mailbox to the bundled IMAP plugin.
+- Confirmed the email values are injected into the final running OpenClaw processes without printing or storing the values in documentation.
+- Confirmed all four services are active, OpenClaw is ready, and each mailbox watcher is running in IMAP push mode.
+
+Harry's old `meta.lastTouchedAt` entry was removed because OpenClaw 2026.8.2 rejects that obsolete field during validation. Rocky's configuration was validated as the `openclaw` runtime user so his approved memory-plugin path was checked under the correct account.
 
 ## Rollback
 
-Each VPS1 agent has a timestamped pre-rollout copy of `openclaw.json` and `AGENTS.md` inside that agent's workspace backup folder. Restore both files and restart the agent through its protected `op-start-<agent>.sh` script.
+Each VPS1 agent has a timestamped pre-rollout copy of `openclaw.json` and `AGENTS.md` inside that agent's workspace backup folder. Harry, Suzy, Frank, and Rocky also have timestamped copies of their configuration, work rules, and startup files. Restore the saved files and restart through the agent's normal protected service.
 
 ## Verification Result
 
 - VPS1: 11 of 11 OpenClaw agents connected.
-- VPS2: 0 of 3 connected; 1Password-to-service startup connection required.
-- VPS4: 0 of 1 connected; 1Password-to-service startup connection required.
-- Fleet total: 11 of 15 connected.
+- VPS2: 3 of 3 OpenClaw agents connected.
+- VPS4: 1 of 1 OpenClaw agent connected.
+- Fleet total: 15 of 15 OpenClaw agents connected.
 - Ruby was not included because Ruby runs Hermes, not OpenClaw.
 
 ## Links
