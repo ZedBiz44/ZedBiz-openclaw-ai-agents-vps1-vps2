@@ -34,7 +34,7 @@ promoted=False
 try:
     # Offline full-state archive, independently extracted to the rehearsal copy.
     run(['docker','run','--rm','-v',str(root)+':/source:ro','-v',str(b)+':/backup','alpine','sh','-ec',
-        'umask 077; tar -cf /backup/full-state.tar -C /source .; tar -xf /backup/full-state.tar -C /backup/stage; cmp /source/config/openclaw.json /backup/stage/config/openclaw.json'],'backup.log')
+        'umask 077; tar -cf /backup/full-state.tar -C /source .; tar -xf /backup/full-state.tar -C /backup/stage; cmp /source/config/openclaw.json /backup/stage/config/openclaw.json; chown 1001:1001 /backup/full-state.tar'],'backup.log')
     h=hashlib.file_digest(open(b/'full-state.tar','rb'),'sha256').hexdigest();(b/'backup.sha256').write_text(h+'\n')
     print(name+' BACKUP_RESTORED '+h,flush=True)
     js="""const fs=require('fs');const {DatabaseSync}=require('node:sqlite');
