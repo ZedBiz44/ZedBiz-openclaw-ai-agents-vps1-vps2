@@ -13,7 +13,8 @@ for(const root of fs.readdirSync(source,{withFileTypes:true})){
  for(const batch of fs.readdirSync(from,{withFileTypes:true})){
   if(!batch.isDirectory())throw Error('Unexpected backup structure');
   const dir=path.join(from,batch.name),files=fs.readdirSync(dir);
-  if(files.length!==1||files[0]!=='manifest.json')throw Error('Backup contains more than an empty manifest');
+  if(!files.includes('manifest.json')||files.some(f=>!['manifest.json','workspace'].includes(f)))throw Error('Backup contains more than an empty manifest');
+  if(files.includes('workspace')&&(!fs.lstatSync(path.join(dir,'workspace')).isDirectory()||fs.readdirSync(path.join(dir,'workspace')).length))throw Error('Backup workspace is not empty');
   const m=JSON.parse(fs.readFileSync(path.join(dir,'manifest.json'),'utf8'));
   if(m.schema!=='openclaw.skill-collection-backup.v1'||!Array.isArray(m.skillDirs)||m.skillDirs.length||!Array.isArray(m.resultSkillDirs)||m.resultSkillDirs.length||!m.resultSkillHashes||Object.keys(m.resultSkillHashes).length)throw Error('Backup is not empty; review required');
   count++;
