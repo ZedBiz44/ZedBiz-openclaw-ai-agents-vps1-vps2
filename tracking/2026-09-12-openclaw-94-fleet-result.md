@@ -10,6 +10,8 @@ The final VPS1 sweep returned version 2026.9.4, Docker healthy, zero restarts an
 
 The final VPS2 sweep returned version 2026.9.4, active/running services, NRestarts0, public HTTPS200, no post-upgrade Doctor findings and the exact patched IMAP checksum for Harry, Suzy and Frank. Machine-readable evidence is retained at /root/openclaw-fleet94-20260912/final-native-health.json. VPS2 has approximately 118 GB free.
 
+The subsequent [Notion search diagnosis and correction](2026-09-12-notion-search-correction.md) supersedes the earlier claimed search limitation. All fourteen agents passed actual AI search and opened a returned page in fresh conversations. The repair added only a bounded search-routing note to their existing instructions; the upgrade itself had preserved those instructions as recorded below.
+
 - [Authorization, investigation and running evidence](https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/311)
 - [Release implementation and procedures](https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/pull/312)
 - [Detailed Terry/Harry pilot evidence](2026-09-12-terry-harry-2026-9-4.md)
@@ -26,8 +28,8 @@ All listed completed tests used the agent's own runtime and credentials, without
 | Marsha | Hindsight, 4 hits | marsha@agents.zbiz.ca | Drive, Notion and video tool discovery |
 | Maggie | Hindsight, 2 hits | maggie@agents.zbiz.ca | Drive, Notion and video tool discovery |
 | Inga | Hindsight, 1 hit | inga@agents.zbiz.ca | Drive, Notion and video tool discovery |
-| GohZed | Hindsight, 4 hits | gohzed@agents.zbiz.ca | Direct Notion page read; AI-search exposure limitation |
-| Grogar | Hindsight, 4 hits | grogar@agents.zbiz.ca | Direct Notion page read; AI-search exposure limitation |
+| GohZed | Hindsight, 4 hits | gohzed@agents.zbiz.ca | Direct Notion page read; subsequent AI-search verification passed |
+| Grogar | Hindsight, 4 hits | grogar@agents.zbiz.ca | Direct Notion page read; subsequent AI-search verification passed |
 | Wilma | LanceDB, 5 hits | wilma@agents.zbiz.ca | Existing AllZed AI Engine MCP returned one post read-only |
 | Victor | LanceDB, 5 hits | victor@agents.zbiz.ca | OpenSSH 9.2p1 and Docker client/server 29.7.2 |
 | Vivian | LanceDB, 5 hits | vivian@agents.zbiz.ca | Percify 11-tool discovery; local FFmpeg clip verified at 1.000000 seconds |
@@ -99,7 +101,7 @@ Each cutover used an offline full-state backup, extracted restore proof and copi
 
 ## Limits and follow-up
 
-- Notion self-check advertises AI search, but the required callable AI-search tool is absent from the exposed tool list for affected agents. Governed direct fetch of Technical Documentation 7a1a3e33-d581-83e3-ae02-01de59538c3e passed. This tool-exposure limitation is recorded, not claimed fixed or proven to be an OpenClaw regression. No forbidden keyword-search fallback or permission change was used.
+- The earlier Notion search limitation was a false diagnosis caused by tool-naming guidance and an overrestrictive verification prompt. The existing Codex Apps search entry point returns AI-search results. After the routing correction, all fourteen agents passed actual search and returned-page fetch tests; saved tool receipts were independently checked. No new connector, account, permission or package was required. See the linked correction record above.
 - GohZed had a transient memory recall timeout warning on a subsequent Notion follow-up; his explicit Hindsight acceptance query had already returned 4 hits.
 - Suzy's additional post-restart general memory-search call timed out after 15 seconds. Explicitly testing her selected Hindsight tool openclaw__agent_knowledge_recall then succeeded with 4 results. No memory configuration, bank, timeout or index was changed. Deep CLI status showed main embeddings/vector storage ready; the separate mail_reader built-in index lacked metadata, while memory-core is disabled as the selected memory slot is Hindsight. No unrelated reindex was run.
 - Wilma's alternative generic WordPress helper reports a missing key. Her selected AllZed AI Engine route passed a real read and was preserved; no token rotation or connector replacement was made.
