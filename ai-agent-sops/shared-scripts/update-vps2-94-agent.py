@@ -19,7 +19,7 @@ if mode=='prepare':
  shutil.copytree(qualified/'node_modules',candidate/'node_modules',symlinks=True)
  for f in ['package.json','package-lock.json','patch-imap-source-fetch.mjs','test-imap-source-fetch.mjs','probe-imap-source-fetch.cjs']:
   shutil.copy2(qualified/f,candidate/f)
- p=json.load(open(candidate/'package.json'));p['name']=old['name'];(candidate/'package.json').write_text(json.dumps(p,indent=2)+'\n')
+ qualified_package=json.load(open(candidate/'package.json'));p=dict(old);p['dependencies']=qualified_package['dependencies'];p['allowScripts']=qualified_package['allowScripts'];(candidate/'package.json').write_text(json.dumps(p,indent=2)+'\n')
  lock=json.load(open(candidate/'package-lock.json'))
  assert lock['packages']['node_modules/openclaw']['integrity']=='sha512-lTQpEEe1Xm3u2PCHaPEr+vP8paGk1vLdHuzdItsNToaLI6hAqRVvgJYg+GxukJhETJp4tPy/S1Gftl4KuB8n7A=='
  lock['name']=old['name'];lock['packages']['']['name']=old['name'];(candidate/'package-lock.json').write_text(json.dumps(lock,indent=2)+'\n')
