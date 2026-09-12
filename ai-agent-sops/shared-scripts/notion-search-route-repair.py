@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Apply a reversible routing note or run one fresh read-only agent search test."""
-import concurrent.futures, hashlib, json, os, pathlib, subprocess, sys
+import concurrent.futures, hashlib, json, os, pathlib, re, subprocess, sys
 
 kind, action, *names = sys.argv[1:]
 allowed = {'vps1': {'terry','edith','amanda','marsha','maggie','inga','gohzed','grogar','wilma','victor','vivian'}, 'vps2': {'harry','suzy','frank'}}
@@ -20,11 +20,12 @@ def apply(n):
     if heading in old:
         assert note in old.replace(b'\r\n',b'\n'), 'Existing routing note differs; inspect before editing'
         return {'agent':n,'status':'already matches'}
-    assert old.startswith(b'# ') and b'\n' in old
+    title = re.search(br'(?m)^(?:\xef\xbb\xbf)?# [^\r\n]+\r?\n', old)
+    assert title, 'No Markdown title found; inspect before editing'
     backup = b/'AGENTS.md.before'; assert not backup.exists(), 'Previous attempt exists; inspect first'
     backup.write_bytes(old); backup.chmod(0o600)
     newline = b'\r\n' if b'\r\n' in old else b'\n'
-    offset = old.index(b'\n')+1
+    offset = title.end()
     inserted = newline+note.replace(b'\n',newline)+newline+newline
     new = old[:offset]+inserted+old[offset:]
     assert new[:offset]+new[offset+len(inserted):] == old
