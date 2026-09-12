@@ -2,7 +2,7 @@ Jack authorized your OpenClaw 2026.9.4 update. Run this bounded verification thr
 
 Read your existing agent and integration guidance. Use real calls, not earlier results:
 - Report your identity, current model route and workspace.
-- Use your configured memory system (Mem0, Hindsight or LanceDB) for one small recall/search for ZedBiz. Report system, success and count only. The OpenClaw runtime agent ID for this turn is main. If LanceDB CLI requires --agent, use --agent main, not your display name or email identity.
+- Use your configured memory system (Mem0, Hindsight or LanceDB) for one small recall/search for ZedBiz. Report the exact tool, system, success and count only. For Hindsight use agent_knowledge_recall; generic memory_search does not verify the selected Hindsight backend. The OpenClaw runtime agent ID for this turn is main. If LanceDB CLI requires --agent, use --agent main, not your display name or email identity.
 - Through your own Asana PAT MCP, call asana_get_user with user_gid me. Report the authenticated agent name and email and workspace ID. Stop Asana checks on an identity mismatch.
 - Through your existing GOG account, explicitly select the account and list at most three Drive files. Report account and count, not contents.
 - Through your existing governed Notion route, perform a small search for Technical Documentation and report page ID only. Follow fetch-self search-routing requirements. If the required AI-search tool is not exposed, report that limitation and use governed fetch for the already-known page ID 7a1a3e33-d581-83e3-ae02-01de59538c3e to verify direct reading. Do not substitute an unapproved keyword search.
