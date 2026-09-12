@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Qualified 9.4 artifact preparation or one authorized VPS2 native cutover."""
-import pathlib,subprocess,json,os,sys,shutil,hashlib,re
+import pathlib,subprocess,json,os,sys,shutil,hashlib,re,time,urllib.request
 n=sys.argv[1];mode=sys.argv[2];assert n in {'suzy','frank'} and mode in {'prepare','upgrade'}
 install=pathlib.Path('/opt/openclaw-'+n);candidate=pathlib.Path(str(install)+'-2026.9.4-pilot')
 state=pathlib.Path('/root/.openclaw-'+n);base=pathlib.Path('/root/openclaw-fleet94-20260912');base.mkdir(mode=0o700,exist_ok=True)
@@ -64,6 +64,14 @@ try:
  assert not old_install.exists() and not old_state.exists()
  install.rename(old_install);candidate.rename(install);state.rename(old_state);copied.rename(state);promoted=True
  run(['systemctl','start',unit],'start.log');run(['systemctl','is-active',unit],'active.txt')
+ port={'suzy':4200,'frank':4300}[n]
+ for attempt in range(60):
+  try:
+   with urllib.request.urlopen('http://127.0.0.1:'+str(port)+'/',timeout=2) as response:
+    if response.status==200:break
+  except Exception:pass
+  time.sleep(2)
+ else:raise RuntimeError('Gateway HTTP readiness timeout')
  print(n+' CORE_READY_FOR_LIVE_TEST',flush=True)
 except Exception:
  if not promoted:run(['systemctl','start',unit],'old-restart.log')
