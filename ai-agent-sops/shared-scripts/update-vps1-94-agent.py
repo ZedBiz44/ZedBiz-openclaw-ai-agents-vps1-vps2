@@ -68,8 +68,8 @@ let f=base+'/.env';let s=fs.readFileSync(f,'utf8');if(!/^OPENCLAW_IMAGE=/m.test(
 f=base+'/docker-compose.yml';s=fs.readFileSync(f,'utf8');s=s.replace(/^(\\s*image:\\s*)(?:zedbiz[^\\s]*openclaw[^\\s]*)\\s*$/m,'$1'+image);fs.writeFileSync(f,s);"""
     run(['docker','run','--rm','--user','root','-v',str(stage)+':/stage','--entrypoint','node',image,'-e',edit,image],'image-edit.log')
     # Preserve the entire old directory as an immediate rollback target.
-    run(['docker','run','--rm','-v','/opt/openclaw/agents:/agents','-v',str(b)+':/backup','alpine','sh','-ec',
-        'test ! -e /backup/original; mv /agents/'+name+' /backup/original; mv /backup/stage /agents/'+name],'promote.log')
+    run(['docker','run','--rm','-v','/:/host','alpine','sh','-ec',
+        'test ! -e /host'+str(b)+'/original; test -d /host'+str(root)+'; test -d /host'+str(stage)+'; mv /host'+str(root)+' /host'+str(b)+'/original; mv /host'+str(stage)+' /host'+str(root)],'promote.log')
     promoted=True
     run([str(root/('op-start-'+name+'.sh')),'up'],'start.log')
     for _ in range(60):
