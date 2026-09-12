@@ -18,8 +18,9 @@ info=json.loads(run(['docker','inspect',name]))[0]
 (b/'inspect.private.json').write_text(json.dumps(info));os.chmod(b/'inspect.private.json',0o600)
 env=b/'runtime.private.env'
 env.write_text('\n'.join(x for x in info['Config']['Env'] if not x.startswith('HOSTNAME='))+'\n');os.chmod(env,0o600)
-def maintenance(args,log,entry='node',network='openclaw'):
+def maintenance(args,log,entry='node',network='openclaw',user=None):
     cmd=['docker','run','--rm','--network',network,'--memory','2g','--env-file',str(env),'--entrypoint',entry]
+    if user: cmd+=['--user',user]
     for m in info['Mounts']:
         src=m['Source'];dst=m['Destination']
         if src in ['/var/run/docker.sock','/dev/shm']: continue
@@ -58,7 +59,7 @@ fs.writeFileSync(p,JSON.stringify(c,null,2)+'\\n');console.log('POLICY_AND_DATAB
             maintenance(['/app/openclaw.mjs','plugins','enable',p['id'],'--accept-capabilities'],'enable-'+p['id']+'.log')
         else: raise RuntimeError('Unreviewed external plugin '+p['id'])
         print(name+' PLUGIN '+p['id'],flush=True)
-    maintenance(['/tmp/archive-empty-workshop-backups.mjs','/home/node/.openclaw'],'workshop.log')
+    maintenance(['/tmp/archive-empty-workshop-backups.mjs','/home/node/.openclaw'],'workshop.log',user='root')
     maintenance(['/app/openclaw.mjs','config','validate'],'validate.log')
     raw=maintenance(['/app/openclaw.mjs','doctor','--post-upgrade','--json'],'post-upgrade.json')
     j=json.loads(raw[raw.index('{'):]); assert not j['findings'], 'Post-upgrade findings'
