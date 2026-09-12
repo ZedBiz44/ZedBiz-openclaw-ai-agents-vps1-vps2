@@ -75,7 +75,8 @@ f=base+'/docker-compose.yml';s=fs.readFileSync(f,'utf8');s=s.replace(/^(\\s*imag
         'test ! -e /host'+str(b)+'/original; test -d /host'+str(root)+'; test -d /host'+str(stage)+'; mv /host'+str(root)+' /host'+str(b)+'/original; mv /host'+str(stage)+' /host'+str(root)],'promote.log')
     promoted=True
     run([str(root/('op-start-'+name+'.sh')),'up'],'start.log')
-    for _ in range(60):
+    interval=info['Config'].get('Healthcheck',{}).get('Interval',30000000000)/1000000000
+    for _ in range(max(60,int(interval/3)+40)):
         state=json.loads(run(['docker','inspect',name]))[0]['State']
         if state.get('Health',{}).get('Status')=='healthy':break
         time.sleep(3)
