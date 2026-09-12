@@ -63,6 +63,8 @@ fs.writeFileSync(p,JSON.stringify(c,null,2)+'\\n');console.log('POLICY_AND_DATAB
     maintenance(['/app/openclaw.mjs','config','validate'],'validate.log')
     raw=maintenance(['/app/openclaw.mjs','doctor','--post-upgrade','--json'],'post-upgrade.json')
     j=json.loads(raw[raw.index('{'):]); assert not j['findings'], 'Post-upgrade findings'
+    if name=='victor':
+        run(['docker','run','--rm','-v',str(base/'Dockerfile.victor')+':/source:ro','-v',str(stage)+':/stage','alpine','sh','-ec','cat /source > /stage/Dockerfile.victor'],'victor-build-source.log')
     # Update only the selected image reference in the staged compose/env files.
     edit="""const fs=require('fs');const base='/stage';const image=process.argv[1];
 let f=base+'/.env';let s=fs.readFileSync(f,'utf8');if(!/^OPENCLAW_IMAGE=/m.test(s))throw Error('Image variable absent');s=s.replace(/^OPENCLAW_IMAGE=.*$/m,'OPENCLAW_IMAGE='+image);fs.writeFileSync(f,s);
