@@ -7,13 +7,18 @@ key='agent:main:notion-search-acceptance-'+n+'-20260912'
 searches=[]; pages=[]; failures=[]
 
 def decoded_objects(value, depth=0):
-    if depth>12:return
+    if depth>24:return
     if isinstance(value,dict):
         yield value
         for child in value.values():yield from decoded_objects(child,depth+1)
     elif isinstance(value,list):
         for child in value:yield from decoded_objects(child,depth+1)
     elif isinstance(value,str):
+        # Some container tool receipts retain escaped enhanced Markdown instead of
+        # an outer page metadata object. Read only its first root page tag.
+        normalized=re.sub(r'\\+(?=")','',value)
+        tag=re.search(r'<page url="([^"]+)"',normalized)
+        if tag:yield {'metadata':{'type':'page'},'url':tag.group(1),'proofSource':'enhanced-markdown-page-tag'}
         try: child=json.loads(value)
         except (ValueError,TypeError):return
         if isinstance(child,(dict,list)):yield from decoded_objects(child,depth+1)
@@ -31,7 +36,7 @@ with sqlite3.connect('file:'+str(pathlib.Path(path))+'?mode=ro',uri=True) as db:
             if isinstance(obj.get('results'),list) and obj.get('type') in {'ai_search','workspace_search'}:
                 receipt={'tool':tool,'type':obj['type'],'count':len(obj['results']),'ids':[v.get('id') for v in obj['results']]}
                 if receipt not in searches:searches.append(receipt)
-            if obj.get('metadata',{}).get('type')=='page' and isinstance(obj.get('url'),str):
+            if tool.endswith('.fetch') and isinstance(obj.get('metadata'),dict) and obj['metadata'].get('type')=='page' and isinstance(obj.get('url'),str):
                 if obj['url'] not in pages:pages.append(obj['url'])
 ids={i.replace('-','').lower() for s in searches for i in s['ids'] if isinstance(i,str)}
 opened=[p for p in pages if any(i in p.replace('-','').lower() for i in ids)]
