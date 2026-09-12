@@ -13,7 +13,7 @@ const slot=a.plugins?.slots?.memory;
 console.log(JSON.stringify({files,modelsUnchanged:equal(a.agents?.defaults?.model,b.agents?.defaults?.model),memorySlotUnchanged:slot===b.plugins?.slots?.memory,memoryConfigUnchanged:equal(a.plugins?.entries?.[slot]?.config,b.plugins?.entries?.[slot]?.config),sessionVisibilityPreserved:(a.tools?.sessions?.visibility??'tree')===b.tools?.sessions?.visibility,swarm:b.tools?.swarm,agentToAgent:b.tools?.agentToAgent,maxSpawnDepth:b.agents?.defaults?.subagents?.maxSpawnDepth}));"""
  raw=subprocess.check_output(['docker','run','--rm','--user','root','--network','none','--entrypoint','node','-v',str(base/n/'original')+':/before:ro','-v','/opt/openclaw/agents/'+n+':/after:ro',info['Config']['Image'],'-e',code],text=True)
  data=json.loads(raw);data.update(name=n,image=info['Config']['Image'],health=info['State'].get('Health',{}).get('Status'),restarts=info['RestartCount'])
- post=json.load(open(base/n/'live-post-upgrade.json'));data['postUpgradeFindings']=post['findings']
+ raw=(base/n/'live-post-upgrade.json').read_text();post=json.JSONDecoder().raw_decode(raw[raw.index('{'):])[0];data['postUpgradeFindings']=post['findings']
  data['backupSha256']=(base/n/'backup.sha256').read_text().strip()
  (base/n/'final-audit.json').write_text(json.dumps(data,indent=2)+'\n')
  print(json.dumps(data),flush=True)
