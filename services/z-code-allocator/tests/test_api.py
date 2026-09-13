@@ -131,6 +131,96 @@ def test_topic_reassignment_changes_all_codes_and_preserves_aliases(tmp_path: Pa
         assert all("-70001-" in item["new_z_code"] for item in mappings)
 
 
+def test_reassignment_permanently_retires_topic_identifier_and_complete_codes(tmp_path: Path) -> None:
+    with build_client(tmp_path) as client:
+        first = client.post(
+            "/v1/allocate",
+            json=allocation("retire-topic-0001", "SOP", "First-Topic"),
+            headers=auth(),
+        ).json()
+        moved = client.post(
+            "/v1/allocate",
+            json=allocation("retire-topic-0002", "SOP", "Moved-Topic"),
+            headers=auth(),
+        ).json()
+        assert first["topic_identifier"] == "100001"
+        assert moved["topic_identifier"] == "100002"
+
+        reassigned = client.post(
+            "/v1/admin/reassign-topic",
+            json={
+                "name_key": "Moved-Topic",
+                "new_z_knowledge_core": "Z1ST",
+                "new_knowledge_lane": "70001",
+                "reason": "Corrected topic classification",
+            },
+            headers=auth("edith"),
+        )
+        assert reassigned.status_code == 200, reassigned.text
+
+        replacement = client.post(
+            "/v1/allocate",
+            json=allocation("retire-topic-0003", "SOP", "Replacement-Topic"),
+            headers=auth(),
+        )
+        assert replacement.status_code == 200, replacement.text
+        assert replacement.json()["topic_identifier"] == "100003"
+        assert replacement.json()["z_code"] != moved["z_code"]
+
+        app_database = client.app.state.database
+        with app_database.connect() as connection:
+            assert connection.execute(
+                "SELECT 1 FROM issued_topic_identifiers WHERE z_knowledge_core = 'Z1ST' AND knowledge_lane = '80001' AND topic_identifier = 100002"
+            ).fetchone()
+            assert connection.execute(
+                "SELECT 1 FROM issued_z_codes WHERE z_code = ?", (moved["z_code"],)
+            ).fetchone()
+            assert connection.execute(
+                "SELECT new_z_code FROM z_code_aliases WHERE old_z_code = ?", (moved["z_code"],)
+            ).fetchone()
+
+
+def test_topic_name_key_is_renamed_once_and_old_name_remains_an_alias(tmp_path: Path) -> None:
+    with build_client(tmp_path) as client:
+        original = client.post(
+            "/v1/allocate",
+            json=allocation("rename-topic-0001", "SOP", "Original-Name"),
+            headers=auth(),
+        ).json()
+
+        renamed = client.post(
+            "/v1/admin/rename-topic",
+            json={
+                "name_key": "Original-Name",
+                "new_name_key": "Improved-Name",
+                "reason": "Corrected the approved topic wording",
+            },
+            headers=auth("edith"),
+        )
+        assert renamed.status_code == 200, renamed.text
+        assert renamed.json()["old_name_key"] == "Original-Name"
+        assert renamed.json()["new_name_key"] == "Improved-Name"
+
+        current_lookup = client.get(
+            "/v1/lookup", params={"name_key": "Improved-Name"}, headers=auth()
+        )
+        alias_lookup = client.get(
+            "/v1/lookup", params={"name_key": "Original-Name"}, headers=auth()
+        )
+        assert current_lookup.status_code == alias_lookup.status_code == 200
+        assert current_lookup.json()["name_key"] == alias_lookup.json()["name_key"] == "Improved-Name"
+        assert alias_lookup.json()["records"][0]["z_code"] == original["z_code"]
+
+        related = client.post(
+            "/v1/allocate",
+            json=allocation("rename-topic-0002", "Reference", "Original-Name"),
+            headers=auth(),
+        )
+        assert related.status_code == 200, related.text
+        assert related.json()["name_key"] == "Improved-Name"
+        assert related.json()["topic_identifier"] == original["topic_identifier"]
+
+
 def test_authentication_and_agent_identity_are_enforced(tmp_path: Path) -> None:
     with build_client(tmp_path) as client:
         assert client.post("/v1/allocate", json=allocation("request-4001")).status_code == 401
@@ -186,3 +276,4 @@ def test_bootstrap_lock_and_existing_code_import(tmp_path: Path) -> None:
         )
         assert new_topic.status_code == 200, new_topic.text
         assert new_topic.json()["topic_identifier"] == "100043"
+

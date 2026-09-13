@@ -46,6 +46,14 @@ CREATE TABLE IF NOT EXISTS topics (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS uq_topics_name_key ON topics(lower(name_key));
 
+CREATE TABLE IF NOT EXISTS name_key_aliases (
+    old_name_key TEXT PRIMARY KEY COLLATE NOCASE,
+    topic_pk INTEGER NOT NULL REFERENCES topics(id),
+    reason TEXT NOT NULL,
+    changed_by TEXT NOT NULL,
+    changed_at TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS page_type_ranges (
     range_key TEXT PRIMARY KEY,
     minimum_suffix INTEGER NOT NULL,
@@ -124,6 +132,21 @@ CREATE TABLE IF NOT EXISTS z_code_aliases (
     changed_by TEXT NOT NULL,
     changed_at TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS issued_topic_identifiers (
+    z_knowledge_core TEXT NOT NULL,
+    knowledge_lane TEXT NOT NULL,
+    topic_identifier INTEGER NOT NULL CHECK(topic_identifier BETWEEN 100000 AND 999999),
+    first_issued_at TEXT NOT NULL,
+    source TEXT NOT NULL,
+    PRIMARY KEY(z_knowledge_core, knowledge_lane, topic_identifier)
+);
+
+CREATE TABLE IF NOT EXISTS issued_z_codes (
+    z_code TEXT PRIMARY KEY,
+    first_issued_at TEXT NOT NULL,
+    source TEXT NOT NULL
+);
 """
 
 
@@ -148,6 +171,84 @@ class Database:
                 "INSERT OR IGNORE INTO page_type_ranges(range_key, minimum_suffix, maximum_suffix) VALUES (?, ?, ?)",
                 [("brief", 10, 19), ("biz-plan", 20, 49), ("other", 50, 999)],
             )
+            self._backfill_issued_history(connection)
+
+    @staticmethod
+    def parse_z_code(z_code: str) -> tuple[str, str, int, int]:
+        core, lane, topic_text, suffix_text = z_code.split("-")
+        return core, lane, int(topic_text), int(suffix_text)
+
+    def _backfill_issued_history(self, connection: sqlite3.Connection) -> None:
+        now = utc_now()
+        connection.execute(
+            """
+            INSERT OR IGNORE INTO issued_topic_identifiers(
+                z_knowledge_core, knowledge_lane, topic_identifier, first_issued_at, source
+            )
+            SELECT z_knowledge_core, knowledge_lane, topic_identifier, created_at, 'topic'
+            FROM topics
+            """
+        )
+        historical_codes: set[str] = set()
+        for row in connection.execute("SELECT z_code, previous_z_code FROM records"):
+            historical_codes.add(row["z_code"])
+            if row["previous_z_code"]:
+                historical_codes.add(row["previous_z_code"])
+        for row in connection.execute("SELECT old_z_code, new_z_code FROM z_code_aliases"):
+            historical_codes.add(row["old_z_code"])
+            historical_codes.add(row["new_z_code"])
+        for z_code in historical_codes:
+            try:
+                core, lane, topic_identifier, _ = self.parse_z_code(z_code)
+            except (TypeError, ValueError):
+                continue
+            connection.execute(
+                "INSERT OR IGNORE INTO issued_topic_identifiers VALUES (?, ?, ?, ?, 'history-backfill')",
+                (core, lane, topic_identifier, now),
+            )
+            connection.execute(
+                "INSERT OR IGNORE INTO issued_z_codes VALUES (?, ?, 'history-backfill')",
+                (z_code, now),
+            )
+
+    @staticmethod
+    def next_topic_identifier(connection: sqlite3.Connection, core: str, lane: str) -> int:
+        highest = connection.execute(
+            "SELECT MAX(topic_identifier) AS highest FROM issued_topic_identifiers WHERE z_knowledge_core = ? AND knowledge_lane = ?",
+            (core, lane),
+        ).fetchone()["highest"]
+        topic_identifier = 100001 if highest is None else int(highest) + 1
+        if topic_identifier > 999999:
+            raise InvalidState("Topic Identifier range is exhausted for this Knowledge Lane")
+        return topic_identifier
+
+    @staticmethod
+    def reserve_topic_identifier(
+        connection: sqlite3.Connection,
+        core: str,
+        lane: str,
+        topic_identifier: int,
+        source: str,
+    ) -> None:
+        try:
+            connection.execute(
+                "INSERT INTO issued_topic_identifiers VALUES (?, ?, ?, ?, ?)",
+                (core, lane, topic_identifier, utc_now(), source),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise AllocationConflict(
+                f"Topic Identifier {topic_identifier:06d} is permanently reserved in {core}-{lane}"
+            ) from exc
+
+    @staticmethod
+    def reserve_z_code(connection: sqlite3.Connection, z_code: str, source: str) -> None:
+        try:
+            connection.execute(
+                "INSERT INTO issued_z_codes VALUES (?, ?, ?)",
+                (z_code, utc_now(), source),
+            )
+        except sqlite3.IntegrityError as exc:
+            raise AllocationConflict(f"Z-Code {z_code} was previously issued and cannot be reused") from exc
 
     @contextmanager
     def write_transaction(self) -> Iterator[sqlite3.Connection]:
@@ -169,6 +270,22 @@ class Database:
     @staticmethod
     def format_z_code(core: str, lane: str, topic_identifier: int, suffix: int) -> str:
         return f"{core}-{lane}-{topic_identifier:06d}-{suffix:03d}"
+
+    @staticmethod
+    def find_topic(connection: sqlite3.Connection, name_key: str) -> sqlite3.Row | None:
+        topic = connection.execute(
+            "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (name_key,)
+        ).fetchone()
+        if topic:
+            return topic
+        return connection.execute(
+            """
+            SELECT t.* FROM name_key_aliases a
+            JOIN topics t ON t.id = a.topic_pk
+            WHERE lower(a.old_name_key) = lower(?)
+            """,
+            (name_key,),
+        ).fetchone()
 
     @staticmethod
     def add_audit(
@@ -232,7 +349,9 @@ class Database:
             ).fetchone()
             if existing:
                 response = self._record_response(connection, existing, replayed=True)
-                requested_shape = (name_key.lower(), core, lane, normalize_page_type(page_type))
+                requested_topic = self.find_topic(connection, name_key)
+                requested_name_key = requested_topic["name_key"] if requested_topic else name_key
+                requested_shape = (requested_name_key.lower(), core, lane, normalize_page_type(page_type))
                 existing_shape = (
                     response["name_key"].lower(),
                     response["z_knowledge_core"],
@@ -249,9 +368,7 @@ class Database:
             if review:
                 raise AllocationConflict(review["reason"], review["queue_id"])
 
-            matching_topic = connection.execute(
-                "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (name_key,)
-            ).fetchone()
+            matching_topic = self.find_topic(connection, name_key)
             new_topic = False
             if matching_topic and (
                 matching_topic["z_knowledge_core"] != core or matching_topic["knowledge_lane"] != lane
@@ -270,14 +387,9 @@ class Database:
             if matching_topic:
                 topic = matching_topic
             else:
-                highest = connection.execute(
-                    "SELECT MAX(topic_identifier) AS highest FROM topics WHERE z_knowledge_core = ? AND knowledge_lane = ?",
-                    (core, lane),
-                ).fetchone()["highest"]
-                topic_identifier = 100001 if highest is None else int(highest) + 1
-                if topic_identifier > 999999:
-                    raise InvalidState("Topic Identifier range is exhausted for this Knowledge Lane")
+                topic_identifier = self.next_topic_identifier(connection, core, lane)
                 now = utc_now()
+                self.reserve_topic_identifier(connection, core, lane, topic_identifier, "allocation")
                 cursor = connection.execute(
                     "INSERT INTO topics(topic_identifier, name_key, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
                     (topic_identifier, name_key, core, lane, now, now),
@@ -306,6 +418,7 @@ class Database:
             now = now_dt.isoformat().replace("+00:00", "Z")
             expires_at = (now_dt + timedelta(minutes=self.reservation_ttl_minutes)).isoformat().replace("+00:00", "Z")
             z_code = self.format_z_code(core, lane, topic["topic_identifier"], suffix)
+            self.reserve_z_code(connection, z_code, "allocation")
             cursor = connection.execute(
                 """INSERT INTO records(
                     z_code, topic_pk, page_type, record_suffix, request_id, reserved_by,
@@ -413,9 +526,7 @@ class Database:
 
     def lookup(self, name_key: str) -> dict[str, Any]:
         with self.connect() as connection:
-            topic = connection.execute(
-                "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (name_key,)
-            ).fetchone()
+            topic = self.find_topic(connection, name_key)
             if not topic:
                 raise NotFound("Name-Key was not found")
             records = connection.execute(
@@ -478,27 +589,34 @@ class Database:
         new_core = payload["new_z_knowledge_core"].upper()
         new_lane = payload["new_knowledge_lane"]
         with self.write_transaction() as connection:
-            topic = connection.execute(
-                "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (name_key,)
-            ).fetchone()
+            topic = self.find_topic(connection, name_key)
             if not topic:
                 raise NotFound("Name-Key was not found")
             if topic["z_knowledge_core"] == new_core and topic["knowledge_lane"] == new_lane:
                 raise InvalidState("Topic is already assigned to that Z-Knowledge-Core and Knowledge Lane")
-            highest = connection.execute(
-                "SELECT MAX(topic_identifier) AS highest FROM topics WHERE z_knowledge_core = ? AND knowledge_lane = ? AND id != ?",
-                (new_core, new_lane, topic["id"]),
-            ).fetchone()["highest"]
-            new_identifier = 100001 if highest is None else int(highest) + 1
+            new_identifier = self.next_topic_identifier(connection, new_core, new_lane)
             records = connection.execute("SELECT * FROM records WHERE topic_pk = ? ORDER BY record_suffix", (topic["id"],)).fetchall()
             mappings: list[dict[str, str]] = []
             for record in records:
                 new_code = self.format_z_code(new_core, new_lane, new_identifier, record["record_suffix"])
-                collision = connection.execute("SELECT 1 FROM records WHERE z_code = ?", (new_code,)).fetchone()
+                collision = connection.execute(
+                    """
+                    SELECT 1 FROM records WHERE z_code = ?
+                    UNION ALL
+                    SELECT 1 FROM z_code_aliases WHERE old_z_code = ? OR new_z_code = ?
+                    UNION ALL
+                    SELECT 1 FROM issued_z_codes WHERE z_code = ?
+                    LIMIT 1
+                    """,
+                    (new_code, new_code, new_code, new_code),
+                ).fetchone()
                 if collision:
-                    raise AllocationConflict(f"Reassignment would collide with existing Z-Code {new_code}")
+                    raise AllocationConflict(f"Reassignment would reuse existing or retired Z-Code {new_code}")
                 mappings.append({"old_z_code": record["z_code"], "new_z_code": new_code})
             now = utc_now()
+            self.reserve_topic_identifier(connection, new_core, new_lane, new_identifier, "topic-reassignment")
+            for mapping in mappings:
+                self.reserve_z_code(connection, mapping["new_z_code"], "topic-reassignment")
             connection.execute(
                 "UPDATE topics SET topic_identifier = ?, z_knowledge_core = ?, knowledge_lane = ?, version = version + 1, updated_at = ? WHERE id = ?",
                 (new_identifier, new_core, new_lane, now, topic["id"]),
@@ -526,6 +644,44 @@ class Database:
             self.add_audit(connection, "topic_reassigned", actor, event)
             return event
 
+    def rename_topic(self, payload: dict[str, Any], actor: str) -> dict[str, Any]:
+        requested_name_key = payload["name_key"].strip()
+        new_name_key = payload["new_name_key"].strip()
+        with self.write_transaction() as connection:
+            topic = self.find_topic(connection, requested_name_key)
+            if not topic:
+                raise NotFound("Name-Key was not found")
+            old_name_key = topic["name_key"]
+            if old_name_key.lower() == new_name_key.lower():
+                raise InvalidState("Topic already uses that Name-Key")
+            collision = self.find_topic(connection, new_name_key)
+            if collision and collision["id"] != topic["id"]:
+                raise AllocationConflict("The new Name-Key already identifies a different topic")
+            now = utc_now()
+            connection.execute(
+                "INSERT OR IGNORE INTO name_key_aliases(old_name_key, topic_pk, reason, changed_by, changed_at) VALUES (?, ?, ?, ?, ?)",
+                (old_name_key, topic["id"], payload["reason"], actor, now),
+            )
+            connection.execute(
+                "UPDATE topics SET name_key = ?, version = version + 1, updated_at = ? WHERE id = ?",
+                (new_name_key, now, topic["id"]),
+            )
+            records = connection.execute(
+                "SELECT z_code FROM records WHERE topic_pk = ? ORDER BY record_suffix", (topic["id"],)
+            ).fetchall()
+            event = {
+                "old_name_key": old_name_key,
+                "new_name_key": new_name_key,
+                "z_knowledge_core": topic["z_knowledge_core"],
+                "knowledge_lane": topic["knowledge_lane"],
+                "topic_identifier": f"{topic['topic_identifier']:06d}",
+                "z_codes": [row["z_code"] for row in records],
+                "reason": payload["reason"],
+            }
+            self.add_outbox(connection, "topic_renamed", new_name_key, event)
+            self.add_audit(connection, "topic_renamed", actor, event)
+            return event
+
     def list_outbox(self, limit: int = 100) -> list[dict[str, Any]]:
         with self.connect() as connection:
             rows = connection.execute(
@@ -538,7 +694,8 @@ class Database:
         with self.connect() as connection:
             row = connection.execute(
                 """
-                SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane, t.topic_identifier
+                SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane,
+                       t.topic_identifier, t.status AS topic_status
                 FROM records r
                 JOIN topics t ON t.id = r.topic_pk
                 WHERE r.z_code = ?
@@ -548,6 +705,11 @@ class Database:
             if not row:
                 return None
             result = dict(row)
+            aliases = connection.execute(
+                "SELECT old_name_key FROM name_key_aliases WHERE topic_pk = ? ORDER BY changed_at",
+                (row["topic_pk"],),
+            ).fetchall()
+            result["previous_name_keys"] = ", ".join(alias["old_name_key"] for alias in aliases)
             result["topic_identifier"] = f"{row['topic_identifier']:06d}"
             result["record_suffix"] = f"{row['record_suffix']:03d}"
             return result
@@ -660,9 +822,7 @@ class Database:
                 if z_code in seen_codes:
                     raise AllocationConflict(f"Duplicate Z-Code in bootstrap payload: {z_code}")
                 seen_codes.add(z_code)
-                core, lane, topic_text, suffix_text = z_code.split("-")
-                topic_identifier = int(topic_text)
-                suffix = int(suffix_text)
+                core, lane, topic_identifier, suffix = self.parse_z_code(z_code)
                 existing_code = connection.execute("SELECT * FROM records WHERE z_code = ?", (z_code,)).fetchone()
                 if existing_code:
                     topic = connection.execute("SELECT * FROM topics WHERE id = ?", (existing_code["topic_pk"],)).fetchone()
@@ -671,9 +831,7 @@ class Database:
                     skipped += 1
                     continue
 
-                topic = connection.execute(
-                    "SELECT * FROM topics WHERE lower(name_key) = lower(?)", (item["name_key"],)
-                ).fetchone()
+                topic = self.find_topic(connection, item["name_key"])
                 if topic and (
                     topic["z_knowledge_core"] != core
                     or topic["knowledge_lane"] != lane
@@ -685,6 +843,7 @@ class Database:
                 if not topic:
                     now = utc_now()
                     try:
+                        self.reserve_topic_identifier(connection, core, lane, topic_identifier, "bootstrap")
                         cursor = connection.execute(
                             "INSERT INTO topics(topic_identifier, name_key, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
                             (topic_identifier, item["name_key"], core, lane, now, now),
@@ -700,6 +859,7 @@ class Database:
                         f"Suffix collision: {z_code} conflicts with {suffix_collision['z_code']}"
                     )
                 now = utc_now()
+                self.reserve_z_code(connection, z_code, "bootstrap")
                 connection.execute(
                     """INSERT INTO records(
                         z_code, topic_pk, page_type, record_suffix, request_id, reserved_by, status,
@@ -723,3 +883,4 @@ class Database:
             event = {"imported": imported, "skipped": skipped, "submitted": len(records)}
             self.add_audit(connection, "bootstrap_import", actor, event)
             return event
+

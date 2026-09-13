@@ -15,7 +15,12 @@ def record_rows(database: Database) -> list[dict[str, Any]]:
     with database.connect() as connection:
         rows = connection.execute(
             """
-            SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane, t.topic_identifier
+            SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane,
+                   t.topic_identifier, t.status AS topic_status,
+                   COALESCE((
+                       SELECT GROUP_CONCAT(a.old_name_key, ', ')
+                       FROM name_key_aliases a WHERE a.topic_pk = t.id
+                   ), '') AS previous_name_keys
             FROM records r
             JOIN topics t ON t.id = r.topic_pk
             ORDER BY r.id
@@ -82,6 +87,7 @@ def backfill(
     limit: int | None = None,
     dry_run: bool = False,
     backup_path: str | None = None,
+    refresh_existing: bool = False,
 ) -> dict[str, Any]:
     authoritative = record_rows(database)
     authoritative_by_code = {record["z_code"]: record for record in authoritative}
@@ -96,7 +102,7 @@ def backfill(
         backup.write_text(json.dumps(before_pages, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
     existing = set(before["codes"])
-    candidates = [record for record in bootstrap if record["z_code"] not in existing]
+    candidates = authoritative if refresh_existing else [record for record in bootstrap if record["z_code"] not in existing]
     if z_code:
         candidates = [record for record in candidates if record["z_code"] == z_code]
         if z_code not in authoritative_by_code:
@@ -107,17 +113,19 @@ def backfill(
         candidates = candidates[:limit]
 
     created = 0
+    updated = 0
     if not dry_run:
         for record in candidates:
-            mirror.request(
-                "POST",
-                "/pages",
-                {
-                    "parent": {"database_id": mirror.database_id},
-                    "properties": mirror.properties(record, "bootstrap_backfill", source="Bootstrap"),
-                },
+            existed = record["z_code"] in existing
+            mirror.upsert(
+                record,
+                "registry_refresh" if existed else "bootstrap_backfill",
+                source="Allocator" if existed and not record["request_id"].startswith("bootstrap:") else "Bootstrap",
             )
-            created += 1
+            if existed:
+                updated += 1
+            else:
+                created += 1
 
     after_pages = registry_pages(mirror) if not dry_run else before_pages
     after = registry_summary(after_pages)
@@ -131,6 +139,7 @@ def backfill(
         "registry_before": before["rows"],
         "selected": len(candidates),
         "created": created,
+        "updated": updated,
         "registry_after": after["rows"],
         "source_counts": after["sources"],
         "duplicate_z_codes": after["duplicates"],
@@ -147,21 +156,24 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--backup-path")
     parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument("--refresh-existing", action="store_true")
     args = parser.parse_args()
 
     token = os.getenv("NOTION_API_TOKEN", "").strip()
     database_id = os.getenv("NOTION_ZCODE_DATABASE_ID", "").strip()
+    topic_database_id = os.getenv("NOTION_ZCODE_TOPIC_DATABASE_ID", "").strip()
     if not token or not database_id:
         raise RuntimeError("NOTION_API_TOKEN and NOTION_ZCODE_DATABASE_ID are required")
     database = Database(os.getenv("ZCODE_DATABASE_PATH", "/data/zcode.db"))
     database.initialize()
     result = backfill(
         database,
-        NotionMirror(token, database_id),
+        NotionMirror(token, database_id, topic_database_id or None),
         z_code=args.z_code,
         limit=args.limit,
         dry_run=args.dry_run,
         backup_path=args.backup_path,
+        refresh_existing=args.refresh_existing,
     )
     print(json.dumps(result, sort_keys=True))
     if result["duplicate_z_codes"] or result["extra_registry"]:
@@ -172,3 +184,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

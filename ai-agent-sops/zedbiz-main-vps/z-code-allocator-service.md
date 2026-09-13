@@ -1,6 +1,6 @@
 # Z-Code Allocator Service SOP
 
-Date: 2026-08-27 | Author: Cody | Status: Active
+Date: 2026-09-13 | Author: Cody | Status: Active
 
 ## Purpose
 
@@ -20,11 +20,13 @@ The human-and-agent allocation workflow, copy-ready prompts, imported-content ru
 - Agents must call the allocator before creating a final Z-Knowledge database record.
 - Agents must not calculate or increment codes themselves.
 - Use the same `request_id` when retrying an allocation.
-- A returned Z-Code is permanently consumed, including stale and abandoned reservations.
+- Every issued Topic Identifier and complete Z-Code is permanently reserved, including stale, abandoned, reassigned, withdrawn, and deleted records.
+- Retired Z-Codes remain historical aliases when a replacement exists. They never identify another record.
 - Confirm the code only after the Notion page exists.
 - Report a failed page creation so the reservation becomes `abandoned`.
 - Core/lane conflicts enter Edith's review queue.
 - Edith is the only initial admin for review resolution and topic reassignment.
+- Topic Name-Keys are changed once through the controlled administrator rename route. Former Name-Keys remain aliases.
 
 ## Pilot Endpoint
 
@@ -61,6 +63,10 @@ docker logs --tail 100 z-code-allocator
 - Stale or failed reservations are never reused.
 - A conflicting Name-Key returns `requires_review` and a queue ID.
 - Topic reassignment changes all related complete Z-Codes and preserves aliases.
+- Moving the highest-numbered topic out of a lane does not make its former Topic Identifier available again.
+- New complete Z-Codes are rejected if they appear in active records, aliases, or permanent issuance history.
+- The Z-Code Registry contains the actual Notion Record Title and a relation to the matching Topic Registry row.
+- The Topic Registry contains one row per Knowledge Core, Knowledge Lane, and Topic Identifier.
 - Notion outbox failures do not stop allocations.
 - Before first allocation, all existing Notion Z-Codes are imported through the admin bootstrap endpoint and the service remains locked with `ZCODE_ALLOCATION_ENABLED=false`.
 
@@ -88,6 +94,7 @@ Use SQLite's online backup method or stop the container briefly before copying t
 - If Notion mirroring fails, leave the outbox event pending or retry; do not roll back the allocation.
 - If a reservation expires, mark it stale and alert Edith. Do not reuse it.
 - If the Z-Knowledge-Core was wrong, Edith reassigns the complete topic through the admin endpoint.
+- If a Name-Key needs correction, Edith uses the controlled topic rename endpoint. Do not edit repeated Registry text or the allocator database manually.
 
 ## Rollback
 
@@ -95,3 +102,4 @@ Use SQLite's online backup method or stop the container briefly before copying t
 - Run `docker compose down` in the live directory.
 - Preserve `data/zcode.db` and the secret file for investigation.
 - Agents revert to draft-only record preparation; do not resume manual numbering without Jack's approval.
+

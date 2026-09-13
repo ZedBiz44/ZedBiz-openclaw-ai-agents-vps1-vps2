@@ -4,13 +4,19 @@ Date: 2026-07-21 | Author: Cody | Status: Production
 
 The service is the transactional source of truth for Z-Code allocation. Notion is a non-blocking human-readable mirror processed from the durable `sync_outbox` table.
 
-The `z-code-notion-mirror` companion container drains that outbox and upserts allocator records into the Notion `Z-Code-Registry`. If Notion is unavailable, events remain in SQLite and retry later; allocation continues normally.
+The `z-code-notion-mirror` companion container drains that outbox and maintains two Notion mirrors:
+
+- `Z-Code-Registry` contains one row per complete Z-Code, the matching Record Title and Notion URL, and a relation to its topic.
+- `Z-Code-Topic-Registry` contains one row per Knowledge Core, Knowledge Lane, and Topic Identifier. Name-Key and Topic-Name live there once instead of being copied into every record row.
+
+If Notion is unavailable, events remain in SQLite and retry later; allocation continues normally.
 
 Historical records imported before the mirror was enabled can be idempotently backfilled from authoritative SQLite. Test one record first, then require a complete reconciliation:
 
 ```bash
 docker exec z-code-notion-mirror python -m app.backfill_registry --limit 1
 docker exec z-code-notion-mirror python -m app.backfill_registry --require-complete
+docker exec z-code-notion-mirror python -m app.backfill_registry --refresh-existing --require-complete
 ```
 
 Backfilled historical rows are labelled `Source = Bootstrap`; normal live events remain `Source = Allocator`.
@@ -31,11 +37,15 @@ pytest -q
 
 - Every allocation runs inside `BEGIN IMMEDIATE` and the insert occurs in the same transaction.
 - `request_id` makes retries idempotent.
-- Returned Z-Codes are never reused, including stale and abandoned reservations.
+- Every issued Topic Identifier and complete Z-Code is permanently reserved in durable history tables.
+- Returned Z-Codes are never reused, including stale, abandoned, reassigned, withdrawn, or deleted records.
+- A reassigned Z-Code remains a historical alias that resolves to its current replacement.
 - Integer suffixes are formatted with leading zeros only when the complete Z-Code is assembled.
 - Brief uses `010-019`, Biz-Plan uses `020-049`, and other Page Types use `050-999`.
 - Name-Key conflicts across cores or lanes enter Edith's review queue.
 - Topic reassignment changes every related Z-Code and records the previous code as an alias.
+- An administrator can rename a topic once; the previous Name-Key remains an alias to the same topic.
+- The Notion mirror reads the actual page title into `Record-Title` and connects each record to its single Topic Registry row.
 - Notion failures never block allocation; mirror events remain in `sync_outbox` until completed.
 
 ## Authentication
@@ -66,8 +76,10 @@ Raw editing requires a live SQLite backup, stopped allocator and mirror containe
 - `GET /v1/lookup?name_key=...`
 - `GET /v1/admin/queue`
 - `POST /v1/admin/reassign-topic`
+- `POST /v1/admin/rename-topic`
 - `POST /v1/admin/stale/sweep`
 - `GET /v1/admin/outbox`
 - `GET /v1/admin/metrics`
 - `POST /v1/admin/bootstrap`
 - `GET /health`
+
