@@ -43,6 +43,12 @@ class ReassignTopicRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class RenameTopicRequest(BaseModel):
+    name_key: str = Field(pattern=NAME_KEY_PATTERN)
+    new_name_key: str = Field(pattern=NAME_KEY_PATTERN)
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 class ResolveReviewRequest(BaseModel):
     resolution: Literal["dismissed", "retry_allowed"]
     notes: str = Field(min_length=3, max_length=1000)
@@ -61,3 +67,4 @@ class BootstrapRecord(BaseModel):
 
 class BootstrapRequest(BaseModel):
     records: list[BootstrapRecord] = Field(min_length=1, max_length=10000)
+
