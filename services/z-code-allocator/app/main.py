@@ -14,6 +14,7 @@ from .models import (
     ConfirmRequest,
     OutboxResultRequest,
     ReassignTopicRequest,
+    RenameTopicRequest,
     ResolveReviewRequest,
 )
 
@@ -46,7 +47,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 except asyncio.CancelledError:
                     pass
 
-    app = FastAPI(title="ZedBiz Z-Code Allocator", version="1.0.0", lifespan=lifespan)
+    app = FastAPI(title="ZedBiz Z-Code Allocator", version="1.2.0", lifespan=lifespan)
     app.state.settings = settings
     app.state.database = database
 
@@ -150,6 +151,15 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         except Exception as exc:
             raise translate_error(exc) from exc
 
+    @app.post("/v1/admin/rename-topic")
+    def rename_topic(
+        request: RenameTopicRequest, actor: str = Depends(require_admin)
+    ) -> dict[str, object]:
+        try:
+            return database.rename_topic(request.model_dump(mode="json"), actor)
+        except Exception as exc:
+            raise translate_error(exc) from exc
+
     @app.post("/v1/admin/stale/sweep")
     def sweep_stale(actor: str = Depends(require_admin)) -> dict[str, object]:
         changed = database.sweep_stale(actor)
@@ -197,3 +207,4 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
 def create_default_app() -> FastAPI:
     return create_app()
+
