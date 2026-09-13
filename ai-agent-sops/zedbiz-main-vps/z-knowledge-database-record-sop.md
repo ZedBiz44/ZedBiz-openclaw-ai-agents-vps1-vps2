@@ -177,4 +177,4 @@ The work is complete only when:
 - [Z-Code Allocator Service](https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/tree/main/services/z-code-allocator)
 - [Z-Code Allocation SOP in Notion](https://app.notion.com/p/3a3a3e33d58180f7bf5ed69f0a398b84)
 - [Z-Code Registry in Notion](https://app.notion.com/p/89267d1e18f84f669269c900dc730b08)
-
+- [Z-Code Topic Registry in Notion](https://app.notion.com/p/7982f190a1ea4d73a2c65f7983f4a3a2)
