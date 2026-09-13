@@ -64,7 +64,7 @@ docker logs --tail 100 z-code-allocator
 - A conflicting Name-Key returns `requires_review` and a queue ID.
 - Topic reassignment changes all related complete Z-Codes and preserves aliases.
 - Moving the highest-numbered topic out of a lane does not make its former Topic Identifier available again.
-- New complete Z-Codes are rejected if they appear in active records, aliases, or permanent issue history.
+- New complete Z-Codes are rejected if they appear in active records, aliases, or permanent issuance history.
 - The Z-Code Registry contains the actual Notion Record Title and a relation to the matching Topic Registry row.
 - The Topic Registry contains one row per Knowledge Core, Knowledge Lane, and Topic Identifier.
 - Notion outbox failures do not stop allocations.
