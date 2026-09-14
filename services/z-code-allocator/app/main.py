@@ -47,7 +47,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 except asyncio.CancelledError:
                     pass
 
-    app = FastAPI(title="ZedBiz Z-Code Allocator", version="1.2.0", lifespan=lifespan)
+    app = FastAPI(title="ZedBiz Z-Code Allocator", version="1.3.0", lifespan=lifespan)
     app.state.settings = settings
     app.state.database = database
 
@@ -207,4 +207,5 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
 def create_default_app() -> FastAPI:
     return create_app()
+
 
