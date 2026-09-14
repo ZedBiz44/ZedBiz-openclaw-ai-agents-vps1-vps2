@@ -1,6 +1,6 @@
 # Z-Knowledge And Z-Code Version 1.3 Rollout
 
-Date: 2026-09-14 | Agent: Cody | Status: In Progress
+Date: 2026-09-14 | Agent: Cody | Status: Resolved
 
 ## Production Service
 
@@ -12,7 +12,7 @@ Date: 2026-09-14 | Agent: Cody | Status: In Progress
 - Added `topic_name` and `record_title` columns.
 - Imported 155 Topic Names and 455 existing Record Titles from the verified Notion registries.
 - Two Record Titles remain blank: one abandoned reservation has no Notion page and one active historical test record points to a page that is not found.
-- Missing linked pages now use the allocator's last known Record Title so one deleted page cannot stop registry reconciliation.
+- Missing linked pages use the allocator's last known Record Title so one deleted page cannot stop registry reconciliation.
 - Automated tests: 19 passed.
 
 ## Skill Releases
@@ -34,13 +34,18 @@ Date: 2026-09-14 | Agent: Cody | Status: In Progress
 - Replaced Victor's unsafe automatic-publication rule with scope-aware skill routing.
 - VPS2 services, Ruby maintenance restart, and Rocky gateway restart completed successfully.
 
-## Open Credential Issue
+## Notion Connection Resolution
 
-- `z-code-notion-mirror` receives Notion HTTP 401.
-- All checked VPS1 `NOTION_API_TOKEN` and `NOTION_API_KEY` values return 401.
-- The available local 1Password service account sees only `special-agents`, which contains no Notion credential.
-- The version 1.3 circuit breaker safely pauses all 68 queued events after an authentication failure.
-- Complete repair requires an authorized new or renewed Notion integration credential with access to both registries. Track this in issue 321.
+- Reused the existing `Hermes-Notion-API` connection; it already had access to both registries.
+- Replaced the rejected VPS1 connection key without displaying or committing it.
+- PR 358 removed the obsolete `Registry-Entry` write and matched the live `Z-Code` field.
+- All 68 waiting changes completed; the final waiting count is zero.
+- Complete read-only reconciliation passed:
+  - 457 SQLite records and 457 Notion registry rows.
+  - 155 topics with 155 Topic Names, 155 Name-Keys, and 155 unique Topic Keys.
+  - All 457 registry records have a Topic relation.
+  - No duplicate, missing, or extra Z-Codes.
+- GitHub issue 321 is closed as completed.
 
 ## Rollback
 
