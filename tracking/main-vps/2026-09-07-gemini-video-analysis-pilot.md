@@ -98,3 +98,8 @@ The tracked Terry rollback script is `scripts/rollback-gemini-video-terry.sh`. H
 
 - GitHub issue: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/286
 - Notion SOP: https://app.notion.com/p/3d4a3e33d581817695a9cbea1aa655c5
+
+## Later correction — 2026-09-14
+
+The original install scripts used `--approval auto`. On OpenClaw 2026.9.4 that setting broke interactive Notion writes. The scripts now omit that flag. Keep the video MCP. See `tracking/main-vps/2026-09-14-notion-mcp-write-auto-flag-fix.md` and issue #350.
+\n
