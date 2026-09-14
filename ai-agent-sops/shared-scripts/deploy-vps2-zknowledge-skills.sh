@@ -84,7 +84,7 @@ for agent in $agents; do
   fi
 
   test -f "$agents_file"
-  if grep -Fq "$legacy_gate" "$agents_file"; then
+  if grep -Fq -- "$legacy_gate" "$agents_file"; then
     temp_file="$base/workspace/.AGENTS.md.zk-gate.tmp"
     awk -v old="$legacy_gate" -v new="$gate" 'index($0, old) { print new; next } { print }' "$agents_file" > "$temp_file"
     mv "$temp_file" "$agents_file"
