@@ -197,7 +197,13 @@ class NotionMirror:
         if not page_id and old_z_code:
             page_id = self.find_page(old_z_code)
         topic_page_id = self.ensure_topic(record, source)
-        record_title = self.record_title(record.get("notion_url")) if self.topic_database_id else ""
+        record_title = record.get("record_title", "")
+        if self.topic_database_id:
+            try:
+                record_title = self.record_title(record.get("notion_url")) or record_title
+            except RuntimeError as exc:
+                if "Notion API 404" not in str(exc):
+                    raise
         properties = self.properties(
             record,
             event_type,
@@ -217,7 +223,9 @@ def process_event(database: Database, mirror: NotionMirror, item: dict[str, Any]
         for mapping in item["payload"].get("mappings", []):
             record = database.record_details(mapping["new_z_code"])
             if record:
-                mirror.upsert(record, item["event_type"], old_z_code=mapping["old_z_code"])
+                title = mirror.upsert(record, item["event_type"], old_z_code=mapping["old_z_code"])
+                if title:
+                    database.update_record_title_from_mirror(record["z_code"], title)
         return
     if item["event_type"] in {"topic_renamed", "topic_name_updated"}:
         for z_code in item["payload"].get("z_codes", []):

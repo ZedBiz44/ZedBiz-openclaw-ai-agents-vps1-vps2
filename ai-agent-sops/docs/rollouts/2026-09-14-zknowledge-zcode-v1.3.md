@@ -12,7 +12,8 @@ Date: 2026-09-14 | Agent: Cody | Status: In Progress
 - Added `topic_name` and `record_title` columns.
 - Imported 155 Topic Names and 455 existing Record Titles from the verified Notion registries.
 - Two Record Titles remain blank: one abandoned reservation has no Notion page and one active historical test record points to a page that is not found.
-- Automated tests: 18 passed.
+- Missing linked pages now use the allocator's last known Record Title so one deleted page cannot stop registry reconciliation.
+- Automated tests: 19 passed.
 
 ## Skill Releases
 
@@ -47,4 +48,3 @@ Date: 2026-09-14 | Agent: Cody | Status: In Progress
 - Redeploy the previous committed service image and committed skill package.
 - Do not delete issuance or alias history.
 - Do not use Notion as a reverse-sync workaround.
-
