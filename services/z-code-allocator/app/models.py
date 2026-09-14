@@ -25,6 +25,7 @@ class ConfirmRequest(BaseModel):
     z_code: str = Field(pattern=Z_CODE_PATTERN)
     status: Literal["active", "failed"] = "active"
     notion_url: HttpUrl | None = None
+    record_title: str | None = Field(default=None, max_length=500)
     reason: str | None = Field(default=None, max_length=1000)
 
     @model_validator(mode="after")
@@ -67,4 +68,5 @@ class BootstrapRecord(BaseModel):
 
 class BootstrapRequest(BaseModel):
     records: list[BootstrapRecord] = Field(min_length=1, max_length=10000)
+
 

@@ -62,10 +62,6 @@ class NotionMirror:
             [record["z_knowledge_core"], record["knowledge_lane"], record["topic_identifier"]]
         )
 
-    @staticmethod
-    def topic_name(name_key: str) -> str:
-        return name_key.replace("-", " ")
-
     def find_topic_page(self, record: dict[str, Any]) -> str | None:
         if not self.topic_database_id:
             return None
@@ -89,7 +85,7 @@ class NotionMirror:
         record: dict[str, Any],
         source: str,
         *,
-        include_title: bool,
+        include_title: bool = True,
     ) -> dict[str, Any]:
         properties: dict[str, Any] = {
             "Name-Key": self.text(record["name_key"]),
@@ -104,7 +100,7 @@ class NotionMirror:
         }
         if include_title:
             properties["Topic-Name"] = {
-                "title": [{"type": "text", "text": {"content": self.topic_name(record["name_key"])}}]
+                "title": [{"type": "text", "text": {"content": record.get("topic_name") or record["name_key"].replace("-", " ")}}]
             }
         return properties
 
@@ -116,7 +112,7 @@ class NotionMirror:
             self.request(
                 "PATCH",
                 f"/pages/{page_id}",
-                {"properties": self.topic_properties(record, source, include_title=False)},
+                {"properties": self.topic_properties(record, source)},
             )
             return page_id
         result = self.request(
@@ -124,7 +120,7 @@ class NotionMirror:
             "/pages",
             {
                 "parent": {"database_id": self.topic_database_id},
-                "properties": self.topic_properties(record, source, include_title=True),
+                "properties": self.topic_properties(record, source),
             },
         )
         return result["id"]
@@ -196,7 +192,7 @@ class NotionMirror:
         event_type: str,
         old_z_code: str | None = None,
         source: str = "Allocator",
-    ) -> None:
+    ) -> str:
         page_id = self.find_page(record["z_code"])
         if not page_id and old_z_code:
             page_id = self.find_page(old_z_code)
@@ -213,6 +209,7 @@ class NotionMirror:
             self.request("PATCH", f"/pages/{page_id}", {"properties": properties})
         else:
             self.request("POST", "/pages", {"parent": {"database_id": self.database_id}, "properties": properties})
+        return record_title
 
 
 def process_event(database: Database, mirror: NotionMirror, item: dict[str, Any]) -> None:
@@ -222,16 +219,20 @@ def process_event(database: Database, mirror: NotionMirror, item: dict[str, Any]
             if record:
                 mirror.upsert(record, item["event_type"], old_z_code=mapping["old_z_code"])
         return
-    if item["event_type"] == "topic_renamed":
+    if item["event_type"] in {"topic_renamed", "topic_name_updated"}:
         for z_code in item["payload"].get("z_codes", []):
             record = database.record_details(z_code)
             if record:
-                mirror.upsert(record, item["event_type"])
+                title = mirror.upsert(record, item["event_type"])
+                if title:
+                    database.update_record_title_from_mirror(record["z_code"], title)
         return
     record = database.record_details(item["aggregate_key"])
     if not record:
         raise RuntimeError(f"Allocator record not found for {item['aggregate_key']}")
-    mirror.upsert(record, item["event_type"])
+    title = mirror.upsert(record, item["event_type"])
+    if title:
+        database.update_record_title_from_mirror(record["z_code"], title)
 
 
 def main() -> None:
@@ -239,6 +240,7 @@ def main() -> None:
     database_id = os.getenv("NOTION_ZCODE_DATABASE_ID", "").strip()
     topic_database_id = os.getenv("NOTION_ZCODE_TOPIC_DATABASE_ID", "").strip()
     poll_seconds = max(5, int(os.getenv("ZCODE_MIRROR_POLL_SECONDS", "15")))
+    auth_backoff_minutes = max(15, int(os.getenv("ZCODE_MIRROR_AUTH_BACKOFF_MINUTES", "60")))
     if not token or not database_id:
         raise RuntimeError("NOTION_API_TOKEN and NOTION_ZCODE_DATABASE_ID are required")
     database = Database(os.getenv("ZCODE_DATABASE_PATH", "/data/zcode.db"))
@@ -251,11 +253,18 @@ def main() -> None:
                 database.complete_outbox(item["id"])
                 print(json.dumps({"event_id": item["id"], "status": "completed"}), flush=True)
             except Exception as exc:
-                database.fail_outbox(item["id"], str(exc))
+                error = str(exc)
+                if "Notion API 401" in error or "Notion API 403" in error:
+                    database.fail_outbox(item["id"], error, auth_backoff_minutes)
+                    database.defer_outbox("Mirror paused after Notion authentication failure", auth_backoff_minutes)
+                    print(json.dumps({"event_id": item["id"], "status": "auth-paused", "error": error[:300]}), flush=True)
+                    break
+                database.fail_outbox(item["id"], error)
                 print(json.dumps({"event_id": item["id"], "status": "retry", "error": str(exc)[:300]}), flush=True)
         time.sleep(poll_seconds)
 
 
 if __name__ == "__main__":
     main()
+
 
