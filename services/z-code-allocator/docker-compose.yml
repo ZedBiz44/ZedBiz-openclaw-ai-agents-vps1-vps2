@@ -1,7 +1,7 @@
 services:
   z-code-allocator:
     build: .
-    image: zedbiz-z-code-allocator:1.2.0
+    image: zedbiz-z-code-allocator:1.3.0
     container_name: z-code-allocator
     restart: unless-stopped
     environment:
@@ -31,7 +31,7 @@ services:
 
   z-code-notion-mirror:
     build: .
-    image: zedbiz-z-code-allocator:1.2.0
+    image: zedbiz-z-code-allocator:1.3.0
     container_name: z-code-notion-mirror
     restart: unless-stopped
     command: ["python", "-m", "app.mirror_worker"]
@@ -54,7 +54,7 @@ services:
 
   z-code-admin:
     build: .
-    image: zedbiz-z-code-allocator:1.2.0
+    image: zedbiz-z-code-allocator:1.3.0
     container_name: z-code-admin
     restart: unless-stopped
     command: ["uvicorn", "app.admin_web:app", "--host", "0.0.0.0", "--port", "8790", "--workers", "1"]
@@ -95,4 +95,5 @@ services:
 networks:
   openclaw:
     external: true
+
 
