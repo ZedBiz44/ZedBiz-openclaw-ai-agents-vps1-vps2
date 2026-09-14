@@ -84,3 +84,20 @@ def test_topic_name_is_human_readable_on_initial_create() -> None:
         "Rocky Mountain Music Culture"
     )
 
+
+def test_missing_linked_page_keeps_last_known_record_title() -> None:
+    mirror = FakeNormalizedMirror()
+    mirror.record_title = lambda _: (_ for _ in ()).throw(RuntimeError("Notion API 404: not found"))
+    record = {
+        "z_code": "Z1ST-80001-100001-050", "name_key": "Example-Knowledge",
+        "topic_name": "Example Knowledge", "z_knowledge_core": "Z1ST",
+        "knowledge_lane": "80001", "topic_identifier": "100001", "record_suffix": "050",
+        "page_type": "SOP", "status": "active", "topic_status": "active",
+        "reserved_by": "edith", "request_id": "example-request",
+        "notion_url": "https://app.notion.com/p/1234567890abcdef1234567890abcdef",
+        "record_title": "Last Known Title",
+    }
+
+    assert mirror.upsert(record, "record_admin_resync") == "Last Known Title"
+
+
