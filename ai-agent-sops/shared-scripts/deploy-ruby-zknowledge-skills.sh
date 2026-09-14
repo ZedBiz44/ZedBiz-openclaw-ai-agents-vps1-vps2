@@ -15,7 +15,8 @@ set -eu
 base=/opt/hermes-ruby
 skills="z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
-gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
+gate='- Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.'
+legacy_gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
 
 case "$(realpath -m "$base/skills")" in
   /opt/hermes-ruby/skills) ;;
@@ -36,6 +37,12 @@ for skill in $skills; do
   chown -R 10000:10000 "$target_dir"
 done
 
+if grep -Fq "$legacy_gate" "$base/AGENTS.md"; then
+  temp_file="$base/.AGENTS.md.zk-gate.tmp"
+  awk -v old="$legacy_gate" -v new="$gate" 'index($0, old) { print new; next } { print }' "$base/AGENTS.md" > "$temp_file"
+  mv "$temp_file" "$base/AGENTS.md"
+  chown 10000:10000 "$base/AGENTS.md"
+fi
 offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$base/AGENTS.md")"
 if [ -z "$offset" ] || [ "$offset" -ge 20000 ]; then
   temp_file="$base/.AGENTS.md.zk-gate.tmp"
@@ -49,3 +56,4 @@ test -n "$new_offset"
 test "$new_offset" -lt 20000
 
 echo "ruby: deployed modular Z-Knowledge skills; gate byte=$new_offset; legacy retirement already complete; recovery=GitHub"
+
