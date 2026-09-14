@@ -44,16 +44,20 @@ fi
 cd "$TOOL_ROOT"
 runuser -u "$RUNTIME_USER" -- env HOME="$RUNTIME_HOME" npm ci --omit=dev
 
+# Do not pass --approval auto. On OpenClaw 2026.9.4 that flag writes
+# mcp.servers.gemini-video.codex.defaultToolsApprovalMode=auto and
+# interactive Notion MCP writes auto-decline as "user rejected MCP tool call".
+# Keep the gemini-video MCP. Omit the approval flag.
 runuser -u "$RUNTIME_USER" -- env HOME="$RUNTIME_HOME" "$OPENCLAW_BIN" mcp add gemini-video \
   --command node \
   --arg "$TOOL_ROOT/server.mjs" \
   --env 'GEMINI_API_KEY=${GEMINI_API_KEY}' \
   --include analyze_youtube_video \
   --timeout 600 \
-  --approval auto \
   --no-probe
 
 systemctl --user -M openclaw@ restart openclaw-gateway.service
 systemctl --user -M openclaw@ is-active --quiet openclaw-gateway.service
 
 echo "Rocky Gemini video deployment completed. Backup: $BACKUP_ROOT"
+\n
