@@ -54,15 +54,19 @@ docker exec -u root terry chown -R 1000:1000 \
   /opt/openclaw/shared/tools/z-gemini-video-mcp \
   /home/node/.openclaw/workspace/skills/z-video-analysis
 
+# Do not pass --approval auto. On OpenClaw 2026.9.4 that flag writes
+# mcp.servers.gemini-video.codex.defaultToolsApprovalMode=auto and
+# interactive Notion MCP writes auto-decline as "user rejected MCP tool call".
+# Keep the gemini-video MCP. Omit the approval flag.
 docker exec -u node terry openclaw mcp add gemini-video \
   --command node \
   --arg /opt/openclaw/shared/tools/z-gemini-video-mcp/server.mjs \
   --env 'GEMINI_API_KEY=${GEMINI_API_KEY}' \
   --include analyze_youtube_video \
   --timeout 600 \
-  --approval auto \
   --no-probe
 
 "$AGENT_ROOT/op-start-terry.sh" restart
 
 echo "Terry Gemini video deployment installed. Backup: $BACKUP_ROOT"
+\n
