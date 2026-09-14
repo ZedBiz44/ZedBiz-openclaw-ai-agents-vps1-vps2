@@ -14,6 +14,10 @@ all_agents="amanda edith gohzed grogar inga maggie marsha terry victor vivian wi
 skills="${ZK_SKILLS:-z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research}"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
 agents="${*:-$all_agents}"
+gate='- Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.'
+legacy_gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
+unsafe_publish_rule='- Any reference to Z-Knowledge triggers the ZedBiz knowledge-routing, wiki-research, and Notion-publishing skills and authorizes durable publication. Search before creating; ask only when scope, destination, or external consequence remains materially ambiguous.'
+safe_publish_rule='- A reference to Z-Knowledge triggers specialist skills only when their published purpose and the assignment scope apply. Review-only and investigation-only work do not authorize durable publication.'
 
 case "$(realpath -m "$staging")" in
   /tmp/zk-rollout-*) ;;
@@ -66,5 +70,14 @@ for agent in $agents; do
       done
     '
 
+  docker run --rm -e GATE="$gate" -e LEGACY_GATE="$legacy_gate" -e UNSAFE_RULE="$unsafe_publish_rule" -e SAFE_RULE="$safe_publish_rule" -v "$agent_dir/workspace:/workspace" alpine sh -euc '
+    test -f /workspace/AGENTS.md
+    temp=/workspace/.AGENTS.md.zk-gate.tmp
+    awk -v old="$LEGACY_GATE" -v new="$GATE" -v bad="$UNSAFE_RULE" -v safe="$SAFE_RULE" "index(\$0, bad) { print safe; next } index(\$0, old) { if (!done) print new; done=1; next } NR==1 { print; if (!done) { print new; done=1 }; next } { print }" /workspace/AGENTS.md > "$temp"
+    mv "$temp" /workspace/AGENTS.md
+    chown 1000:1000 /workspace/AGENTS.md
+  '
+
   echo "$agent: deployed modular Z-Knowledge skills to workspace root; managed duplicates removed; recovery=GitHub"
 done
+

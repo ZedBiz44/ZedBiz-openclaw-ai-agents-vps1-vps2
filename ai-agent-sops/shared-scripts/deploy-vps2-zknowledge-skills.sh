@@ -17,7 +17,8 @@ legacy_skills="small-bite-wiki-research zedbiz-knowledge-routing zedbiz-notion-k
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
 retire_legacy="${RETIRE_LEGACY:-0}"
 agents="${*:-$all_agents}"
-gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
+gate='- Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.'
+legacy_gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
 
 case "$(realpath -m "$staging")" in
   /tmp/zk-rollout-*) ;;
@@ -83,6 +84,11 @@ for agent in $agents; do
   fi
 
   test -f "$agents_file"
+  if grep -Fq "$legacy_gate" "$agents_file"; then
+    temp_file="$base/workspace/.AGENTS.md.zk-gate.tmp"
+    awk -v old="$legacy_gate" -v new="$gate" 'index($0, old) { print new; next } { print }' "$agents_file" > "$temp_file"
+    mv "$temp_file" "$agents_file"
+  fi
   offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$agents_file")"
   if [ -z "$offset" ] || [ "$offset" -ge 20000 ]; then
     temp_file="$base/workspace/.AGENTS.md.zk-gate.tmp"
@@ -96,3 +102,4 @@ for agent in $agents; do
 
   echo "$agent: deployed modular Z-Knowledge skills; gate byte=$new_offset; legacy-retired=$retire_legacy; recovery=GitHub"
 done
+
