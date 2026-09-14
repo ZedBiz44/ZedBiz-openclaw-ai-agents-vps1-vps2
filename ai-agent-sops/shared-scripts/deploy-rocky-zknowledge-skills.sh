@@ -14,7 +14,8 @@ set -eu
 base=/home/openclaw/.openclaw
 skills="z-code-allocation z-knowledge-routing z-record-knowledge z-notion-knowledge-publish z-biz-plan z-small-bite-task z-wiki-research"
 staging="${ZK_STAGING_DIR:-/tmp/zk-rollout-20260827}"
-gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
+gate='- Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.'
+legacy_gate='- For Z-Knowledge research, load `z-small-bite-task` and use only the minimum meaningful bites required.'
 
 case "$(realpath -m "$base/workspace/skills")" in
   /home/openclaw/.openclaw/workspace/skills) ;;
@@ -41,6 +42,12 @@ for skill in $skills; do
   rm -rf -- "$base/skills/$skill"
 done
 
+if grep -Fq "$legacy_gate" "$base/workspace/AGENTS.md"; then
+  temp_file="$base/workspace/.AGENTS.md.zk-gate.tmp"
+  awk -v old="$legacy_gate" -v new="$gate" 'index($0, old) { print new; next } { print }' "$base/workspace/AGENTS.md" > "$temp_file"
+  mv "$temp_file" "$base/workspace/AGENTS.md"
+  chown 1000:1000 "$base/workspace/AGENTS.md"
+fi
 offset="$(awk -v needle="$gate" 'index($0, needle) { print total + index($0, needle) - 1; exit } { total += length($0) + 1 }' "$base/workspace/AGENTS.md")"
 if [ -z "$offset" ] || [ "$offset" -ge 20000 ]; then
   temp_file="$base/workspace/.AGENTS.md.zk-gate.tmp"
@@ -54,3 +61,4 @@ test -n "$new_offset"
 test "$new_offset" -lt 20000
 
 echo "rocky: deployed modular Z-Knowledge skills; gate byte=$new_offset; recovery=GitHub"
+
