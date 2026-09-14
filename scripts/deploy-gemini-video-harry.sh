@@ -41,13 +41,16 @@ cd "$TOOL_ROOT"
 npm ci --omit=dev
 
 HOME="$STATE_ROOT" OPENCLAW_STATE_DIR="$STATE_ROOT" OPENCLAW_CONFIG_PATH="$STATE_ROOT/openclaw.json" \
+  # Do not pass --approval auto. On OpenClaw 2026.9.4 that flag writes
+  # mcp.servers.gemini-video.codex.defaultToolsApprovalMode=auto and
+  # interactive Notion MCP writes auto-decline as "user rejected MCP tool call".
+  # Keep the gemini-video MCP. Omit the approval flag.
   "$INSTALL_ROOT/node_modules/.bin/openclaw" mcp add gemini-video \
   --command node \
   --arg "$TOOL_ROOT/server.mjs" \
   --env 'GEMINI_API_KEY=${GEMINI_API_KEY}' \
   --include analyze_youtube_video \
   --timeout 600 \
-  --approval auto \
   --no-probe
 
 systemctl restart openclaw-harry
@@ -61,3 +64,4 @@ op run --env-file="$STATE_ROOT/.env" -- env \
   "$INSTALL_ROOT/node_modules/.bin/openclaw" mcp probe gemini-video --json
 
 echo "Harry Gemini video deployment completed. Backup: $BACKUP_ROOT"
+\n
