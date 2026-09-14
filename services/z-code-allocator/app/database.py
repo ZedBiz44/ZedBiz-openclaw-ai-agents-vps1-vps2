@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS topics (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     topic_identifier INTEGER NOT NULL CHECK(topic_identifier BETWEEN 100000 AND 999999),
     name_key TEXT NOT NULL,
+    topic_name TEXT NOT NULL DEFAULT '',
     z_knowledge_core TEXT NOT NULL,
     knowledge_lane TEXT NOT NULL,
     status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active', 'retired')),
@@ -73,6 +74,7 @@ CREATE TABLE IF NOT EXISTS records (
     status TEXT NOT NULL DEFAULT 'reserved'
         CHECK(status IN ('reserved', 'active', 'stale', 'abandoned', 'reassigned')),
     notion_url TEXT,
+    record_title TEXT NOT NULL DEFAULT '',
     failure_reason TEXT,
     previous_z_code TEXT,
     reserved_at TEXT NOT NULL,
@@ -167,11 +169,22 @@ class Database:
         with self.connect() as connection:
             connection.execute("PRAGMA journal_mode = WAL")
             connection.executescript(SCHEMA)
+            self._ensure_column(connection, "topics", "topic_name", "TEXT NOT NULL DEFAULT ''")
+            self._ensure_column(connection, "records", "record_title", "TEXT NOT NULL DEFAULT ''")
+            connection.execute(
+                "UPDATE topics SET topic_name = replace(name_key, '-', ' ') WHERE trim(topic_name) = ''"
+            )
             connection.executemany(
                 "INSERT OR IGNORE INTO page_type_ranges(range_key, minimum_suffix, maximum_suffix) VALUES (?, ?, ?)",
                 [("brief", 10, 19), ("biz-plan", 20, 49), ("other", 50, 999)],
             )
             self._backfill_issued_history(connection)
+
+    @staticmethod
+    def _ensure_column(connection: sqlite3.Connection, table: str, column: str, definition: str) -> None:
+        columns = {row["name"] for row in connection.execute(f"PRAGMA table_info({table})")}
+        if column not in columns:
+            connection.execute(f"ALTER TABLE {table} ADD COLUMN {column} {definition}")
 
     @staticmethod
     def parse_z_code(z_code: str) -> tuple[str, str, int, int]:
@@ -322,6 +335,7 @@ class Database:
             "status": row["status"],
             "request_id": row["request_id"],
             "name_key": topic["name_key"],
+            "topic_name": topic["topic_name"],
             "z_knowledge_core": topic["z_knowledge_core"],
             "knowledge_lane": topic["knowledge_lane"],
             "topic_identifier": f"{topic['topic_identifier']:06d}",
@@ -331,6 +345,7 @@ class Database:
             "replayed": replayed,
             "expires_at": row["expires_at"],
             "notion_url": row["notion_url"],
+            "record_title": row["record_title"],
         }
 
     def allocate(self, payload: dict[str, Any], actor: str) -> dict[str, Any]:
@@ -391,8 +406,8 @@ class Database:
                 now = utc_now()
                 self.reserve_topic_identifier(connection, core, lane, topic_identifier, "allocation")
                 cursor = connection.execute(
-                    "INSERT INTO topics(topic_identifier, name_key, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
-                    (topic_identifier, name_key, core, lane, now, now),
+                    "INSERT INTO topics(topic_identifier, name_key, topic_name, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                    (topic_identifier, name_key, name_key.replace("-", " "), core, lane, now, now),
                 )
                 topic = connection.execute("SELECT * FROM topics WHERE id = ?", (cursor.lastrowid,)).fetchone()
                 new_topic = True
@@ -472,6 +487,7 @@ class Database:
                         "request_id": record["request_id"],
                         "status": "active",
                         "notion_url": record["notion_url"],
+                        "record_title": record["record_title"],
                         "reason": None,
                         "updated_by": actor,
                         "replayed": True,
@@ -488,8 +504,8 @@ class Database:
                 status = "abandoned"
             else:
                 connection.execute(
-                    "UPDATE records SET status = 'active', notion_url = ?, confirmed_at = ?, updated_at = ? WHERE id = ?",
-                    (payload["notion_url"], now, now, record["id"]),
+                    "UPDATE records SET status = 'active', notion_url = ?, record_title = ?, confirmed_at = ?, updated_at = ? WHERE id = ?",
+                    (payload["notion_url"], payload.get("record_title") or "", now, now, record["id"]),
                 )
                 event_type = "record_confirmed"
                 status = "active"
@@ -498,6 +514,7 @@ class Database:
                 "request_id": record["request_id"],
                 "status": status,
                 "notion_url": payload.get("notion_url"),
+                "record_title": payload.get("record_title") or "",
                 "reason": payload.get("reason"),
                 "updated_by": actor,
                 "replayed": False,
@@ -535,6 +552,7 @@ class Database:
             ).fetchall()
             return {
                 "name_key": topic["name_key"],
+                "topic_name": topic["topic_name"],
                 "z_knowledge_core": topic["z_knowledge_core"],
                 "knowledge_lane": topic["knowledge_lane"],
                 "topic_identifier": f"{topic['topic_identifier']:06d}",
@@ -694,7 +712,7 @@ class Database:
         with self.connect() as connection:
             row = connection.execute(
                 """
-                SELECT r.*, t.name_key, t.z_knowledge_core, t.knowledge_lane,
+                SELECT r.*, t.name_key, t.topic_name, t.z_knowledge_core, t.knowledge_lane,
                        t.topic_identifier, t.status AS topic_status
                 FROM records r
                 JOIN topics t ON t.id = r.topic_pk
@@ -719,14 +737,16 @@ class Database:
             pattern = f"%{search.strip()}%"
             rows = connection.execute(
                 """
-                SELECT r.z_code, r.page_type, r.status, r.notion_url, r.reserved_by,
-                       r.request_id, r.updated_at, t.name_key, t.z_knowledge_core,
+                SELECT r.z_code, r.page_type, r.status, r.notion_url, r.record_title,
+                       r.record_suffix, r.reserved_by, r.request_id, r.updated_at,
+                       t.name_key, t.topic_name, t.z_knowledge_core,
                        t.knowledge_lane, t.topic_identifier
                 FROM records r JOIN topics t ON t.id = r.topic_pk
-                WHERE ? = '' OR r.z_code LIKE ? OR t.name_key LIKE ? OR r.notion_url LIKE ?
+                WHERE ? = '' OR r.z_code LIKE ? OR t.name_key LIKE ? OR t.topic_name LIKE ?
+                    OR r.record_title LIKE ? OR r.notion_url LIKE ?
                 ORDER BY r.updated_at DESC LIMIT ?
                 """,
-                (search.strip(), pattern, pattern, pattern, limit),
+                (search.strip(), pattern, pattern, pattern, pattern, pattern, limit),
             ).fetchall()
             return [dict(row) | {"topic_identifier": f"{row['topic_identifier']:06d}"} for row in rows]
 
@@ -738,6 +758,72 @@ class Database:
                     "SELECT * FROM audit_events ORDER BY id DESC LIMIT ?", (limit,)
                 ).fetchall()
             ]
+
+    def admin_topics(self, search: str = "", limit: int = 200) -> list[dict[str, Any]]:
+        with self.connect() as connection:
+            pattern = f"%{search.strip()}%"
+            rows = connection.execute(
+                """
+                SELECT t.*, COUNT(r.id) AS record_count
+                FROM topics t LEFT JOIN records r ON r.topic_pk = t.id
+                WHERE ? = '' OR t.name_key LIKE ? OR t.topic_name LIKE ?
+                    OR t.z_knowledge_core LIKE ? OR t.knowledge_lane LIKE ?
+                GROUP BY t.id ORDER BY t.updated_at DESC LIMIT ?
+                """,
+                (search.strip(), pattern, pattern, pattern, pattern, limit),
+            ).fetchall()
+            return [dict(row) | {"topic_identifier": f"{row['topic_identifier']:06d}"} for row in rows]
+
+    def admin_update_topic_name(self, name_key: str, topic_name: str, reason: str, actor: str) -> dict[str, Any]:
+        topic_name, reason = topic_name.strip(), reason.strip()
+        if not topic_name or not reason:
+            raise InvalidState("Topic Name and change reason are required")
+        with self.write_transaction() as connection:
+            topic = self.find_topic(connection, name_key)
+            if not topic:
+                raise NotFound("Name-Key was not found")
+            before = topic["topic_name"]
+            now = utc_now()
+            connection.execute(
+                "UPDATE topics SET topic_name = ?, version = version + 1, updated_at = ? WHERE id = ?",
+                (topic_name, now, topic["id"]),
+            )
+            codes = [row["z_code"] for row in connection.execute(
+                "SELECT z_code FROM records WHERE topic_pk = ? ORDER BY record_suffix", (topic["id"],)
+            )]
+            event = {"name_key": topic["name_key"], "before": before, "after": topic_name,
+                     "z_codes": codes, "reason": reason}
+            self.add_outbox(connection, "topic_name_updated", topic["name_key"], event)
+            self.add_audit(connection, "topic_name_updated", actor, event)
+        return self.admin_topics(name_key, 1)[0]
+
+    def update_record_title_from_mirror(self, z_code: str, record_title: str) -> None:
+        with self.write_transaction() as connection:
+            connection.execute(
+                "UPDATE records SET record_title = ?, updated_at = ? WHERE z_code = ? AND record_title != ?",
+                (record_title.strip(), utc_now(), z_code, record_title.strip()),
+            )
+
+    def admin_retirement_history(self, search: str = "", limit: int = 300) -> list[dict[str, Any]]:
+        with self.connect() as connection:
+            pattern = f"%{search.strip()}%"
+            rows = connection.execute(
+                """
+                SELECT i.z_code, i.first_issued_at, i.source, a.new_z_code,
+                       a.reason, a.changed_by, a.changed_at
+                FROM issued_z_codes i LEFT JOIN z_code_aliases a ON a.old_z_code = i.z_code
+                WHERE ? = '' OR i.z_code LIKE ? OR a.new_z_code LIKE ?
+                ORDER BY i.first_issued_at DESC LIMIT ?
+                """, (search.strip(), pattern, pattern, limit)
+            ).fetchall()
+            return [dict(row) for row in rows]
+
+    def admin_outbox(self, limit: int = 200) -> list[dict[str, Any]]:
+        with self.connect() as connection:
+            return [dict(row) for row in connection.execute(
+                "SELECT id, event_type, aggregate_key, status, attempts, available_at, last_error, updated_at "
+                "FROM sync_outbox WHERE status IN ('pending','retry') ORDER BY updated_at DESC LIMIT ?", (limit,)
+            )]
 
     def admin_update_record(
         self, z_code: str, page_type: str, notion_url: str | None, reason: str, actor: str
@@ -785,15 +871,28 @@ class Database:
             if not changed:
                 raise NotFound("Outbox event was not found")
 
-    def fail_outbox(self, event_id: int, error: str) -> None:
-        available = (datetime.now(timezone.utc) + timedelta(minutes=5)).isoformat().replace("+00:00", "Z")
+    def fail_outbox(self, event_id: int, error: str, delay_minutes: int | None = None) -> None:
         with self.write_transaction() as connection:
+            row = connection.execute("SELECT attempts FROM sync_outbox WHERE id = ?", (event_id,)).fetchone()
+            if not row:
+                raise NotFound("Outbox event was not found")
+            delay = delay_minutes if delay_minutes is not None else min(5 * (2 ** min(row["attempts"], 6)), 360)
+            available = (datetime.now(timezone.utc) + timedelta(minutes=delay)).isoformat().replace("+00:00", "Z")
             changed = connection.execute(
                 "UPDATE sync_outbox SET status = 'retry', attempts = attempts + 1, last_error = ?, available_at = ?, updated_at = ? WHERE id = ?",
                 (error, available, utc_now(), event_id),
             ).rowcount
             if not changed:
                 raise NotFound("Outbox event was not found")
+
+    def defer_outbox(self, error: str, delay_minutes: int = 60) -> int:
+        available = (datetime.now(timezone.utc) + timedelta(minutes=delay_minutes)).isoformat().replace("+00:00", "Z")
+        with self.write_transaction() as connection:
+            return connection.execute(
+                "UPDATE sync_outbox SET status = 'retry', last_error = ?, available_at = ?, updated_at = ? "
+                "WHERE status IN ('pending','retry')",
+                (error, available, utc_now()),
+            ).rowcount
 
     def metrics(self) -> dict[str, Any]:
         with self.connect() as connection:
@@ -809,6 +908,9 @@ class Database:
             ).fetchone()["count"]
             result["pending_outbox"] = connection.execute(
                 "SELECT COUNT(*) AS count FROM sync_outbox WHERE status IN ('pending', 'retry')"
+            ).fetchone()["count"]
+            result["retry_outbox"] = connection.execute(
+                "SELECT COUNT(*) AS count FROM sync_outbox WHERE status = 'retry'"
             ).fetchone()["count"]
             return result
 
@@ -845,8 +947,8 @@ class Database:
                     try:
                         self.reserve_topic_identifier(connection, core, lane, topic_identifier, "bootstrap")
                         cursor = connection.execute(
-                            "INSERT INTO topics(topic_identifier, name_key, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?)",
-                            (topic_identifier, item["name_key"], core, lane, now, now),
+                            "INSERT INTO topics(topic_identifier, name_key, topic_name, z_knowledge_core, knowledge_lane, created_at, updated_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                            (topic_identifier, item["name_key"], item["name_key"].replace("-", " "), core, lane, now, now),
                         )
                     except sqlite3.IntegrityError as exc:
                         raise AllocationConflict(f"Topic collision while importing {z_code}") from exc
@@ -883,4 +985,5 @@ class Database:
             event = {"imported": imported, "skipped": skipped, "submitted": len(records)}
             self.add_audit(connection, "bootstrap_import", actor, event)
             return event
+
 
