@@ -50,13 +50,10 @@ def test_normalized_registry_sets_record_title_and_topic_relation() -> None:
 
     mirror.upsert(record, "record_confirmed")
 
-    record_create = [
-        payload
-        for method, path, payload in mirror.calls
-        if method == "POST" and path == "/pages" and "Registry-Entry" in (payload or {}).get("properties", {})
-    ][0]
+    record_create = [payload for method, path, payload in mirror.calls if method == "POST" and path == "/pages"][-1]
     properties = record_create["properties"]
-    assert properties["Registry-Entry"]["title"][0]["text"]["content"] == record["z_code"]
+    assert properties["Z-Code"]["rich_text"][0]["text"]["content"] == record["z_code"]
+    assert "Registry-Entry" not in properties
     assert properties["Record-Title"]["rich_text"][0]["text"]["content"] == "Example Knowledge Record"
     assert properties["Topic"]["relation"] == [{"id": "topic-page-id"}]
     assert "Name-Key" not in properties

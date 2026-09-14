@@ -172,9 +172,6 @@ class NotionMirror:
             "Source": {"select": {"name": source}},
         }
         if self.topic_database_id:
-            properties["Registry-Entry"] = {
-                "title": [{"type": "text", "text": {"content": record["z_code"]}}]
-            }
             properties["Record-Title"] = self.text(record_title)
             if topic_page_id:
                 properties["Topic"] = {"relation": [{"id": topic_page_id}]}
