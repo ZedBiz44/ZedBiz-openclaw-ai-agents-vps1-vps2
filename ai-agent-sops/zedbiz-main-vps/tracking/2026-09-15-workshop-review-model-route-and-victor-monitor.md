@@ -1,11 +1,11 @@
 # Workshop Review Model Route And Victor Monitor
 
-> 2026-09-15 | Cody | Status: Implemented with one fleet-level empty-Workshop behavior awaiting decision
+> 2026-09-15 | Cody | Status: Monitoring implemented; rooted OpenAI fallback repair diagnosed and awaiting approval
 
 ## Outcome
 
 - Kept OpenClaw Skill Workshop in `auto` mode for all 15 OpenClaw agents.
-- Corrected the scheduled Workshop model fallbacks on VPS1, VPS2, and Rocky on VPS4.
+- Repaired the obsolete DeepSeek fallback and OpenRouter output-token caps on VPS1, VPS2, and Rocky on VPS4.
 - Changed the host model-alert monitor to send as Victor and label alerts `ZedBiz Model Monitor — Automatic Fleet Notice`.
 - Added 15 Victor-owned read-only follow-up jobs. Each runs 30 minutes after one agent's main weekly Workshop review.
 - Victor posts to `#agent-health-report` only when a Workshop file changed. He compares that file with the agent's `workspace/skills` collection and never edits either collection.
@@ -27,7 +27,19 @@ The saved runtime receipts showed three distinct outcomes:
 - OpenRouter Gemini 3.1 Flash Lite succeeded on multiple earlier reviews, but some reviews failed with HTTP 402 because they requested up to 65,536 output tokens while the current balance allowed 26,633.
 - The old free DeepSeek V4 Flash slug failed with HTTP 404 because OpenRouter retired the free route and directed callers to the paid slug.
 
-The repair preserves every agent's primary model, caps Gemini 3.1 Flash Lite and paid DeepSeek V4 Flash at 8,192 output tokens, removes the obsolete free DeepSeek fallback, and adds the paid low-cost DeepSeek route. Rocky keeps DeepSeek first in his fallback order.
+That first repair preserved every agent's primary model, capped Gemini 3.1 Flash Lite and paid DeepSeek V4 Flash at 8,192 output tokens, removed the obsolete free DeepSeek fallback, and added the paid low-cost DeepSeek route. Rocky kept DeepSeek first in his fallback order. It fixed the broken OpenRouter routes, but it did not fix why most Workshop reviews bypass OpenAI.
+
+### Underlying fleet configuration split
+
+OpenClaw treats the selected model and the execution runtime as separate settings. A Workshop collection review must run in an execution runtime that enforces the private Workshop root.
+
+- Maggie and 11 other Codex-primary agents have Astra, Sol, Terra, and Luna all marked `agentRuntime.id: "codex"`.
+- A rooted Workshop review rejects those candidates by design, then advances to Gemini.
+- Terry and Vivian keep their normal primary on Codex but mark Terra and Luna fallbacks `agentRuntime.id: "openclaw"`.
+- Terry's saved successful receipt proves that this pattern keeps the review on OpenAI Terra while OpenClaw enforces the Workshop root.
+- Rocky uses Grok as his primary Workshop route and is not part of this OpenAI-runtime split.
+
+The backup history confirms this is real configuration drift. Terry changed from Codex fallbacks to rooted OpenClaw fallbacks between August 19 and September 4. Vivian had the rooted fallback pattern by September 7. Maggie's current config and every retained backup still show Codex for Terra and Luna. No saved change record explains why only Terry and Vivian received the different pattern.
 
 ## Live verification
 
@@ -36,10 +48,20 @@ The repair preserves every agent's primary model, caps Gemini 3.1 Flash Lite and
 - Amanda's formerly failing mail-reader review completed successfully through Gemini after the repair.
 - The formerly failing reviews for GoZed mail reader, Inga mail reader, Wilma mail reader, and Suzy main all completed successfully through Gemini after the repair.
 - Rocky's formerly failing mail-reader review completed successfully through his primary Grok route after the config repair.
-- Maggie's model route also succeeded through Gemini. Her run was then marked failed because the model listed the empty Workshop, tried to inspect its parent folder, and OpenClaw correctly blocked that escape.
+- Maggie's model route reached Gemini because every preceding OpenAI candidate used the incompatible Codex runtime. Gemini then listed the empty Workshop, tried to inspect its parent folder, and OpenClaw correctly blocked that escape.
 - This is not a Maggie-only condition. Five main Workshop skills exist across four agents: Amanda, Victor, Vivian, and Rocky. The other 11 main Workshop folders are empty, and all 15 mail-reader Workshop folders are empty.
-- Empty folders do not always fail. Marsha, Terry, Suzy, and several mail-reader reviews have completed cleanly by returning `NO_REPLY` after seeing an empty folder. The failure occurs when a reviewing model decides to inspect outside the empty Workshop.
-- Adding a placeholder file to Maggie would be the wrong fleet-level repair. The correct repair belongs in OpenClaw's built-in maintenance behavior: after the first complete listing confirms the Workshop is empty, return `NO_REPLY` and do not attempt another path. No live OpenClaw package patch was made without Jack's approval.
+- Empty folders do not always fail. Thirteen recorded empty-folder reviews completed cleanly: 11 through Gemini, one through OpenAI Terra, and one through Grok.
+- Maggie's exact unchanged job was rerun three times. All three reruns used Gemini, listed the same empty folder once, and returned `NO_REPLY`. The original failure was therefore a non-deterministic extra tool choice by Gemini, not a different folder, permission, prompt, or schedule.
+- Adding a placeholder file or patching OpenClaw's built-in prompt would treat the symptom and create upgrade risk. Neither change is recommended.
+
+## Recommended repair awaiting approval
+
+- Keep every normal agent's primary model on the native Codex runtime.
+- For Astra- and Sol-primary agents, mark Terra and Luna fallback entries as `agentRuntime.id: "openclaw"`, matching the proven Terry and Vivian pattern.
+- For Wilma, keep primary Terra on Codex, remove the duplicate Terra fallback, and mark Luna fallback as `openclaw`.
+- Leave Rocky unchanged.
+- Test the config repair on Maggie first. A successful Workshop run must show OpenAI Terra, a rooted OpenClaw execution runtime, and no Gemini attempt. Only then roll the same pattern to the remaining affected agents.
+- Do not modify OpenClaw package code or built-in Workshop instructions.
 
 ## Victor change monitor
 
