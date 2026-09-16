@@ -33,8 +33,15 @@ class Alerts(unittest.TestCase):
         self.assertEqual(monitor.log_events(text, 'different/model', 0), [])
 
     def test_workshop_folder_rejection_is_not_a_model_outage(self):
-        text = '''2026-09-15T13:58:10-06:00 [model-fallback/decision] model fallback decision: decision=candidate_failed requested=openai/gpt-5.6-terra candidate=openai/gpt-5.6-terra reason=unknown detail=collection review requires a runtime that enforces the Workshop root through OpenClaw tools'''
+        text = '''2026-09-15T13:58:10-06:00 [model-fallback/decision] model fallback decision: decision=candidate_failed requested=openai/gpt-5.6-terra candidate=openai/gpt-5.6-terra reason=unknown detail=collection review requires a runtime that enforces the Workshop root through OpenClaw tools
+2026-09-15T13:58:11-06:00 [model-fallback/decision] model fallback decision: decision=candidate_succeeded requested=openai/gpt-5.6-terra candidate=openai/gpt-5.6-luna reason=unknown'''
         self.assertEqual(monitor.log_events(text, 'openai/gpt-5.6-terra', 0), [])
+
+    def test_workshop_root_only_chain_to_gemini_is_not_a_model_outage(self):
+        text = '''2026-09-15T13:58:10-06:00 [model-fallback/decision] model fallback decision: decision=candidate_failed requested=openai/gpt-5.6-sol candidate=openai/gpt-5.6-sol reason=unknown detail=collection review requires a runtime that enforces the Workshop root through OpenClaw tools
+2026-09-15T13:58:11-06:00 [model-fallback/decision] model fallback decision: decision=candidate_failed requested=openai/gpt-5.6-sol candidate=openai/gpt-5.6-terra reason=unknown detail=collection review requires a runtime that enforces the Workshop root through OpenClaw tools
+2026-09-15T13:58:12-06:00 [model-fallback/decision] model fallback decision: decision=candidate_succeeded requested=openai/gpt-5.6-sol candidate=openrouter/google/gemini-3.1-flash-lite reason=unknown'''
+        self.assertEqual(monitor.log_events(text, 'openai/gpt-5.6-sol', 0), [])
 
 
 if __name__ == '__main__':

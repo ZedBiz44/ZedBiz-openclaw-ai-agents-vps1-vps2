@@ -55,4 +55,8 @@ All times are Mountain Time. The OpenClaw job is system-owned and repeats every 
 
 OpenClaw creates a separate weekly review for the `mail_reader` identity when that identity exists. Stock `auto` mode does not provide a supported switch to keep the main review automatic while disabling only the mail-reader review.
 
+## Rooted OpenAI fallback
+
+Weekly collection review requires an OpenClaw-controlled software runner because its file tools are locked to the selected identity's Workshop folder. Normal conversations remain on the Codex software runner. `configure_rooted_openai_fallbacks.py` preserves the configured Codex primary and assigns Terra and Luna fallbacks to the OpenClaw runner. For a Terra-primary agent, it preserves Terra on Codex, removes the duplicate Terra fallback, and assigns Luna to OpenClaw. Run with `--check` for a read-only preview.
+
 Run tests with `python3 -m unittest -v` in this directory.

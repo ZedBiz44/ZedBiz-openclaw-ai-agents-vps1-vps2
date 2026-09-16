@@ -1,6 +1,6 @@
 # Workshop Review Runtime Clarification
 
-> 2026-09-16 | Cody | Status: Diagnosed; live repair awaiting Jack's approval
+> 2026-09-16 | Cody | Status: Implemented and verified
 
 ## Scope
 
@@ -45,14 +45,26 @@ Thirteen recorded empty-folder weekly cleanups succeeded:
 
 Maggie's failed main-agent cleanup also used Gemini through OpenClaw. It listed the empty Workshop correctly, then made one unnecessary parent-folder request that OpenClaw blocked. Three exact unchanged reruns used Gemini and returned `NO_REPLY`. The model choice explains why Gemini was present; the single extra tool choice explains why only that run failed.
 
-## Recommended repair
+## Implemented repair
 
-- Keep normal primary models on Codex for conversations.
-- Give each affected installation a compatible OpenAI fallback that runs under OpenClaw for the two scheduled weekly cleanups.
-- Use Terra, then Luna, for Astra- and Sol-primary agents.
-- For Wilma, keep primary Terra on Codex and use Luna as the rooted OpenAI fallback.
-- Leave Terry, Vivian, and Rocky unchanged.
-- Test both Maggie's scheduled main-agent cleanup and scheduled email-helper cleanup. Confirm OpenAI handled both through the OpenClaw runner and neither reached Gemini.
-- After Jack reviews the receipts, apply the same configuration pattern to the remaining affected agents.
+- Kept normal primary models on Codex for conversations.
+- Assigned Terra, then Luna, to the OpenClaw runner for Astra- and Sol-primary agents.
+- Kept Wilma's primary Terra on Codex, removed her duplicate Terra fallback, and assigned Luna to OpenClaw.
+- Left Terry, Vivian, and Rocky unchanged.
+- Applied the repair to Amanda, Edith, GoZed, Grogar, Inga, Maggie, Marsha, Victor, Wilma, Harry, Suzy, and Frank.
+- Created a timestamped backup before every changed agent config.
 
-No live agent configuration was changed during this clarification.
+## Maggie pilot proof
+
+- Scheduled main-agent cleanup succeeded through `openai/gpt-5.6-terra` and returned `NO_REPLY`.
+- Scheduled email-helper cleanup succeeded through `openai/gpt-5.6-terra` and returned `NO_REPLY`.
+- A normal isolated conversation succeeded through `openai/gpt-5.6-sol` with `agentHarnessId: codex`, no reroute, and no fallback.
+- After the monitor fix, a second Scheduled main-agent cleanup succeeded through Terra and the monitor reported zero notices.
+
+## Fleet and monitor verification
+
+- All 14 Codex-primary agents now retain their normal primary on Codex and have a compatible rooted OpenAI fallback for weekly cleanup. Rocky remains on his separate Grok path.
+- All 14 OpenClaw configurations on VPS1 and VPS2 passed live schema validation after rollout.
+- The Model Monitor now suppresses a complete Workshop root-only fallback chain while retaining alerts for real authentication, rate-limit, and provider failures.
+- Monitor unit tests passed on VPS1 and VPS2.
+- Cleared only the four proven false incident states created by weekly cleanup: Terry, Inga, Maggie, and Harry. Timestamped state backups were retained.

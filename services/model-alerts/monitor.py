@@ -75,7 +75,7 @@ def collect(root, since, probe):
 
 
 def log_events(lines, primary, since):
-    events = []
+    records = []
     for line in lines.splitlines():
         stamp = re.search(r'(\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?(?:Z|[+-]\d\d:\d\d))', line)
         if not stamp:
@@ -84,13 +84,27 @@ def log_events(lines, primary, since):
         if when <= since:
             continue
         fields = dict(re.findall(r'(requested|candidate|decision|reason)=([^\s]+)', line))
-        if fields.get('requested') != primary:
-            continue
-        if fields.get('decision') == 'candidate_failed' and fields.get('candidate') == primary:
+        if fields.get('requested') == primary:
+            records.append((when, line, fields))
+
+    events = []
+    rooted_cleanup_chain = False
+    actual_primary_failure = False
+    for when, line, fields in sorted(records, key=lambda item: item[0]):
+        decision = fields.get('decision')
+        candidate = fields.get('candidate')
+        rooted_rejection = (
+            'collection review requires a runtime that enforces the workshop root'
+            in line.lower()
+        )
+        if decision == 'candidate_failed' and rooted_rejection:
             # Workshop collection cleanup rejects runtimes that cannot enforce its
-            # private folder boundary. That is not a primary-model outage.
-            if 'collection review requires a runtime that enforces the workshop root' in line.lower():
-                continue
+            # private folder boundary. Suppress the complete root-only fallback
+            # chain, including its eventual compatible-model success.
+            rooted_cleanup_chain = True
+            continue
+        if decision == 'candidate_failed' and candidate == primary:
+            actual_primary_failure = True
             reason = 'Primary model request failed'
             lower = line.lower()
             if 'auth' in lower or 'token_revoked' in lower:
@@ -98,11 +112,15 @@ def log_events(lines, primary, since):
             elif 'rate' in lower or '429' in lower:
                 reason = 'Primary model rate limit reached'
             events.append((when, 'failure', reason))
-        elif fields.get('decision') == 'candidate_succeeded':
-            if fields.get('candidate') == primary:
+        elif decision == 'candidate_succeeded':
+            if candidate == primary:
                 events.append((when, 'success', ''))
+            elif rooted_cleanup_chain and not actual_primary_failure:
+                pass
             else:
-                events.append((when, 'fallback', fields.get('candidate', 'backup model')))
+                events.append((when, 'fallback', candidate or 'backup model'))
+            rooted_cleanup_chain = False
+            actual_primary_failure = False
     return sorted(events)
 
 

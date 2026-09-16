@@ -14,6 +14,8 @@ Independent Python standard-library monitor for VPS1 and VPS2. No AI generation 
 
 Reads the configured primary model, recent fallback decisions in gateway logs, and successful assistant replies in the actual agent SQLite store. Sends one failure notice per incident, including observed backup use if available. Repeated failures are quiet. Recovery requires a successful reply from the primary model and at least two minutes since the latest observed failure.
 
+Weekly Skill Workshop cleanup intentionally rejects model candidates whose software runner cannot enforce the private Workshop folder boundary. The monitor suppresses the complete root-only fallback chain, including the eventual compatible-model success. This expected cleanup switch is not a primary-model outage. A real authentication, rate-limit, or provider failure in the same chain still alerts normally.
+
 Every five minutes, a read-only Codex models request additionally checks each OpenAI OAuth credential. Confirmed `token_revoked` raises an alert. An accepted credential alone does not prove model recovery. Expired credentials and inconclusive probe failures do not bypass normal OpenClaw refresh behavior.
 
 Stopped agents or failed monitor reads raise an agent/monitoring alert. Failed Discord sends stay pending and retry next run. State is written atomically. Discord nonces reduce duplicate sends during short crash/retry windows.

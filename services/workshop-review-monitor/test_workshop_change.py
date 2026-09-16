@@ -18,6 +18,11 @@ CONFIGURE_SPEC = importlib.util.spec_from_file_location("configure_model_fallbac
 configure_model_fallbacks = importlib.util.module_from_spec(CONFIGURE_SPEC)
 CONFIGURE_SPEC.loader.exec_module(configure_model_fallbacks)
 
+ROOTED_PATH = Path(__file__).with_name("configure_rooted_openai_fallbacks.py")
+ROOTED_SPEC = importlib.util.spec_from_file_location("configure_rooted_openai_fallbacks", ROOTED_PATH)
+configure_rooted_openai_fallbacks = importlib.util.module_from_spec(ROOTED_SPEC)
+ROOTED_SPEC.loader.exec_module(configure_rooted_openai_fallbacks)
+
 
 class WorkshopChangeTests(unittest.TestCase):
     def test_added_changed_and_deleted(self):
@@ -74,6 +79,42 @@ class WorkshopChangeTests(unittest.TestCase):
         self.assertEqual(data["agents"]["defaults"]["model"]["primary"], "openai/gpt-5.6-sol")
         self.assertEqual(data["agents"]["defaults"]["model"]["fallbacks"][-1], "openrouter/deepseek/deepseek-v4-flash")
         self.assertEqual(data["agents"]["defaults"]["models"]["openrouter/deepseek/deepseek-v4-flash"]["params"]["maxTokens"], 8192)
+
+    def test_rooted_openai_fallbacks_preserve_sol_primary(self):
+        data = {
+            "agents": {"defaults": {
+                "model": {"primary": "openai/gpt-5.6-sol", "fallbacks": [
+                    "openai/gpt-5.6-terra", "openai/gpt-5.6-luna", "openrouter/google/gemini-3.1-flash-lite"
+                ]},
+                "models": {
+                    "openai/gpt-5.6-sol": {"agentRuntime": {"id": "codex"}},
+                    "openai/gpt-5.6-terra": {"agentRuntime": {"id": "codex"}},
+                    "openai/gpt-5.6-luna": {"agentRuntime": {"id": "codex"}},
+                },
+            }}
+        }
+        result = configure_rooted_openai_fallbacks.configure(data)
+        self.assertEqual(result["primaryRuntime"], "codex")
+        self.assertEqual(result["terraRuntime"], "openclaw")
+        self.assertEqual(result["lunaRuntime"], "openclaw")
+        self.assertEqual(data["agents"]["defaults"]["model"]["primary"], "openai/gpt-5.6-sol")
+
+    def test_rooted_openai_fallbacks_keep_wilma_terra_primary_on_codex(self):
+        data = {
+            "agents": {"defaults": {
+                "model": {"primary": "openai/gpt-5.6-terra", "fallbacks": [
+                    "openai/gpt-5.6-terra", "openai/gpt-5.6-luna", "openrouter/google/gemini-3.1-flash-lite"
+                ]},
+                "models": {
+                    "openai/gpt-5.6-terra": {"agentRuntime": {"id": "codex"}},
+                    "openai/gpt-5.6-luna": {"agentRuntime": {"id": "codex"}},
+                },
+            }}
+        }
+        result = configure_rooted_openai_fallbacks.configure(data)
+        self.assertEqual(result["terraRuntime"], "codex")
+        self.assertEqual(result["lunaRuntime"], "openclaw")
+        self.assertNotIn("openai/gpt-5.6-terra", result["fallbacks"])
 
 
 if __name__ == "__main__":
