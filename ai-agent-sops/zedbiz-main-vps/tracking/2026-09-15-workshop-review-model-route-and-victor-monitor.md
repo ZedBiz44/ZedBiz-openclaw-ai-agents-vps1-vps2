@@ -1,6 +1,6 @@
 # Workshop Review Model Route And Victor Monitor
 
-> 2026-09-15 | Cody | Status: Implemented with one separate Maggie empty-folder behavior awaiting decision
+> 2026-09-15 | Cody | Status: Implemented with one fleet-level empty-Workshop behavior awaiting decision
 
 ## Outcome
 
@@ -36,7 +36,10 @@ The repair preserves every agent's primary model, caps Gemini 3.1 Flash Lite and
 - Amanda's formerly failing mail-reader review completed successfully through Gemini after the repair.
 - The formerly failing reviews for GoZed mail reader, Inga mail reader, Wilma mail reader, and Suzy main all completed successfully through Gemini after the repair.
 - Rocky's formerly failing mail-reader review completed successfully through his primary Grok route after the config repair.
-- Maggie's model route also succeeded through Gemini. Her run was then marked failed because the Workshop folder was empty and the model attempted to list its parent folder. OpenClaw correctly blocked that parent-folder request. This is separate from the model-route repair.
+- Maggie's model route also succeeded through Gemini. Her run was then marked failed because the model listed the empty Workshop, tried to inspect its parent folder, and OpenClaw correctly blocked that escape.
+- This is not a Maggie-only condition. Five main Workshop skills exist across four agents: Amanda, Victor, Vivian, and Rocky. The other 11 main Workshop folders are empty, and all 15 mail-reader Workshop folders are empty.
+- Empty folders do not always fail. Marsha, Terry, Suzy, and several mail-reader reviews have completed cleanly by returning `NO_REPLY` after seeing an empty folder. The failure occurs when a reviewing model decides to inspect outside the empty Workshop.
+- Adding a placeholder file to Maggie would be the wrong fleet-level repair. The correct repair belongs in OpenClaw's built-in maintenance behavior: after the first complete listing confirms the Workshop is empty, return `NO_REPLY` and do not attempt another path. No live OpenClaw package patch was made without Jack's approval.
 
 ## Victor change monitor
 
