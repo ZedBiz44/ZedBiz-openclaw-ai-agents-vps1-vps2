@@ -19,6 +19,7 @@ Date: 2026-09-16 MDT | Owner: Cody | Status: Implemented and live-verified
 
 ## Verification
 
+- Automatic capture does not preserve every message verbatim. It extracts useful context, and recall across channels requires both routes to resolve to the same provider store, identity, and bank or collection scope.
 - Configuration verifier passed for every OpenClaw provider agent on VPS1, VPS2, and VPS4.
 - Ruby's Hermes settings and early Hindsight instruction were read back.
 - Rocky's API, database, gateway, and timer were healthy after restart. Rocky correctly named Hindsight and confirmed useful Notion-review context may be remembered.
