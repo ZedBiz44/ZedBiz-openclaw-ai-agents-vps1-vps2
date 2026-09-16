@@ -1,0 +1,21 @@
+{
+  "stateFile": "/home/node/.openclaw/workshop-review-monitor/state.json",
+  "sshConfig": "/home/node/.openclaw/workshop-review-monitor/ssh_config",
+  "agents": {
+    "amanda": {"type": "docker", "container": "amanda", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "edith": {"type": "docker", "container": "edith", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "gohzed": {"type": "docker", "container": "gohzed", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "grogar": {"type": "docker", "container": "grogar", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "inga": {"type": "docker", "container": "inga", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "maggie": {"type": "docker", "container": "maggie", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "marsha": {"type": "docker", "container": "marsha", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "terry": {"type": "docker", "container": "terry", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "victor": {"type": "docker", "container": "victor", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "vivian": {"type": "docker", "container": "vivian", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "wilma": {"type": "docker", "container": "wilma", "reader": "/opt/openclaw/shared/workshop-review-monitor/remote_reader.py", "workshop": "/home/node/.openclaw/agents/main/agent/workshop-skills", "workspace": "/home/node/.openclaw/workspace/skills"},
+    "harry": {"type": "ssh", "host": "workshop-vps2", "remoteAgent": "harry"},
+    "suzy": {"type": "ssh", "host": "workshop-vps2", "remoteAgent": "suzy"},
+    "frank": {"type": "ssh", "host": "workshop-vps2", "remoteAgent": "frank"},
+    "rocky": {"type": "ssh", "host": "workshop-vps4", "remoteAgent": "rocky"}
+  }
+}

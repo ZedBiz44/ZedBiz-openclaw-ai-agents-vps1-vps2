@@ -1,0 +1,7 @@
+{
+  "agents": {
+    "harry": {"workshop": "/root/.openclaw-harry/agents/main/agent/workshop-skills", "workspace": "/root/.openclaw-harry/workspace/skills"},
+    "suzy": {"workshop": "/root/.openclaw-suzy/agents/main/agent/workshop-skills", "workspace": "/root/.openclaw-suzy/workspace/skills"},
+    "frank": {"workshop": "/root/.openclaw-frank/agents/main/agent/workshop-skills", "workspace": "/root/.openclaw-frank/workspace/skills"}
+  }
+}

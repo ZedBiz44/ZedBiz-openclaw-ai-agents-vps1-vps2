@@ -32,6 +32,10 @@ class Alerts(unittest.TestCase):
         self.assertEqual(monitor.log_events(text, 'openai/gpt-5.6-sol', events[-1][0]), [])
         self.assertEqual(monitor.log_events(text, 'different/model', 0), [])
 
+    def test_workshop_folder_rejection_is_not_a_model_outage(self):
+        text = '''2026-09-15T13:58:10-06:00 [model-fallback/decision] model fallback decision: decision=candidate_failed requested=openai/gpt-5.6-terra candidate=openai/gpt-5.6-terra reason=unknown detail=collection review requires a runtime that enforces the Workshop root through OpenClaw tools'''
+        self.assertEqual(monitor.log_events(text, 'openai/gpt-5.6-terra', 0), [])
+
 
 if __name__ == '__main__':
     unittest.main()

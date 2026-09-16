@@ -8,7 +8,7 @@ Independent Python standard-library monitor for VPS1 and VPS2. No AI generation 
 - VPS2: `/opt/zedbiz-model-alerts`, root crontab, three systemd agents: Harry, Suzy, Frank.
 - Discord destination: `agent-health-report`, channel `1546640814573101128`. Alerts explicitly mention Jack (`864290378395025478`). Device notifications depend on Discord settings.
 - Each host runs once per minute, using a nonblocking process lock. Output goes to system logging under `zedbiz-model-alerts`.
-- Host-local `config.json` contains mode, host, agent state roots, channel ID, mention users, and the existing Marsha/Harry Discord bot token. Directory permissions are 0700 and configuration/state permissions are 0600. Never commit these files.
+- Host-local `config.json` contains mode, host, agent state roots, channel ID, mention users, and the existing Victor Discord bot token. Directory permissions are 0700 and configuration/state permissions are 0600. Never commit these files.
 
 ## Behavior
 
@@ -22,7 +22,9 @@ Stopped agents or failed monitor reads raise an agent/monitoring alert. Failed D
 
 Run `python3 -m unittest -v` in this directory. Run a manual check with `python3 monitor.py --config /absolute/path/config.json`. Inspect `config.state.json` for `last_completed`, current incidents, and collection errors. Use system logs tagged `zedbiz-model-alerts` for delivery errors.
 
-To update, copy the tracked Python files into each deployment directory and rerun tests. Preserve protected configuration and state. If Marsha or Harry's Discord bot token rotates, update the respective monitor's protected configuration from the resolved running agent credential without printing it.
+To update, copy the tracked Python files into each deployment directory and rerun tests. Preserve protected configuration and state. If Victor's Discord bot token rotates, update each host monitor's protected configuration from Victor's resolved running-agent credential without printing it.
+
+Notices begin with `ZedBiz Model Monitor — Automatic Fleet Notice`. Workshop folder-safety rejections are ignored because they are not primary-model outages; failed Workshop jobs remain visible in OpenClaw automation history and the normal agent-health reports.
 
 To disable, remove only the crontab line marked `# zedbiz-model-alerts`. Keep other cron entries intact. No OpenClaw runtime code was changed.
 

@@ -14,6 +14,8 @@ import urllib.error
 import urllib.request
 from zoneinfo import ZoneInfo
 
+NOTICE_HEADER = '**ZedBiz Model Monitor — Automatic Fleet Notice**'
+
 
 def read_db(path):
     return sqlite3.connect('file:' + str(path) + '?mode=ro', uri=True, timeout=10)
@@ -85,6 +87,10 @@ def log_events(lines, primary, since):
         if fields.get('requested') != primary:
             continue
         if fields.get('decision') == 'candidate_failed' and fields.get('candidate') == primary:
+            # Workshop collection cleanup rejects runtimes that cannot enforce its
+            # private folder boundary. That is not a primary-model outage.
+            if 'collection review requires a runtime that enforces the workshop root' in line.lower():
+                continue
             reason = 'Primary model request failed'
             lower = line.lower()
             if 'auth' in lower or 'token_revoked' in lower:
@@ -194,6 +200,7 @@ def run(cfg, state, sender=send):
                     text += '\nBackup use has not been confirmed by the monitor.'
             else:
                 text = f'✅ {label} — Primary model recovered.\nVerified a successful reply using {primary}.'
+            text = NOTICE_HEADER + '\n' + text
             text += '\n' + dt.datetime.fromtimestamp(now, ZoneInfo('America/Edmonton')).strftime('%b %d, %I:%M %p %Z')
             try:
                 nonce = str(int(agent['failure'] * 1000)) + '-' + name + '-' + notice[:1]
