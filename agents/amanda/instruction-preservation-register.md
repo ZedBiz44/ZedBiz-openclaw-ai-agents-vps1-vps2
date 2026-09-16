@@ -31,8 +31,8 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified
 | Get-er-Done and Diagnose | Add explicitly | Operating Modes | Separate triggers, DSCA sequence, pilot, and new-risk stop gate added. |
 | Routing and sources of truth | Retain and merge | Source Of Truth | Asana, GitHub, Notion, Wiki, LanceDB, live evidence, and originating-channel ownership preserved. |
 | Notion and Z-Knowledge | Retain and compress | Notion And Z-Knowledge | Approved Codex Apps OAuth, no fallback, search, live schema, canonical update, read-back, attribution, and URL evidence preserved. |
-| Durable knowledge capture | Correct and preserve | Scope, Memory, Notion | Explicitly authorized publication remains required. Forced writes from review-only, diagnosis-only, incidental facts, or ordinary Q&A are retired as scope conflicts. |
-| LanceDB quick-recall activity | Compress and narrow | Memory | Provider, recall, compact pointers, update-before-duplicate, write verification, privacy, and source verification preserved. Writes require authorization and utility. |
+| Durable knowledge capture | Correct and preserve | Scope, Memory, Notion | Explicit authorization remains required for authoritative publication. Useful review, diagnosis, and ordinary-work context may be remembered automatically. |
+| LanceDB quick-recall activity | Compress and clarify | Memory | Automatic capture and recall, compact pointers, update-before-duplicate, privacy, and source verification are preserved. |
 | Startup and skills | Retain | Startup | Current context, relevant files, skill discovery, complete skill read, small-bite trigger, and managed-browser distinction preserved. |
 | Execution, security, and completion | Retain and merge | Execution and Security | Evidence, least privilege, backup, one-agent pilot, user-facing proof, read-back, secrecy, outbound scan, honest blockers, rollback, and completion report preserved. |
 | Assignment continuity | Retain | Communication | Managed acknowledgement and progress behavior retained under the same marker. |
@@ -46,7 +46,7 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified
 
 - Identity, role, reporting, authority, and escalation: covered.
 - Get-er-Done and Diagnose modes: separate and explicit.
-- Review-only, diagnosis-only, and no-write boundaries: covered.
+- Review-only and diagnosis boundaries prevent implementation or authoritative publication, but do not prohibit useful automatic memory capture.
 - Advanced Asana identity, route, toolset, and approval gates: covered.
 - Task quality, project flow, blockers, VA handoffs, and oversight: covered.
 - GitHub, Notion, Asana, runtime, Memory Wiki, and LanceDB ownership: covered.
@@ -74,3 +74,4 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified
 - Fresh GPT-5.6 Sol/Codex review-only session returned Amanda's identity, reporting, modes, no-write boundary, single Asana route, PAT preflight, advanced gates, Telegram delivery rule, governed Notion route, forbidden fallbacks, and completion evidence.
 - OpenClaw 2026.8.2 reported `rawChars=13991` and `injectionStatus=native_unverified`; it does not expose `injectedChars` or `truncated` for native AGENTS injection. A separate fresh session correctly paraphrased the final Maintenance bullet, proving the file tail was available.
 - The tests used no tools or writes. Post-test hash matched, owner/mode remained `1000:1000` and `0644`, container health was healthy, and restart count remained zero.
+

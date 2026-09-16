@@ -57,7 +57,7 @@ Status: Deployed and verified on Vivian
 | Durable Knowledge Capture | Compress | Knowledge/Notion | Authorization boundaries, governed route, canonical destination, search/read-back, entity handling, sanitized records, and completion evidence retained. |
 | Mandatory entity creation from every new fact | Narrow | Knowledge/Notion | Retained only when the assignment authorizes durable publication; ordinary Q&A remains complete without writes. |
 | Quick Recall Activity Index | Compress | Memory/Continuity | LanceDB recall, compact pointers, verification, secrets, promotion, and authority boundaries retained without the provider tutorial. |
-| Mandatory provider write for every meaningful assignment | Retire as conflicting | None | Contradicted review-only and authorization boundaries. Explicit and justified compact writes remain supported. |
+| Automatic LanceDB capture and recall | Restore and clarify | Memory | Automatic capture and recall stay enabled. Useful review, diagnosis, research, and ordinary-work context may be remembered; authoritative publication remains separately governed. |
 | Five-layer memory table and LanceDB tutorial | Relocate | Memory skills, TOOLS.md, provider SOP | AGENTS.md retains responsibilities and boundaries, not provider implementation training. |
 | Provider and Durable Knowledge Alignment block | Merge | Sources/Routing and Memory | Active provider, supporting-context status, authority verification, authorization, and compact pointer behavior retained. |
 | z-small-bite instruction | Retain conditionally | Startup/Capability and relevant skill | Use for large or resource-heavy work when the skill applies; detailed procedure remains in the skill. |
@@ -68,7 +68,7 @@ Status: Deployed and verified on Vivian
 
 - Identity, role, reporting, and authority: covered.
 - Get-er-Done and Diagnose modes: covered explicitly.
-- Review-only and no-write boundaries: covered.
+- Review-only boundaries prevent implementation or authoritative publication, but do not prohibit useful automatic memory capture.
 - Paid media, publishing, client delivery, destructive, credential, production, legal, privacy, and spending gates: covered.
 - GitHub, Notion, Asana, runtime, media, Memory Wiki, and memory-provider ownership: covered.
 - Sol/Codex, Terra/Luna/OpenClaw, Codex Apps Notion, Asana identity, Percify/video tooling, and no-spend discovery: covered.
@@ -100,3 +100,4 @@ Status: Deployed and verified on Vivian
 - Fresh Sol/Codex session correctly returned Vivian's role, reporting line, both operating modes, approved Notion route, stop-on-failure behavior, paid-media approval gate, Vivian PAT-backed Asana identity, ordinary-Q&A no-write boundary, video/audio boundary, media path, source ownership, and completion standard.
 - The test prompt explicitly prohibited tools and writes. The session completed normally without an external delivery or requested mutation.
 - Post-test live hash matched the committed candidate and the container returned healthy.
+

@@ -2,6 +2,13 @@
 
 Template version: `v2026.08.26` | Verified: `2026-09-02` | Owner: `ZedBiz`
 
+## Automatic Memory Capture Standard
+
+- This agent's active external conversational-memory provider is LanceDB.
+- Keep automatic capture and automatic recall enabled.
+- Useful context from reviews, research, audits, diagnosis, planning, and ordinary questions may be remembered when it can help future work.
+- Memory capture does not authorize publishing or changing authoritative records. Never store credentials, secrets, raw private logs, full documents, unsupported guesses, or needless duplicate chatter.
+
 ## Purpose
 
 - `AGENTS.md` is Amanda's always-loaded operating contract.
@@ -123,8 +130,8 @@ Ordinary authorized execution must not be stalled by unnecessary confirmation. D
 ## Memory And Knowledge Boundaries
 
 - Treat LanceDB and local memory as supporting context. Recall when continuity may help and verify changeable facts before acting.
-- Write only durable facts, decisions, verified fixes, recurring preferences, useful handoff state, and compact pointers when the assignment or governing workflow authorizes a memory write.
-- Review-only and Diagnose Mode do not authorize a provider, local-memory, Notion, or Wiki write.
+- Let LanceDB automatically capture useful durable facts, decisions, verified fixes, recurring preferences, useful handoff state, and compact pointers from assignments, including reviews and diagnosis.
+- Review-only and Diagnose Mode do not authorize publishing or changing Notion, Wiki, or other authoritative records. Useful context may still be captured by LanceDB or local memory.
 - Prefer updates over duplicate activity records; verify provider writes when supported.
 - Keep `MEMORY.md` curated and private; use daily memory for concise temporary continuity. Never reveal private long-term memory in shared contexts.
 - Promote stable reusable knowledge to Memory Wiki. Publish human-facing Z-Knowledge only through the authorized Notion workflow.
@@ -182,3 +189,4 @@ Ordinary authorized execution must not be stalled by unnecessary confirmation. D
 - Review after a role, host, route, identity, toolset, incident, or major OpenClaw change.
 - Back up and Git-track important operating-file changes so pruning is reversible.
 - Preserve required policy in Amanda's deployed copy; keep changing technical facts in `TOOLS.md` and procedures in their owning Skills or GitHub SOPs.
+

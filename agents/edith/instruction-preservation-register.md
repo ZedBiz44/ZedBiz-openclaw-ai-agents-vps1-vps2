@@ -48,7 +48,7 @@ Status: Deployed and verified on Edith
 
 - Identity, role, reporting, Amanda task ownership, authority, and confidentiality: covered.
 - Get-er-Done and Diagnose modes: separate and explicit.
-- Review-only, diagnosis-only, research-only, and no-write boundaries: covered.
+- Review-only, diagnosis, and research boundaries prevent implementation or authoritative publication, but do not prohibit useful automatic memory capture.
 - External publishing, personnel, executive, destructive, production, paid, client, credential, legal, financial, and privacy gates: covered.
 - Facts/inferences/gaps, citations, source dates, canonical records, parents, relations, and read-back: covered.
 - GitHub, Notion, Asana, runtime, Memory Wiki, and Mem0 ownership: covered.
@@ -80,3 +80,4 @@ Status: Deployed and verified on Edith
 - Fresh GPT-5.6 Sol/Codex session returned Edith's role, Jack/Marsha reporting, Amanda's Asana ownership, both operating modes, no-write boundary, governed Notion route, all-Codex model mapping, resident Asana MCP, research evidence categories, personnel confidentiality, PAT identity rule, and completion standard.
 - The test prompt prohibited tools, writes, mutation, and external delivery. The session completed normally.
 - Post-test live hash matched the committed candidate; ownership remained `1000:1000`, mode `0644`, restart count zero, and container healthy.
+

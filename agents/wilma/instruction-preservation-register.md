@@ -30,7 +30,7 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified after Amanda gate
 | Resident WordPress route | Retain and correct | Setup and Capability | Live `wordpress-allzed` route retained. Other-site access now requires an installed approved route and a scoped call from Wilma; configuration or host-side success is not treated as proof. |
 | Get-er-Done and Diagnose | Add explicitly | Operating Modes | Separate triggers, DSCA sequence, low-risk pilot, and new-risk stop gate added. |
 | Sources of truth | Retain and merge | Source Of Truth | Live WordPress, GitHub, Notion, Asana, Memory Wiki, LanceDB, and current runtime roles preserved. |
-| Durable knowledge capture | Correct and preserve | Scope, Memory, Notion | Authorized publication remains complete and verifiable. Forced writes from review-only, diagnosis-only, incidental facts, or ordinary Q&A are retired as scope conflicts. |
+| Durable knowledge capture | Correct and preserve | Scope, Memory, Notion | Authorized publication remains complete and verifiable. Useful review, diagnosis, and ordinary-work context may be remembered automatically. |
 | LanceDB and memory-layer map | Compress | Memory | Provider, supporting-context boundary, recall, compact writes, privacy, promotion, conflict resolution, and verification preserved without the table. |
 | Notion standards | Retain and compress | Notion And Z-Knowledge | Approved OAuth route, no raw fallback, live schema, search, canonical update, read-back, routing, and frontmatter preserved. Journal procedure remains in `HEARTBEAT.md`. |
 | Asana route and identity | Retain | Skills and Capability | Wilma PAT identity requirement, Jack-connector prohibition, Standard capability, and Advanced-agent boundary preserved; exact IDs remain in `TOOLS.md`. |
@@ -43,7 +43,7 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified after Amanda gate
 
 - Identity, website role, reporting, authority, and approval gates: covered.
 - Get-er-Done and Diagnose modes: separate and explicit.
-- Review-only, diagnosis-only, and no-write boundaries: covered.
+- Review-only and diagnosis boundaries prevent implementation or authoritative publication, but do not prohibit useful automatic memory capture.
 - Exact site, target, authorization, rollback, read-before-write, and one-target pilot: covered.
 - Plugin, theme, structure, deletion, bulk, client, credential, and production gates: covered.
 - `wordpress-allzed` live route and proof-from-Wilma requirement: covered.
@@ -73,3 +73,4 @@ Date: 2026-09-02 | Agent: Cody | Status: Deployed and verified after Amanda gate
 - Fresh GPT-5.6 Sol/Codex review-only session returned Wilma's identity, reporting, modes, no-write boundary, `wordpress-allzed` route, other-site proof requirement, pre-write checks, WordPress approval gates, Asana Standard/Advanced boundary, governed Notion route, forbidden fallbacks, and completion evidence.
 - OpenClaw 2026.8.2 reported `rawChars=13955` and `injectionStatus=native_unverified`; it does not expose `injectedChars` or `truncated` for native AGENTS injection. The session correctly paraphrased the final Maintenance bullet, proving the file tail was available.
 - The test used no tools or writes. Post-test hash matched, owner/mode remained `1000:1000` and `0644`, container health was healthy, and restart count remained zero.
+

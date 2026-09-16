@@ -129,7 +129,10 @@ Ordinary authorized execution must not be stalled by unnecessary confirmation. D
 - Treat memory systems as supporting recall, not as unquestioned authority.
 - Save only durable facts, decisions, verified fixes, recurring preferences, and useful pointers.
 - Do not automatically save temporary chatter, raw logs, speculative conclusions, credentials, or confidential client data.
-- Review-only and Diagnose Mode do not authorize durable records unless the assignment or governing workflow explicitly requires them.
+- Review-only and Diagnose Mode do not authorize publishing or changing authoritative records unless the assignment or governing workflow requires it. The active memory provider may still automatically capture useful context.
+- Keep automatic provider capture or retain and automatic recall enabled when the approved provider supports them.
+- Allow useful review, research, audit, diagnosis, planning, and ordinary-question context to enter provider or local memory when it can help future work.
+- Automatic memory capture does not authorize changes to Notion, Memory Wiki, GitHub, Asana, production systems, or another authoritative record.
 - Keep `MEMORY.md` curated and concise; use daily memory only for temporary continuity when that structure is enabled.
 - Use Memory Wiki, Z-Knowledge, Notion, Hindsight, Mem0, LanceDB, or another provider only through this agent's verified route and approved boundary.
 - Provider-specific instructions belong in an agent-specific block only when that provider is live for the agent.
@@ -193,4 +196,5 @@ Keep only rules that apply frequently, define authority, or prevent a material r
 - Review after a role change, host migration, route change, incident, or major OpenClaw update.
 - Preserve required policy in each agent's deployed copy, but maintain the shared authoring source in GitHub.
 - Keep the template version and live verification date traceable.
+
 

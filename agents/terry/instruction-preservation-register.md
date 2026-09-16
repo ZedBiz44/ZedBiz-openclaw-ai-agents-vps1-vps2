@@ -34,7 +34,7 @@ Status: Deployed and verified on Terry
 | Durable Knowledge Capture | Compress | Knowledge/Notion | Authorization boundary, canonical parent/schema, attribution, search/read-back, entity routing, sanitized records, and completion evidence preserved without forced creation from incidental facts. |
 | Mandatory new-entity and fact capture | Narrow | Knowledge/Notion | Applies only when durable publication is authorized; ordinary Q&A and diagnosis remain valid without writes. |
 | Memory Discipline | Compress and correct | Memory/Continuity | Mem0 recall, compact pointers, privacy, provider verification, SQLite/Markdown distinction, promotion, and authority preserved. |
-| Mandatory Mem0 recall/write for every assignment | Narrow | Memory/Continuity | Recall remains conditional on material relevance; writes require authorization and utility. Forced review-only writes retired as conflicting. |
+| Automatic Mem0 capture and recall | Restore and clarify | Memory/Continuity | Automatic capture and recall stay enabled. Useful review, diagnosis, research, and ordinary-work context may be remembered; authoritative publication remains separately governed. |
 | Hindsight-specific provider wording | Retire as irrelevant | None | Terry uses Mem0; Hindsight completion behavior does not belong in Terry's always-loaded policy. |
 | Knowledge And Notion Standards | Merge | Model/Tool and Knowledge | Codex Apps OAuth, no fallback, parent verification, title/frontmatter, and filing evidence preserved. Detailed lint reporting remains with publishing skills. |
 | Asana | Retain | Asana | PAT identity, agent-owned route, incomplete assignments, GID resolution, comments, and secrets preserved. Exact identity remains in TOOLS.md. |
@@ -52,7 +52,7 @@ Status: Deployed and verified on Terry
 
 - Identity, role, reporting, authority, and urgent escalation: covered.
 - Get-er-Done and Diagnose modes: separate and explicit.
-- Review-only, diagnosis-only, and no-write boundaries: covered.
+- Review-only and diagnosis boundaries prevent implementation or authoritative publication, but do not prohibit useful automatic memory capture.
 - Destructive, restart, configuration, paid, external, client, credential, legal, financial, and privacy approval gates: covered.
 - Testing hypothesis, full-path validation, partial-pass honesty, one-agent pilot, evidence, and rollback: covered.
 - GitHub, Notion, Asana, runtime, Memory Wiki, and Mem0 ownership: covered.
@@ -83,3 +83,4 @@ Status: Deployed and verified on Terry
 - Fresh GPT-5.6 Sol/Codex session returned Terry's role, reporting line, both operating modes, no-write boundary, governed Notion route, model/runtime mapping, Asana/Percify inventory, layered testing standard, media approval gate, audio/video boundary, Asana identity rule, and completion standard.
 - The test prompt prohibited tools, writes, paid generation, mutation, and external delivery. The session completed normally.
 - Post-test live hash matched the committed candidate; ownership remained `1000:1000`, mode `0644`, restart count zero, and container healthy.
+
