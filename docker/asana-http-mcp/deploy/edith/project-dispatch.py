@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Project-scoped email handoff. All Asana calls use Edith's configured PAT MCP."""
-import fcntl, json, os, re, subprocess, sys, time, urllib.request
+import fcntl, json, os, re, signal, subprocess, sys, time, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -95,7 +95,7 @@ def dispatch(gid):
    if not item.get('pilot'):previous.append(item)
   previous=sorted(previous,key=lambda x:x.get('started',''),reverse=True)[:3]
   if len(previous)==3 and all(not get_task(x['task'])['completed'] for x in previous):
-   name='Amanda â€” Resolve repeated Edith dispatch failures'
+   name='Amanda — Resolve repeated Edith dispatch failures'
    if not any(x['name']==name and not x['completed'] for x in project_tasks()):
     call('asana_create_task',{'project_id':PROJECT,'name':name,'assignee':'1213974002925107','notes':'Three previous bounded sittings remain incomplete. Inspect their checkpoints and errors before releasing another dispatch. No automatic repeated work is authorized until this blocker is resolved. Tasks: '+', '.join(x['task'] for x in previous)})
    record['status']='paused-for-amanda';save(gid,record)
@@ -117,13 +117,25 @@ def run(gid,fd):
  lock=os.fdopen(int(fd),'a+')
  receipt=ROOT/(gid+'.json')
  time.sleep(0.3)
- r=subprocess.run(['openclaw','agent','--agent','main','--session-key','agent:main:edith-dispatch-'+gid,'--message-file',str(ROOT/(gid+'.prompt.txt')),'--timeout','900','--json'],timeout=960,capture_output=True,text=True)
- (ROOT/(gid+'.result.json')).write_text(r.stdout)
- if r.stderr:print(r.stderr[-3000:])
- record=json.loads(receipt.read_text());record.update({'status':'worker-returned','exit_code':r.returncode,'ended':datetime.now(timezone.utc).isoformat()});save(gid,record)
+ p=subprocess.Popen(['openclaw','agent','--agent','main','--session-key','agent:main:edith-dispatch-'+gid,'--message-file',str(ROOT/(gid+'.prompt.txt')),'--timeout','900','--json'],stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True,start_new_session=True)
+ timed_out=False
+ try:out,err=p.communicate(timeout=960)
+ except subprocess.TimeoutExpired:
+  timed_out=True
+  try:os.killpg(p.pid,signal.SIGTERM)
+  except ProcessLookupError:pass
+  try:out,err=p.communicate(timeout=10)
+  except subprocess.TimeoutExpired:
+   try:os.killpg(p.pid,signal.SIGKILL)
+   except ProcessLookupError:pass
+   out,err=p.communicate(timeout=10)
+ code=124 if timed_out else p.returncode
+ (ROOT/(gid+'.result.json')).write_text(out)
+ if err:print(err[-3000:])
+ record=json.loads(receipt.read_text());record.update({'status':'worker-timeout' if timed_out else 'worker-returned','exit_code':code,'ended':datetime.now(timezone.utc).isoformat()});save(gid,record)
  connect();t=get_task(gid)
- if not t['completed']:comment(gid,'Bounded worker ended; this sitting is not confirmed complete. Saved runtime receipt exists. The already-armed continuation must inspect saved progress before any retry. Exit code '+str(r.returncode)+'.')
- print(json.dumps({'task':gid,'completed':t['completed'],'exit_code':r.returncode}))
+ if not t['completed']:comment(gid,'Bounded worker ended; this sitting is not confirmed complete. Saved runtime receipt exists. The already-armed continuation must inspect saved progress before any retry. Exit code '+str(code)+'.')
+ print(json.dumps({'task':gid,'completed':t['completed'],'exit_code':code}))
 
 def pause(gid):
  connect();t=get_task(gid);assert t['assignee']['gid']==EDITH
@@ -143,3 +155,4 @@ if __name__=='__main__':
   elif sys.argv[1]=='identity':connect();print('Edith PAT MCP identity verified')
   else:raise ValueError('Unsupported command')
  except Exception as e:print(json.dumps({'error':type(e).__name__,'message':str(e)[:500]}));sys.exit(1)
+
