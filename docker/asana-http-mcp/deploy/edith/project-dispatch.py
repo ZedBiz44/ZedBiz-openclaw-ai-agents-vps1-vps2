@@ -35,6 +35,7 @@ def call(name,args):
  except json.JSONDecodeError:return text
 
 def connect():
+ HEADERS.pop('Mcp-Session-Id',None)
  rpc('initialize',{'protocolVersion':'2024-11-05','capabilities':{},'clientInfo':{'name':'edith-project-dispatch','version':'1'}})
  me=call('asana_get_user',{'user_gid':'me'})
  assert me['gid']==EDITH and me['email']=='edith@agents.zbiz.ca'
@@ -155,3 +156,4 @@ if __name__=='__main__':
   elif sys.argv[1]=='identity':connect();print('Edith PAT MCP identity verified')
   else:raise ValueError('Unsupported command')
  except Exception as e:print(json.dumps({'error':type(e).__name__,'message':str(e)[:500]}));sys.exit(1)
+
