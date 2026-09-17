@@ -1,0 +1,5 @@
+FROM zedbiz/asana-http-mcp:2.0.0-standard-edith-expiry-20260917
+USER root
+COPY patch-project-pagination.mjs /tmp/patch-project-pagination.mjs
+RUN node /tmp/patch-project-pagination.mjs && node --check /app/dist/index.js && rm /tmp/patch-project-pagination.mjs
+USER node
