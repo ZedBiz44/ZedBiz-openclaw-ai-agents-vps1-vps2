@@ -1,5 +1,6 @@
-"""Release one existing, ready approval; no timer, new task, or review time limit."""
+"""Release one ready folder through the proven native assignment-email Rule."""
 import asyncio, importlib.util, json, os, sys
+from datetime import datetime, timezone
 from pathlib import Path
 PROJECT='1218559074752632'
 RUBY='1215900603267704'
@@ -12,6 +13,16 @@ def pending(t):
  return t.get('approval_status')=='pending' and not t.get('completed')
 
 async def release(call, dry=False):
+ rows=[];offset=None
+ while True:
+  args={'project_id':PROJECT,'opt_fields':'name,notes,completed,assignee.gid','limit':100}
+  if offset:args['offset']=offset
+  page=await call('asana_get_tasks_for_project',args)
+  if isinstance(page,list):rows+=page;break
+  rows+=page.get('data',[]);offset=(page.get('next_page') or {}).get('offset')
+  if not offset:break
+ active_dispatch=[x for x in rows if x['name'].startswith('[Ruby review] Ready folder ') and not x.get('completed')]
+ if active_dispatch:return {'status':'review-already-released','tasks':[x['gid'] for x in active_dispatch]}
  approvals=[await call('asana_get_task',{'task_id':g,'opt_fields':FIELDS}) for g in APPROVALS]
  active=[t for t in approvals if pending(t) and t.get('assignee')]
  if active:return {'status':'review-already-assigned','tasks':[t['gid'] for t in active]}
@@ -29,10 +40,23 @@ async def release(call, dry=False):
   # Reconcile assignment before a write; repeated same assignee is idempotent.
   fresh=await call('asana_get_task',{'task_id':t['gid'],'opt_fields':FIELDS})
   if not pending(fresh) or fresh.get('assignee'):return {'status':'state-changed','approval':t['gid']}
-  await call('asana_update_task',{'task_id':t['gid'],'assignee':RUBY})
-  check=await call('asana_get_task',{'task_id':t['gid'],'opt_fields':FIELDS})
-  assert (check.get('assignee') or {}).get('gid')==RUBY,'Assignment unconfirmed; inspect before retry'
-  return {'status':'assigned','approval':t['gid'],'folder':p['name']}
+  name='[Ruby review] Ready folder '+t['gid']
+  if any(x['name']==name for x in rows):return {'status':'prior-review-exists-inspect','approval':t['gid']}
+  notes=("Jack authorized this ready folder review. Read z-asana-agent-control and use your own PAT MCP. "
+   "On assignment, read approval "+t['gid']+" and parent "+t['parent']['gid']+". Verify completed submission dependencies, claim that approval as Ruby, and conduct its full current revised scope. "
+   "Post the report and explicit approval_status on the approval and parent. Complete this dispatch only after posting that decision. "
+   "Then run /opt/hermes/.venv/bin/python /opt/data/scripts/ready_review_handoff.py to release the next ready folder. "
+   "Do not call the helper until THIS dispatch is complete, or it will correctly detect an outstanding review. "
+   "No review time limit, no ruby-review-defer.py, no repeated check tasks. "
+   "If genuinely blocked, report the exact blocker to Amanda with a prepared exception assignment and preserve your checkpoint. "
+   "Never open the held credential document, change file formats, delete files or modify protected areas. "
+   "READY_APPROVAL:"+t['gid']+"\n\n"+t['notes'])
+  due=datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
+  made=await call('asana_create_task',{'project_id':PROJECT,'name':name,'notes':notes,'due_at':due})
+  check=await call('asana_get_task',{'task_id':made['gid'],'opt_fields':'name,notes,assignee.gid,completed,due_at'})
+  assert check['name']==name and check['notes']==notes and check.get('due_at') and not check.get('assignee'),'Prepared review readback failed'
+  return {'status':'released-to-asana-rule','approval':t['gid'],'task':made['gid'],'folder':p['name']}
+
  return {'status':'no-ready-review'}
 
 async def ruby_main(dry):
