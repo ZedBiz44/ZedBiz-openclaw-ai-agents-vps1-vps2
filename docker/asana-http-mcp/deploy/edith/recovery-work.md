@@ -1,0 +1,29 @@
+# Edith Project Recovery
+Date: 2026-09-17 | Agent: Cody | Status: Approved recovery pilot
+
+## Authority and ownership
+- Jack approved restarting the existing ZVIM folder project with Edith producing, Ruby independently reviewing, and Amanda coordinating and resolving exceptions. Ordinary safe sittings do not need fresh approval. Approval of scope does not authorize credentials, protected folders, deletion, or replacement of original files.
+- Project: 1218559074752632. Existing folder parents remain the outcome records. Dispatch tasks record bounded sittings; completing one is not accepting a folder.
+- The current reviewed recommendations remain at https://app.notion.com/p/3dea3e33d581804e9454d24b5f17a455 . Automation decisions: https://app.notion.com/p/3dea3e33d58180b89f0dfb5e0081eeb5 . Do not silently drop any of the 52 evaluated fixes. Report unmet conditions precisely rather than claiming they are already implemented.
+
+## Resume without repeating completed work
+- Read current Asana project instructions, the relevant parent, subtasks, comments and dependencies. The role correction above supersedes older wording that requires Cody to accept ordinary folder work. Ruby owns independent review; Amanda owns coordination. Jack remains the authority for restricted decisions.
+- Read `/home/node/.openclaw/private/folder-cleanup/queue-checkpoint.json` and saved execution states before any writes. Verify returned Drive IDs live. An Asana reporting failure is not a reason to repeat a copy.
+- First reconcile Marketing Tool Comparisons (1218574348046598) and InCanmore (1218559536996899): saved outputs were self-checked but their Asana submission was pending. AlbertaWide (1218559452201256) awaits independent review. Reconcile counts from evidence; do not assume the old counts remain current.
+- Publish a sanitized review handoff in the existing project/task and shared approved Drive destination: exact source/output links, family mapping, inspection evidence, counts, exceptions, protected items and remaining decisions. Ruby must be able to open the evidence without Edith's private filesystem. Never attach raw private logs or credentials. A private path alone is not a completed handoff.
+- Then resume Laughs And Fun (1218559788929226) from saved inspection. Remaining existing parents are LightningIM 1218559788686767, Paradise Fishing 1218559621792077, FKLass 1218559536949282, 4-Day-Build-A-Business 1218559788863817, Passion-Profits-Project 1218559621676002 and Lifestyle-Business-Mindset 1218559788958539.
+
+## Quality gates for every family
+- Read the installed files-and-folders skill and existing folder-specific instructions. Inspect actual content, visual evidence and representative files before choosing names or categories; filename extensions and counts alone are insufficient.
+- Keep related asset families together. Preserve the approved hierarchy, original files and protected subfolders. Avoid repetitive prefixes, arbitrary splitting, and unexplained generic names. Keep ambiguous families explicitly unresolved until inspection supports a decision.
+- Complete a representative small family and self-check its destination, naming, links and companions before scaling that pattern. Record exceptions, count reconciliation and source-to-output mappings.
+- Do not read, copy, move, rename, sanitize or reset the held AlbertaWide credential document `1d6ADvC5OVsNQ_I50K944htnQP1dj7StP`. Preserve the existing Branding and Whiteboard Research protection rules and any newer holds in Asana.
+- Submit Ready for Review only with accessible evidence and the completed production/self-check work. Never approve your own output, mark an approval completed generically, or close the folder parent yourself.
+
+## Short sittings and continuation
+- Maximum useful work: 12 minutes, then checkpoint/report before the 15-minute worker limit. Prefer one coherent asset family or one reporting repair per sitting. Do not start a long unbounded copy pipeline.
+- The dispatch helper arms one future Edith sitting before this work starts and one Ruby check about an hour later if none is outstanding. Asana's native timer assigns those tasks and sends the emails. No Amanda polling or heartbeat is needed for this path.
+- Before ending, save actual returned IDs, current phase, last verified item, unresolved blocker and exact next action. Post a concise result on the dispatch task and affected parent. Complete only the dispatch task after verifying its sitting's deliverable.
+- If one family is blocked, continue unrelated approved work. If all production is genuinely waiting only for Ruby, use `python3 /home/node/.openclaw/workspace/scripts/edith-project-dispatch.py pause DISPATCH_GID` and report why; Ruby's pending check remains.
+- For tool failures, bound retries. Read live state before repeating uncertain writes. Record the failed operation and stop that operation. Do not change tools, credentials, model, server configuration or scope to force completion.
+- Save and verify the required concise external-memory activity record. If that final memory step fails, report its separate status and preserve a local recovery note; never repeat completed business work because memory failed.

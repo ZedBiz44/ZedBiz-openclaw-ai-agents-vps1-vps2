@@ -88,7 +88,8 @@ export async function startHttpMcpService(options: HttpMcpOptions): Promise<void
       }
 
       if (sessionId || !isInitializeRequest(req.body)) {
-        res.status(400).json({
+        // A supplied session that no longer exists must signal reinitialization.
+        res.status(sessionId ? 404 : 400).json({
           jsonrpc: "2.0",
           error: { code: -32000, message: "Invalid or missing MCP session" },
           id: null,
@@ -137,7 +138,7 @@ export async function startHttpMcpService(options: HttpMcpOptions): Promise<void
     const sessionId = req.header("mcp-session-id");
     const entry = sessionId ? sessions.get(sessionId) : undefined;
     if (!sessionId || !entry) {
-      res.status(400).send("Invalid or missing MCP session");
+      res.status(sessionId ? 404 : 400).send("Invalid or missing MCP session");
       return;
     }
     entry.lastSeen = Date.now();
@@ -148,7 +149,7 @@ export async function startHttpMcpService(options: HttpMcpOptions): Promise<void
     const sessionId = req.header("mcp-session-id");
     const entry = sessionId ? sessions.get(sessionId) : undefined;
     if (!sessionId || !entry) {
-      res.status(400).send("Invalid or missing MCP session");
+      res.status(sessionId ? 404 : 400).send("Invalid or missing MCP session");
       return;
     }
     entry.lastSeen = Date.now();
