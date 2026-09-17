@@ -1,0 +1,5 @@
+FROM zedbiz/asana-http-mcp:2.0.0-standard
+USER root
+COPY patch-expired-session.mjs /tmp/patch-expired-session.mjs
+RUN node /tmp/patch-expired-session.mjs && node --check /app/dist/index.js && rm /tmp/patch-expired-session.mjs
+USER node
