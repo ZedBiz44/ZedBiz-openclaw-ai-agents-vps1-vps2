@@ -4,6 +4,7 @@ import fcntl, json, os, re, signal, subprocess, sys, time, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from dispatch_eligibility import eligible
+from receipt_comment import post_once
 
 PROJECT='1218559074752632'
 SECTION='1218615286033089'
@@ -50,7 +51,7 @@ def get_task(gid):
 def save(gid,data):
  p=ROOT/(gid+'.json');tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(data,indent=2));tmp.replace(p)
 
-def comment(gid,text):return call('asana_create_task_story',{'task_id':gid,'text':text})
+def comment(gid,text):return post_once(call,gid,text)
 
 def project_tasks():
  out=[];offset=None
@@ -156,4 +157,3 @@ if __name__=='__main__':
   elif sys.argv[1]=='identity':connect();print('Edith PAT MCP identity verified')
   else:raise ValueError('Unsupported command')
  except Exception as e:print(json.dumps({'error':type(e).__name__,'message':str(e)[:500]}));sys.exit(1)
-
