@@ -3,6 +3,7 @@
 import fcntl, json, os, re, signal, subprocess, sys, time, urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from dispatch_eligibility import eligible
 
 PROJECT='1218559074752632'
 SECTION='1218615286033089'
@@ -34,6 +35,7 @@ def call(name,args):
  except json.JSONDecodeError:return text
 
 def connect():
+ HEADERS.pop('Mcp-Session-Id',None)
  rpc('initialize',{'protocolVersion':'2024-11-05','capabilities':{},'clientInfo':{'name':'edith-project-dispatch','version':'1'}})
  me=call('asana_get_user',{'user_gid':'me'})
  assert me['gid']==EDITH and me['email']=='edith@agents.zbiz.ca'
@@ -41,7 +43,7 @@ def connect():
 
 def get_task(gid):
  assert re.fullmatch(r'\d{16}',gid)
- t=call('asana_get_task',{'task_id':gid,'opt_fields':'name,notes,assignee.gid,completed,projects.gid,due_at,dependencies.gid'})
+ t=call('asana_get_task',{'task_id':gid,'opt_fields':'name,notes,assignee.gid,completed,projects.gid,due_at,dependencies.gid,resource_subtype'})
  assert any(p['gid']==PROJECT for p in t['projects']), 'Wrong project'
  return t
 
@@ -72,14 +74,13 @@ def prepare(name,notes,minutes):
 
 INTAKE='Jack approved this project workflow. On assignment: read z-asana-agent-control, then immediately run python3 /home/node/.openclaw/workspace/scripts/edith-project-dispatch.py dispatch TASK_GID (replace TASK_GID with this task ID). The helper verifies identity and live task ownership, prevents overlapping workers, arms the next wake-up, and starts a separate bounded work session. End this email intake after the helper receipt; do not perform folder work or wait for the worker here. Do not mark this task complete from email intake. The separate worker owns completion. No comment emails or reminder emails authorize execution.'
 REVIEW='Jack approved Ruby as independent reviewer and Amanda as coordinator. Check the existing folder tasks and actual shared evidence in project 1218559074752632. Ready-for-review is not accepted. Review actual source/output content, representative families and exceptions, not only counts. Do not read the held credential document. If not ready or blocked, prepare one unassigned top-level [Ruby review] task with due_at one hour ahead before ending; Asana assigns it when due. Do not approve blocked or failed output. Record a named blocker and exact evidence. Keep checks separate from acceptance approvals. Escalate repeated no-progress to Amanda rather than repeat forever.'
-REVIEW+=' Use /opt/hermes/.venv/bin/python /opt/data/scripts/ruby-review-defer.py CHECK_GID 60 to defer once safely. Work at most 15 minutes in a sitting; retain exact review progress and defer unfinished review. Existing folder acceptance subtasks are real pending Asana approvals with production/submission dependencies. Jack explicitly authorizes Ruby to assign a ready approval to herself, inspect the entire folder and evidence, and record approved or changes_requested explicitly. Never use generic completed=true to approve. Only after independent approval may Ruby close the corresponding folder parent. After a review decision that requires Edith action, create one meaningful unassigned [Edith dispatch] task due_at a minute ahead; include the approval/parent IDs, exact corrections and this launch instruction: python3 /home/node/.openclaw/workspace/scripts/edith-project-dispatch.py dispatch TASK_GID. A failed review must not block unrelated approved work. If all folder outcomes are accepted and no unresolved held work remains, end the review chain and notify Amanda to close the project. Keep the credential decision separate.'
+REVIEW+=' Google access is /opt/data/bin/gog with account jack@zbiz.work; folder listing uses --parent, downloads use --out. Reuse your source-linked checkpoint under /opt/data/tmp/ruby-review instead of rediscovering access. Use /opt/hermes/.venv/bin/python /opt/data/scripts/ruby-review-defer.py CHECK_GID 60 to defer once safely. Work at most 15 minutes in a sitting; retain exact review progress and defer unfinished review. Existing folder acceptance subtasks are real pending Asana approvals with production/submission dependencies. Jack explicitly authorizes Ruby to assign a ready approval to herself, inspect the entire folder and evidence, and record approved or changes_requested explicitly. Never use generic completed=true to approve. Only after independent approval may Ruby close the corresponding folder parent. After a review decision that requires Edith action, create one meaningful unassigned [Edith dispatch] task due_at a minute ahead; include the approval/parent IDs, exact corrections and this launch instruction: python3 /home/node/.openclaw/workspace/scripts/edith-project-dispatch.py dispatch TASK_GID. A failed review must not block unrelated approved work. If all folder outcomes are accepted and no unresolved held work remains, end the review chain and notify Amanda to close the project. Keep the credential decision separate.'
 
 def dispatch(gid):
  connect();t=get_task(gid)
  assert t['name'].startswith('[Edith dispatch]')
- assert t['assignee'] and t['assignee']['gid']==EDITH
- if t['completed']:return {'status':'already-completed','task':gid}
- if t.get('due_at') and datetime.fromisoformat(t['due_at'].replace('Z','+00:00'))>datetime.now(timezone.utc):return {'status':'not-yet-due'}
+ decision=eligible(t,EDITH,lambda dep: call('asana_get_task',{'task_id':dep,'opt_fields':'completed,resource_subtype,approval_status'}))
+ if decision!='eligible':return {'status':decision,'task':gid}
  lock=open(ROOT/'worker.lock','a+')
  try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
  except BlockingIOError:return {'status':'worker-already-running','task':gid}
@@ -97,7 +98,7 @@ def dispatch(gid):
   if len(previous)==3 and all(not get_task(x['task'])['completed'] for x in previous):
    name='Amanda — Resolve repeated Edith dispatch failures'
    if not any(x['name']==name and not x['completed'] for x in project_tasks()):
-    call('asana_create_task',{'project_id':PROJECT,'name':name,'assignee':'1213974002925107','notes':'Three previous bounded sittings remain incomplete. Inspect their checkpoints and errors before releasing another dispatch. No automatic repeated work is authorized until this blocker is resolved. Tasks: '+', '.join(x['task'] for x in previous)})
+    call('asana_create_task',{'project_id':PROJECT,'name':name,'assignee':'1213974002925107','notes':'On assignment read z-asana-agent-control, run python3 /home/node/.openclaw/workspace/scripts/amanda-project-dispatch.py dispatch TASK_GID using this task ID, then end email intake. The separate coordinator worker owns the actual checks and completion. Three previous bounded sittings remain incomplete. Inspect their checkpoints and errors before releasing another dispatch. No automatic repeated work is authorized until this blocker is resolved. Tasks: '+', '.join(x['task'] for x in previous)})
    record['status']='paused-for-amanda';save(gid,record)
    comment(gid,'Automatic continuation paused after three incomplete sittings. Amanda has an assigned exception task; inspect saved state before restart.')
    return record
@@ -106,7 +107,7 @@ def dispatch(gid):
   if not any(x['name'].startswith('[Ruby review]') and 'pilot' not in x['name'].lower() and not x['completed'] for x in project_tasks()):
    review=prepare('[Ruby review] Check saved output after '+gid,REVIEW,60)
    record['review_task']=review['gid'];save(gid,record)
- prompt='Jack authorized Get-er-Done recovery of Asana project '+PROJECT+'. You are Edith. This is a separate bounded work session, not email intake. Read z-asana-agent-control and use only your PAT MCP. Read task '+gid+' and /home/node/.openclaw/workspace/scripts/edith-recovery-work.md. Work at most 12 minutes, reserve time to save evidence and report, and end before the 15-minute runtime limit. The helper has already armed a later wake-up (except pilot). Never start a second worker or duplicate existing copied files. Do not alter runtime, credentials, or protected items. '+('HANDOFF PILOT: make no Drive changes; post proof of this separate session, verify your identity, project and saved queue, complete only this dispatch task and read back. Then stop.' if pilot else 'Reconcile saved results first, then continue one bounded approved family. Only complete this dispatch sitting after saving an exact next action; folder parents remain incomplete until independent acceptance. If all production is ready and only Ruby review remains, use the helper pause command to cancel this sitting\'s scheduled successor, stating the waiting condition in Asana. Do not pause while there is other approved work.')
+ prompt='Jack authorized Get-er-Done recovery of Asana project '+PROJECT+'. You are Edith. This is a separate bounded work session, not email intake. Read z-asana-agent-control and use only your PAT MCP. Read task '+gid+' and /home/node/.openclaw/workspace/scripts/edith-recovery-work.md. Work at most 12 minutes, reserve time to save evidence and report, and end before the 15-minute runtime limit. The helper has already armed a later wake-up (except pilot). Never start a second worker or duplicate existing copied files. Do not alter runtime, credentials, or protected items. '+('HANDOFF PILOT: make no Drive changes; post proof of this separate session, verify your identity, project and saved queue, complete only this dispatch task and read back. Then stop.' if pilot else 'Reconcile saved results first. Read outstanding Ruby changes-requested decisions and earlier assigned dispatch tasks; prioritize concrete corrections after a safe checkpoint and consume their exact scope without launching another writer. Then continue one bounded approved family. Only complete this dispatch sitting after saving an exact next action; folder parents remain incomplete until independent acceptance. If all production is ready and only Ruby review remains, use the helper pause command to cancel this sitting\'s scheduled successor, stating the waiting condition in Asana. Do not pause while there is other approved work.')
  prompt_path=ROOT/(gid+'.prompt.txt');prompt_path.write_text(prompt)
  log=open(ROOT/(gid+'.log'),'ab',buffering=0)
  p=subprocess.Popen([sys.executable,__file__,'run',gid,str(lock.fileno())],stdin=subprocess.DEVNULL,stdout=log,stderr=log,start_new_session=True,pass_fds=(lock.fileno(),))
