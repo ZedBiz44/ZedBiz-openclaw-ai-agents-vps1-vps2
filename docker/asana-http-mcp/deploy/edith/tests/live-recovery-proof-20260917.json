@@ -1,0 +1,131 @@
+{
+  "idle_phases": [
+    {
+      "phase": "initial-catalog",
+      "status": "started",
+      "elapsedMs": 12,
+      "time": "2026-09-17T20:54:37.779Z"
+    },
+    {
+      "phase": "initial-catalog",
+      "status": "returned",
+      "elapsedMs": 756,
+      "time": "2026-09-17T20:54:38.523Z"
+    },
+    {
+      "phase": "idle-start",
+      "tools": 76,
+      "seconds": 970,
+      "elapsedMs": 756,
+      "time": "2026-09-17T20:54:38.523Z"
+    },
+    {
+      "phase": "post-expiry-list",
+      "status": "started",
+      "elapsedMs": 970757,
+      "time": "2026-09-17T21:10:48.524Z"
+    },
+    {
+      "phase": "post-expiry-list",
+      "status": "returned",
+      "elapsedMs": 970773,
+      "time": "2026-09-17T21:10:48.540Z"
+    },
+    {
+      "phase": "post-expiry-result",
+      "tools": 76,
+      "elapsedMs": 970774,
+      "time": "2026-09-17T21:10:48.541Z"
+    },
+    {
+      "phase": "cleanup",
+      "status": "started",
+      "elapsedMs": 970774,
+      "time": "2026-09-17T21:10:48.541Z"
+    },
+    {
+      "phase": "cleanup",
+      "status": "returned",
+      "elapsedMs": 970782,
+      "time": "2026-09-17T21:10:48.549Z"
+    },
+    {
+      "phase": "final",
+      "passed": true,
+      "elapsedMs": 970782,
+      "time": "2026-09-17T21:10:48.549Z"
+    }
+  ],
+  "interruption": {
+    "test_only": true,
+    "interrupted_at": "2026-09-17T20:57:06.285708+00:00",
+    "terminated_pid": 218433,
+    "owned_processes": {
+      "218433": {
+        "ppid": 1,
+        "pgid": 218433,
+        "comm": "openclaw"
+      },
+      "218440": {
+        "ppid": 218433,
+        "pgid": 218440,
+        "comm": "openclaw-agent"
+      }
+    },
+    "confirmed_stopped": true,
+    "saved_completed_units": [
+      1
+    ],
+    "resume_only_unit": 2,
+    "recovery_task": "1218617665605886",
+    "production_untouched": true
+  },
+  "recovered_checkpoint": {
+    "completed_units": [
+      1,
+      2
+    ],
+    "next_unit": null,
+    "test_only": true,
+    "drive_writes": 0,
+    "recovered_by_task": "1218617665605886"
+  },
+  "recovery_worker": {
+    "task": "1218617665605886",
+    "started": "2026-09-17T21:09:08.269768+00:00",
+    "status": "worker-returned",
+    "pid": 219469,
+    "pilot": true,
+    "exit_code": 0,
+    "ended": "2026-09-17T21:11:03.979865+00:00"
+  },
+  "latest_production_worker": {
+    "task": "1218619598478978",
+    "started": "2026-09-17T20:52:10.268410+00:00",
+    "status": "worker-returned",
+    "next_task": "1218619605774310",
+    "pid": 213396,
+    "pilot": false,
+    "exit_code": 0,
+    "ended": "2026-09-17T20:59:12.567921+00:00"
+  },
+  "memory_verification": {
+    "repair_run": "b0af7cb9-ee3a-4245-b233-51a10fc34f2b",
+    "fresh_run": "033bf006-ec55-4824-a79a-b40b83160da0",
+    "memory_id": "07e3d798-3944-48e9-8d18-83d8d537a841",
+    "exact_dispatch_ids": [
+      "1218617629784120",
+      "1218604531998882",
+      "1218602615818629"
+    ],
+    "provider": "Mem0",
+    "scope": "unchanged Edith default main",
+    "verified": true
+  },
+  "limitations": [
+    "The historical original hang is not thereby root-caused.",
+    "Stopped worker and checkpoint were synthetic; no production Drive interruption was induced.",
+    "No deliberately dead production mail listener test.",
+    "Full independent folder acceptance remains pending."
+  ]
+}
