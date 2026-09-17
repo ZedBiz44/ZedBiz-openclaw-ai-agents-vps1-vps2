@@ -1,6 +1,6 @@
 # OpenClaw AGENTS.md Fleet Assessment
 
-Date: 2026-09-17 | Operator: Cody | Status: Deployment candidate
+Date: 2026-09-17 | Operator: Cody | Status: Completed
 
 ## Scope
 
@@ -49,4 +49,21 @@ The June cleanup had not simply failed. Later updates repeatedly appended fleet-
 - Preserve owner and mode.
 - Pilot one agent first, then verify startup, role behavior, approval boundaries, source routing, local-note discovery, and the final email-trigger section in a fresh session.
 - Expand only after the pilot passes. Roll back any agent whose fresh-session behavior or runtime health fails.
+
+## Deployment Result
+
+- Amanda was the pilot. Her timestamped external backup was created, owner and mode were preserved, the container remained healthy, and a fresh session correctly returned her role, approval boundary, GitHub routing, `TOOLS.md` location, and the tail-end Asana email rule.
+- After the pilot passed, the remaining VPS1 agents, all VPS2 agents, and Rocky were deployed from this GitHub branch with hash conflict checks and timestamped external backups.
+- VPS1 containers remained running and healthy. Restart counts stayed unchanged, including Vivian's pre-existing count of two.
+- VPS2 services remained active with zero restarts.
+- Rocky's user-level `openclaw-gateway.service` remained active and running; the earlier generic system-unit check was not the owning service route.
+- A separate fresh session for every agent verified role, an approval gate, GitHub technical routing, `TOOLS.md` discovery, and the rule to ignore comment-only Asana email notifications.
+- Fresh-session character checks confirmed every deployed file stayed below its live per-file limit. No rollback was required.
+
+## Rollback Locations
+
+- Amanda pilot: `/opt/openclaw/agents/amanda/backups/agents-md-manager-20260917T182900Z/AGENTS.md`.
+- Remaining VPS1 agents: `/opt/openclaw/agents/<agent>/backups/agents-md-manager-20260917T183500Z/AGENTS.md`.
+- VPS2: `/root/.openclaw-<agent>/backups/agents-md-manager-20260917T183500Z/AGENTS.md`.
+- Rocky: `/home/openclaw/.openclaw/backups/agents-md-manager-20260917T183500Z/AGENTS.md`.
 
