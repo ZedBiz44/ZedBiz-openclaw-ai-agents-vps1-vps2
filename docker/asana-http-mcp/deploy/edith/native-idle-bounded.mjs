@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import {createSessionMcpRuntime} from '/app/dist/agents/agent-bundle-mcp-runtime.js';
 const started=Date.now();
-const record=x=>console.log(JSON.stringify({...x,elapsedMs:Date.now()-started,time:new Date().toISOString()}));
+const record=x=>{const line=JSON.stringify({...x,elapsedMs:Date.now()-started,time:new Date().toISOString()});fs.appendFileSync('/home/node/.openclaw/private/native-idle-bounded-result-20260917.jsonl',line+'\n',{mode:0o600});console.log(line);};
 const deadline=setTimeout(()=>{record({phase:'outer-deadline',status:'failed'});process.exit(124);},1040000);
 const cfg=JSON.parse(fs.readFileSync('/home/node/.openclaw/openclaw.json','utf8'));
 const servers={asana:{...cfg.mcp.servers.asana,requestTimeoutMs:20000}};
@@ -28,3 +28,4 @@ try{
 try{await bound('cleanup',async()=>{await r.dispose();await r.joinCleanup();},10000);}
 catch(e){passed=false;record({phase:'cleanup-failure',error:e.message});}
 clearTimeout(deadline);record({phase:'final',passed});process.exit(passed?0:1);
+
