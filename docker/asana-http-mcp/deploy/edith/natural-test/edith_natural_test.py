@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 ROOT=Path('/home/node/.openclaw/private/edith-dispatch')
 SCRIPTS=Path('/home/node/.openclaw/workspace/scripts')
 GID='1218611177927226'
-SESSION='agent:main:edith-project-continuous-'+GID
+SESSION='agent:main:edith-uninterrupted-test-20260917'
 def now():return datetime.now(timezone.utc).isoformat()
 def main():
     receipt=ROOT/'natural-test-20260917.json'
