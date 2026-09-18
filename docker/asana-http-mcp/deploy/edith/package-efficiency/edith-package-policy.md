@@ -19,3 +19,4 @@ Applies only to the existing ZVIM folder project1218559074752632. This supersede
 - Existing source-linked plan-review evidence may be metadata/listing evidence for these explicit exceptions. Never create fake visual-inspection records. The checker validates scope, package ancestry and path preservation, and keeps normal integrity/coverage checks.
 - Ruby checks the labelled package home, retained structure, counts and disclosed exceptions. Use useful documents/standalone exports for the five content samples. Do not fail authorized package internals for generic names or missing individual previews.
 - Report useful documents organized, packages retained, files intentionally not content-reviewed and real unresolved items separately. One package decision may cover hundreds of support files; scripts perform inventory/integrity accounting, not hundreds of LLM content judgments.
+
