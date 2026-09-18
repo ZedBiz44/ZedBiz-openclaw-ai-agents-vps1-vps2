@@ -75,6 +75,14 @@ replace(pilot,"  listing=gog('ls','--parent',parent,'--max','100');assert not li
 "  assert name not in destination_names(parent), 'Destination collision: reconcile first'")
 replace(pilot,"result=mutate('copy',fid,name,'--parent',parent);did=result['file']['id'];state['pending'][fid]=did;persist()",
 "result=mutate('copy',fid,name,'--parent',parent);did=result['file']['id'];_destination_names.setdefault(parent,set()).add(name);state['pending'][fid]=did;persist()")
+replace(pilot," df=POOL.submit(get,did);apf=POOL.submit(gog,'permissions',did);out=P/'cache'/('active-'+did+pathlib.PurePosixPath(name).suffix);dl=POOL.submit(gog,'download',did,'--out',str(out));dest=df.result();",''' preserve=r.get('preservation_exception')=='jack-2026-09-17-legacy-photoshop'
+ if preserve:assert pathlib.PurePosixPath(name).suffix.lower() in ('.psd','.psb') and name==source['name']
+ df=POOL.submit(get,did);apf=POOL.submit(gog,'permissions',did);out=P/'cache'/('active-'+did+pathlib.PurePosixPath(name).suffix);dl=None if preserve else POOL.submit(gog,'download',did,'--out',str(out));dest=df.result();''')
+replace(pilot," dl.result();assert hashlib.md5(out.read_bytes()).hexdigest()==source['md5Checksum'];method=openfile(out)",''' if preserve:
+  method='metadata-only: user-approved Photoshop preservation; source/output checksum and size verified'
+ else:
+  dl.result();assert hashlib.md5(out.read_bytes()).hexdigest()==source['md5Checksum'];method=openfile(out)''')
+replace(pilot,"'local_path':str(out),", "'local_path':None if preserve else str(out),")
 replace(pilot,"def archive(fid,parent):\n if fid in state['archived']:return",'''def archive(fid,parent):
  if fid in state['archived']:return
  if fid not in state['copies']:
