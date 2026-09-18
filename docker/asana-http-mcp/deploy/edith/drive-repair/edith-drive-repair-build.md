@@ -40,3 +40,15 @@ Two natural sessions cover exported graphics/documents first, then preserved Pho
 
 Restore the `.before-drive-repair-20260918` backups for `albertawide/work.py`, `execute-pilot.py`, and `execution_guard.py` only while no worker is running. Restore only Terra's prior runtime mapping from `openclaw.json.before-terra-pilot-20260918`; do not overwrite unrelated later configuration. Leave recovered journals and valid file proofs intact. Never re-enable the old periodic dispatcher as part of rollback.
 
+## Continuous phase executor and pilot correction
+
+`edith_run_saved_plan.py` runs only the saved Laughs And Fun exports or Photoshop phase. It filters completed rows before remote calls, keeps one imported executor, records each result, refuses another runner instance and stops at an unresolved exception. It does not schedule or restart an agent. Twelve recovery, duplicate-proof and runner tests passed on Edith's runtime.
+
+The initial Terra session generated a loop that reread completed work. Cody stopped only that read-heavy file subprocess at a verified safe boundary; the Edith model session continued. This cost and intervention belong in the pilot result. The tested phase runner replaces that ad hoc loop in session B.
+
+Exact duplicate aliases get their own source-ID proof tied to the existing canonical copy, with checksum, size, name, path and access checks. Archive moves additionally compare current source checksum and size against the saved proof. Photoshop exception rows keep original names and use metadata/checksum/access verification without downloading or rendering PSD/PSB content.
+
+Inventory uses `gog drive ls --parent ... --fields files(...),nextPageToken`; `search --fields` was tested and rejected because it did not return the required metadata in this installed version. Paginated recursion, empty folders and malformed responses were checked. Generic copy skips GOG's duplicate metadata GET after the executor has verified the source; typed copies retain their MIME check. Copy command tests passed after this change.
+
+These implementation changes were made during the pilot. Results assess the combined workflow and model; they are not a controlled model-only speed comparison. The default model remains unchanged while two real Terra sessions are evaluated.
+
