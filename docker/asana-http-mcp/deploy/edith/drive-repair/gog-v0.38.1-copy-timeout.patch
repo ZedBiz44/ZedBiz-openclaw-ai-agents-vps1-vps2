@@ -11,15 +11,59 @@
  	// for OAuth2 token refresh exchanges, which should always be fast.
 --- a/internal/cmd/drive_copy.go
 +++ b/internal/cmd/drive_copy.go
-@@ -9,6 +9,7 @@
+@@ -8,6 +8,7 @@
+ 
  	"google.golang.org/api/drive/v3"
  
++	"github.com/openclaw/gogcli/internal/googleapi"
  	"github.com/openclaw/gogcli/internal/outfmt"
-+"github.com/openclaw/gogcli/internal/googleapi"
  	"github.com/openclaw/gogcli/internal/ui"
  )
+@@ -52,23 +53,27 @@
+ 		return err
+ 	}
  
-@@ -79,7 +80,7 @@
+-	meta, err := svc.Files.Get(id).
+-		SupportsAllDrives(true).
+-		Fields("id, name, mimeType").
+-		Context(ctx).
+-		Do()
+-	if err != nil {
+-		return err
+-	}
+-	if meta == nil {
+-		return errors.New("file not found")
+-	}
+-	if opts.ExpectedMime != "" && meta.MimeType != opts.ExpectedMime {
+-		label := strings.TrimSpace(opts.KindLabel)
+-		if label == "" {
+-			label = "expected type"
++	// Generic Drive copies are validated by the caller and copy API; typed copies still check MIME.
++	if opts.ExpectedMime != "" {
++		meta, err := svc.Files.Get(id).
++			SupportsAllDrives(true).
++			Fields("id, name, mimeType").
++			Context(ctx).
++			Do()
++		if err != nil {
++			return err
+ 		}
+-		return fmt.Errorf("file is not a %s (mimeType=%q)", label, meta.MimeType)
++		if meta == nil {
++			return errors.New("file not found")
++		}
++		if opts.ExpectedMime != "" && meta.MimeType != opts.ExpectedMime {
++			label := strings.TrimSpace(opts.KindLabel)
++			if label == "" {
++				label = "expected type"
++			}
++			return fmt.Errorf("file is not a %s (mimeType=%q)", label, meta.MimeType)
++		}
++
+ 	}
+ 
+ 	req := &drive.File{Name: name}
+@@ -79,7 +84,7 @@
  	created, err := svc.Files.Copy(id, req).
  		SupportsAllDrives(true).
  		Fields("id, name, mimeType, webViewLink").
