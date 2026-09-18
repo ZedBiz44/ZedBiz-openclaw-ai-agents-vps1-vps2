@@ -32,6 +32,8 @@ replace(work," if r.returncode:raise RuntimeError(r.stderr)",
     with (P/'operations.jsonl').open('a') as f:f.write(json.dumps({'timestamp':now(),'args':args,'returncode':0,'reconciled':True,'file_id':recovered['file']['id']})+'\\n')
     return recovered
   raise RuntimeError(r.stderr)''')
+replace(work,"'--drive',DRIVE,'--max','100']", "'--drive',DRIVE,'--max','100','--fields','files('+FIELDS+'),nextPageToken']")
+replace(work,"    m=get(x['id']);assert m.get('driveId')==DRIVE and i in m['parents'];", "    m=dict(x);assert m.get('driveId')==DRIVE and i in m['parents'];")
 
 # Cache evidence bytes only while inode/size/mtime/ctime remain identical.
 guard=S/'execution_guard.py'
