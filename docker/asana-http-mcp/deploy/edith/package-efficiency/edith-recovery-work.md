@@ -1,6 +1,9 @@
 # Edith Project Recovery
 Date: 2026-09-17 | Agent: Cody | Status: Approved recovery pilot
 
+## Current production priority
+This current brief supersedes the original recovery prompt's broad reconciliation wording. Resume the saved active folder and check only changed or actionable work. The52-item project remediation register is a management reference, not a checklist to reload on every production sitting. Reuse the already verified folder map, naming guide and known project destinations unless their version, scope or target changes. Do not re-open accepted folders or retry an unchanged correction guard error; report that blocker once and continue independent ready work. Checkpoint each group, then keep working while useful time remains.
+
 ## Authority and ownership
 - Jack approved restarting the existing ZVIM folder project with Edith producing, Ruby independently reviewing, and Amanda coordinating and resolving exceptions. Ordinary safe sittings do not need fresh approval. Approval of scope does not authorize credentials, protected folders, deletion, or replacement of original files.
 - Project: 1218559074752632. Existing folder parents remain the outcome records. Dispatch tasks record bounded sittings; completing one is not accepting a folder.
@@ -45,3 +48,4 @@ For project 1218559074752632, read /home/node/.openclaw/workspace/scripts/edith-
 
 ## Approved package preservation
 Read /home/node/.openclaw/workspace/scripts/edith-package-policy.md. It extends the Photoshop exception to properly inventoried retained packages while keeping useful documents in normal content review. Record honest metadata-only preservation; do not render or individually rename package internals.
+
