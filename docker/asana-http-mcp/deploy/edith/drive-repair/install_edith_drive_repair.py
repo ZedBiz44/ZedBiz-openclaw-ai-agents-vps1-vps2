@@ -75,6 +75,18 @@ replace(pilot,"  listing=gog('ls','--parent',parent,'--max','100');assert not li
 "  assert name not in destination_names(parent), 'Destination collision: reconcile first'")
 replace(pilot,"result=mutate('copy',fid,name,'--parent',parent);did=result['file']['id'];state['pending'][fid]=did;persist()",
 "result=mutate('copy',fid,name,'--parent',parent);did=result['file']['id'];_destination_names.setdefault(parent,set()).add(name);state['pending'][fid]=did;persist()")
+replace(pilot,"def archive(fid,parent):\n if fid in state['archived']:return",'''def archive(fid,parent):
+ if fid in state['archived']:return
+ if fid not in state['copies']:
+  row=next(r for r in plan['file_plan'] if r['source_id']==fid)
+  cid=row.get('active_copy_source_id',fid)
+  if cid!=fid and cid in state['copies']:
+   from edith_duplicate_proof import make_proof
+   canonical=state['copies'][cid];source=get(fid);active=get(canonical['active_id'])
+   expected=state['folders'][str(pathlib.PurePosixPath(row['planned_path']).parent)]
+   assert active.get('parents')==[expected] and active.get('driveId')==DRIVE
+   proof=make_proof(row,orig[fid],source,active,canonical,sig(gog('permissions',fid)),sig(gog('permissions',active['id'])),now())
+   save(fid+'-copy-proof.json',proof);state['copies'][fid]=proof;persist()''')
 for path in [work,guard,pilot,S/'edith_drive_recovery.py']:
     compile(path.read_text(),str(path),'exec')
 print('Installed scoped copy transport, recovery, evidence cache, and per-process destination inventory.')
