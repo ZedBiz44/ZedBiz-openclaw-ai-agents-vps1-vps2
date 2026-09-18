@@ -4,6 +4,20 @@ import json
 import sys
 from pathlib import Path, PurePosixPath
 
+def pending_rows(plan, state, photoshop=None):
+    """Select before any remote calls; completed rows remain in the full saved plan."""
+    rows=[]
+    archived=set(state.get('archived',[]))
+    proofs=state.get('copies',{})
+    for row in plan['file_plan']:
+        fid=row['source_id']
+        if fid in archived and fid in proofs:
+            continue
+        is_photoshop=PurePosixPath(row['planned_path']).suffix.lower() in ('.psd','.psb')
+        if photoshop is None or is_photoshop==photoshop:
+            rows.append(row)
+    return rows
+
 def assess(inventory):
     assert inventory.get('complete') is True, 'Complete paginated inventory required'
     groups = {}
