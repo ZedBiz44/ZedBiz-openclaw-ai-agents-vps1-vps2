@@ -32,7 +32,8 @@ replace(work," if r.returncode:raise RuntimeError(r.stderr)",
     with (P/'operations.jsonl').open('a') as f:f.write(json.dumps({'timestamp':now(),'args':args,'returncode':0,'reconciled':True,'file_id':recovered['file']['id']})+'\\n')
     return recovered
   raise RuntimeError(r.stderr)''')
-replace(work,"'--drive',DRIVE,'--max','100']", "'--drive',DRIVE,'--max','100','--fields','files('+FIELDS+'),nextPageToken']")
+replace(work,"args=['search',f\"'{i}' in parents and trashed = false\",'--raw-query','--drive',DRIVE,'--max','100']", "args=['ls','--parent',i,'--max','100','--fields','files('+FIELDS+'),nextPageToken']")
+replace(work,"   for x in d.get('files',[]):", "   if 'files' not in d:raise ValueError('Malformed inventory response; files missing')\n   for x in d.get('files') or []:")
 replace(work,"    m=get(x['id']);assert m.get('driveId')==DRIVE and i in m['parents'];", "    m=dict(x);assert m.get('driveId')==DRIVE and i in m['parents'];")
 
 # Cache evidence bytes only while inode/size/mtime/ctime remain identical.
@@ -95,6 +96,7 @@ replace(pilot,"def archive(fid,parent):\n if fid in state['archived']:return",''
    assert active.get('parents')==[expected] and active.get('driveId')==DRIVE
    proof=make_proof(row,orig[fid],source,active,canonical,sig(gog('permissions',fid)),sig(gog('permissions',active['id'])),now())
    save(fid+'-copy-proof.json',proof);state['copies'][fid]=proof;persist()''')
+replace(pilot," current=get(fid)\n if current['parents']!=[parent]", " current=get(fid)\n proof=state['copies'].get(fid,{})\n assert proof.get('active_id') and all(current.get(k)==proof.get(k) for k in ('md5Checksum','size')), 'Source changed before archive; retain in place'\n if current['parents']!=[parent]")
 for path in [work,guard,pilot,S/'edith_drive_recovery.py']:
     compile(path.read_text(),str(path),'exec')
 print('Installed scoped copy transport, recovery, evidence cache, and per-process destination inventory.')
