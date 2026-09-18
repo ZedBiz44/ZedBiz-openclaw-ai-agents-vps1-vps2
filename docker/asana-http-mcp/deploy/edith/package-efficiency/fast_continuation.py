@@ -9,7 +9,7 @@ def expedite_successor(record, current, read_task, update_task, now=None):
     if nxt.get('completed') or nxt.get('assignee'):return {'status':'successor-already-handled','task':gid}
     if nxt.get('name') != '[Edith dispatch] Continue saved work after '+record['task']:
         raise ValueError('Unexpected successor')
-    due=(now or datetime.now(timezone.utc)).isoformat().replace('+00:00','Z')
+    due=(now or datetime.now(timezone.utc)).replace(microsecond=0).isoformat().replace('+00:00','Z')
     update_task(gid,due)
     check=read_task(gid)
     if check.get('due_at') != due and datetime.fromisoformat(check['due_at'].replace('Z','+00:00')) != datetime.fromisoformat(due.replace('Z','+00:00')):
