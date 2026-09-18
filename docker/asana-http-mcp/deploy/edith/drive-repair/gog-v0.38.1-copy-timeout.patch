@@ -1,0 +1,30 @@
+--- a/internal/googleapi/client.go
++++ b/internal/googleapi/client.go
+@@ -23,7 +23,7 @@
+ 	// cut short. This replaces the former http.Client.Timeout which applied
+ 	// to the entire request lifecycle and caused timeouts on large Drive
+ 	// file downloads.
+-	responseHeaderTimeout = 30 * time.Second
++	responseHeaderTimeout = 120 * time.Second
+ 
+ 	// tokenExchangeTimeout is applied to the short-lived HTTP client used
+ 	// for OAuth2 token refresh exchanges, which should always be fast.
+--- a/internal/cmd/drive_copy.go
++++ b/internal/cmd/drive_copy.go
+@@ -9,6 +9,7 @@
+ 	"google.golang.org/api/drive/v3"
+ 
+ 	"github.com/openclaw/gogcli/internal/outfmt"
++"github.com/openclaw/gogcli/internal/googleapi"
+ 	"github.com/openclaw/gogcli/internal/ui"
+ )
+ 
+@@ -79,7 +80,7 @@
+ 	created, err := svc.Files.Copy(id, req).
+ 		SupportsAllDrives(true).
+ 		Fields("id, name, mimeType, webViewLink").
+-		Context(ctx).
++		Context(googleapi.WithoutRetries(ctx)).
+ 		Do()
+ 	if err != nil {
+ 		return err
