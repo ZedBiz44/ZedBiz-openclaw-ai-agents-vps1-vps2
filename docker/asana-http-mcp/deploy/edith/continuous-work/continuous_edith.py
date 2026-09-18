@@ -94,6 +94,14 @@ def _run_continuous(d, gid):
                 except ProcessLookupError: pass
                 out, err = p.communicate(timeout=10)
         code = 124 if timed_out else p.returncode
+        if code == 0:
+            try:
+                response = json.loads(out)
+                result = response.get('result', response)
+                if response.get('status') in ('error', 'aborted', 'timeout') or result.get('meta', {}).get('aborted'):
+                    code = 124
+            except (ValueError, AttributeError):
+                code = 125  # An unreadable result is not proven successful work.
         (d.ROOT / (gid + '.turn-' + str(turn) + '.result.json')).write_text(out)
         if err: print(err[-2000:])
         record['turns'].append({'turn': turn, 'exit_code': code, 'ended': datetime.now(timezone.utc).isoformat()})
