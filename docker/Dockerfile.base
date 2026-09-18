@@ -26,8 +26,8 @@
 #   - just         Task runner / command shortcuts
 #   - grex         Regex generator from examples
 
-ARG OPENCLAW_VERSION=2026.8.2
-FROM ghcr.io/openclaw/openclaw:${OPENCLAW_VERSION}
+ARG OPENCLAW_VERSION=2026.9.4
+FROM ghcr.io/openclaw/openclaw:2026.9.4@sha256:6bc0bf3117e1c5074db8a064084a5f9d41ece1aa2a16369a82f53207b846a5c3
 
 # Tool versions -- update these to upgrade
 ARG YTDLP_VERSION=2026.08.19
@@ -239,5 +239,8 @@ RUN npm install -g --allow-scripts=@xdevplatform/xurl \
     clawhub@${CLAWHUB_VERSION} \
     @xdevplatform/xurl@${XURL_VERSION} \
     && npm cache clean --force
+
+COPY ai-agent-sops/shared-scripts/patch-imap-source-fetch.mjs ai-agent-sops/shared-scripts/test-imap-source-fetch.mjs /opt/zedbiz-imap-fix/
+RUN node /opt/zedbiz-imap-fix/patch-imap-source-fetch.mjs /app && node --check /app/dist/extensions/imap/index.js && node /opt/zedbiz-imap-fix/test-imap-source-fetch.mjs /app/dist/extensions/imap/index.js
 
 USER node
