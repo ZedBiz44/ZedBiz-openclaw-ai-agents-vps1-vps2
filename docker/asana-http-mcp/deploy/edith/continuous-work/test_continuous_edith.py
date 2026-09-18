@@ -29,7 +29,7 @@ class ContinuousTests(unittest.TestCase):
         save(self.gid,{'next_task':self.nxt})
         (self.root/(self.gid+'.prompt.txt')).write_text('Initial verified scope')
 
-    def run_worker(self, codes, complete_on=None, fingerprints=None):
+    def run_worker(self, codes, complete_on=None, fingerprints=None, output='{}'):
         owner=self
         class Process:
             pid=99999999
@@ -37,7 +37,7 @@ class ContinuousTests(unittest.TestCase):
                 owner.commands.append(args); self.returncode=codes[len(owner.commands)-1]
             def communicate(self,**kw):
                 if complete_on == len(owner.commands): owner.current['completed']=True
-                return ('{}','')
+                return (output,'')
         lockfile=tempfile.TemporaryFile(mode='a+')
         self.addCleanup(lockfile.close)
         with patch.object(c.subprocess,'Popen',Process), patch.object(c.time,'sleep'), \
@@ -66,6 +66,17 @@ class ContinuousTests(unittest.TestCase):
         self.assertEqual(len(self.commands),2)
         self.assertEqual(self.pauses,[self.gid])
         self.assertEqual(len(self.comments),1)
+
+    def test_aborted_result_is_not_success_even_with_zero_exit(self):
+        r=self.run_worker([0],output='{"result":{"meta":{"aborted":true}}}')
+        self.assertEqual(r['status'],'continuous-failed-recovery-armed')
+        self.assertEqual(r['exit_code'],124)
+        self.assertEqual(self.pauses,[])
+
+    def test_malformed_result_is_not_replayed(self):
+        r=self.run_worker([0],output='truncated')
+        self.assertEqual(r['exit_code'],125)
+        self.assertEqual(len(self.commands),1)
 
     def test_assigned_backup_blocks_launch(self):
         self.backup['assignee']={'gid':'edith'}
