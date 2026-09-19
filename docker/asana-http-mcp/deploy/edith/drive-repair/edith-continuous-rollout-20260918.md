@@ -44,7 +44,9 @@ Jack has been asked whether to restore Grok access or authorize investigating an
 
 Edith's authorized continuous Terra-medium session covers Paradise Fishing, Lifestyle Business Mindset, Passion Profits Project and LightningIM in meaningful content groups. It begins with a reserved-ID binary-copy pilot and native-document comparison gate. One writer only; no timer-derived stopping or restart chain. Progress and results are saved under `private/edith-dispatch/remaining-folders-*.json`.
 
-Still required: real production proofs for the new copy paths, completion of remaining folder production, reconciliation of the old 4-Day uncertainty, Ruby's independent acceptances after model access is restored, and the separate credential decision. The entire project is not complete.
+Live production proofs passed at 01:03–01:04 UTC September 19: the binary pilot returned the saved ID `1SkpSK3i4umP7-BVZGHU3hO5FSFHQAJZP` on its first attempt and passed content/access checks. The native Google Doc copy `1ZIPZlePmHNtzxqYicFzP4vK7fcXmMsGwObxEcx5mL_c` passed the all-tab package-content comparison and remained native. Edith's first-section review passed, and the same session continued the next work group. A brief HTTP/1.1 experiment was reverted after timestamps showed both original HTTP/2 copies had already succeeded; no protocol change remains.
+
+Still required: completion of remaining folder production, reconciliation of the old 4-Day uncertainty, Ruby's independent acceptances after model access is restored, and the separate credential decision. The entire project is not complete.
 
 Operational pages were updated with current decisions and blockers while retaining the original evaluated fix register and historical evidence. Daily journal remains in progress. The running issue is [z-asana-procedures-Skill issue 2](https://github.com/ZedBiz44/z-asana-procedures-Skill/issues/2).
 
