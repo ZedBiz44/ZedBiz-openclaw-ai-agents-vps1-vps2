@@ -7,9 +7,12 @@ from pathlib import Path
 
 
 def verify_output(base, row, source, destination, gog):
+    if source.get('mimeType') == 'application/vnd.google-apps.document':
+        from native_document_verification import verify_native
+        return verify_native(base, source, destination, gog)
     checksum = source.get('md5Checksum')
     if not checksum or source.get('size') is None:
-        raise ValueError('Native or unhashable file requires native content verification')
+        raise ValueError('Unsupported unhashable file requires separate content verification')
     if destination.get('md5Checksum') != checksum or str(destination.get('size')) != str(source['size']):
         raise ValueError('Source and copied bytes differ')
     if source.get('mimeType') != destination.get('mimeType'):
