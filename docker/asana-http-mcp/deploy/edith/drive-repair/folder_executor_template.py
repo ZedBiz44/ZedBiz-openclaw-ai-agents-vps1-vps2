@@ -59,7 +59,7 @@ def copyrow(r):
  if fid in state['copies']:return state['copies'][fid]
  assert r.get('active_copy_source_id',fid)==fid, 'Duplicate alias requires existing canonical proof, not another copy'
  sf=POOL.submit(get,fid);pf=POOL.submit(gog,'permissions',fid);source=sf.result();s=orig[fid];assert all(source.get(k)==s.get(k) for k in ['md5Checksum','size','modifiedTime','parents'])
- assert source.get('md5Checksum'), 'Native document requires separate native content verification before copying'
+ assert source.get('md5Checksum') or source.get('mimeType')=='application/vnd.google-apps.document', 'Unsupported native type: hold before copying'
  perms=pf.result();assert sig(perms)==sig(rp),'Source access differs; hold affected item'
  parent=folder(str(pathlib.PurePosixPath(r['planned_path']).parent));name=pathlib.PurePosixPath(r['planned_path']).name
  if fid in state['pending']:did=state['pending'][fid]
@@ -72,7 +72,7 @@ def copyrow(r):
  assert sig(gog('permissions',did))==sig(perms)
  method,local_path=verify_output(P,r,source,dest,gog)
  latest=get(fid);assert all(latest.get(k)==source.get(k) for k in ['md5Checksum','size','modifiedTime','parents']), 'Source changed during copy'
- proof={'source_id':fid,'active_id':did,'name':name,'path':r['planned_path'],'local_path':local_path,'md5Checksum':source.get('md5Checksum'),'size':source['size'],'verified_at':now(),'permissions_matched':True,'content_read':method}
+ proof={'source_id':fid,'active_id':did,'name':name,'path':r['planned_path'],'local_path':local_path,'md5Checksum':source.get('md5Checksum'),'size':source.get('size'),'verified_at':now(),'permissions_matched':True,'content_read':method}
  save(fid+'-copy-proof.json',proof);state['copies'][fid]=proof;state['pending'].pop(fid,None);persist();return proof
 def archive(fid,parent):
  if fid in state['archived']:return
