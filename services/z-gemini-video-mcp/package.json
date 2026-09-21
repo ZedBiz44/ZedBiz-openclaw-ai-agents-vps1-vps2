@@ -1,9 +1,9 @@
 {
   "name": "@zedbiz/z-gemini-video-mcp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "ZedBiz MCP server for safe Gemini analysis of public YouTube videos.",
+  "description": "ZedBiz Gemini analysis of public YouTube videos and authorized video/audio files.",
   "license": "UNLICENSED",
   "scripts": {
     "start": "node server.mjs",
