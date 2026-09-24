@@ -19,6 +19,7 @@
 - Outside Codex (including DeepSeek, Kimi, Terra, and Luna), use the bundled `notion` skill and the official `ntn` CLI with the saved ZedBiz Notion login. Do not change the selected model just to access Notion.
 - Native command prefix: `env -u NOTION_API_TOKEN NOTION_KEYRING=0 NOTION_HOME=/home/node/.openclaw/notion-cli ntn`. This uses the approved saved login instead of the obsolete injected token. Read the bundled skill and check command help; the installed CLI uses `pages edit`, not `pages update`.
 - Verify the connected workspace with `api v1/users/me`, fetch the exact source, preserve existing page content, and read back authorized writes. CLI API search is not Codex AI search; do not claim equivalent search coverage.
+- For a small addition, append blocks with `ntn api v1/blocks/<page-id>/children -X PATCH` instead of rewriting the whole page with `pages edit`. For a content replacement, first check full JSON for truncation or unknown blocks, preserve links/mentions/children, and compare the saved result; never claim preservation from a marker alone.
 - Both routes have the same assignment, publishing, privacy, and approval limits. A review alone does not authorize writes. Respect permission, billing, and authentication errors; do not switch accounts, expose credentials, or bypass a rejected action through the other route.
 
 ## Purpose
