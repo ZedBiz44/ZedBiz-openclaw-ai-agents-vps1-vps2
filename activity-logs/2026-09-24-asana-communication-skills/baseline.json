@@ -1,0 +1,18 @@
+{
+  "z-asana-procedures": {
+    "commit": "cef85066f9899100a39a919db14276b8c46ba284",
+    "words": 1664
+  },
+  "z-advanced-asana-control": {
+    "commit": "a80cc47a060fabadb76d4793e718b91359fd14d3",
+    "words": 977
+  },
+  "z-asana-agent-control": {
+    "commit": "5fe639885c1081365c6fc3be23e50183a9549cea",
+    "words": 2261
+  },
+  "z-agent-communication": {
+    "commit": "a4ad70f072a28cfa1457b52c66d9826fa1275efb",
+    "words": 2511
+  }
+}

@@ -1,0 +1,5 @@
+This is Cody's authorized isolated skill rollout test. Read the current installed z-asana-procedures and z-agent-communication skill files and relevant references. Return a draft only. Do not call Asana, send messages, save memory, change files, or contact people.
+
+Jasmin must create one Facebook graphic, Mark reviews it and may request corrections, Jasmin makes those corrections, and Mark approves the final version before delivery. Produce the ordered task titles, intended owners, dependencies, and exact completion condition for each review/correction/acceptance step. Include what must happen before tasks can be assigned. No dates or source links have been supplied: identify what remains needed without inventing them.
+
+Jack also requires native subtask dividers for this assignment, but the available tools can only create project sections. Explain what you can finish and what you should report to Jack now.

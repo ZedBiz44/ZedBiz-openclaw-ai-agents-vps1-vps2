@@ -1,0 +1,28 @@
+{
+  "z-asana-procedures": {
+    "agents/openai.yaml": "28d1dce17ce5c1c149356cab46c6bcab05e57450e8d9a16922b133dbd6b1bf8e",
+    "assets/briefs.md": "3dbb7356adf7728c2aa7e45fc8890705d04fead8ac311859359cf25a384da159",
+    "references/continuation.md": "db05da3f67e34d45d97c1704aea719ede633cb8b19a698d5ec6d1581d2500945",
+    "references/delivery.md": "f017849f395b879b79a004a52b8a1ea0104d7bc40eb4d8ccf5666aa8457fbff7",
+    "references/openclaw.md": "5c5847e0ebd95a4253ec1ab6498e158fe3bb5da5753cff9ad074c401e7330403",
+    "references/projects.md": "105fa89a7003b841b667933260d1e5904d68dfec680225b9c3dc77061fb63de9",
+    "references/sources.md": "0aa0305a9860ff2751ee42c62f81c9c865a99e0f5e2fb96b8ac3b623722c53fb",
+    "references/tasks.md": "e9519172948c145249e942dfb86268d660ac4d8f3fba09eeaf70f05e6b9f9c97",
+    "references/workflow.md": "a93dfc3223b01bf1ed7e54005e547042cdccf6ab7692a556a42d52d89d0dcb6a",
+    "SKILL.md": "283c7c78d99cefac438f3c5be5d183cd6fe1f74c669f4bb60fea92b50ac70d25"
+  },
+  "z-advanced-asana-control": {
+    "agents/openai.yaml": "5ae7c134f2475aafa3fa7a7da1a8b7a1663272f960c1dcad85d2f9c050684ace",
+    "SKILL.md": "9904ac62e3ed0ee7c8abc7dcd69fc1e33d644b9317f1f83e25e5d14d33b3c6c3"
+  },
+  "z-asana-agent-control": {
+    "agents/openai.yaml": "6b82e0533cd590e85663350ea938eba13018d3738622e0ed8bf1c3a13cf0a3ec",
+    "references/task-memory.md": "cfbd976ce2d77c4457bad9b81c92175c580454412437297a17becb958f70fb9b",
+    "SKILL.md": "f8ff2f154e52ec214f4c6264f9b68ba087874c4ac4a5f63d605694f22494896a"
+  },
+  "z-agent-communication": {
+    "agents/openai.yaml": "343dbc2e6c293e543a55deb597fd96c5f9a97c3dbc640ade43416f11f5f2fa38",
+    "references/examples.md": "5c54b81581b9610ed3068727d5754eed00f902bb519040542b1623ec04c76c6d",
+    "SKILL.md": "ee2c423bd3c2c8fd13b1b22117a71f69ac8bc13e9957e32fe402e1f7587dcccf"
+  }
+}

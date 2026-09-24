@@ -1,0 +1,12 @@
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-asana-procedures-Skill\dist\z-asana-procedures
+Skill is valid!
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-advanced-asana-control-Skill
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-advanced-asana-control-Skill\dist\z-advanced-asana-control
+Skill is valid!
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-asana-agent-control-Skill
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-asana-agent-control-Skill\dist\z-asana-agent-control
+Skill is valid!
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-agent-communication-Skill
+Validation passed: D:\Google Drive\Documents\Codex-Projects\Agent-Skills\.work\asana-communication-20260924\z-agent-communication-Skill\dist\z-agent-communication
+Skill is valid!
+Validated and packaged 4 skills; 18 runtime files

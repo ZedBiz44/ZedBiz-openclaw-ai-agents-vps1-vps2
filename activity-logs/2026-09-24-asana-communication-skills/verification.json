@@ -1,0 +1,282 @@
+{
+  "amanda": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-advanced-asana-control": {
+      "name": "z-advanced-asana-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-asana-procedures": {
+      "name": "z-asana-procedures",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "edith": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "frank": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "gohzed": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "grogar": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "harry": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "inga": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "maggie": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "marsha": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-advanced-asana-control": {
+      "name": "z-advanced-asana-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-asana-procedures": {
+      "name": "z-asana-procedures",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "rocky": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "ruby": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "description": "Govern routine Asana work through verified user or agent access, check task results, and save or recall work records using the approved memory method.",
+      "category": null
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "description": "Write clear assignments, task descriptions, subtasks, updates, and handoffs to Jack and human team members in everyday English.",
+      "category": null
+    },
+    "z-advanced-asana-control": {
+      "name": "z-advanced-asana-control",
+      "description": "Govern advanced ZedBiz Asana structure, reporting, permissions, bulk changes, and cross-project administration through approved agent access.",
+      "category": null
+    },
+    "z-asana-procedures": {
+      "name": "z-asana-procedures",
+      "description": "Set up, repair, assign, and review routine Asana projects, tasks, and subtasks; not venture implementation masters.",
+      "category": null
+    }
+  },
+  "suzy": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "terry": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-advanced-asana-control": {
+      "name": "z-advanced-asana-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-asana-procedures": {
+      "name": "z-asana-procedures",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "victor": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-advanced-asana-control": {
+      "name": "z-advanced-asana-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-asana-procedures": {
+      "name": "z-asana-procedures",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "vivian": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  },
+  "wilma": {
+    "z-asana-agent-control": {
+      "name": "z-asana-agent-control",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    },
+    "z-agent-communication": {
+      "name": "z-agent-communication",
+      "eligible": true,
+      "modelVisible": true,
+      "source": "openclaw-workspace"
+    }
+  }
+}
