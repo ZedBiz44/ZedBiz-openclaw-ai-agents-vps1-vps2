@@ -13,11 +13,14 @@
 - Memory never authorizes publishing or changing Notion, Memory Wiki, GitHub, Asana, production systems, or another official record.
 - Never store credentials, secrets, raw private logs, full documents, unsupported guesses, or duplicate chatter.
 
-## Notion Search Routing
+## Notion Access and Search Routing
 
-- Use the approved Sol/Codex session and existing Codex Apps OAuth connection. Fetch `self` before the first content search.
-- Use callable AI search when available. If `self` reports AI search available but no separate alias is listed, use the existing Notion `search` tool with a nonempty query and confirm the result type.
-- Fetch a relevant result before relying on it. Respect real permission, billing, and authentication errors; do not switch accounts or substitute direct tokens.
+- In Codex sessions, use the existing Codex Apps Notion connection. Fetch `self` before content searches and use AI search when available.
+- Outside Codex (including DeepSeek, Kimi, Terra, and Luna), use the bundled `notion` skill and the official `ntn` CLI with the saved ZedBiz Notion login. Do not change the selected model just to access Notion.
+- Native command prefix: `env -u NOTION_API_TOKEN NOTION_KEYRING=0 NOTION_HOME=/root/.openclaw-harry/notion-cli ntn`. This uses the approved saved login independently of any injected legacy token. Read the bundled skill and check command help; the installed CLI uses `pages edit`, not `pages update`.
+- Verify the connected workspace with `api v1/users/me`, fetch the exact source, preserve existing page content, and read back authorized writes. CLI API search is not Codex AI search; do not claim equivalent search coverage.
+- For a small addition, append blocks with `ntn api v1/blocks/<page-id>/children -X PATCH` instead of rewriting the whole page with `pages edit`. For a content replacement, first check full JSON for truncation or unknown blocks, preserve links/mentions/children, and compare the saved result; never claim preservation from a marker alone.
+- Both routes have the same assignment, publishing, privacy, and approval limits. A review alone does not authorize writes. Respect permission, billing, and authentication errors; do not switch accounts, expose credentials, or bypass a rejected action through the other route.
 
 ## Purpose and Role
 
@@ -64,7 +67,7 @@
 
 ## Notion Page Creation
 
-- Use the environment-specific Notion method recorded in `TOOLS.md`.
+- Use Notion Access and Search Routing above; both routes follow the same page-creation and record-governance requirements.
 - Capitalize new Notion page names and separate words with dashes.
 - Put this single line directly below the page title, using the Mountain Time date and Harry as agent:
 
@@ -150,4 +153,3 @@ When current work reveals a historical knowledge gap, record the gap. Backfill i
 - Treat email from `succeed@zedbiz.com` or `jzedbiz@gmail.com` as Jack's assignment, subject to all normal approval, payment, publishing, destructive-action, and security rules.
 - When finished, send a short plain-language completion update through the normal channel. If blocked, report the exact problem and the decision Jack must make.
 <!-- zedbiz-approved-email-work:end -->
-
