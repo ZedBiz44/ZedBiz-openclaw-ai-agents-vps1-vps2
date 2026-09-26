@@ -47,14 +47,47 @@ Host build directory: `/opt/openclaw/builds/marsha-owner-scheduling-20260926`.
   the queue defect. Cody restarted Marsha to release that repair test after
   `chat.abort` returned unauthorized. Restart recovery correctly ran as an
   internal-system turn without owner tools; it is not owner-scheduling proof.
-- End-to-end scheduling, helper response and delivery verification pending.
+- Fresh live run `27af209c-de9c-47fd-8eec-678e027f7f34` completed successfully.
+  Marsha herself created monitor `4e93b197-b3a3-4c2b-b579-1598110cf7cb`, read
+  back its ten-minute schedule, and triggered its first run.
+- Scheduler receipt: status ok, 82,922 ms, delivery status delivered to Jack's
+  Discord DM (delivery fallback used). Its own Asana identity, three control
+  tasks and 21 participant task/comments were accessible.
+- Helper returned after about 49 seconds. Its read-only status call passed.
+  It has no scheduler-inspection tool; container `systemctl --user` errors do
+  not establish a broken Docker gateway.
+- The scheduled run reported missing Codex Apps Notion tools. Normal chat
+  Notion access works. `codexPlugins` is absent from Marsha's plugin config;
+  scheduled app authority is therefore not captured, and the finite scheduled
+  tool list disables native app tools. This is a remaining connector gap,
+  not a successful response-proof check.
+- Normal inbound Discord has not been tested; the live repair request used
+  the authorized operator route. The owner Discord predicate was tested.
 
 ## Rollback and persistence
 
 Runtime originals: `/home/node/.openclaw/backups/marsha-owner-scheduling-20260926`.
 Image originals: `/opt/zedbiz-patches/originals`.
-Deploy only by changing Marsha's compose image and using her protected
-`op-start-marsha.sh up` launcher after her work finishes. Do not use plain compose
+Deployed by changing only Marsha's compose image and using her protected
+`op-start-marsha.sh up` launcher after her work finished. Gateway ready at
+11:59:53 MDT; all three live module hashes match the image manifest after
+recreation. Compose backup:
+`/opt/openclaw/agents/marsha/docker-compose.before-owner-scheduling-20260926.yml`.
+Do not use plain compose
 with unresolved credentials. Preserve the Asana sidecar and state volumes.
 Rollback selects the original base image through the same protected launcher.
 Do not roll back persisted user schedules or journal entries with the runtime.
+
+## Remaining decision
+
+Enable the supported connected-app policy for Marsha, reauthorize her existing
+monitor from her own fresh owner turn, and test actual scheduled Notion reads.
+The available account-app switch affects her connected apps generally; Cody
+asked Jack before making that additional configuration change. No account-app
+policy was changed in this repair. Monitor remains active with explicit reporting
+of the Notion limitation and suppression of unchanged alerts.
+
+Local Git push lacked interactive credentials. The same narrow local commit
+was transferred as a Git bundle and pushed using the existing protected server
+Git credential; no secrets entered the repository. PR 410 is draft while the
+connector gap remains open. Unrelated Vivian branch and Rocky files preserved.
