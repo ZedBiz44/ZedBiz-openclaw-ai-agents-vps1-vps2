@@ -1,0 +1,100 @@
+agent,host,path,name,old,new,enabled
+edith,1,cron.95c5ad39-fef9-45e1-8b9a-a7796d58cce4.payload.timeoutSeconds,daily-notion-journal,900,0,True
+edith,1,cron.71cb1260-d473-4719-9ee5-0e4a78f01c23.payload.timeoutSeconds,agent-health-weekly,900,0,True
+amanda,1,agents.defaults.timeoutSeconds,,runtime default,0,
+amanda,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+amanda,1,plugins.entries.imap.config.accounts.agent_mail2.timeoutSeconds,,120,inherit unlimited agent default,
+amanda,1,cron.a79cf852-12e3-453c-bdb0-8693318306d3.payload.timeoutSeconds,agent-health-daily,900,0,True
+amanda,1,cron.57668623-8f46-41c9-8a09-9b7e386109af.payload.timeoutSeconds,daily-notion-journal,900,0,True
+amanda,1,cron.5224cc0a-dea1-425c-86e6-9f423bf1df36.payload.timeoutSeconds,amanda-asana-morning-summary,900,0,True
+amanda,1,cron.16fd2c50-d202-4f2a-afab-f943cd347fc1.payload.timeoutSeconds,agent-health-weekly,900,0,True
+marsha,1,agents.defaults.timeoutSeconds,,runtime default,0,
+marsha,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+marsha,1,cron.e9af0080-e342-46ee-8d86-de68fbe89576.payload.timeoutSeconds,agent-health-daily,900,0,True
+marsha,1,cron.a7348272-fdb9-4d5d-b4b6-697852e33f31.payload.timeoutSeconds,daily-notion-journal,900,0,True
+marsha,1,cron.aa2b181d-648f-47ec-8d15-43dca22b3bf4.payload.timeoutSeconds,marsha-current-work-summary,900,0,True
+marsha,1,cron.09ecd579-22ce-4054-9240-eaa368c7707b.payload.timeoutSeconds,agent-health-weekly,900,0,True
+marsha,1,cron.d93827e6-3108-4c02-97a3-a0d4e6d8969b.payload.timeoutSeconds,marsha-questionnaire-followup-pilot,300,0,False
+grogar,1,agents.defaults.timeoutSeconds,,runtime default,0,
+grogar,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+grogar,1,cron.acd1bee3-6010-4ce4-b186-2a2cee17d796.payload.timeoutSeconds,agent-health-daily,900,0,True
+grogar,1,cron.62ac9cd4-cdff-4fa0-abf0-a0c0ed790147.payload.timeoutSeconds,daily-notion-journal,900,0,True
+grogar,1,cron.5f5ed7d8-e045-44b2-bd19-30a3c111df8a.payload.timeoutSeconds,agent-health-weekly,900,0,True
+gohzed,1,agents.defaults.timeoutSeconds,,runtime default,0,
+gohzed,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+gohzed,1,cron.aaaded4d-fec1-4d44-910e-5fd3aaa1fe2f.payload.timeoutSeconds,agent-health-daily,900,0,True
+gohzed,1,cron.adf8dc3c-3767-4764-906f-50235dabe69c.payload.timeoutSeconds,daily-notion-journal,900,0,True
+gohzed,1,cron.4f528436-ee0e-45b0-b586-3a671a187ed4.payload.timeoutSeconds,agent-health-weekly,900,0,True
+inga,1,agents.defaults.timeoutSeconds,,runtime default,0,
+inga,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+inga,1,cron.4a161ae4-0142-4e7b-a7b4-fdb5f16b5430.payload.timeoutSeconds,agent-health-daily,900,0,True
+inga,1,cron.50916ef5-b712-4104-90dd-e5d114b223ed.payload.timeoutSeconds,daily-notion-journal,900,0,True
+inga,1,cron.ef3f5917-bb32-4778-ab8f-fb89f507342f.payload.timeoutSeconds,inga-weather-internet-marketing-report,1200,0,True
+inga,1,cron.4e10ac0e-de34-4552-a78d-a2c1078cba42.payload.timeoutSeconds,agent-health-weekly,900,0,True
+maggie,1,agents.defaults.timeoutSeconds,,runtime default,0,
+maggie,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+maggie,1,cron.50dbaa57-b1e8-4c01-b8f9-c210bbc086d8.payload.timeoutSeconds,agent-health-daily,900,0,True
+maggie,1,cron.31765a70-9656-4a6b-83f5-a6606bab2913.payload.timeoutSeconds,daily-notion-journal,900,0,True
+maggie,1,cron.c5bb678a-26fc-4ae1-a524-ce0f6b0a2d57.payload.timeoutSeconds,agent-health-weekly,900,0,True
+terry,1,agents.defaults.timeoutSeconds,,runtime default,0,
+terry,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+terry,1,cron.ab788385-1126-4c90-8360-aa7010b102f1.payload.timeoutSeconds,agent-health-daily,900,0,True
+terry,1,cron.f8ae0b32-c219-4175-9c47-38c713500bdb.payload.timeoutSeconds,daily-notion-journal,900,0,True
+terry,1,cron.4b937060-7d52-4237-90a6-652fb3296562.payload.timeoutSeconds,agent-health-weekly,900,0,True
+vivian,1,agents.defaults.timeoutSeconds,,runtime default,0,
+vivian,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+vivian,1,cron.bb1a7d44-5dea-45fc-9cdb-3a64948df818.payload.timeoutSeconds,daily-notion-journal,900,0,True
+vivian,1,cron.5c260cc4-e6b1-4290-b035-b534e7cca532.payload.timeoutSeconds,agent-health-daily,900,0,True
+vivian,1,cron.be1eff36-c92f-4e28-8157-ca4e35a84fae.payload.timeoutSeconds,agent-health-weekly,900,0,True
+harry,2,agents.defaults.timeoutSeconds,,runtime default,0,
+harry,2,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,600,inherit unlimited agent default,
+harry,2,cron.64a7454a-6152-42cb-8fdf-f0e167bb4e67.payload.timeoutSeconds,agent-health-daily,900,0,True
+harry,2,cron.6882ef23-c5e2-417f-ac80-ec48a58c5f87.payload.timeoutSeconds,daily-notion-journal,900,0,True
+harry,2,cron.72f88d1c-a6ae-44da-9ece-2fbffb36ce39.payload.timeoutSeconds,agent-health-weekly,900,0,True
+suzy,2,agents.defaults.timeoutSeconds,,runtime default,0,
+suzy,2,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+suzy,2,cron.ff360c82-937b-4dcc-8b32-12a0848e3350.payload.timeoutSeconds,agent-health-daily,900,0,True
+suzy,2,cron.eeb83883-1b6c-4806-8f73-e0e89e101f1a.payload.timeoutSeconds,daily-notion-journal,900,0,True
+suzy,2,cron.8e63585c-b9bc-4b02-8340-54ad0e55d618.payload.timeoutSeconds,suzy-weather-internet-marketing-report,1200,0,True
+suzy,2,cron.9fc81bbc-0589-4aac-be77-8fc4f36dff05.payload.timeoutSeconds,agent-health-weekly,900,0,True
+frank,2,agents.defaults.timeoutSeconds,,runtime default,0,
+frank,2,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+frank,2,cron.def8dbe1-edb8-41de-a937-1f0fc8aff845.payload.timeoutSeconds,agent-health-daily,900,0,True
+frank,2,cron.607ea7a7-6ce1-452a-be0a-96a41ac61880.payload.timeoutSeconds,daily-notion-journal,900,0,True
+frank,2,cron.58fa3da3-d6ff-44de-b236-a3aee465d13f.payload.timeoutSeconds,agent-health-weekly,900,0,True
+rocky,4,agents.defaults.timeoutSeconds,,runtime default,0,
+rocky,4,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+rocky,4,cron.a313f29c-1371-4c56-8b78-e530bfb8bae8.payload.timeoutSeconds,agent-health-daily,900,0,True
+rocky,4,cron.679c1722-c8bf-4ef3-a5d6-2bf87012115d.payload.timeoutSeconds,daily-notion-journal,900,0,True
+rocky,4,cron.83bc005c-fefb-479e-9b4e-85c9b90e42f5.payload.timeoutSeconds,agent-health-weekly,900,0,True
+victor,1,agents.defaults.timeoutSeconds,,runtime default,0,
+victor,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+victor,1,cron.78ac521a-bd26-4348-81ba-22fd16b8ea4d.payload.timeoutSeconds,workshop-change-review-terry,900,0,True
+victor,1,cron.73fbf8e3-19fe-4b2e-a0b0-283b5966d5ee.payload.timeoutSeconds,daily-notion-journal,900,0,True
+victor,1,cron.adddf337-bc0b-4abb-a418-9941f960b3a3.payload.timeoutSeconds,agent-health-daily,900,0,True
+victor,1,cron.614d5142-8126-4c4d-8b79-c0f4a1b19c34.payload.timeoutSeconds,agent-health-daily-summary,900,0,True
+victor,1,cron.4b8006a5-eff4-4d05-bec8-211a9cc5b0cc.payload.timeoutSeconds,workshop-change-review-marsha,900,0,True
+victor,1,cron.6d4f9b89-9b3a-40d8-80d1-8b5fa60e169f.payload.timeoutSeconds,workshop-change-review-amanda,900,0,True
+victor,1,cron.1275ac4a-c253-477a-a884-72713c600349.payload.timeoutSeconds,workshop-change-review-suzy,900,0,True
+victor,1,cron.16c37b4e-be02-4525-9994-a99074d6b7b8.payload.timeoutSeconds,workshop-change-review-rocky,900,0,True
+victor,1,cron.3c53bc50-9281-4758-8974-9b1f070078bb.payload.timeoutSeconds,workshop-change-review-maggie,900,0,True
+victor,1,cron.23741085-16f8-4344-86f0-7bdcc444dbb6.payload.timeoutSeconds,workshop-change-review-gohzed,900,0,True
+victor,1,cron.32919073-733b-4aa4-a1e1-51370cde0485.payload.timeoutSeconds,workshop-change-review-inga,900,0,True
+victor,1,cron.4504a3a2-4b15-40cb-8d43-7455f5f40157.payload.timeoutSeconds,workshop-change-review-harry,900,0,True
+victor,1,cron.fd7b7be3-0f23-42bb-a0dd-68d007b0ddc1.payload.timeoutSeconds,workshop-change-review-victor,900,0,True
+victor,1,cron.62fbe4b1-0849-44cc-bcdb-ba25a86b7f2e.payload.timeoutSeconds,workshop-change-review-frank,900,0,True
+victor,1,cron.3e90b9a2-0619-4629-8806-344a501289c6.payload.timeoutSeconds,workshop-change-review-grogar,900,0,True
+victor,1,cron.5c4180f1-fd29-4f45-8fd7-abf8a038262b.payload.timeoutSeconds,workshop-change-review-vivian,900,0,True
+victor,1,cron.eadf6e29-2b9c-4cc4-8b34-8d5683ede210.payload.timeoutSeconds,workshop-change-review-edith,900,0,True
+victor,1,cron.75098d84-7e90-45c7-89e7-e0bccb551638.payload.timeoutSeconds,agent-health-weekly,900,0,True
+victor,1,cron.bbd532fb-36c6-4ba5-839f-82e356fa4a45.payload.timeoutSeconds,workshop-change-review-wilma,900,0,True
+victor,1,cron.604be824-fb70-442a-a767-36c0f516d4b8.payload.timeoutSeconds,agent-health-weekly-summary,900,0,True
+wilma,1,agents.defaults.timeoutSeconds,,runtime default,0,
+wilma,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,120,inherit unlimited agent default,
+wilma,1,cron.fb6a33fd-4337-40ef-a8a0-e31ccea75450.payload.timeoutSeconds,daily-notion-journal,900,0,True
+wilma,1,cron.2476cf8b-f00a-4c4b-93bc-7605d97964b4.payload.timeoutSeconds,agent-health-daily,900,0,True
+wilma,1,cron.fd690eff-cc16-4b30-afbe-8f13ec9e397c.payload.timeoutSeconds,agent-health-weekly,900,0,True
+edith,1,agents.defaults.timeoutSeconds,,runtime default 172800,0,
+edith,1,plugins.entries.imap.config.accounts.agent_mail.timeoutSeconds,,"120, briefly changed to 600 in this repair",removed; inherit unlimited default,
+edith,1,cron.8b35f29c-af6e-4de3-bcfc-8c7b23e5013d.payload.timeoutSeconds,agent-health-daily,900,0,
+
