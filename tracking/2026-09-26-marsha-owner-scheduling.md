@@ -59,7 +59,7 @@ Host build directory: `/opt/openclaw/builds/marsha-owner-scheduling-20260926`.
 - The scheduled run reported missing Codex Apps Notion tools. Normal chat
   Notion access works. `codexPlugins` is absent from Marsha's plugin config;
   scheduled app authority is therefore not captured, and the finite scheduled
-  tool list disables native app tools. This is a remaining connector gap,
+  tool list disables native app tools. This was the initial connector gap,
   not a successful response-proof check.
 - Normal inbound Discord has not been tested; the live repair request used
   the authorized operator route. The owner Discord predicate was tested.
@@ -78,16 +78,26 @@ with unresolved credentials. Preserve the Asana sidecar and state volumes.
 Rollback selects the original base image through the same protected launcher.
 Do not roll back persisted user schedules or journal entries with the runtime.
 
-## Remaining decision
+## Connected-app follow-up
 
-Enable the supported connected-app policy for Marsha, reauthorize her existing
-monitor from her own fresh owner turn, and test actual scheduled Notion reads.
-The available account-app switch affects her connected apps generally; Cody
-asked Jack before making that additional configuration change. No account-app
-policy was changed in this repair. Monitor remains active with explicit reporting
-of the Notion limitation and suppression of unchanged alerts.
+Jack subsequently approved enabling Marsha's existing connected apps for
+scheduled work. Config backup:
+`/home/node/.openclaw/backups/marsha-connected-apps-20260926.json`.
+Set `plugins.entries.codex.config.codexPlugins` to
+`{"enabled":true,"allow_all_plugins":true,"allow_destructive_actions":"auto"}`.
+Validation passed and the gateway loaded the changed policy. No other agent
+changed. This uses supported capture of current connected-account app authority.
+
+Updating a job's message alone preserves its previous tool access. Reauthorize
+the existing monitor through its own fresh owner turn using explicit
+`payload.toolsAllow: ["*"]`; OpenClaw resolves this into the current concrete
+tool surface and captures app authority. This is not a stored unbounded wildcard.
+Scheduled verification passed at 12:18 MDT. Test receipt `manual:4e93b197-b3a3-4c2b-b579-1598110cf7cb:1790446564985:3` completed with status ok in 140,204 ms and delivery confirmed to Jack's Discord DM through the fallback route. Scheduled session `15ab9020-f731-4ff5-aea7-c30d2a21f91f` independently shows Notion identity, intake fetch, SQL query, and full fetches of Amanda, Marsha and Cody submissions: 3/21 saved, no duplicates. Filing and Gist handoff remain pending. The existing ten-minute job remains enabled.
+
+A separate authenticated app-directory probe returned HTTP 403; installed-app inventory returned 13 entries. The directory error did not block the actual scheduled test. An earlier journal write by Marsha was rejected and was not retried. Cody records this technical verification in his own journal.
 
 Local Git push lacked interactive credentials. The same narrow local commit
 was transferred as a Git bundle and pushed using the existing protected server
-Git credential; no secrets entered the repository. PR 410 is draft while the
-connector gap remains open. Unrelated Vivian branch and Rocky files preserved.
+Git credential; no secrets entered the repository. PR 410 records the completed repair; the
+scheduled connector test now passes. Unrelated Vivian branch and Rocky files preserved.
+
