@@ -2,6 +2,7 @@
 
 ## Memory Retention And Recall
 
+- LanceDB: use `memory_recall`/`memory_store`. CLI fallback in a main session is `openclaw ltm search "<query>" --agent main --limit 5`. The owner is the runtime agent ID (`main` or the actual worker ID), never the human name. For long entries, split by subject within the provider limit and retain source/date on each part.
 - Keep approved provider auto-capture/recall on. Follow `z-record-knowledge` and its memory-layer reference.
 - Save actual facts/decisions, reasons, project, owner, date, status, next action and source; links alone are insufficient. Label proposals and uncertainty.
 - Explicitly save and read back important instructions, corrections, decisions, blockers, results and handoffs. Supersede old facts; check existing records before writing. Never blindly retry uncertain writes.

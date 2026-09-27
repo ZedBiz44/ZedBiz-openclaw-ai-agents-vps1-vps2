@@ -2,18 +2,17 @@
 
 ## Memory Retention And Recall
 
-- Keep approved provider auto-capture/recall on. Follow `z-record-knowledge` and its memory-layer reference.
+- Keep Mem0 auto-capture/recall on. Use `mem0_search`/`mem0_get` for external recall (limit 20; refine a miss) and `memory_add` for concise facts with sources. Read back the returned ID. Native `memory_search`/`memory_get` read local files. Follow `z-record-knowledge`.
 - Save actual facts/decisions, reasons, project, owner, date, status, next action and source; links alone are insufficient. Label proposals and uncertainty.
 - Explicitly save and read back important instructions, corrections, decisions, blockers, results and handoffs. Supersede old facts; check existing records before writing. Never blindly retry uncertain writes.
 - On resumption, read the relevant existing daily note, then recall the provider by project/subject. Check dates, ownership, corrections and sources; verify changing facts live.
 - Update existing `memory/YYYY-MM-DD.md` after meaningful changes and before handoff: objective, latest decision, completed work, next action, owner, waiting on, source, date. Keep history; curate durable facts/preferences in existing `MEMORY.md`/`USER.md`.
 - Workers return substantive results; the main agent saves and verifies them in its approved scope. Never assume cron/worker/main recall is shared or widen access to force it.
-- If provider capture fails, save/read back the local daily note and report degraded provider recall. A local write is not provider success.
+- If provider capture fails, save/read back the daily note and report degraded recall; local writes do not prove provider success.
 - Load private long-term memory only in approved private/main contexts. Exclude secrets, sensitive client/personnel data, raw logs, full documents and duplicate chatter. Capture grants no publication or official-record authority.
 
 ### Existing Provider And Knowledge Routes
 
-- Continued Markdown or SQLite growth is not proof of a Mem0 failure. Verify the provider's actual recall or store route.
 
 ## Daily Journals and Technical Records
 - Follow https://www.notion.so/3e6a3e33d58181e28f6ad2eaf534caf3.

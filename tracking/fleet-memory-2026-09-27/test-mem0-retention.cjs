@@ -1,0 +1,20 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const s=fs.readFileSync(process.argv[2],'utf8');
+const start=s.indexOf('function createMemoryAddTool(deps)');
+const end=s.indexOf('// tools/memory-get.ts',start);
+const code=s.slice(start,end).replace(/^import[^;]+;/gm,'');
+const ctx={Type2:new Proxy({},{get:()=>()=>({})}),stripNoiseFromContent:x=>x,isNoiseMessage:()=>false,isSubagentSession:s=>s.includes('subagent'),console};
+vm.createContext(ctx);vm.runInContext(code,ctx);
+let calls=[];
+const deps={api:{logger:{info(){}}},provider:{async add(messages,options){calls.push({messages,options});return {results:[{event:'ADD',memory:messages[0].content}]}}},resolveUserId:()=> 'zedbiz-vps1',getCurrentSessionId:()=> 'main',buildAddOptions:uid=>({user_id:uid}),captureToolEvent(){},skillsActive:false};
+(async()=>{
+ const tool=ctx.createMemoryAddTool(deps);
+ const facts=['Jack chose productized tools as the core. Source: https://example.test/decision'];
+ await tool.execute('t',{facts,category:'decision',metadata:{source_url:'https://example.test/decision',event_date:'2026-08-31'}});
+ assert.equal(calls.length,1);assert.equal(calls[0].options.infer,false);
+ assert.equal(calls[0].options.deduced_memories[0],facts[0]);assert.equal(calls[0].options.metadata.source_url,'https://example.test/decision');assert.equal(calls[0].options.metadata.category,'decision');
+ calls=[];await tool.execute('t',{});assert.equal(calls.length,0);
+ const sub=ctx.createMemoryAddTool({...deps,getCurrentSessionId:()=> 'subagent'});await sub.execute('t',{facts});assert.equal(calls.length,0);
+ assert(s.includes('name: "mem0_search"'));assert(s.includes('name: "mem0_get"'));
+ console.log('PASS: literal facts, source metadata, category, empty input, subagent restriction, unique recall aliases.');
+})().catch(e=>{console.error(e);process.exitCode=1});

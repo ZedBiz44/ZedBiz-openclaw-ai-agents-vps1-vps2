@@ -2,7 +2,7 @@
 
 ## Memory Retention And Recall
 
-- Keep approved provider auto-capture/recall on. Follow `z-record-knowledge` and its memory-layer reference.
+- Keep Mem0 auto-capture/recall on. Use `mem0_search`/`mem0_get` for external recall (limit 20; refine a miss) and `memory_add` for concise facts with sources. Read back the returned ID. Native `memory_search`/`memory_get` read local files. Follow `z-record-knowledge`.
 - Save actual facts/decisions, reasons, project, owner, date, status, next action and source; links alone are insufficient. Label proposals and uncertainty.
 - Explicitly save and read back important instructions, corrections, decisions, blockers, results and handoffs. Supersede old facts; check existing records before writing. Never blindly retry uncertain writes.
 - On resumption, read the relevant existing daily note, then recall the provider by project/subject. Check dates, ownership, corrections and sources; verify changing facts live.
@@ -13,7 +13,6 @@
 
 ### Existing Provider And Knowledge Routes
 
-- Continued Markdown or SQLite growth is not proof of a Mem0 failure. Verify the provider's actual recall or store route.
 
 ## Daily Journals and Technical Records
 - Follow https://www.notion.so/3e6a3e33d58181e28f6ad2eaf534caf3.
