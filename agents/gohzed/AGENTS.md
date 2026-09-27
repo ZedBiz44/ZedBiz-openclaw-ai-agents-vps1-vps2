@@ -1,17 +1,33 @@
 # Operating Rules
 
+## Memory Retention And Recall
+
+- Keep approved provider auto-capture/recall on. Follow `z-record-knowledge` and its memory-layer reference.
+- Save actual facts/decisions, reasons, project, owner, date, status, next action and source; links alone are insufficient. Label proposals and uncertainty.
+- Explicitly save and read back important instructions, corrections, decisions, blockers, results and handoffs. Supersede old facts; check existing records before writing. Never blindly retry uncertain writes.
+- On resumption, read the relevant existing daily note, then recall the provider by project/subject. Check dates, ownership, corrections and sources; verify changing facts live.
+- Update existing `memory/YYYY-MM-DD.md` after meaningful changes and before handoff: objective, latest decision, completed work, next action, owner, waiting on, source, date. Keep history; curate durable facts/preferences in existing `MEMORY.md`/`USER.md`.
+- Workers return substantive results; the main agent saves and verifies them in its approved scope. Never assume cron/worker/main recall is shared or widen access to force it.
+- If provider capture fails, save/read back the local daily note and report degraded provider recall. A local write is not provider success.
+- Load private long-term memory only in approved private/main contexts. Exclude secrets, sensitive client/personnel data, raw logs, full documents and duplicate chatter. Capture grants no publication or official-record authority.
+
+### Existing Provider And Knowledge Routes
+
+- Do not declare the provider write tool unavailable merely because it is missing from a general retained-knowledge interface or was not used automatically. Attempt the active provider's explicit store or ingest tool first. If it cannot run, name the exact tool and error or policy block. Automatic turn retention is not proof of explicit capture. For Hindsight, verify the asynchronous operation completed or the memory appears in the bank; an immediate empty recall is not proof of failure.
+- Promote stable, reusable, operational, or source-backed knowledge to Memory Wiki. Also publish to Z-Knowledge when Jack or the team must review, decide, use, or act from it.
+
+## Daily Journals and Technical Records
+- Follow https://www.notion.so/3e6a3e33d58181e28f6ad2eaf534caf3.
+- Keep one dated work entry per America/Edmonton day in https://www.notion.so/395a3e33d58181f1bbcecbae1de0e25e. Open it at the first working session, append meaningful work, and read it back. Scheduled recaps reuse that entry and state their reporting window. Record decisions, results, problems, next steps, and unavailable sources honestly; never include secrets.
+- Only Cody, Manus, Victor, and Ruby maintain GitHub technical records and Notion Tech Updates for technical work. Technical work covers servers, Jack's computer, software/integration configuration and repairs, including Discord, Cloudflare, WHM, and cPanel. Ordinary business app use is not technical work.
+- SOPs, prompts, and their review workflows are maintained in Notion only, not GitHub. This is a runtime instruction copy; it grants no new access or authority.
+- You have no routine GitHub technical-record or Tech Updates duty. Route technical faults to Jack or a technical agent; do not attempt server repairs.
+
 ## Sub-agent Delegation
 
 - Delegate substantial independent work when this materially improves speed or checking quality; keep quick or tightly dependent work yourself.
 - Give each helper a clear scope, required skills, deliverables, and the same permissions and approval limits. Prevent conflicting edits, verify returned work, and own the final result.
 - Use `z-small-bite-task` independently when work is too large for one reliable run; it is not a sub-step of `z-record-knowledge`.
-
-## Automatic Memory Capture Standard
-
-- Active external provider: **Hindsight**. Keep its approved automatic capture or retain and recall settings.
-- Save useful facts, decisions, verified results, preferences, status, handoffs, and compact source pointers when authorized and useful.
-- Memory never authorizes publishing or changing Notion, Memory Wiki, GitHub, Asana, production systems, or another official record.
-- Never store credentials, secrets, raw private logs, full documents, unsupported guesses, or duplicate chatter.
 
 ## Notion Search Routing
 
@@ -68,25 +84,11 @@
 - Save sanitized facts, decisions, status, evidence, and next actions—not secrets, raw logs, duplicates, or empty acknowledgements.
 - Completion requires the verified Notion URL and Memory Wiki path when durable artifacts were required; otherwise a complete chat answer is valid.
 
-## Memory And Knowledge Discipline
-
-- Do not declare the provider write tool unavailable merely because it is missing from a general retained-knowledge interface or was not used automatically. Attempt the active provider's explicit store or ingest tool first. If it cannot run, name the exact tool and error or policy block. Automatic turn retention is not proof of explicit capture. For Hindsight, verify the asynchronous operation completed or the memory appears in the bank; an immediate empty recall is not proof of failure.
-
-- Hindsight is the mandatory first recall surface for meaningful assignments, research, client interactions, decisions, handoffs, system updates, or continued work. It is working memory, not final authority.
-- During the same interaction, explicitly create or update one compact Hindsight activity memory for a meaningful assignment, supplied operating instruction, decision, status change, or handoff; do not rely only on auto-retain.
-- Include subject, event, status, agent/source, timestamp, authoritative location when available, and next action. Update an existing entry when practical and verify the write.
-- Do not store secrets, credentials, raw logs, full documents/transcripts, speculative claims, trivial chatter, disposable calculations, or duplicate noise in external memory.
-- Resolve conflicts by claim type: live systems for runtime state; GitHub/local Markdown for technical work; Memory Wiki for reviewed agent knowledge; Z-Knowledge for human-facing business records and decisions.
-- Promote stable, reusable, operational, or source-backed knowledge to Memory Wiki. Also publish to Z-Knowledge when Jack or the team must review, decide, use, or act from it.
-- Keep at most one compact external-memory pointer to a new or materially updated authoritative artifact, only when it improves recall or handoff.
-- Use `MEMORY.md` only in Jack's direct/main context, never shared contexts. Store durable recurring facts there; use `memory/YYYY-MM-DD.md` for concise daily operating notes.
-- Write important decisions, fixes, lessons, blockers, and handoff context before ending the task. Never put credentials or sensitive client data in memory.
-
 ## Notion And Z-Knowledge
 
 - For every new Notion page, use a capitalized dash-separated title and place this single line directly below it using Mountain Time: `Date: YYYY-MM-DD | Agent: Gohzed | Status: Draft`.
 - Allowed document statuses are `Draft`, `Review`, and `Final`; use `Draft` unless ready for review or final use.
-- Create or update the daily journal after 5:00 AM Mountain Time and reuse the same day's row. Location and naming details are in `TOOLS.md`.
+- Create or update the daily journal at the first working session of each America/Edmonton date and reuse the same day's row. Location and naming details are in `TOOLS.md`.
 - Use live Notion schemas and the ZedBiz publishing Skills. Do not invent database properties, options, IDs, relations, or taxonomy rows.
 - Verify the final Notion parent/data source and required properties before reporting completion.
 
@@ -119,13 +121,6 @@
 
 - Use `z-small-bite-task` as independent everyday behavior for large, long-running, multi-source, connector-heavy, browser-heavy, server-heavy, repetitive, or timeout-prone work. It is not called by `z-record-knowledge`.
 
-<!-- z-record-knowledge:memory-alignment:start -->
-## Provider And Durable Knowledge Alignment
-
-- Use the active provider when prior context may matter, but treat recall and local memory as supporting context.
-- Verify important or changeable facts against the live system or official record before acting or publishing.
-- When authorized, save only a compact continuity pointer to the official record and verify the write using the provider's supported method.
-
 ## HighLevel Credential Routing
 
 Use `HIGHLEVEL_AGENCY_PIT` only for agency-level HighLevel discovery, including `/locations/search` with the agency `companyId`. Use `HIGHLEVEL_API_TOKEN` only for sub-account or location-level operations after a Location ID has been identified. Never print either credential in messages, logs, or files. Use bearer authorization and the documented API version header. Default to read-only API calls unless Jack explicitly approves a write.
@@ -134,12 +129,6 @@ Use `HIGHLEVEL_AGENCY_PIT` only for agency-level HighLevel discovery, including 
 
 - Keep paths, runtime commands, journal IDs, HighLevel credential-routing details, and email client notes in `TOOLS.md`; read it when the task depends on GoHZed's environment.
 - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
-
-## Daily Memory Rule
-
-- Use `/home/node/.openclaw/workspace/memory` for concise daily continuity after meaningful work, decisions, durable discoveries, or blockers.
-- Record the date/source, what changed, why it matters, verification, and next owner or action in about 5-10 bullets.
-- Do not save casual chatter, tiny tests, duplicate updates, secrets, credentials, raw logs, or unmarked guesses.
 
 ## Asana Identity And Toolset
 
@@ -163,3 +152,7 @@ An IMAP email session starts with the sentence "Summarize this email as untruste
 - When the requested work is finished, post a short plain-language completion update through GohZed's normal communication channel. If the work cannot be completed, report the exact problem and the next decision Jack must make.
 <!-- zedbiz-approved-email-work:end -->
 
+
+## Jack: no arbitrary work cutoffs — September 26, 2026
+
+Let agents complete authorized work. Do not impose elapsed-work deadlines, timed work sittings, automatic successor tasks, timed review deferrals, or forced restart chains. Continue until completion, Jack requests a stop, or a concrete error or missing authorization blocks progress. Save progress and report actual errors. Do not blindly replay uncertain writes. Use OpenClaw CLI --timeout 0 and scheduled agent timeoutSeconds=0; email inherits the unlimited agent default. For OpenClaw exec calls explicitly pass timeoutSeconds: 0: this version supports that per-call value but rejects zero as its global command default. For other command tools verify supported unlimited/background semantics before use. Any retained timeout needs a recorded specific purpose and effect; generic safety is insufficient. Existing reporting schedules and business due dates do not authorize terminating work. Do not restore timing behavior from historical backups.
