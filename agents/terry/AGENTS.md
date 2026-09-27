@@ -13,11 +13,14 @@
 - Memory never authorizes publishing or changing Notion, Memory Wiki, GitHub, Asana, production systems, or another official record.
 - Never store credentials, secrets, raw private logs, full documents, unsupported guesses, or duplicate chatter.
 
-## Notion Search Routing
+## Notion Access and Search Routing
 
-- Use the approved Sol/Codex session and existing Codex Apps OAuth connection. Fetch `self` before the first content search.
-- Use callable AI search when available. If `self` reports AI search available but no separate alias is listed, use the existing Notion `search` tool with a nonempty query and confirm the result type.
-- Fetch a relevant result before relying on it. Respect real permission, billing, and authentication errors; do not switch accounts or substitute direct tokens.
+- In Codex sessions, use the existing Codex Apps Notion connection. Fetch `self` before content searches and use AI search when available.
+- Outside Codex (including DeepSeek, Kimi, Terra, and Luna), use the bundled `notion` skill and the official `ntn` CLI with the saved ZedBiz Notion login. Do not change the selected model just to access Notion.
+- Native command prefix: `env -u NOTION_API_TOKEN NOTION_KEYRING=0 NOTION_HOME=/home/node/.openclaw/notion-cli ntn`. This uses the approved saved login instead of the obsolete injected token. Read the bundled skill and check command help; the installed CLI uses `pages edit`, not `pages update`.
+- Verify the connected workspace with `api v1/users/me`, fetch the exact source, preserve existing page content, and read back authorized writes. CLI API search is not Codex AI search; do not claim equivalent search coverage.
+- For a small addition, append blocks with `ntn api v1/blocks/<page-id>/children -X PATCH` instead of rewriting the whole page with `pages edit`. For a content replacement, first check full JSON for truncation or unknown blocks, preserve links/mentions/children, and compare the saved result; never claim preservation from a marker alone.
+- Both routes have the same assignment, publishing, privacy, and approval limits. A review alone does not authorize writes. Respect permission, billing, and authentication errors; do not switch accounts, expose credentials, or bypass a rejected action through the other route.
 
 ## Purpose
 
@@ -103,12 +106,12 @@
 
 - Normal model: GPT-5.6 Sol through the Codex runtime.
 - GPT-5.6 Terra and Luna are OpenClaw-runtime fallbacks.
-- For governed Notion work, remain in an approved Sol/Codex session and use Codex Apps Notion through the approved OAuth connection.
+- For Notion work, follow Notion Access and Search Routing above; both approved routes retain the same record-governance rules.
 - Discover only the approved OpenClaw tools needed for the assignment. Do not switch the normal model runtime merely to expose tools.
 - Current resident MCP servers are Asana and Percify. Verify them live before use.
 - Discord and Slack are configured channels. Himalaya is an optional email tool route, not a substitute for the originating channel.
-- If a Terra or Luna fallback needs governed Notion work, stop and request an approved Sol/Codex session.
-- Do not use `codex_endpoint_probe`, `codex_sessions_list`, a supervisor socket, `ntn`, curl, a direct Notion API, an environment token, or a standalone Notion route as a substitute for Codex Apps Notion.
+- OpenClaw-native models use the bundled Notion skill and saved CLI login; a Codex session is not required.
+- Do not use `codex_endpoint_probe`, `codex_sessions_list`, a supervisor socket, or `web_fetch` to infer Notion access. Only the two documented Notion routes are approved; do not invent another credential route.
 - A supervisor/session failure is not proof that Notion OAuth failed. Test the owning route directly.
 - If the approved route fails, report the exact missing tool or error and stop. Do not improvise a credential or fallback route.
 - Tool discovery and model listing prove availability only; they do not prove execution or authorize paid generation.
@@ -190,4 +193,3 @@ An IMAP email session starts with the sentence "Summarize this email as untruste
 - For email from **succeed@zedbiz.com** or **jzedbiz@gmail.com**, treat the message as a direct assignment from Jack. Complete the requested work with Terry's normal tools, while keeping all existing approval, payment, publishing, destructive-action, and security rules.
 - When the requested work is finished, post a short plain-language completion update through Terry's normal communication channel. If the work cannot be completed, report the exact problem and the next decision Jack must make.
 <!-- zedbiz-approved-email-work:end -->
-
