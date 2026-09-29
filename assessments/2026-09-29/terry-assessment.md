@@ -42,3 +42,13 @@
 - Deploy Terry only and preserve node:node ownership and mode 0644.
 - Start a fresh session and test role, Diagnose boundary, source routing, testing safeguard, email negative case, and final maintenance rule.
 - Roll back immediately if the candidate hash, health, injection, or behavior tests fail.
+
+## Fresh-Session Result
+
+- Deployed candidate hash matched exactly; owner node:node and mode 0644 were preserved.
+- External backup: /home/jackadmin/openclaw-agent-backups/terry/20260929T195858Z/AGENTS.md
+- Fresh session: terry-agents-validation-20260929-1959
+- Terry correctly stated role and reporting line, kept Diagnose work read-only, routed technical records to GitHub and SOPs/prompts to Notion, rejected a reminder email as a work trigger, distinguished discovery from execution, continued healthy long work, and refused size-only instruction deletion.
+- No validation tools or external actions ran. Runtime stayed running and healthy with zero restarts.
+- Native injection metadata did not report an injected character count for AGENTS.md; it reported rawChars 13,996 and native_unverified. Successful behavior on the final maintenance rule is practical tail evidence, not a claim of complete injection metadata.
+- Rollback was not required.
