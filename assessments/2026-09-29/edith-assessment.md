@@ -42,3 +42,16 @@
 - Preserve node:node ownership and mode 0644.
 - Start a fresh session and test role, Diagnose boundary, source handling, personnel privacy, Notion route, Asana identity, email negative case, unlimited work, and the final maintenance rule.
 - Roll back immediately if the candidate hash, health, injection, or behavior tests fail.
+
+## Deployment and Verification Result
+
+- Deployed to VPS1 after Terry's fresh-session pilot passed.
+- Backup: `/home/jackadmin/openclaw-agent-backups/edith/20260929T200344Z/AGENTS.md`
+- Live SHA-256 after deployment: `fc407d7711f8691dd8051b3a1c75e7bc7edcd79aece944a0f6b91a1b81c38b51`
+- Live size after deployment: 13,523 OpenClaw characters, 13,523 bytes, 140 lines.
+- Ownership and mode: `node:node`, `0644`.
+- Runtime after deployment: healthy, zero container restarts.
+- Fresh-session validation: passed role and reporting ownership; personnel privacy; owning-record conflict handling; Notion-only SOP and prompt routing; exact Asana identity and toolset; email reminder negative case; unlimited work; and final instruction preservation.
+- Validation session completed successfully with no tools or external actions invoked.
+- System-prompt report showed 13,522 AGENTS raw characters. Native injection status was not directly exposed, so injection was verified through fresh-session behavior.
+
