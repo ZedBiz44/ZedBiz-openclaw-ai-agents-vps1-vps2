@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `64768b0fb60720dfa1ad64ffaf27bdffb2e3f5d2eed4744a56dc83bf94d639ae`.
+- External backup: `/home/openclaw/.openclaw/backups/agents-md-manager-20260929T203756Z/AGENTS.md`.
+- Ownership and mode remained `openclaw:openclaw`, `0644`; the systemd service stayed active with zero restarts.
+- Fresh session `rocky-agents-cleanup-validation-20260929-203907-696827` passed VA Guide/Mentor role, Diagnose boundary, exact `xai/grok-imagine-video` model, screenshot command and save path, draft-not-publication boundary, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,463 and tail behavior passed.
+- Rollback was not required.

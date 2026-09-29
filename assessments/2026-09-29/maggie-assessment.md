@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `2b6b8a5143ffdd55c5a79ff77c0c0aeb19fd1bc8e3701e9d07aa965e6488a4f0`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/maggie/20260929T203808Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `maggie-agents-cleanup-validation-20260929-203943-100803` passed role/reporting, Diagnose boundary, paid-ad platform/audience/budget and approval requirements, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,281 and tail behavior passed.
+- Rollback was not required.

@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `ecabe33eda7cebd280399a3adc3448c20541e5e1c4659ea474b2c6e509949545`.
+- External backup: `/root/openclaw-agent-backups/frank/20260929T203800Z/AGENTS.md`.
+- Ownership and mode remained `root:root`, `0644`; the systemd service stayed active with zero restarts.
+- Fresh session `frank-agents-cleanup-validation-20260929-203943-1398205` passed Deal Specialist role, Diagnose boundary, non-binding proposed terms, `Counterparty Claim` labeling with source/date, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 11,856 and tail behavior passed.
+- Rollback was not required.

@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `43946beb9858c438c3bd13520e71c1b58c643a7ec9df0150c1b8677310449998`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/vivian/20260929T203808Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `vivian-agents-cleanup-validation-20260929-203943-100805` passed Video Specialist role, Diagnose boundary, dry-narration timing authority, separate narration, paid-generation approval, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,489 and tail behavior passed.
+- Rollback was not required.

@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `595a2b5e23c43a805b234975f389e8f915e6691f2d8cf901e52e59428c7f0505`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/wilma/20260929T203808Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `wilma-agents-cleanup-validation-20260929-203943-100806` passed WordPress Specialist role, Diagnose boundary, plugin-install and unassigned-site approval gates, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 12,090 and tail behavior passed.
+- Rollback was not required.

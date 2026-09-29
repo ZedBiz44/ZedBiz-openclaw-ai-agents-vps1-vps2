@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `9f7c135678f1a09d12a2a9c1b63cc47d6dda2f4d66979a2ff8a47f10eefcbdfd`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/gohzed/20260929T203808Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `gohzed-agents-cleanup-validation-20260929-203943-100801` passed role/reporting, Diagnose boundary, GitHub/Notion routing, assignment-start boundary, healthy-work continuation, size-only deletion refusal, GoHighLevel ownership, and production/client approval tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,915 and tail behavior passed.
+- Rollback was not required.

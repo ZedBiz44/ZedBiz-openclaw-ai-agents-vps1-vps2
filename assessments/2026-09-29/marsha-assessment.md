@@ -39,3 +39,12 @@
 - Start a fresh session and test role, Diagnose boundary, one approval gate, one source route, the agent-specific safeguard, the Asana email negative case, unlimited work, and final instruction preservation.
 - Confirm live hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if a critical test fails.
+
+## Deployment and Verification Result
+
+- Deployed live with exact candidate hash `13d9fa1a16082c2ad61d971f3a4f5820517515909748f3231c7e595584b19edb`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/marsha/20260929T203808Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `marsha-agents-cleanup-validation-20260929-203943-100804` passed Chief of Staff reporting, Diagnose boundary, two-call external connector limit, Jack's production approval gate, source routing, continuity, unlimited-work, and size-only deletion tests.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,689 and tail behavior passed.
+- Rollback was not required.
