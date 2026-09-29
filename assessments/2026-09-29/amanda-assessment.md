@@ -41,3 +41,13 @@
 - Start a fresh session and test role, Diagnose boundary, Asana identity, broad-change approval, collection coordination, memory proof, unlimited work, and the final preservation rule.
 - Confirm hash, health, restart count, context evidence, and no unintended external actions.
 - Roll back immediately if any critical test fails. Scale only after Amanda passes.
+
+## Canary Result
+
+- Deployed live with exact candidate hash `a06fd9ac4d1b7c373dfc8835c25af42eb64442912ff4b10ad56a7c28eb8a23e7`.
+- External backup: `/home/jackadmin/openclaw-agent-backups/amanda/20260929T202706Z/AGENTS.md`.
+- Ownership and mode remained `node:node`, `0644`; the container stayed healthy with zero restarts.
+- Fresh session `amanda-agents-validation-20260929-202821` passed role, Diagnose boundary, Asana identity, broad-change approval, collection coordination, memory proof, unlimited work, and size-only deletion refusal.
+- No validation tools or external actions ran. Native injection metadata did not expose `rawChars`; live JavaScript UTF-16 count was 13,972 and tail behavior passed.
+- The first wrapper run returned a false failure only because it treated missing native `rawChars` as over budget. The agent passed every behavior check; the wrapper was corrected to use the live UTF-16 count when native metadata is absent.
+- Rollback was not required. Amanda passed the fleet-expansion gate.
