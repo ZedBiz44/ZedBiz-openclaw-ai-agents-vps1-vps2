@@ -1,0 +1,15 @@
+{
+  "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Agent-Memory\\profile-placement-20260929\\harry\\candidate\\AGENTS.md",
+  "sha256": "ac5a501abfe896027d859526249d446cca007a6ff50eca72800e60a3fc7f8c0b",
+  "bytes": 17558,
+  "openclaw_characters": 17556,
+  "unicode_code_points": 17556,
+  "lines": 161,
+  "target_min": 10000,
+  "target_max": 14000,
+  "live_limit": 24000,
+  "status": "above-recommended",
+  "remaining_characters_before_limit": 6444,
+  "duplicate_headings": [],
+  "last_nonempty_line": "Let agents complete authorized work. Do not impose elapsed-work deadlines, timed work sittings, automatic successor tasks, timed review deferrals, or forced restart chains. Continue until completion, Jack requests a stop, or a concrete error or missing authorization blocks progress. Save progress and report actual errors. Do not blindly replay uncertain writes. Use OpenClaw CLI --timeout 0 and scheduled agent timeoutSeconds=0; email inherits the unlimited agent default. For OpenClaw exec calls explicitly pass timeoutSeconds: 0: this version supports that per-call value but rejects zero as its global command default. For other command tools verify supported unlimited/background semantics before use. Any retained timeout needs a recorded specific purpose and effect; generic safety is insufficient. Existing reporting schedules and business due dates do not authorize terminating work. Do not restore timing behavior from historical backups."
+}

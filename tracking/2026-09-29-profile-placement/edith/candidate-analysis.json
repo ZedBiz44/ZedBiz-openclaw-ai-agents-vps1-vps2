@@ -1,0 +1,15 @@
+{
+  "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Agent-Memory\\profile-placement-20260929\\edith\\candidate\\AGENTS.md",
+  "sha256": "9bb3a6563d9454c7b406740cbadaf340e25f83e20f8c2a76a5fc9eb7dadfb38c",
+  "bytes": 14362,
+  "openclaw_characters": 14362,
+  "unicode_code_points": 14362,
+  "lines": 148,
+  "target_min": 10000,
+  "target_max": 14000,
+  "live_limit": 20000,
+  "status": "above-recommended",
+  "remaining_characters_before_limit": 5638,
+  "duplicate_headings": [],
+  "last_nonempty_line": "- Preserve, compress, merge, relocate, or explicitly retire instructions; never delete one silently for size."
+}

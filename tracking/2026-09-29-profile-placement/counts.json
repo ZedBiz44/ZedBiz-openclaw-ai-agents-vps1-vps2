@@ -1,0 +1,83 @@
+[
+  {
+    "agent": "harry",
+    "file": "AGENTS.md",
+    "before": 16733,
+    "after": 17556,
+    "bytes": 17558,
+    "lines": 161,
+    "sha256": "ac5a501abfe896027d859526249d446cca007a6ff50eca72800e60a3fc7f8c0b"
+  },
+  {
+    "agent": "harry",
+    "file": "SOUL.md",
+    "before": 3849,
+    "after": 4268,
+    "bytes": 4274,
+    "lines": 75,
+    "sha256": "f6e57fb0e6774c5ffaa742d416ef3aa25479266e092a7da309d5d7e5cdda9124"
+  },
+  {
+    "agent": "harry",
+    "file": "IDENTITY.md",
+    "before": 3699,
+    "after": 5084,
+    "bytes": 5084,
+    "lines": 79,
+    "sha256": "04c931b5910908cde9ec2f3b8164239917bf8cfbe4a04817b5bd6a3763bdf7c5"
+  },
+  {
+    "agent": "edith",
+    "file": "AGENTS.md",
+    "before": 13523,
+    "after": 14362,
+    "bytes": 14362,
+    "lines": 148,
+    "sha256": "9bb3a6563d9454c7b406740cbadaf340e25f83e20f8c2a76a5fc9eb7dadfb38c"
+  },
+  {
+    "agent": "edith",
+    "file": "SOUL.md",
+    "before": 1966,
+    "after": 2430,
+    "bytes": 2430,
+    "lines": 53,
+    "sha256": "262b7bd0a4bfc550eaf4a07560638555dcfcb4575f4b4615951acaa316eba28f"
+  },
+  {
+    "agent": "edith",
+    "file": "IDENTITY.md",
+    "before": 1899,
+    "after": 3283,
+    "bytes": 3283,
+    "lines": 61,
+    "sha256": "5f8bea0adb69da020357dd7b7283d3e5d2f72eb8f431f0376b90389d085d267a"
+  },
+  {
+    "agent": "terry",
+    "file": "AGENTS.md",
+    "before": 13997,
+    "after": 14788,
+    "bytes": 14788,
+    "lines": 150,
+    "sha256": "5d22fb929380d6cacada263587f0c58c84740e710f98ec6edc98fe072a4a3d74"
+  },
+  {
+    "agent": "terry",
+    "file": "SOUL.md",
+    "before": 3956,
+    "after": 4375,
+    "bytes": 4375,
+    "lines": 106,
+    "sha256": "2c677a2b55db300be67ef088f13002885a4d69d3f0d889d422784e99e3eb935c"
+  },
+  {
+    "agent": "terry",
+    "file": "IDENTITY.md",
+    "before": 3392,
+    "after": 4776,
+    "bytes": 4776,
+    "lines": 78,
+    "sha256": "4bddf59684b75544c606c2b31099175e25a23dca815fe685576cacf7eae7bded"
+  }
+]
