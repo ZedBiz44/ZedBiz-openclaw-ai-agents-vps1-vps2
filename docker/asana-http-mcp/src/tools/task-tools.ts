@@ -293,6 +293,10 @@ export const createTaskTool: Tool = {
         type: "string",
         description: "The project to create the task in"
       },
+      is_rendered_as_separator: {
+        type: "boolean",
+        description: "Render a default_task as a native subtask section heading. Set true for a heading, false for an action. Do not use resource_subtype section. Leave headings unassigned and undated."
+      },
       name: {
         type: "string",
         description: "Name of the task"
@@ -354,6 +358,10 @@ export const updateTaskTool: Tool = {
         type: "string",
         description: "The task ID to update"
       },
+      is_rendered_as_separator: {
+        type: "boolean",
+        description: "Render a default_task as a native subtask section heading. Set true for a heading, false for an action. Do not use resource_subtype section. Leave headings unassigned and undated."
+      },
       name: {
         type: "string",
         description: "New name for the task"
@@ -411,6 +419,10 @@ export const createSubtaskTool: Tool = {
       parent_task_id: {
         type: "string",
         description: "The parent task ID to create the subtask under"
+      },
+      is_rendered_as_separator: {
+        type: "boolean",
+        description: "Render a default_task as a native subtask section heading. Set true for a heading, false for an action. Do not use resource_subtype section. Leave headings unassigned and undated."
       },
       name: {
         type: "string",
