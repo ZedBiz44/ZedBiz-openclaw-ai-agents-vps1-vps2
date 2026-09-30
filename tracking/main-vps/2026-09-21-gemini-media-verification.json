@@ -1,0 +1,143 @@
+{
+  "date": "2026-09-21",
+  "owner": "Cody",
+  "issue": 396,
+  "test_file_sha256": "e7f3f9e3c2b43252144adfe4126f60070477ad74f170b3656eed4e1660fb8abc",
+  "agents": [
+    {
+      "agent": "amanda",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3299
+    },
+    {
+      "agent": "cody",
+      "windows_mcp_launcher_verified": true,
+      "video_verified_in_session": true,
+      "audio_verified": true,
+      "standalone_audio_verified": true,
+      "cleanup": "deleted"
+    },
+    {
+      "agent": "edith",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3421
+    },
+    {
+      "agent": "frank",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4541
+    },
+    {
+      "agent": "gohzed",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3311
+    },
+    {
+      "agent": "grogar",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4745
+    },
+    {
+      "agent": "harry",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3453
+    },
+    {
+      "agent": "inga",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4209
+    },
+    {
+      "agent": "maggie",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3639
+    },
+    {
+      "agent": "marsha",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3451
+    },
+    {
+      "agent": "rocky",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4286
+    },
+    {
+      "agent": "ruby",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3361
+    },
+    {
+      "agent": "suzy",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4274
+    },
+    {
+      "agent": "terry",
+      "native_gateway_tool_call": true,
+      "audio_verified": true,
+      "visual_verified": true
+    },
+    {
+      "agent": "victor",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4539
+    },
+    {
+      "agent": "vivian",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 4989
+    },
+    {
+      "agent": "wilma",
+      "model": "gemini-3.8-flash",
+      "audio_verified": true,
+      "visual_verified": true,
+      "cleanup": "deleted",
+      "total_tokens": 3430
+    }
+  ],
+  "coverage": "Real sound-only phrase and visual scene order verified. Sampled analysis is not continuous playback."
+}
