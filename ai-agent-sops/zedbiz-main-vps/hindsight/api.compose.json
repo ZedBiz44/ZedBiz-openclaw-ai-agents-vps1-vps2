@@ -1,0 +1,61 @@
+{
+  "services": {
+    "hindsight": {
+      "image": "zedbiz/hindsight:0.10.0-flashrank-20260914",
+      "container_name": "hindsight",
+      "restart": "unless-stopped",
+      "env_file": [
+        "/opt/openclaw/services/hindsight/.env",
+        "/opt/openclaw/services/hindsight/upgrade-0100/.api-db.env"
+      ],
+      "environment": {
+        "HINDSIGHT_API_WORKER_ENABLED": "true"
+      },
+      "ports": [
+        "127.0.0.1:8898:8888",
+        "127.0.0.1:9998:9999"
+      ],
+      "networks": [
+        "hindsight-db-internal",
+        "openclaw"
+      ],
+      "mem_limit": "3g",
+      "memswap_limit": "3584m",
+      "shm_size": "1g",
+      "stop_grace_period": "60s",
+      "healthcheck": {
+        "test": [
+          "CMD",
+          "python3",
+          "-m",
+          "hindsight_api.http_probe",
+          "http://127.0.0.1:8888/health",
+          "5"
+        ],
+        "interval": "10s",
+        "timeout": "8s",
+        "retries": 12,
+        "start_period": "120s"
+      },
+      "logging": {
+        "driver": "json-file",
+        "options": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      },
+      "build": {
+        "context": ".",
+        "dockerfile": "Dockerfile"
+      }
+    }
+  },
+  "networks": {
+    "hindsight-db-internal": {
+      "external": true
+    },
+    "openclaw": {
+      "external": true
+    }
+  }
+}

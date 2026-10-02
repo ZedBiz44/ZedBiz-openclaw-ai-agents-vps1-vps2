@@ -1,0 +1,41 @@
+{
+  "services": {
+    "hindsight-db": {
+      "image": "pgvector/pgvector:pg18@sha256:2ba9ca5f2e7daa0f0e7723cba1ee9167bab54efd3640516a44ac1a928dd67e7a",
+      "container_name": "hindsight-db",
+      "restart": "unless-stopped",
+      "env_file": [
+        "/opt/openclaw/services/hindsight/upgrade-0100/.db.env"
+      ],
+      "volumes": [
+        "hindsight-pg18-data:/var/lib/postgresql"
+      ],
+      "networks": [
+        "hindsight-db-internal"
+      ],
+      "shm_size": "1g",
+      "mem_limit": "1536m",
+      "stop_grace_period": "60s",
+      "healthcheck": {
+        "test": [
+          "CMD-SHELL",
+          "pg_isready -U hindsight -d hindsight"
+        ],
+        "interval": "10s",
+        "timeout": "5s",
+        "retries": 6
+      }
+    }
+  },
+  "volumes": {
+    "hindsight-pg18-data": {
+      "name": "hindsight-pg18-data"
+    }
+  },
+  "networks": {
+    "hindsight-db-internal": {
+      "name": "hindsight-db-internal",
+      "internal": true
+    }
+  }
+}
