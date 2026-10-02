@@ -30,6 +30,12 @@ test("MCP server lists the tool and rejects an unsupported URL before any API ca
       listed.tools.map((tool) => tool.name),
       ["analyze_youtube_video"],
     );
+    assert.deepEqual(listed.tools[0].annotations, {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    });
 
     const result = await client.callTool({
       name: "analyze_youtube_video",
