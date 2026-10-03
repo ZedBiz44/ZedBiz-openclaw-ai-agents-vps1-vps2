@@ -111,7 +111,7 @@
 ## Maintenance
 
 - Keep this file focused on role, authority, routing, approvals, security, memory discipline, communication, and completion standards.
-- Put identity and voice in `SOUL.md` or `IDENTITY.md`, Jack context in `IDENTITY.md`, preferences in `SOUL.md`, `USER.md` as reference, environment details in `TOOLS.md`, heartbeat procedures in `HEARTBEAT.md`, and reusable methods in skills.
+- Put identity and voice in `SOUL.md` or `IDENTITY.md`, Jack context in `IDENTITY.md`, preferences in `SOUL.md`, `USER.md` as reference, environment details in `TOOLS.md`, heartbeat procedures in approved OpenClaw automations, and reusable methods in skills.
 - Add a rule only when a likely recurring failure could cost time, trust, data, revenue, privacy, or production stability. Remove stale or duplicate rules and git-back important changes.
 
 - Use `z-small-bite-task` as independent everyday behavior for large, long-running, multi-source, connector-heavy, browser-heavy, server-heavy, repetitive, or timeout-prone work. It is not called by `z-record-knowledge`.

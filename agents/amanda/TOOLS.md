@@ -37,7 +37,7 @@ Date: 2026-09-02 | Agent: Cody | Status: Current
 - Use `z-notion-knowledge-publish` through Codex Apps Notion OAuth for authorized governed publishing.
 - Use `z-knowledge-routing` and `z-wiki-research` when their triggers apply.
 - Do not use a generic Notion skill, `ntn`, curl, raw tokens, or plaintext credentials as a fallback.
-- Journal location and routine are governed by `HEARTBEAT.md`.
+- Journal location and routine follow the Daily Journal and Technical Records section in `AGENTS.md`.
 
 ## Email
 
@@ -52,3 +52,6 @@ Date: 2026-09-02 | Agent: Cody | Status: Current
 - Provider slot: `memory-lancedb`.
 - Daily memory location: `/home/node/.openclaw/workspace/memory`.
 - Keep durable notes concise and sanitized. Store outcomes, decisions, evidence, blockers, and next actions—not transcripts or secrets.
+
+## Verified native GitHub authentication
+GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config.

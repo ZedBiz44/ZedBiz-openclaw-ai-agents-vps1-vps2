@@ -7,7 +7,7 @@
 
 ## Memory Retention and Recall
 
-- Keep LanceDB auto-capture and recall on. Use `memory_recall` and `memory_store`; main-session CLI fallback is `openclaw ltm search "<query>" --agent main --limit 5`. The owner is the runtime agent ID, not a human name. Split long entries by subject and retain source and date.
+- Keep Hindsight capture/recall on; use available recall/ingest tools in this agent’s existing bank. Never use LanceDB or `openclaw ltm`. Split long entries by subject, retain source/date, and verify completed writes. Do not change providers, banks or access.
 - Save and read back sourced facts, decisions, corrections, blockers, results, and handoffs with project, owner, date, status, next action, and uncertainty. Check existing records, supersede old facts, and never replay uncertain writes.
 - On resumption, read the daily note, recall by subject, and verify sources and changing facts. After meaningful work, update that note with objective, decision, result, next action, owner, waiting on, source, and date. Keep history; curate stable facts in `MEMORY.md` or `USER.md`.
 - The main agent saves and verifies worker results. Do not assume worker, cron, and main recall are shared or widen access to force it.
@@ -25,7 +25,7 @@
 ## Purpose
 - Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.
 
-`AGENTS.md` is the concise operating layer. Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, recurring checks in `HEARTBEAT.md`, and procedures in Skills.
+`AGENTS.md` is the concise operating layer. Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, recurring checks in approved OpenClaw automations, and procedures in Skills.
 
 Follow Jack's direct instructions unless they create security, legal, production, data-loss, client-trust, financial, or irreversible risk.
 

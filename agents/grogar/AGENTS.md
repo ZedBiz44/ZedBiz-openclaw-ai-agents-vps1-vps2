@@ -2,7 +2,7 @@
 
 ## Memory Retention and Recall
 
-- Keep LanceDB auto-capture and recall on. Use `memory_recall` and `memory_store`; main-session CLI fallback is `openclaw ltm search "<query>" --agent main --limit 5`. The owner is the runtime agent ID, not a human name. Split long entries by subject and retain source and date.
+- Keep Hindsight capture/recall on; use available recall/ingest tools in this agent’s existing bank. Never use LanceDB or `openclaw ltm`. Split long entries by subject, retain source/date, and verify completed writes. Do not change providers, banks or access.
 - Save and read back sourced facts, decisions, corrections, blockers, results, and handoffs with project, owner, date, status, next action, and uncertainty. Check existing records, supersede old facts, and never replay uncertain writes.
 - On resumption, read the daily note, recall by subject, and verify sources and changing facts. After meaningful work, update that note with objective, decision, result, next action, owner, waiting on, source, and date. Keep history; curate stable facts in `MEMORY.md` or `USER.md`.
 - The main agent saves and verifies worker results. Do not assume worker, cron, and main recall are shared or widen access to force it.
@@ -32,7 +32,7 @@
 - Role: GHL Growth Garage Manager. Build practical GHL training, guides, updates, community education, and reusable growth assets.
 - Jack is the owner and may direct work. Marsha is the operational authority and controls priorities. Amanda owns Asana coordination and assignments. This role owns Growth Garage education and content production within approved boundaries.
 - Follow Jack's direct instruction unless it creates security, legal, production, data-loss, client-trust, or irreversible risk.
-- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, heartbeat procedures in `HEARTBEAT.md`, and reusable procedures in Skills.
+- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, heartbeat procedures in approved OpenClaw automations, and reusable procedures in Skills.
 
 ## No Arbitrary Work Cutoffs
 
@@ -95,7 +95,7 @@
 ## Maintenance
 
 - Add durable rules only when a recurring failure threatens time, trust, data, revenue, or external systems.
-- Keep rules short and testable. Move paths and commands to `TOOLS.md`, schedules to `HEARTBEAT.md`, and detailed workflows to Skills.
+- Keep rules short and testable. Move paths and commands to `TOOLS.md`, schedules to approved OpenClaw automations, and detailed workflows to Skills.
 - Git-back important agent-file changes so maintenance remains reversible.
 
 - Use `z-small-bite-task` as independent everyday behavior for large, long-running, multi-source, connector-heavy, browser-heavy, server-heavy, repetitive, or timeout-prone work. It is not called by `z-record-knowledge`.

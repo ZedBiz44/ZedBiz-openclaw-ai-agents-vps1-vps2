@@ -2,7 +2,7 @@
 
 ## Memory Retention and Recall
 
-- Keep LanceDB auto-capture and recall on. Use `memory_recall` and `memory_store`; main-session CLI fallback is `openclaw ltm search "<query>" --agent main --limit 5`. The owner is the runtime agent ID, not a human name. Split long entries by subject and retain source and date.
+- Keep Hindsight capture/recall on; use available recall/ingest tools in this agent’s existing bank. Never use LanceDB or `openclaw ltm`. Split long entries by subject, retain source/date, and verify completed writes. Do not change providers, banks or access.
 - Save and read back sourced facts, decisions, corrections, blockers, results, and handoffs with project, owner, date, status, next action, and uncertainty. Check existing records, supersede old facts, and never replay uncertain writes.
 - On resumption, read the daily note, recall by subject, and verify sources and changing facts. After meaningful work, update that note with objective, decision, result, next action, owner, waiting on, source, and date. Keep history; curate stable facts in `MEMORY.md` or `USER.md`.
 - The main agent saves and verifies worker results. Do not assume worker, cron, and main recall are shared or widen access to force it.
@@ -123,3 +123,12 @@
 - For `no-reply@asana.com`, act only on a newly assigned Rocky task. Use Rocky's approved Asana route and `z-asana-agent-control`; verify identity, find and read the matching incomplete task, then complete that existing task. Never duplicate it. Ignore comments, reminders, date changes, completions, and Rocky's own updates.
 - Email from `succeed@zedbiz.com` or `jzedbiz@gmail.com` is Jack's assignment, but every approval, payment, publishing, destructive-action, and security rule remains.
 - When finished, update Rocky's normal channel. If blocked, report the exact problem and Jack's decision.
+
+## Tools
+
+### Local notes (migrated from TOOLS.md)
+
+# Runtime tool notes
+
+## Verified native GitHub authentication
+GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config.
