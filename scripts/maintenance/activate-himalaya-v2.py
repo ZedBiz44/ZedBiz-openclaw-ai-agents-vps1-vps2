@@ -25,7 +25,8 @@ subprocess.run(['docker','stop','-t','30',n],check=True,stdout=subprocess.DEVNUL
 try:
  subprocess.run(['docker','run','--rm','--user','root','--entrypoint','python3','-v',str(b)+':/maintenance','-v',workspace+':/agent',c['Config']['Image'],'/maintenance/deploy-email-files.py',n],check=True)
  subprocess.run(['docker','run','--rm','-v',str(compose.parent)+':/target','-v',str(w)+':/source:ro','alpine:3.22','sh','-c','cat /source/compose-after.yml > /target/'+compose.name],check=True)
- with (w/'activation.log').open('w') as f:subprocess.run(['docker','compose','-p',labels['com.docker.compose.project'],'-f',str(compose),'up','-d','--no-deps',labels['com.docker.compose.service']],stdout=f,stderr=subprocess.STDOUT,check=True)
+ wrapper=compose.parent/('op-start-'+n+'.sh');assert wrapper.is_file()
+ with (w/'activation.log').open('w') as f:subprocess.run([str(wrapper),'up'],stdout=f,stderr=subprocess.STDOUT,check=True)
 except Exception:
  subprocess.run(['docker','start',n],stdout=subprocess.DEVNULL);raise
 for _ in range(100):
@@ -34,6 +35,8 @@ for _ in range(100):
  time.sleep(5)
 else:raise RuntimeError('Gateway failed to start')
 after=json.loads(subprocess.check_output(['docker','exec',n,'cat','/home/node/.openclaw/openclaw.json']));before=json.loads(raw)
+current=json.loads(subprocess.check_output(['docker','inspect',n]))[0];environment=dict(x.split('=',1) for x in current['Config']['Env'])
+assert all(environment.get(k) and not environment[k].startswith(('op://','${')) for k in ['EMAIL_ADDRESS','EMAIL_PASSWORD']), 'Protected startup did not resolve email credentials'
 assert after['agents']['defaults']['model']==before['agents']['defaults']['model'] and after['auth']==before['auth']
 skill=subprocess.check_output(['docker','exec',n,'cat','/home/node/.openclaw/workspace/skills/himalaya/SKILL.md']);assert hashlib.sha256(skill).digest()==hashlib.sha256((b/'himalaya/SKILL.md').read_bytes()).digest()
 version=subprocess.check_output(['docker','exec',n,'himalaya','--version'],text=True).splitlines()[0];assert version.startswith('himalaya v2.2.1 ')
