@@ -1,12 +1,27 @@
 # VPS1 OpenClaw 2026.9.8 and GPT 6.1 Sol rollout
 
-Date: 2026-10-03 | Agent: Cody | Status: Paid defaults withdrawn; OAuth runtime correction pending
+Date: 2026-10-03 | Agent: Cody | Status: OAuth rollout verified on all ten target agents
 
-## Current correction
+## Authorized OAuth correction
+
+Jack approved the diagnosed OAuth fix with "yes get it done." Terry's integrated default run `0bf136bf-1c84-4f2c-9503-e3f57f93498d` passed on exact GPT 6.1 Sol, with successful bash and Mem0 recall, zero tool failures and no fallback. The same correction then passed on Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Victor, Vivian and Wilma. Every agent completed two successful tools including its external memory recall, exact GPT 6.1 Sol and no fallback. All thirteen configuration/health checks passed for each upgraded agent. Marsha remains healthy on GPT 6 Astra. VPS1 requires no reboot.
+
+Final evidence: `2026-10-03-terry-evidence/oauth-fleet-verified.json` and the ten `*-oauth-sol-summary.json` files. Agent Registry model links, model and deployment records, and the daily journal were reconciled with this live outcome. The PR remains open for review; the live deployment is complete.
+
+- `plugins.entries.codex.config.appServer.command` selects `/usr/local/bin/codex`, pinned to 0.160.0 in the canonical Dockerfile.
+- The Sol primary selects the agent's existing `openai:jzedbiz@gmail.com` OAuth profile.
+- `auth.order.openai` contains only that OAuth profile, excluding API-key profile rotation for agent routing. Existing credentials are retained for their other configured uses.
+- The Codex child clears `OPENAI_API_KEY`, `CODEX_API_KEY` and `OPENAI_AUTH_TOKEN` from its environment.
+- Each original configuration is backed up as `openclaw.json.before-sol-oauth-runtime-20261003`. Model fallback lists, thinking, skills and memory providers are preserved.
+- OpenClaw accepts the newer executable with normal startup validation. Its informational version message accurately states managed version 0.158.0 and selected version 0.160.0.
+
+The earlier sections below retain the incident and diagnostic history. Paid-default approval was never given.
+
+## Earlier containment and diagnosis
 
 Jack did not explicitly approve paid API defaults. Cody's earlier approval claims were incorrect. All ten affected defaults were restored to their previous models using the existing Codex OAuth profile: Terry, Edith and Grogar on GPT 6 Astra; Amanda, Gohzed, Inga, Maggie, Victor, Vivian and Wilma on GPT 5.6 Sol. Marsha remains unchanged. Live config read-back and all eleven HTTP health checks passed.
 
-An isolated test using Terry's existing OAuth profile, no API credentials, no fallback and Codex 0.160.0 successfully executed GPT 6.1 Sol and returned `OAUTH_SOL_OK`. OpenClaw launches its managed Codex 0.158.0 instead of the updated global executable. The documented `plugins.entries.codex.config.appServer.command` setting permits choosing the newer executable. Production deployment of that correction remains pending.
+An isolated test using Terry's existing OAuth profile, no API credentials, no fallback and Codex 0.160.0 successfully executed GPT 6.1 Sol and returned `OAUTH_SOL_OK`. OpenClaw had launched managed Codex 0.158.0 instead of the updated global executable. The same account failed on 0.158.0. The documented executable override was then presented to Jack and explicitly approved, as recorded above.
 
 VPS1 now runs kernel 6.8.0-146-generic with no reboot-required flag; that reboot occurred outside this session. OpenClaw 9.8, compatible maintenance updates and backups remain installed. Historical paid test evidence below is retained for accuracy and does not establish approval or current defaults. The old paid-default installer is disabled.
 
