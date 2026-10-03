@@ -1,4 +1,5 @@
 import os,sys,json,subprocess,pathlib,hashlib,time
+raise SystemExit('Retired rollout: paid defaults were not authorized. Use the reviewed OAuth migration in issue #436. No changes performed.')
 name=sys.argv[1]
 assert name in ['amanda','edith','gohzed','grogar','inga','maggie','victor','vivian','wilma']
 base=pathlib.Path('/opt/openclaw/builds/2026.9.8-terry-20261003');work=base/('fleet-'+name);work.mkdir(exist_ok=True)

@@ -1,4 +1,5 @@
 {
+  "evidenceStatus": "Historical paid-route tests; unauthorized defaults withdrawn. See oauth-correction-verified.json for current configuration and oauth-runtime-comparison.json for subscription proof.",
   "date": "2026-10-03",
   "scope": "VPS1 only; Marsha remains Astra",
   "agents": [

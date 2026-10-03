@@ -1,0 +1,159 @@
+{
+  "agents": [
+    {
+      "agent": "amanda",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "edith",
+      "model": {
+        "primary": "openai/gpt-6-astra@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "gohzed",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "grogar",
+      "model": {
+        "primary": "openai/gpt-6-astra@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-6-sol",
+          "openai/gpt-5.6-sol",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "inga",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "maggie",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "marsha",
+      "model": {
+        "primary": "openai/gpt-6-astra",
+        "fallbacks": [
+          "openai/gpt-6-sol",
+          "openai/gpt-5.6-sol",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "terry",
+      "model": {
+        "primary": "openai/gpt-6-astra@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "victor",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "vivian",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-terra",
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    },
+    {
+      "agent": "wilma",
+      "model": {
+        "primary": "openai/gpt-5.6-sol@openai:jzedbiz@gmail.com",
+        "fallbacks": [
+          "openai/gpt-5.6-luna",
+          "openrouter/google/gemini-3.1-flash-lite",
+          "openrouter/deepseek/deepseek-v4-flash"
+        ]
+      },
+      "entryModels": [],
+      "healthy": true
+    }
+  ],
+  "kernel": "6.8.0-146-generic",
+  "rebootRequired": false
+}
