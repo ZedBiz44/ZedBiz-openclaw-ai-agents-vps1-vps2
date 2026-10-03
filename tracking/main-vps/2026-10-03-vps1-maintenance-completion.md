@@ -1,5 +1,7 @@
 # VPS1 maintenance and cleanup
 
+Later October 3 work completed the Himalaya email migration on all eleven agents and the host. See [the migration and final verification](2026-10-03-himalaya-v2-migration.md). The email hold described below records the earlier maintenance checkpoint and is now resolved.
+
 Date: 2026-10-03 | Agent: Cody | Status: Live maintenance verified, compatibility holds retained
 
 ## Scope and result

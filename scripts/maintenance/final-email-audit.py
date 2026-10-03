@@ -13,7 +13,8 @@ def audit(n):
  assert r['model']=='openai/'+('gpt-6-astra' if n=='marsha' else 'gpt-6.1-sol')+'@openai:jzedbiz@gmail.com' and r['authOrder']==['openai:jzedbiz@gmail.com']
  return r
 with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:r=list(pool.map(audit,names))
+assert all(a['dockerHealth']=='healthy' for a in r),'Wait for Docker health indicators before final export'
 (out/'fleet-email-verification.json').write_text(json.dumps(r,indent=2))
-for name in ['binary-provenance.json','mem0-client-review.json','staging.json']:(out/name).write_bytes((b/name).read_bytes())
+for name in ['binary-provenance.json','mem0-client-review.json','qdrant-candidate-probe.json','staging.json']:(out/name).write_bytes((b/name).read_bytes())
 host={'rebootRequired':pathlib.Path('/var/run/reboot-required').exists(),'failedServices':subprocess.check_output(['systemctl','--failed','--no-legend'],text=True),'hostHimalaya':subprocess.check_output(['/usr/local/bin/himalaya','--version'],text=True).splitlines()[0]};(out/'host.json').write_text(json.dumps(host,indent=2))
 print(json.dumps({'agents':len(r),'allEmailTestsPassed':all(a['emailTests']['imapAuth'] and a['emailTests']['smtpAuth'] and a['emailTests']['draftCompose'] for a in r),'allDockerHealthy':all(a['dockerHealth']=='healthy' for a in r),'host':host}))
