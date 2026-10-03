@@ -1,0 +1,13 @@
+{
+  "verifiedDate": "2026-10-03",
+  "server": "VPS1",
+  "openclawVersion": "2026.9.8",
+  "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+  "primaryModel": "openai/gpt-6.1-sol@openai:api-key-backup",
+  "thinking": "low",
+  "memoryPlugin": "openclaw-mem0@1.2.1",
+  "modelDecision": "Jack approved GPT 6.1 Sol through the existing API profile. Default run 62815eec-5977-4f57-97c7-0dedd249ae0b passed bash and mem0_search with no fallback.",
+  "knownMaintenanceLimit": "Native Mem0 loading blocks startup/config reload for about 90 seconds.",
+  "record": "https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/436",
+  "deployment": "https://www.notion.so/3eea3e33d58181b19bbac80e632e51b1"
+}

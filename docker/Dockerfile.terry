@@ -1,0 +1,9 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.9.8-terry-20261003
+FROM ${BASE_IMAGE}
+USER root
+# Preserve the deployed email fix: skip old UIDs before downloading sources.
+COPY scripts/imap-source-fetch/ /opt/zedbiz-imap-fix/
+RUN node /opt/zedbiz-imap-fix/patch-imap-source-fetch.mjs /app \
+    && node --check /app/dist/extensions/imap/index.js \
+    && node /opt/zedbiz-imap-fix/test-imap-source-fetch.mjs /app/dist/extensions/imap/index.js
+USER node
