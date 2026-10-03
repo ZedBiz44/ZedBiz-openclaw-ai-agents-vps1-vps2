@@ -1,0 +1,54 @@
+{
+  "runId": "c35b40f5-55e7-4481-96a1-19f95bbfe30e",
+  "status": "ok",
+  "executionTrace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "toolSummary": {
+    "calls": 2,
+    "tools": [
+      "bash",
+      "agent_knowledge_recall"
+    ],
+    "failures": 0
+  },
+  "proofMatched": true,
+  "coreFilesPreserved": {
+    "TOOLS.md": true,
+    "SOUL.md": true,
+    "Jack-Research-Inga.md": true,
+    "AGENTS.md": true,
+    "DREAMS.md": true,
+    "USER.md": true,
+    "IDENTITY.md": true,
+    "MEMORY.md": true,
+    "SUZY-KEY.md": true
+  },
+  "settingsPreserved": {
+    "channels": true,
+    "cron": true,
+    "skills": true
+  },
+  "health": {
+    "4100": 200,
+    "4200": 200,
+    "4300": 200
+  },
+  "codexVersion": "codex-cli 0.160.0",
+  "openclawVersion": "2026.9.8",
+  "authOrder": [
+    "openai:jzedbiz@gmail.com"
+  ],
+  "fallbacks": []
+}
