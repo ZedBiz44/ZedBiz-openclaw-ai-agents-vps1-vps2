@@ -1,0 +1,15 @@
+{
+  "removedDisposablePaths": [
+    "/root/cody-vps2-followup-20261003/mem0-candidate",
+    "/root/cody-vps2-followup-20261003/asana-candidate",
+    "/root/cody-vps2-followup-20261003/harry-before-mem0/.npm/_cacache",
+    "/root/cody-harry-maintenance-20261003/activation-before-state/.npm/_cacache",
+    "/root/cody-harry-maintenance-20261003/state/.npm/_cacache",
+    "/root/cody-suzy-maintenance-20261003/activation-before-state/.npm/_cacache",
+    "/root/cody-frank-maintenance-20261003/activation-before-state/.npm/_cacache"
+  ],
+  "backupDownloadCacheBytesRemoved": 7672074240,
+  "freeBytes": 104693542912,
+  "usedBytes": 102189961216,
+  "totalBytes": 206900281344
+}
