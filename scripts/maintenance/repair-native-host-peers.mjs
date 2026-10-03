@@ -11,7 +11,7 @@ for(const dir of fs.readdirSync(base)) {
   const manifest=path.join(root,'node_modules',pkg,'package.json');
   if(!fs.existsSync(manifest))continue;
   const p=JSON.parse(fs.readFileSync(manifest,'utf8'));
-  const allowed=pkg==='@openclaw/memory-lancedb'?['2026.9.8']:pkg==='@mem0/openclaw-mem0'?['1.1.0','1.2.1']:['0.12.0'];
+  const allowed=pkg==='@openclaw/memory-lancedb'?['2026.9.8']:pkg==='@mem0/openclaw-mem0'?['1.1.0','1.2.1']:['0.12.0','0.13.0'];
   if(!allowed.includes(p.version))continue;
   await linkHost({installedDir:root,peerDependencies:{openclaw:'2026.9.8'},hostRoot:'/app',logger:console});
   if(fs.realpathSync(path.join(root,'node_modules/openclaw'))!=='/app')throw new Error('Peer repair failed');

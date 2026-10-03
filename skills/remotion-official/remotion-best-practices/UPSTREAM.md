@@ -1,11 +1,6 @@
-# Upstream Provenance
+# Official Remotion skills
 
-- Package: Official Remotion Agent Skills
-- Version: `4.0.521`
-- Commit: `670b222bf46c4d73e590f0995c28b7dc43221953`
-- Source: https://github.com/remotion-dev/remotion/tree/main/packages/skills
-- Imported: 2026-09-06 Mountain Time
-
-The active `SKILL.md` files omit the upstream `version` frontmatter field only to
-match the shared OpenClaw skill contract. Vivian's ZedBiz approval, secret, audio,
-video, and no-spend rules remain authoritative.
+Upstream: https://github.com/remotion-dev/remotion/tree/e385a83dbde54179c0457ad90b7d7c3a4b6ab44a/packages/skills
+Version: 4.0.532
+Reviewed: 2026-10-03 by Cody.
+Compatibility: removed version frontmatter, normalized sibling links, excluded symlink placeholders, and added the ZedBiz delivery/authorization adapter to this router.

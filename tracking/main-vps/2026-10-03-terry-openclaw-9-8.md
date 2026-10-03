@@ -1,5 +1,7 @@
 # VPS1 OpenClaw 2026.9.8 and GPT 6.1 Sol rollout
 
+Later October 3 maintenance also upgraded Marsha to OpenClaw 2026.9.8 while retaining Astra through Codex OAuth, and updated applications, plugins and skills. See [the complete maintenance record](2026-10-03-vps1-maintenance-completion.md) for current state, cleanup and compatibility holds. Historical sections below describe their original checkpoints.
+
 Date: 2026-10-03 | Agent: Cody | Status: OAuth rollout verified on all ten target agents
 
 ## Authorized OAuth correction

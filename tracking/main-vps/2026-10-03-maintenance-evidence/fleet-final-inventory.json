@@ -1,0 +1,652 @@
+[
+  {
+    "agent": "terry",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "fish-audio-speech",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "openclaw-mem0",
+        "version": "1.2.1",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "slack",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "amanda",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "memory-lancedb",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "edith",
+    "healthy": "starting",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "openclaw-mem0",
+        "version": "1.2.1",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "gohzed",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "hindsight-openclaw",
+        "version": "0.13.0",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "grogar",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "hindsight-openclaw",
+        "version": "0.13.0",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "inga",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "hindsight-openclaw",
+        "version": "0.13.0",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "maggie",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "hindsight-openclaw",
+        "version": "0.13.0",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "marsha",
+    "healthy": "healthy",
+    "image": "zedbiz/marsha:2026.9.8-owner-scheduling-20261003",
+    "model": "openai/gpt-6-astra@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "hindsight-openclaw",
+        "version": "0.13.0",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "slack",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "voice-call",
+        "version": "2026.9.8",
+        "status": "disabled"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "victor",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-victor:2026.9.8-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "memory-lancedb",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "vivian",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "fish-audio-speech",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "memory-lancedb",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  },
+  {
+    "agent": "wilma",
+    "healthy": "healthy",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "pluginUpdateExit": 0,
+    "pendingUpdates": [],
+    "plugins": [
+      {
+        "id": "deepseek",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "discord",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "gradium",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "memory-lancedb",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "moonshot",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "parallel",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "perplexity",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "qwen",
+        "version": "2026.9.8",
+        "status": "loaded"
+      },
+      {
+        "id": "tavily",
+        "version": "2026.9.8",
+        "status": "loaded"
+      }
+    ],
+    "skillCheckExit": 0
+  }
+]

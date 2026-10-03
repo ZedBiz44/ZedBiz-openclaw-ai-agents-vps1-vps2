@@ -1,0 +1,494 @@
+[
+  {
+    "agent": "amanda",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-files-folders",
+    "file": "scripts\\build_package.py",
+    "reason": "Authoring-only helper or approved Edith project exception"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-files-folders",
+    "file": "scripts\\check_completion.py",
+    "reason": "Authoring-only helper or approved Edith project exception"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-audio-production",
+    "file": "scripts\\build_dist.sh",
+    "reason": "Authoring-only helper or approved Edith project exception"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-files-folders",
+    "file": "scripts\\build_package.py",
+    "reason": "Authoring-only helper or approved Edith project exception"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-audio-production",
+    "file": "scripts\\build_dist.sh",
+    "reason": "Authoring-only helper or approved Edith project exception"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-code-allocation",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.mjs",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-code-allocation",
+    "file": "scripts\\request_z_code.py",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-knowledge-routing",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-knowledge-routing",
+    "file": "references\\chatgpt-codex.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-record-knowledge",
+    "file": "SKILL.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-record-knowledge",
+    "file": "references\\memory-layer-routing.md",
+    "reason": "Preserve newer approved local guidance or correct formatting"
+  }
+]
