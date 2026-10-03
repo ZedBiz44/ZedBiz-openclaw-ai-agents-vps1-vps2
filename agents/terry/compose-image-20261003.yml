@@ -1,0 +1,3 @@
+services:
+  terry:
+    image: zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix

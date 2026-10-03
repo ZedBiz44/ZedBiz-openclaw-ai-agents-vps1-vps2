@@ -1,0 +1,1384 @@
+{
+  "evidenceStatus": "Historical paid-route tests; unauthorized defaults withdrawn. See oauth-correction-verified.json for current configuration and oauth-runtime-comparison.json for subscription proof.",
+  "date": "2026-10-03",
+  "scope": "VPS1 only; Marsha remains Astra",
+  "agents": [
+    {
+      "agent": "amanda",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "amanda",
+        "cliExit": 0,
+        "runId": "ede640a0-9465-4ce5-b0a7-195c1de11842",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "memory_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), verified from `/etc/os-release`.\n- Memory lookup: Succeeded. Configured `memory_recall` returned two VPS1-related records.\n- No messages sent through messaging tools, memories created, or files changed.",
+        "receipt": {
+          "runId": "ede640a0-9465-4ce5-b0a7-195c1de11842",
+          "sessionId": "f2f9abff-fcb5-4f83-8e3a-4fb08382ec63",
+          "turnId": "01a10260-3cf5-71c3-b5a7-718e5a5414b4",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "memory_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10260-3bdd-7b22-ade7-189adca25d4f:01a10260-3cf5-71c3-b5a7-718e5a5414b4:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "amanda",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 87,
+          "eligible": 56,
+          "modelVisible": 56,
+          "commandVisible": 55,
+          "disabled": 31,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "memory-lancedb",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "edith",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "low",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "edith",
+        "cliExit": 0,
+        "runId": "155d1115-75fe-4a41-8ab8-83743a6a71d5",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "mem0_search"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), read from `/etc/os-release`.\n- External memory lookup: Succeeded. `mem0_search` for \u201cVPS1\u201d returned 3 results.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "155d1115-75fe-4a41-8ab8-83743a6a71d5",
+          "sessionId": "af7afc9e-79e0-4349-8528-38bbb4d5f01d",
+          "turnId": "01a1026d-2fe3-7070-aab3-2c48283da9a7",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "mem0_search"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a1026d-2dab-7633-bd54-83e51276fab6:01a1026d-2fe3-7070-aab3-2c48283da9a7:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "edith",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 86,
+          "eligible": 59,
+          "modelVisible": 59,
+          "commandVisible": 58,
+          "disabled": 27,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "openclaw-mem0",
+            "version": "1.1.0",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "gohzed",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "gohzed",
+        "cliExit": 0,
+        "runId": "38d7767b-5a45-4cb7-8551-810bd088bbc3",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), read from `/etc/os-release`.\n- Memory lookup: Succeeded. `agent_knowledge_recall` returned VPS1 records.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "38d7767b-5a45-4cb7-8551-810bd088bbc3",
+          "sessionId": "54eef485-d3ed-4e98-a0f5-b7f17cb8660d",
+          "turnId": "01a10268-3c83-7260-847c-dc96c2a6dcc4",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10268-3ba0-7d23-9d4a-b8c99f06f394:01a10268-3c83-7260-847c-dc96c2a6dcc4:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "gohzed",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 85,
+          "eligible": 59,
+          "modelVisible": 59,
+          "commandVisible": 58,
+          "disabled": 26,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "hindsight-openclaw",
+            "version": "0.12.0",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "grogar",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "medium",
+      "fallbacks": [
+        "openai/gpt-6-sol",
+        "openai/gpt-5.6-sol",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "grogar",
+        "cliExit": 0,
+        "runId": "a3c86c52-04e3-4423-8ba5-de9480085c45",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), verified from `/etc/os-release`.\n- External memory lookup: succeeded. `agent_knowledge_recall` returned VPS1-related records.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "a3c86c52-04e3-4423-8ba5-de9480085c45",
+          "sessionId": "12ad8dfe-e9db-46f4-9606-53974a0188f1",
+          "turnId": "01a1026e-3a5c-7371-93bd-8c679c633bcb",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a1026e-388b-7971-a300-1bbbc8336046:01a1026e-3a5c-7371-93bd-8c679c633bcb:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "grogar",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 82,
+          "eligible": 56,
+          "modelVisible": 56,
+          "commandVisible": 55,
+          "disabled": 26,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "hindsight-openclaw",
+            "version": "0.12.0",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "inga",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "inga",
+        "cliExit": 0,
+        "runId": "9050c270-c2fd-42b8-9be1-c4dbed495e80",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), read from `/etc/os-release`.\n- External memory lookup: succeeded. `agent_knowledge_recall` returned VPS1-related records.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "9050c270-c2fd-42b8-9be1-c4dbed495e80",
+          "sessionId": "12ebdf80-0d6a-42bd-a37b-c4d5eac0c8d5",
+          "turnId": "01a1026e-56ea-7210-9d96-74ab2fad9ff1",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a1026e-555e-7941-b6c2-01f3a2e5df5f:01a1026e-56ea-7210-9d96-74ab2fad9ff1:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "inga",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 86,
+          "eligible": 60,
+          "modelVisible": 60,
+          "commandVisible": 59,
+          "disabled": 26,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "hindsight-openclaw",
+            "version": "0.12.0",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "maggie",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "maggie",
+        "cliExit": 0,
+        "runId": "9e3b73ed-2ac8-4a5e-ad64-e80b0171f512",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm), verified from `/etc/os-release`.\n- External memory lookup: Succeeded. `agent_knowledge_recall` returned VPS1 records.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "9e3b73ed-2ac8-4a5e-ad64-e80b0171f512",
+          "sessionId": "4e88a36d-d010-40fe-8bc4-5592b3a20aa1",
+          "turnId": "01a1026e-37aa-78d2-a7a1-c5c1d90c8bd1",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "agent_knowledge_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a1026e-35c1-7c70-aed2-a17e836198af:01a1026e-37aa-78d2-a7a1-c5c1d90c8bd1:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "maggie",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 82,
+          "eligible": 57,
+          "modelVisible": 57,
+          "commandVisible": 56,
+          "disabled": 25,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "hindsight-openclaw",
+            "version": "0.12.0",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "terry",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "low",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "terry",
+        "cliExit": 0,
+        "runId": "62815eec-5977-4f57-97c7-0dedd249ae0b",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "mem0_search"
+          ],
+          "failures": 0
+        },
+        "reply": "TERRY_SOL_TOOL_OK | OS: Debian GNU/Linux 12 (bookworm) | Memory lookup succeeded.",
+        "receipt": {
+          "runId": "62815eec-5977-4f57-97c7-0dedd249ae0b",
+          "sessionId": "6df222a0-13f1-422e-96c9-f7e17f3d639f",
+          "turnId": "01a10254-6c8b-7762-8777-db889e5da376",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "mem0_search"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10254-6b45-79d3-9917-794d2b842945:01a10254-6c8b-7762-8777-db889e5da376:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      }
+    },
+    {
+      "agent": "victor",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "victor",
+        "cliExit": 0,
+        "runId": "a7032122-989c-4ef4-815a-2d51d3719446",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "memory_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm).\n- Memory lookup: Succeeded using `memory_recall` for \u201cVPS1\u201d; returned 2 results.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "a7032122-989c-4ef4-815a-2d51d3719446",
+          "sessionId": "494ceb55-feda-4177-a2d5-bf514e8cd5c8",
+          "turnId": "01a10267-6b2e-7b02-8927-d4f86e78b3b4",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "memory_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10267-69e7-71d3-9515-8ce47c4a0475:01a10267-6b2e-7b02-8927-d4f86e78b3b4:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "victor",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 87,
+          "eligible": 62,
+          "modelVisible": 62,
+          "commandVisible": 61,
+          "disabled": 25,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "memory-lancedb",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "vivian",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "vivian",
+        "cliExit": 0,
+        "runId": "1fae8f82-400e-4433-93c9-2d7564768a67",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "memory_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm).\n- External memory lookup: Succeeded. `memory_recall` searched \u201cVPS1\u201d and returned one result.\n- No messages sent, memories created, or files changed.",
+        "receipt": {
+          "runId": "1fae8f82-400e-4433-93c9-2d7564768a67",
+          "sessionId": "339d6723-42f7-4a99-b75e-11f622f951bb",
+          "turnId": "01a10270-078b-75a2-9f69-92bad6878fd6",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "memory_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10270-0652-7df3-870e-4bcdec353491:01a10270-078b-75a2-9f69-92bad6878fd6:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "vivian",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 103,
+          "eligible": 77,
+          "modelVisible": 77,
+          "commandVisible": 76,
+          "disabled": 26,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "fish-audio-speech",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "memory-lancedb",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "agent": "wilma",
+      "primary": "openai/gpt-6.1-sol@openai:api-key-backup",
+      "thinking": "minimal",
+      "fallbacks": [
+        "openai/gpt-5.6-luna",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ],
+      "proof": {
+        "agent": "wilma",
+        "cliExit": 0,
+        "runId": "5a945b21-32e5-4b9a-acb8-3fb0012a363e",
+        "status": "ok",
+        "trace": {
+          "winnerProvider": "openai",
+          "winnerModel": "gpt-6.1-sol",
+          "attempts": [
+            {
+              "provider": "openai",
+              "model": "gpt-6.1-sol",
+              "result": "success",
+              "stage": "assistant"
+            }
+          ],
+          "fallbackUsed": false,
+          "runner": "embedded"
+        },
+        "tools": {
+          "calls": 2,
+          "tools": [
+            "bash",
+            "memory_recall"
+          ],
+          "failures": 0
+        },
+        "reply": "- OS: Debian GNU/Linux 12 (bookworm).\n- External memory lookup: Succeeded. `memory_recall` searched \u201cVPS1\u201d and returned 3 memories.\n- No files changed or memories created.",
+        "receipt": {
+          "runId": "5a945b21-32e5-4b9a-acb8-3fb0012a363e",
+          "sessionId": "0ff7fe68-aac0-4c74-b10e-498764719901",
+          "turnId": "01a10272-c3ed-7db0-893b-b4b6b6a76a60",
+          "requested": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol"
+          },
+          "effective": {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "responseModel": "gpt-6.1-sol"
+          },
+          "successfulToolNames": [
+            "bash",
+            "memory_recall"
+          ],
+          "assistantTranscriptIdempotencyKey": "codex-app-server:01a10272-c347-7f61-99c6-58fd676285ad:01a10272-c3ed-7db0-893b-b4b6b6a76a60:assistant",
+          "rerouted": false,
+          "terminalDisposition": "visible"
+        }
+      },
+      "preservation": {
+        "agent": "wilma",
+        "checks": {
+          "cronPreserved": true,
+          "fallbacksPreserved": true,
+          "thinkingPreserved": true,
+          "memorySlotPreserved": true,
+          "skillSettingsPreserved": true,
+          "authOrderPreserved": true
+        },
+        "skills": {
+          "total": 87,
+          "eligible": 61,
+          "modelVisible": 61,
+          "commandVisible": 60,
+          "disabled": 26,
+          "blocked": 0,
+          "agentFiltered": 0,
+          "notInjected": 0,
+          "missingRequirements": 0
+        },
+        "plugins": [
+          {
+            "id": "deepseek",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "discord",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "gradium",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "memory-lancedb",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "moonshot",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "parallel",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "perplexity",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "qwen",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          },
+          {
+            "id": "tavily",
+            "version": "2026.9.8",
+            "status": "loaded",
+            "error": null
+          }
+        ]
+      }
+    }
+  ],
+  "health": {
+    "agents": [
+      {
+        "agent": "amanda",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "edith",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "gohzed",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "grogar",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "inga",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "maggie",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "marsha",
+        "image": "zedbiz/marsha:2026.9.4-owner-scheduling-20260926",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "terry",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "victor",
+        "image": "zedbiz/openclaw-victor:2026.9.8-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "vivian",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      },
+      {
+        "agent": "wilma",
+        "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+        "dockerHealth": "healthy",
+        "httpHealthy": true,
+        "response": "{\"ok\":true,\"status\":\"live\"}"
+      }
+    ],
+    "rebootRequired": true,
+    "failedServices": "",
+    "packageAudit": ""
+  },
+  "marsha": {
+    "model": {
+      "primary": "openai/gpt-6-astra",
+      "fallbacks": [
+        "openai/gpt-6-sol",
+        "openai/gpt-5.6-sol",
+        "openrouter/google/gemini-3.1-flash-lite",
+        "openrouter/deepseek/deepseek-v4-flash"
+      ]
+    },
+    "thinking": "medium"
+  }
+}

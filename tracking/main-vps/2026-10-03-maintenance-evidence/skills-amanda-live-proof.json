@@ -1,0 +1,24 @@
+{
+  "runId": "d06b3ab9-dc95-49b8-b72e-350a352ffb64",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 8,
+    "tools": [
+      "bash"
+    ],
+    "failures": 0
+  }
+}

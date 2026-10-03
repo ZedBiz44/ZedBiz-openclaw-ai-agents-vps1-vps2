@@ -1,5 +1,4 @@
-FROM ghcr.io/vectorize-io/hindsight@sha256:ffa391a77284e49f6b55e32c86f33529ac4257831407b14038a72b6a0a232039
-
+FROM ghcr.io/vectorize-io/hindsight@sha256:d1840062a5b79940ab7a9f4809ceb90fc776d4ad737cd9329e9b5836cc64ab70
 USER root
-RUN pip install --no-cache-dir "flashrank>=0.2.0"
+RUN pip install --no-cache-dir "flashrank==0.2.10"
 USER hindsight

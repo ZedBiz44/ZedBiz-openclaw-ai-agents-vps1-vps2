@@ -1,0 +1,68 @@
+[
+  {
+    "agent": "terry",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "amanda",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "edith",
+    "existingConfig": false,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "gohzed",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "grogar",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "inga",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "maggie",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "marsha",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "victor",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "vivian",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  },
+  {
+    "agent": "wilma",
+    "existingConfig": true,
+    "emailEnvironmentPresent": true,
+    "candidatePrepared": true
+  }
+]

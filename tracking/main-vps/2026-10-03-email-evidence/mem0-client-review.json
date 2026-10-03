@@ -1,0 +1,32 @@
+[
+  {
+    "plugin": "1.2.1",
+    "sdk": "3.0.7",
+    "client": "1.18.0",
+    "agent": "terry",
+    "sdkUsesLegacySearch": true,
+    "latestPlugin": "1.2.1",
+    "latestSdk": "3.3.1",
+    "latestClient": "1.19.0",
+    "reviewedCandidateSdk": "3.3.1",
+    "candidateQdrantAdapterStillUsesLegacySearch": true,
+    "candidateDistSha256": "6453e06eea3a8bc2d0c1e3065df85381956dea02183e3dcc46304a7ed0aae472",
+    "decision": "Keep verified client 1.18.0; no supported SDK replacement removes the legacy search requirement",
+    "source": "https://www.npmjs.com/package/mem0ai/v/3.3.1"
+  },
+  {
+    "plugin": "1.2.1",
+    "sdk": "3.0.7",
+    "client": "1.18.0",
+    "agent": "edith",
+    "sdkUsesLegacySearch": true,
+    "latestPlugin": "1.2.1",
+    "latestSdk": "3.3.1",
+    "latestClient": "1.19.0",
+    "reviewedCandidateSdk": "3.3.1",
+    "candidateQdrantAdapterStillUsesLegacySearch": true,
+    "candidateDistSha256": "6453e06eea3a8bc2d0c1e3065df85381956dea02183e3dcc46304a7ed0aae472",
+    "decision": "Keep verified client 1.18.0; no supported SDK replacement removes the legacy search requirement",
+    "source": "https://www.npmjs.com/package/mem0ai/v/3.3.1"
+  }
+]

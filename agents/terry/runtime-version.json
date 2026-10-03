@@ -1,0 +1,16 @@
+{
+  "verifiedDate": "2026-10-03",
+  "server": "VPS1",
+  "openclawVersion": "2026.9.8",
+  "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+  "primaryModel": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+  "codexExecutable": "/usr/local/bin/codex",
+  "codexVersion": "0.160.0",
+  "openaiAgentAuthOrder": ["openai:jzedbiz@gmail.com"],
+  "thinking": "low",
+  "memoryPlugin": "openclaw-mem0@1.2.1",
+  "modelDecision": "Jack explicitly approved the OAuth runtime correction. Default run 0bf136bf-1c84-4f2c-9503-e3f57f93498d executed exact GPT 6.1 Sol through existing Codex OAuth, with bash and mem0_search, zero tool failures and no fallback. OpenAI auth order excludes API-key profiles and API-key environment variables are cleared from the Codex child. Paid defaults were never explicitly approved and remain prohibited without explicit approval.",
+  "knownMaintenanceLimit": "Native Mem0 loading blocks startup/config reload for about 90 seconds.",
+  "record": "https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/436",
+  "deployment": "https://www.notion.so/3eea3e33d58181b19bbac80e632e51b1"
+}

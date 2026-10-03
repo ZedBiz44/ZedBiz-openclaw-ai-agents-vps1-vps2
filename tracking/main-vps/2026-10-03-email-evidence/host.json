@@ -1,0 +1,5 @@
+{
+  "rebootRequired": false,
+  "failedServices": "",
+  "hostHimalaya": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir"
+}

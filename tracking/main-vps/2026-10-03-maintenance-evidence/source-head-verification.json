@@ -1,0 +1,158 @@
+[
+  {
+    "skill": "z-agent-communication",
+    "head": "bd60ee4c071008a38c704e4391666411b48dcb07",
+    "remote": "bd60ee4c071008a38c704e4391666411b48dcb07",
+    "matches": true
+  },
+  {
+    "skill": "z-agent-health-report",
+    "head": "c7e86fe3c1bb1a515944f1b1c9d734da9c4c2712",
+    "remote": "c7e86fe3c1bb1a515944f1b1c9d734da9c4c2712",
+    "matches": true
+  },
+  {
+    "skill": "z-agent-knowledge-mapper",
+    "head": "9a02b32cd0a2e3f1b1132d9a8d462355e9cdcc63",
+    "remote": "9a02b32cd0a2e3f1b1132d9a8d462355e9cdcc63",
+    "matches": true
+  },
+  {
+    "skill": "z-ai-skill-developer",
+    "head": "b8b8ddaa3b7d1f807bdae98ee66b3b3772e8e8ba",
+    "remote": "b8b8ddaa3b7d1f807bdae98ee66b3b3772e8e8ba",
+    "matches": true
+  },
+  {
+    "skill": "z-audio-production",
+    "head": "c415938db16efc84a4a06cdddff6dfe42d6eb83d",
+    "remote": "c415938db16efc84a4a06cdddff6dfe42d6eb83d",
+    "matches": true
+  },
+  {
+    "skill": "z-biz-plan",
+    "head": "09e84a6434fc4f865eb48d6593d8e448148feebd",
+    "remote": "09e84a6434fc4f865eb48d6593d8e448148feebd",
+    "matches": true
+  },
+  {
+    "skill": "z-code-allocation",
+    "head": "99a87358023d9474451eeb9eb0e00c7f0560aa96",
+    "remote": "99a87358023d9474451eeb9eb0e00c7f0560aa96",
+    "matches": true
+  },
+  {
+    "skill": "z-drive-gog",
+    "head": "830cf6d0e1d58c65b0ee161566bc1d0a7e7bf8a0",
+    "remote": "830cf6d0e1d58c65b0ee161566bc1d0a7e7bf8a0",
+    "matches": true
+  },
+  {
+    "skill": "z-files-folders",
+    "head": "4b8ebe6a478c621d86429192a5465887d0d435ea",
+    "remote": "4b8ebe6a478c621d86429192a5465887d0d435ea",
+    "matches": true
+  },
+  {
+    "skill": "z-gmail-gog",
+    "head": "06adebe0482c5875aad1d405d370391f3b8eb029",
+    "remote": "06adebe0482c5875aad1d405d370391f3b8eb029",
+    "matches": true
+  },
+  {
+    "skill": "z-graphic-production",
+    "head": "1032f7dfce5a0667f40a61d35748a0d8194f2d9c",
+    "remote": "1032f7dfce5a0667f40a61d35748a0d8194f2d9c",
+    "matches": true
+  },
+  {
+    "skill": "z-record-knowledge",
+    "head": "d0862bc83cb537d109786cbaf029486698c8b54d",
+    "remote": "d0862bc83cb537d109786cbaf029486698c8b54d",
+    "matches": true
+  },
+  {
+    "skill": "z-sop-framework",
+    "head": "0113b1932fcd495fe4b07a93a9dcd70b1629dc49",
+    "remote": "0113b1932fcd495fe4b07a93a9dcd70b1629dc49",
+    "matches": true
+  },
+  {
+    "skill": "z-support-doc-ingestion",
+    "head": "d7f62100bd838152482a5067ee4a0acc6d6619c0",
+    "remote": "d7f62100bd838152482a5067ee4a0acc6d6619c0",
+    "matches": true
+  },
+  {
+    "skill": "z-video-analysis",
+    "head": "81462e755657fde64d8d302fbf01191b394922a5",
+    "remote": "81462e755657fde64d8d302fbf01191b394922a5",
+    "matches": true
+  },
+  {
+    "skill": "z-video-critique",
+    "head": "cb2666e066e9f3ea97476c800921042391be800c",
+    "remote": "cb2666e066e9f3ea97476c800921042391be800c",
+    "matches": true
+  },
+  {
+    "skill": "z-video-production",
+    "head": "82eb02cd87cbd40051b0100a32692941c56d0657",
+    "remote": "82eb02cd87cbd40051b0100a32692941c56d0657",
+    "matches": true
+  },
+  {
+    "skill": "z-advanced-asana-control",
+    "head": "9f4145877258aab44887bc2ec7f358662dd2012c",
+    "remote": "9f4145877258aab44887bc2ec7f358662dd2012c",
+    "matches": true
+  },
+  {
+    "skill": "z-asana-agent-control",
+    "head": "c1df036c8a5c2ad8fb1efc99c49e25adcfc88fec",
+    "remote": "c1df036c8a5c2ad8fb1efc99c49e25adcfc88fec",
+    "matches": true
+  },
+  {
+    "skill": "z-asana-procedures",
+    "head": "e6fb5f7a92788ae38e7af72304348cc2ed9f6bad",
+    "remote": "e6fb5f7a92788ae38e7af72304348cc2ed9f6bad",
+    "matches": true
+  },
+  {
+    "skill": "z-creative-asset-analysis",
+    "head": "0615eac722aec20c3200c22822577be3753692ad",
+    "remote": "0615eac722aec20c3200c22822577be3753692ad",
+    "matches": true
+  },
+  {
+    "skill": "z-creative-asset-critique",
+    "head": "de5af7a1320ff09b6f5abcd0362d72dea0ad9c85",
+    "remote": "de5af7a1320ff09b6f5abcd0362d72dea0ad9c85",
+    "matches": true
+  },
+  {
+    "skill": "z-website-analysis",
+    "head": "8008b21aed08b38dc3eb83944793263c914b26bc",
+    "remote": "8008b21aed08b38dc3eb83944793263c914b26bc",
+    "matches": true
+  },
+  {
+    "skill": "z-website-critique",
+    "head": "ae448200959be5faf684dcc644d805cc2b5f8b6f",
+    "remote": "ae448200959be5faf684dcc644d805cc2b5f8b6f",
+    "matches": true
+  },
+  {
+    "skill": "z-website-production",
+    "head": "bf5adc9612ff22446c080663c7ae200616907bdf",
+    "remote": "bf5adc9612ff22446c080663c7ae200616907bdf",
+    "matches": true
+  },
+  {
+    "skill": "z-wordpress-mcp",
+    "head": "7f0a1dc920622fb913f24691281dbf474a424f82",
+    "remote": "7f0a1dc920622fb913f24691281dbf474a424f82",
+    "matches": true
+  }
+]

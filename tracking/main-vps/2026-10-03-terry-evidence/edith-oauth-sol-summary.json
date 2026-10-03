@@ -1,0 +1,52 @@
+{
+  "agent": "edith",
+  "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+  "apiProfileRotationExcluded": true,
+  "cliExit": 0,
+  "runId": "da4fe62f-3123-4339-9114-c137011303ce",
+  "status": "ok",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 2,
+    "tools": [
+      "bash",
+      "mem0_search"
+    ],
+    "failures": 0
+  },
+  "reply": "- **OS:** Debian GNU/Linux 12 (bookworm).\n- **Memory lookup:** `mem0_search` for \u201cVPS1\u201d succeeded and returned 3 memories.\n- No message tools, memory writes, or file changes were used.",
+  "receipt": {
+    "runId": "da4fe62f-3123-4339-9114-c137011303ce",
+    "sessionId": "8c64d7b4-6435-47bd-9efa-706ca796aa25",
+    "turnId": "01a10294-de7f-7330-8a0c-624aaa93e9a9",
+    "requested": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol"
+    },
+    "effective": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "responseModel": "gpt-6.1-sol"
+    },
+    "successfulToolNames": [
+      "bash",
+      "mem0_search"
+    ],
+    "assistantTranscriptIdempotencyKey": "codex-app-server:01a10294-dcfd-7b93-b5a6-d718ec360a41:01a10294-de7f-7330-8a0c-624aaa93e9a9:assistant",
+    "rerouted": false,
+    "terminalDisposition": "visible"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "deleted": "/opt/openclaw/backups/2026-09-01-openclaw-2026.8.2",
+  "logicalBytesRemoved": 12913759140,
+  "filesystemBytesRecovered": 12913668096,
+  "retainedBackupAgents": [
+    "terry",
+    "amanda",
+    "edith",
+    "gohzed",
+    "grogar",
+    "inga",
+    "maggie",
+    "victor",
+    "vivian",
+    "wilma",
+    "marsha"
+  ]
+}
