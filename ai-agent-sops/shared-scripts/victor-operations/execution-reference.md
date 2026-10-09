@@ -58,4 +58,8 @@ The separate model monitor has VPS1:<agent> keys for the eleven local agents and
 
 Uptime Kuma container `uptime-kuma` mounts `/opt/uptime-kuma/data` at `/app/data`. Its db-config.json selects SQLite. Read-only SELECT of id,name,active,type from monitor returned zero rows in kuma.db. There are no monitor IDs to map in this instance. A running Kuma container is not reachability coverage. Owner Victor must propose required endpoint checks and delivery verification; installing/enabling new checks requires applicable approval. No alert delivery or restore drill was performed here.
 
-[Verified register snapshot](fleet-register-20261009.json). Zero Docker memory limits mean no Docker limit configured, not zero usable memory. Systemd MemorySwapMax=infinity is a separate swap setting, not a Docker combined ceiling; parent/host constraints still apply.
+[Current maintained register](fleet-register-latest.json); [October 9 evidence snapshot](fleet-register-20261009.json). Update the stable register in reviewed changes and preserve dated evidence. Zero Docker memory limits mean no Docker limit configured, not zero usable memory. Systemd MemorySwapMax=infinity is a separate swap setting, not a Docker combined ceiling; parent/host constraints still apply.
+
+## Working-link maintenance
+
+PR 448 must be reviewed and merged before changing Notion working links to main. Until then, label the reviewed commit links as pending merge and include the verification date. After merge, use main/execution-reference.md and main/fleet-register-latest.json under this directory for daily use; keep commit-pinned links and dated registers in incident evidence. When changing an execution reference, verify its deployed target and refresh the Notion review date rather than treating source merge as deployment.
