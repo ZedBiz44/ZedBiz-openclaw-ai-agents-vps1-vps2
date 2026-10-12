@@ -1,0 +1,4 @@
+FROM zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix
+COPY --chown=root:root diagnostic-kx61_Tco.mjs /app/dist/diagnostic-kx61_Tco.mjs
+RUN node --check /app/dist/diagnostic-kx61_Tco.mjs
+LABEL zbiz.patch="dynamic-container-memory-limit-20261012"
