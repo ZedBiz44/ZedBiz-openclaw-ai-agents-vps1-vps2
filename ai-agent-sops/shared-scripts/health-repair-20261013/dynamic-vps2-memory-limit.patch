@@ -1,0 +1,19 @@
+--- diagnostic-DLixObfX.mjs
++++ diagnostic-DLixObfX.mjs
+@@ -248,7 +248,6 @@
+ 	"TiB"
+ ];
+ const DEFAULT_HEAP_SIZE_LIMIT_BYTES = getHeapStatistics().heap_size_limit;
+-const DEFAULT_PROCESS_MEMORY_LIMIT_BYTES = process.constrainedMemory();
+ const DEFAULT_PHYSICAL_MEMORY_BYTES = totalmem();
+ const DEFAULT_IS_BUN_RUNTIME = typeof process.versions.bun === "string";
+ const log = createSubsystemLogger("gateway").child("diagnostics/memory");
+@@ -428,7 +427,7 @@
+ 		ts: now,
+ 		memory
+ 	};
+-	const thresholds = resolveThresholds(options?.thresholds, options?.heapSizeLimitBytes ?? DEFAULT_HEAP_SIZE_LIMIT_BYTES, options?.processMemoryLimitBytes ?? DEFAULT_PROCESS_MEMORY_LIMIT_BYTES, options?.physicalMemoryBytes ?? DEFAULT_PHYSICAL_MEMORY_BYTES, options?.isBunRuntime ?? DEFAULT_IS_BUN_RUNTIME);
++	const thresholds = resolveThresholds(options?.thresholds, options?.heapSizeLimitBytes ?? DEFAULT_HEAP_SIZE_LIMIT_BYTES, options?.processMemoryLimitBytes ?? process.constrainedMemory(), options?.physicalMemoryBytes ?? DEFAULT_PHYSICAL_MEMORY_BYTES, options?.isBunRuntime ?? DEFAULT_IS_BUN_RUNTIME);
+ 	if (options?.emitSample !== false) emitInternalDiagnosticEvent({
+ 		type: "diagnostic.memory.sample",
+ 		memory,
