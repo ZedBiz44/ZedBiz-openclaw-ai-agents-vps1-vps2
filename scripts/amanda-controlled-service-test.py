@@ -3,6 +3,7 @@ import hashlib
 import json
 from pathlib import Path
 import subprocess
+import sqlite3
 import time
 
 root = Path('/opt/openclaw/recovery/amanda-20261018')
@@ -32,6 +33,10 @@ victor_before = inspect('victor')['Id']
 print('Idle verified; stopping Amanda through managed service', flush=True)
 subprocess.run(['systemctl', 'stop', 'openclaw-amanda.service'], check=True, timeout=180)
 assert subprocess.run(['docker', 'inspect', 'amanda'], capture_output=True).returncode != 0
+for db in ['/opt/openclaw/agents/amanda/config/state/openclaw.sqlite',
+           '/opt/openclaw/agents/amanda/agents/main/agent/openclaw-agent.sqlite']:
+    with sqlite3.connect('file:'+db+'?mode=ro', uri=True) as connection:
+        assert connection.execute('PRAGMA quick_check').fetchall() == [('ok',)]
 print('Managed stop removed Amanda container; taking offline state backup', flush=True)
 archive = root/'amanda-offline-state-before-cycle.tar'
 assert not archive.exists()
