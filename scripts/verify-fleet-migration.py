@@ -29,11 +29,16 @@ for field in ['model', 'models', 'modelPolicy', 'thinkingDefault', 'timeoutSecon
     assert before['agents']['defaults'].get(field) == after['agents']['defaults'].get(field), 'model/timeout policy changed: '+field
 assert before.get('plugins', {}).get('slots') == after.get('plugins', {}).get('slots'), 'memory backend changed'
 assert before.get('mcp') == after.get('mcp'), 'MCP configuration changed unexpectedly'
+for field in ['tools', 'channels']:
+    assert before.get(field) == after.get(field), 'access configuration changed: '+field
+assert before.get('gateway', {}).get('auth') == after.get('gateway', {}).get('auth'), 'gateway authentication changed'
+memory = before.get('plugins', {}).get('slots', {}).get('memory')
+assert before.get('plugins', {}).get('entries', {}).get(memory) == after.get('plugins', {}).get('entries', {}).get(memory), 'memory backend configuration changed'
 for key in ['AGENTS.md', 'SOUL.md', 'USER.md', 'IDENTITY.md']:
     assert (migrated/'workspace'/key).exists(), 'core file missing: '+key
 merged = len((migrated/'workspace/AGENTS.md').read_text())
 budget = after['agents']['defaults'].get('bootstrapMaxChars', 20000)
 print(json.dumps(dict(agent=name, cronRowsEqual=True, cronCount=len(rows(stage)), modelPolicyPreserved=True,
-                      memoryBackendPreserved=True, mcpPreserved=True, agentsCharacters=merged,
+                      memoryBackendPreserved=True, memoryConfigPreserved=True, accessConfigPreserved=True, mcpPreserved=True, agentsCharacters=merged,
                       bootstrapBudget=budget, needsBudgetIncrease=merged>budget)), flush=True)
 
