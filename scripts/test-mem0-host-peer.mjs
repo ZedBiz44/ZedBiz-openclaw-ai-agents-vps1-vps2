@@ -5,7 +5,7 @@ const root = '/home/node/.openclaw/npm/projects/mem0-compat-test';
 const pkg = root + '/node_modules/@mem0/openclaw-mem0';
 fs.mkdirSync(pkg, {recursive:true});
 fs.writeFileSync(pkg+'/package.json', JSON.stringify({name:'@mem0/openclaw-mem0',version:'1.2.1'}));
-const run = (arg=root) => spawnSync('node', ['/test/repair-mem0-host-peer.mjs',arg], {encoding:'utf8'});
+const run = (arg=root) => spawnSync('node', [process.env.TEST_HELPER ?? '/test/repair-mem0-host-peer.mjs',arg], {encoding:'utf8'});
 assert.equal(run().status,0);
 assert.equal(fs.realpathSync(root+'/node_modules/openclaw'),'/app');
 assert.equal(run().status,0);
