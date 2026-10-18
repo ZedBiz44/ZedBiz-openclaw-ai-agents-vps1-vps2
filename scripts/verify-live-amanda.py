@@ -18,4 +18,3 @@ elif mode=='proof':
     assert m['toolSummary']['failures']==0 and {'bash','memory_recall'}<=set(m['toolSummary']['tools'])
     assert any('asana_get_user' in t for t in m['toolSummary']['tools']), 'Missing integrated Asana proof'
 else:raise SystemExit('Expected inspect or proof')
-

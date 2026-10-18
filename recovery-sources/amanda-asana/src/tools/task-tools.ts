@@ -567,4 +567,3 @@ export const deleteTaskTool: Tool = {
     required: ["task_id"]
   }
 };
-

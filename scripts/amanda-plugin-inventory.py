@@ -8,4 +8,3 @@ rows=j.get('plugins',[]) if isinstance(j,dict) else j
 ids={'discord','gradium','memory-lancedb','parallel','perplexity','tavily','codex','openai'}
 print(json.dumps([{k:v.get(k) for k in ['id','version','status','origin','enabled']} for v in rows if v.get('id') in ids],indent=2))
 raise SystemExit(p.returncode)
-

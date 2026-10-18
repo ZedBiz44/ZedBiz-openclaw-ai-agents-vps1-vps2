@@ -50,4 +50,3 @@ elif action=='activate':
     subprocess.run(['docker','compose','-f',str(compose),'config','--quiet'],check=True)
     raise SystemExit(subprocess.run([str(root/'op-start-amanda.sh'),'up'],env=env).returncode)
 else:raise SystemExit('Expected migrate, sidecar or activate')
-

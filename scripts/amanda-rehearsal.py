@@ -29,4 +29,3 @@ for key, value in cfg.get('environment', {}).items():
         args += ['-e', key]
 args += [sys.argv[1]] + sys.argv[2:]
 raise SystemExit(subprocess.run(args,env=env).returncode)
-

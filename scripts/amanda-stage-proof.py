@@ -13,4 +13,3 @@ finally:
     subprocess.run(prefix+['/checks/stage-proof-config.cjs','restore'],env=node_env,check=True)
 print('Stage proof exit:',result.returncode)
 raise SystemExit(result.returncode)
-

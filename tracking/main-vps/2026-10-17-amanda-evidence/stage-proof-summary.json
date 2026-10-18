@@ -1,0 +1,52 @@
+{
+  "status": null,
+  "runId": null,
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 2,
+    "tools": [
+      "bash",
+      "memory_recall"
+    ],
+    "failures": 0
+  },
+  "reply": "- **OS:** Debian GNU/Linux 12 (bookworm).\n- **Memory lookup:** Succeeded. `memory_recall` returned two VPS1 results.\n- No files changed or memories created.",
+  "agentMeta": {
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "terminalReceipt": {
+      "runId": "ac356c85-70cf-41b5-bdc8-6860012d8e6a",
+      "sessionId": "aa206452-9cfc-4af1-80ff-37fdf46f45a2",
+      "turnId": "01a14d47-43d2-7370-990c-cb4b9dd5fc65",
+      "requested": {
+        "provider": "openai",
+        "model": "gpt-6.1-sol"
+      },
+      "effective": {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "responseModel": "gpt-6.1-sol"
+      },
+      "successfulToolNames": [
+        "bash",
+        "memory_recall"
+      ],
+      "assistantTranscriptIdempotencyKey": "codex-app-server:01a14d47-422d-7d32-a188-427f3c7075f3:01a14d47-43d2-7370-990c-cb4b9dd5fc65:assistant",
+      "rerouted": false,
+      "terminalDisposition": "visible"
+    }
+  }
+}

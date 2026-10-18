@@ -8,4 +8,3 @@ def safe(v):
     return {k:v[k] for k in ['configured','enabled','running','connected','ok','status'] if k in v}|({'probeOk':v['probe'].get('ok')} if isinstance(v.get('probe'),dict) else {})
 print(json.dumps({'exit':p.returncode,'ok':j.get('ok'),'channels':{k:safe(v)|{'accounts':{a:safe(b) for a,b in v.get('accounts',{}).items()}} for k,v in j.get('channels',{}).items()}},indent=2))
 raise SystemExit(p.returncode)
-
