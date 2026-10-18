@@ -1,6 +1,6 @@
 FROM zedbiz/openclaw-base:2026.10.4-victor-20261017
 USER root
-COPY scripts/patch-dynamic-memory-10-4.cjs scripts/patch-amanda-active-work-10-4.cjs /opt/zedbiz/
+COPY scripts/patch-dynamic-memory-10-4.cjs scripts/patch-amanda-active-work-10-4.cjs scripts/verify-amanda-runtime-10-4.cjs /opt/zedbiz/
 RUN node /opt/zedbiz/patch-dynamic-memory-10-4.cjs /app/dist/diagnostic-DxMcmqTS.mjs \
  && node /opt/zedbiz/patch-amanda-active-work-10-4.cjs /app/dist/diagnostic-stuck-session-recovery.runtime-C6gH1-h4.mjs \
  && node --check /app/dist/diagnostic-DxMcmqTS.mjs \
