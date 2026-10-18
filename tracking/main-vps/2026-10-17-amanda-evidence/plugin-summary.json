@@ -14,6 +14,13 @@
     "enabled": true
   },
   {
+    "id": "deepseek",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
     "id": "discord",
     "version": "2026.10.4",
     "status": "loaded",
@@ -35,6 +42,13 @@
     "enabled": true
   },
   {
+    "id": "moonshot",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
     "id": "parallel",
     "version": "2026.10.4",
     "status": "loaded",
@@ -43,6 +57,13 @@
   },
   {
     "id": "perplexity",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "qwen",
     "version": "2026.10.4",
     "status": "loaded",
     "origin": "global",
