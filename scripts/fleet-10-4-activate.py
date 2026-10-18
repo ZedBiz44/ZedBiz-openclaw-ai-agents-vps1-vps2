@@ -12,12 +12,13 @@ assert name in {'wilma', 'vivian', 'grogar', 'inga', 'maggie', 'gohzed', 'edith'
 live = Path('/opt/openclaw/agents')/name
 work = Path('/opt/openclaw/backups/fleet-20261018')/name
 recovery = Path('/opt/openclaw/recovery/fleet-20261018')
-catalog = json.loads((recovery/'catalog.json').read_text())
-proof = json.loads((recovery/'archive-proof.json').read_text())
+artifact_root = recovery/'workshop' if name in {'marsha', 'grogar'} else recovery
+catalog = json.loads((artifact_root/'catalog.json').read_text())
+proof = json.loads((artifact_root/'archive-proof.json').read_text())
 assert proof['allImageIdsVerified'] and proof['archiveSha256'] == catalog['sha256']
 assert not subprocess.check_output(['docker', 'ps', '-q', '--filter', f'name=^/{name}$'], text=True).strip()
 baseline = json.loads((work/'baseline.json').read_text())
-image = ('zedbiz/marsha:' if name == 'marsha' else 'zedbiz/openclaw-base:')+'2026.10.4-fleet-20261018'
+image = ('zedbiz/'+name+':2026.10.4-workshop-20261018') if name in {'marsha', 'grogar'} else 'zedbiz/openclaw-base:2026.10.4-fleet-20261018'
 compose = live/'docker-compose.yml'
 source = compose.read_text()
 assert source.count(baseline['ref']) == 1, 'unexpected current image declaration'
