@@ -15,6 +15,9 @@ class StartupTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         p = Path(self.tmp.name)
+        self.lock_patch = patch.object(d, 'RESTORE_LOCK', p/'restore.lock')
+        self.lock_patch.start()
+        self.addCleanup(self.lock_patch.stop)
         (p/'wrapper').write_text('approved')
         (p/'images.tar').write_bytes(b'archive')
         self.m = dict(wrapper=str(p/'wrapper'), wrapper_sha256=d.digest(p/'wrapper'),
@@ -88,3 +91,4 @@ class StartupTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
