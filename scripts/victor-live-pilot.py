@@ -15,7 +15,9 @@ action=sys.argv[1]
 if action=='migrate':
     existing=subprocess.check_output(['docker','ps','-a','--filter','name=^/victor$','--format','{{.Names}}'],text=True).strip()
     assert not existing, 'Victor container appeared; recheck before migration'
-    args=['docker','run','--rm','--network','openclaw','--memory','5g','--memory-swap','6g','--cpus','2','--user','1000:1000','--entrypoint','openclaw']
+    captures=work/'live-doctor-captures'
+    captures.mkdir(mode=0o700,exist_ok=True)
+    args=['docker','run','--rm','--network','openclaw','--memory','5g','--memory-swap','6g','--cpus','2','--user','1000:1000','--entrypoint','openclaw','-v',str(captures)+':/home/node/.openclaw.update-captures']
     for vol in cfg['volumes']:
         source=vol['source']
         if source=='/var/run/docker.sock':continue
