@@ -182,9 +182,10 @@ elif action == 'mem0-inside':
     host=program/'node_modules/openclaw'
     assert json.loads((host/'package.json').read_text())['version']=='2026.10.4'
     assert json.loads((manifest.parent/'package.json').read_text())['version']=='1.2.1'
+    assert sha(host/'dist/plugin-peer-link-B8_Vs9lb.mjs')=='61080798c85671d18d2560cbdb68d2d207ba3dc5cdf94df579a5d2dbd44fa0ff'
     js="""import fs from 'node:fs';
 const [root,host]=process.argv.slice(1);
-const {a:linkHost}=await import(host+'/dist/plugin-peer-link-D9lvYxJ1.mjs');
+const {a:linkHost}=await import(host+'/dist/plugin-peer-link-B8_Vs9lb.mjs');
 const r=await linkHost({installedDir:root,peerDependencies:{openclaw:'2026.10.4'},hostRoot:host,logger:console});
 if(r.skipped||fs.realpathSync(root+'/node_modules/openclaw')!==host)throw Error('Host peer repair failed');
 console.log('Verified Mem0 peer matches native 10.4 host');"""
