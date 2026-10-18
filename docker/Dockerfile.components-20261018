@@ -1,0 +1,14 @@
+# Preserve each accepted 10.4 cohort's customizations while refreshing shared tools.
+ARG NODE_VERSION=24.22.0
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.4-fleet-20261018
+FROM node:${NODE_VERSION}-bookworm-slim AS tools
+ARG CODEX_VERSION=0.163.0
+ARG GEMINI_CLI_VERSION=0.64.0
+RUN npm install -g --no-audit --no-fund @openai/codex@${CODEX_VERSION} @google/gemini-cli@${GEMINI_CLI_VERSION}
+FROM ${BASE_IMAGE}
+USER root
+COPY --from=tools /usr/local/bin/node /usr/local/bin/node
+COPY --from=tools /usr/local/lib/node_modules/@openai/ /usr/local/lib/node_modules/@openai/
+COPY --from=tools /usr/local/lib/node_modules/@google/ /usr/local/lib/node_modules/@google/
+RUN node --version && codex --version && gemini --version
+USER node
