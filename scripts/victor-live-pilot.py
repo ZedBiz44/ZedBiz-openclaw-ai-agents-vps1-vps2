@@ -8,9 +8,10 @@ assert subprocess.check_output(['docker','image','inspect',image,'--format','{{.
 env=os.environ.copy()
 env['OP_SERVICE_ACCOUNT_TOKEN']=(root/'.op.token').read_text().strip()
 prefix=['op','run','--env-file',str(root/'.env'),'--']
-cfg_run=subprocess.run(prefix+['docker','compose','-f',str(root/'docker-compose.yml'),'config','--format','json'],env=env,capture_output=True,text=True)
+cfg_run=subprocess.run(['op','run','--no-masking','--env-file',str(root/'.env'),'--','docker','compose','-f',str(root/'docker-compose.yml'),'config','--format','json'],env=env,capture_output=True,text=True)
 if cfg_run.returncode:raise SystemExit('Secret resolution failed; no values printed')
 cfg=json.loads(cfg_run.stdout)['services']['victor']
+assert not any('<concealed' in str(v).lower() for v in cfg.get('environment',{}).values()), 'Masked environment rejected'
 action=sys.argv[1]
 if action=='migrate':
     existing=subprocess.check_output(['docker','ps','-a','--filter','name=^/victor$','--format','{{.Names}}'],text=True).strip()

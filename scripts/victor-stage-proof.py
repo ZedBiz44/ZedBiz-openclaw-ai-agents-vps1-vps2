@@ -7,7 +7,7 @@ node_env=dict(env,REHEARSAL_ENTRYPOINT='node')
 subprocess.run(prefix+['/checks/stage-proof-config.cjs','prepare'],env=node_env,check=True)
 args=prefix+['agent','--local','--agent','main','--session-key','agent:main:cody-10-4-stage-proof','--thinking','low','--json','--message','Run a harmless shell tool to read /etc/os-release. Then use memory_recall for a short read-only lookup of VPS1. Do not send messages, create memories, or change files. Report the OS and whether the memory lookup succeeded. Use actual tools.']
 try:
-    with (work/'stage-local-proof.json').open('w') as out,(work/'stage-local-proof.stderr').open('w') as err:
+    with (work/'stage-local-proof-credentials.json').open('w') as out,(work/'stage-local-proof-credentials.stderr').open('w') as err:
         result=subprocess.run(args,env=env,stdout=out,stderr=err)
 finally:
     subprocess.run(prefix+['/checks/stage-proof-config.cjs','restore'],env=node_env,check=True)

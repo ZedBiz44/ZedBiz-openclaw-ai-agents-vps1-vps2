@@ -5,11 +5,12 @@ work = pathlib.Path('/home/jackadmin/victor-10.4-20261017')
 stage = work/'rehearsal'
 env = os.environ.copy()
 env['OP_SERVICE_ACCOUNT_TOKEN'] = (live/'.op.token').read_text().strip()
-p = subprocess.run(['op','run','--env-file',str(live/'.env'),'--','docker','compose','-f',str(live/'docker-compose.yml'),'config','--format','json'], env=env, capture_output=True, text=True)
+p = subprocess.run(['op','run','--no-masking','--env-file',str(live/'.env'),'--','docker','compose','-f',str(live/'docker-compose.yml'),'config','--format','json'], env=env, capture_output=True, text=True)
 if p.returncode: raise SystemExit('Secret/Compose resolution failed; no values printed')
 cfg = json.loads(p.stdout)['services']['victor']
+assert not any('<concealed' in str(v).lower() for v in cfg.get('environment',{}).values()), 'Masked environment rejected'
 network = os.environ.get('REHEARSAL_NETWORK', 'none')
-assert network in ('none', 'bridge')
+assert network in ('none', 'bridge', 'openclaw')
 entrypoint=os.environ.get('REHEARSAL_ENTRYPOINT','openclaw')
 assert entrypoint in ('openclaw','node')
 args = ['docker','run','--rm','--network',network,'--memory','4g','--memory-swap','5g','--cpus','2','--user','1000:1000','--entrypoint',entrypoint,'-v',str(work/'scripts')+':/checks:ro']
