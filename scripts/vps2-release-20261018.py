@@ -262,6 +262,10 @@ elif action == 'final':
     assert urllib.request.urlopen('https://'+name+'.zbiz.ca/healthz',timeout=15).status==200
     c=json.loads((state/'openclaw.json').read_text());assert c['mcp']['sessionIdleTtlMs']==600000
     assert sha(program/('start-'+name+'.sh'))==json.loads((work/'baseline.json').read_text())['launcherSha256']
+    diagnostic=program/'node_modules/openclaw/dist/diagnostic-B-cJgPjo.mjs'
+    assert sha(diagnostic)=='5a90246ba060c9293360fa67d042e7694de207739bc1600a6c76d39a4dea9d6f'
+    for saved in (work/'extracted/etc').rglob('*'):
+        if saved.is_file():assert saved.read_bytes()==(Path('/etc')/saved.relative_to(work/'extracted/etc')).read_bytes(),'Service definition drift'
     cg=Path('/sys/fs/cgroup/system.slice')/unit
     stats=dict(line.split() for line in (cg/'memory.stat').read_text().splitlines())
     usage=int((cg/'memory.current').read_text());pss=0
@@ -270,7 +274,7 @@ elif action == 'final':
             for line in Path('/proc/'+pid+'/smaps_rollup').read_text().splitlines():
                 if line.startswith('Pss:'):pss+=int(line.split()[1])*1024
         except (FileNotFoundError,ProcessLookupError):pass
-    result={'agent':name,'finalPassed':True,'service':current,'version':'2026.10.4','publicHttp':200,'launcherPreserved':True,'memoryCurrent':usage,'memoryMinusInactiveFile':usage-int(stats.get('inactive_file',0)),'processPss':pss,'memoryEvents':dict(line.split() for line in (cg/'memory.events').read_text().splitlines())}
+    result={'agent':name,'finalPassed':True,'service':current,'version':'2026.10.4','publicHttp':200,'launcherPreserved':True,'serviceDefinitionsPreserved':True,'diagnosticModuleSha256':sha(diagnostic),'packageLockSha256':sha(program/'package-lock.json'),'memoryCurrent':usage,'memoryMinusInactiveFile':usage-int(stats.get('inactive_file',0)),'processPss':pss,'memoryEvents':dict(line.split() for line in (cg/'memory.events').read_text().splitlines())}
     save('final.json',result);emit(result)
 else:
     raise ValueError('Unknown stage')
