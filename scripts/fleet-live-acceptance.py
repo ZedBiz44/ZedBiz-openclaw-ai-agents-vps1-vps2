@@ -67,7 +67,7 @@ assert receipt and receipt.get('rerouted') is False, 'missing receipt or fallbac
 tools = receipt.get('successfulToolNames', [])
 assert any('asana_get_user' in t for t in tools), 'Asana identity tool not proved'
 assert any('notion' in t and ('fetch' in t or 'retrieve' in t) for t in tools), 'Notion access not proved'
-assert any(any(x in t for x in ['memory', 'recall', 'hindsight']) for t in tools), 'memory tool not proved'
+assert any(any(x in t for x in ['memory', 'recall', 'hindsight', 'mem0_search', 'mem0_get']) for t in tools), 'memory tool not proved'
 channels = {k: {a: {x: v.get(x) for x in ['configured', 'running', 'connected', 'lastError']} for a, v in channel.get('accounts', {}).items()} for k, channel in health.get('channels', {}).items()}
 result = dict(agent=name, accepted=True, http=200, containerId=d['Id'], image=d['Image'], cronCount=len(after['jobs']), schedulesUnchanged=True, channels=channels, receipt=receipt)
 (work/'acceptance.json').write_text(json.dumps(result, indent=2))
