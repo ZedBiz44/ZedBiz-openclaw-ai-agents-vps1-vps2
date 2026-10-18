@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sqlite3
 import sys
 
 name, mode, image = sys.argv[1:]
@@ -35,5 +36,24 @@ with log.open('w') as stream:
         '--entrypoint', 'sh', image, '/home/node/.openclaw/workspace/ensure-mem0-compat.sh'],
         stdout=stream, stderr=subprocess.STDOUT, timeout=120)
 assert p.returncode == 0, 'Mem0 compatibility gate failed; inspect protected log'
-print(json.dumps(dict(agent=name, mode=mode, mem0Compatibility=True)), flush=True)
+manifests = list((root/'npm/projects').glob('mem0-*/node_modules/@mem0/openclaw-mem0/openclaw.plugin.json'))
+assert len(manifests) == 1, 'ambiguous Mem0 package'
+manifest = manifests[0]
+assert hashlib.sha256(manifest.read_bytes()).hexdigest() == 'b41def82737a590fe97633e2dbf1c95c1a4e2ad3019257bd16bd0e2b42122309', 'Mem0 capability declarations changed from original'
+assert hashlib.sha256((manifest.parent/'dist/index.js').read_bytes()).hexdigest() == '0e7205db54c8790c1aff7b09786ec0b7578db08181b5394a7137df4e530297c2', 'Mem0 implementation changed from original'
+before = json.loads((root/'config/openclaw.json').read_text())
+assert before['plugins']['entries']['openclaw-mem0']['enabled'] is True
+# 10.4 enforces consent for two read aliases already present in the approved
+# 9.8 plugin. Accept only the byte-identical existing implementation/declarations.
+subprocess.run(['python3', '/home/jackadmin/fleet-10.4-20261018/scripts/fleet-10-4-cli.py',
+    name, mode, image, 'plugins', 'enable', 'openclaw-mem0', '--accept-capabilities'], check=True)
+after = json.loads((root/'config/openclaw.json').read_text())
+assert before.get('plugins') == after.get('plugins'), 'plugin policy changed unexpectedly'
+with sqlite3.connect('file:'+str(root/'config/state/openclaw.sqlite')+'?mode=ro',uri=True) as db:
+    index = json.loads(db.execute("SELECT value_json FROM config_machine_state WHERE state_key='plugins.installedIndex'").fetchone()[0])['index']
+    accepted = index['installRecords']['openclaw-mem0']['acceptedSurface']
+expected_tools = set(json.loads(manifest.read_text())['contracts']['tools'])
+assert set(accepted['tools']) == expected_tools, 'accepted tool set differs from retained plugin'
+assert not any(accepted.get(k) for k in ['channels','providers','hooks','mcpServers','cliCommands','cliBackends','dangerousConfigFlags']), 'unexpected additional capability'
+print(json.dumps(dict(agent=name, mode=mode, mem0Compatibility=True, retainedCapabilityConsentVerified=True, acceptedTools=sorted(expected_tools))), flush=True)
 
