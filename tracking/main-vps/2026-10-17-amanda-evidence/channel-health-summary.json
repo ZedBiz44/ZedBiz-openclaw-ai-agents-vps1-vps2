@@ -1,0 +1,34 @@
+{
+  "exit": 0,
+  "ok": true,
+  "channels": {
+    "discord": {
+      "configured": true,
+      "enabled": true,
+      "running": true,
+      "connected": true,
+      "accounts": {
+        "default": {
+          "configured": true,
+          "enabled": true,
+          "running": true,
+          "connected": true
+        }
+      }
+    },
+    "telegram": {
+      "configured": true,
+      "enabled": true,
+      "running": true,
+      "connected": true,
+      "accounts": {
+        "default": {
+          "configured": true,
+          "enabled": true,
+          "running": true,
+          "connected": true
+        }
+      }
+    }
+  }
+}
