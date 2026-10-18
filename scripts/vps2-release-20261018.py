@@ -40,7 +40,9 @@ def cli(mode, command, label, timeout=1200):
     env = os.environ.copy()
     env.update(HOME=str(state),OPENCLAW_STATE_DIR=str(state),OPENCLAW_CONFIG_PATH=str(state/'openclaw.json'),NODE_OPTIONS='--max-old-space-size=1536')
     env['OP_SERVICE_ACCOUNT_TOKEN'] = (state/'.op.token').read_text().strip()
-    prefix = ['op','run','--env-file='+str(state/'.env'),'--']
+    # Masking can replace numeric JSON fields with invalid unquoted text.
+    # Capture unmasked output only in the private 0700/0600 evidence tree.
+    prefix = ['op','run','--no-masking','--env-file='+str(state/'.env'),'--']
     if mode == 'rehearsal':
         args = prefix+['unshare','--mount','--propagation','private','python3',__file__,name,'namespace',*command]
     else:
@@ -55,7 +57,7 @@ def rpc(method, params=None, suffix='before'):
     args=['gateway','call',method,'--json']
     if params is not None: args += ['--params',json.dumps(params)]
     p=cli('live',args,method+'-'+suffix,120)
-    text=p.read_text(); value=json.loads(text[text.index('{'):])
+    text=p.read_text(); value=json.JSONDecoder().raw_decode(text[text.index('{'):])[0]
     save(method+'-'+suffix+'.json',value)
     return value
 
