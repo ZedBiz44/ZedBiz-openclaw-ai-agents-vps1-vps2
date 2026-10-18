@@ -45,6 +45,8 @@ def cli(mode, command, label, timeout=1200):
     prefix = ['op','run','--no-masking','--env-file='+str(state/'.env'),'--']
     if mode == 'rehearsal':
         args = prefix+['unshare','--mount','--propagation','private','python3',__file__,name,'namespace',*command]
+    elif command == ['_mem0']:
+        args = prefix+['python3',__file__,name,'mem0-inside']
     else:
         args = prefix+[str(program/'node_modules/.bin/openclaw'),*command]
     log = work/(label+'.log')
@@ -78,6 +80,8 @@ if action == 'namespace':
     subprocess.run(['mount','-t','tmpfs','-o','mode=1777','tmpfs','/tmp'],check=True)
     subprocess.run(['mount','--bind',str(stage),str(state)],check=True)
     subprocess.run(['mount','--bind',str(candidate),str(program)],check=True)
+    if extra == ['_mem0']:
+        os.execv('/usr/bin/python3',['python3',__file__,name,'mem0-inside'])
     executable=str(program/'node_modules/.bin/openclaw')
     os.execv(executable,[executable,*extra])
 
@@ -137,9 +141,15 @@ elif action == 'compare':
     assert before['plugins'].get('slots')==after['plugins'].get('slots')
     memory=before['plugins']['slots']['memory']
     assert before['plugins']['entries'][memory]==after['plugins']['entries'][memory]
+    migrated_tools=False
     for leaf in ['AGENTS.md','SOUL.md','USER.md','IDENTITY.md']:
-        assert (original/'workspace'/leaf).read_bytes()==(target/'workspace'/leaf).read_bytes(),'Core instructions changed: '+leaf
-    result={'agent':name,'mode':mode,'preservationPassed':True,'databasesChecked':integrity(target),'cronCount':len(cron_rows(target)),'agentsCharacters':len((target/'workspace/AGENTS.md').read_text()),'bootstrapBudget':after['agents']['defaults'].get('bootstrapMaxChars',20000)}
+        old_file=original/'workspace'/leaf;new_file=target/'workspace'/leaf
+        if old_file.read_bytes()!=new_file.read_bytes():
+            assert leaf=='AGENTS.md' and (original/'workspace/TOOLS.md').exists(),'Unexpected core change: '+leaf
+            expected=old_file.read_text().rstrip()+'\n\n## Tools\n\n### Local notes (migrated from TOOLS.md)\n\n'+(original/'workspace/TOOLS.md').read_text().strip()
+            assert new_file.read_text().strip()==expected.strip(),'Unexpected AGENTS migration'
+            migrated_tools=True
+    result={'agent':name,'mode':mode,'preservationPassed':True,'toolsNotesFoldedExactly':migrated_tools,'databasesChecked':integrity(target),'cronCount':len(cron_rows(target)),'agentsCharacters':len((target/'workspace/AGENTS.md').read_text()),'bootstrapBudget':after['agents']['defaults'].get('bootstrapMaxChars',20000)}
     assert result['agentsCharacters']<=result['bootstrapBudget'],'Instruction allowance too small'
     save(mode+'-preservation.json',result);emit(result)
 
@@ -154,6 +164,44 @@ elif action == 'plugins':
             result.append({k:p.get(k) for k in ['id','version','status']})
     assert result
     save(mode+'-plugin-gate.json',result);emit({'agent':name,'mode':mode,'pluginGatePassed':True,'plugins':result})
+
+elif action == 'mem0':
+    assert name=='harry' and extra[0] in {'rehearsal','live'}
+    mode=extra[0]
+    if mode=='live':assert (work/'rehearsal-mem0-passed.json').exists()
+    cli(mode,['_mem0'],mode+'-mem0-compat',300)
+    save(mode+'-mem0-passed.json',{'agent':name,'mode':mode,'passed':True})
+    emit({'agent':name,'mode':mode,'mem0Passed':True})
+
+elif action == 'mem0-inside':
+    assert name=='harry'
+    project=state/'npm/projects/mem0-openclaw-mem0-09729737ad__openclaw-generation__g-1e5cd6aa3ff70dae'
+    manifest=project/'node_modules/@mem0/openclaw-mem0/openclaw.plugin.json'
+    assert sha(manifest)=='b41def82737a590fe97633e2dbf1c95c1a4e2ad3019257bd16bd0e2b42122309'
+    assert sha(manifest.parent/'dist/index.js')=='0e7205db54c8790c1aff7b09786ec0b7578db08181b5394a7137df4e530297c2'
+    host=program/'node_modules/openclaw'
+    assert json.loads((host/'package.json').read_text())['version']=='2026.10.4'
+    assert json.loads((manifest.parent/'package.json').read_text())['version']=='1.2.1'
+    js="""import fs from 'node:fs';
+const [root,host]=process.argv.slice(1);
+const {a:linkHost}=await import(host+'/dist/plugin-peer-link-D9lvYxJ1.mjs');
+const r=await linkHost({installedDir:root,peerDependencies:{openclaw:'2026.10.4'},hostRoot:host,logger:console});
+if(r.skipped||fs.realpathSync(root+'/node_modules/openclaw')!==host)throw Error('Host peer repair failed');
+console.log('Verified Mem0 peer matches native 10.4 host');"""
+    subprocess.run(['node','--input-type=module','-e',js,str(project),str(host)],check=True)
+    subprocess.run(['bash',str(program/'ensure-mem0-110-compat.sh'),str(project)],check=True,timeout=180)
+    before=json.loads((state/'openclaw.json').read_text())
+    subprocess.run([str(program/'node_modules/.bin/openclaw'),'plugins','enable','openclaw-mem0','--accept-capabilities'],check=True,timeout=180)
+    after=json.loads((state/'openclaw.json').read_text())
+    assert before['plugins']==after['plugins'],'Unexpected plugin policy change'
+    with sqlite3.connect('file:'+str(state/'state/openclaw.sqlite')+'?mode=ro',uri=True) as db:
+        index=json.loads(db.execute("select value_json from config_machine_state where state_key='plugins.installedIndex'").fetchone()[0])['index']
+        accepted=index['installRecords']['openclaw-mem0']['acceptedSurface']
+    expected=set(json.loads(manifest.read_text())['contracts']['tools'])
+    assert set(accepted['tools'])==expected
+    assert not any(accepted.get(k) for k in ['channels','providers','hooks','mcpServers','cliCommands','cliBackends','dangerousConfigFlags'])
+    assert sha(manifest.parent/'dist/index.js')=='0e7205db54c8790c1aff7b09786ec0b7578db08181b5394a7137df4e530297c2'
+    emit({'retainedMem0Source':True,'acceptedExistingTools':sorted(expected),'hostPeerVerified':True})
 
 elif action == 'install':
     assert (work/'rehearsal-preservation.json').exists() and (work/'rehearsal-plugin-gate.json').exists()
