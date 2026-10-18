@@ -271,6 +271,12 @@ elif action == 'accept':
     assert json.loads((program/'node_modules/openclaw/package.json').read_text())['version']=='2026.10.4'
     result={'agent':name,'accepted':True,'service':current,'cronCount':len(cron['jobs']),'receipt':receipt,'payloads':obj['result'].get('payloads'),'channels':{k:{a:{f:v.get(f) for f in ['running','connected','lastError']} for a,v in d.get('accounts',{}).items()} for k,d in health.get('channels',{}).items()}}
     save('acceptance.json',result);emit(result)
+elif action == 'skills':
+    p=cli('live',['skills','check','--agent','main','--json'],'skills-after',180)
+    t=p.read_text();obj=json.JSONDecoder().raw_decode(t[t.index('{'):])[0]
+    save('skills-after.json',obj)
+    emit({'agent':name,'summary':obj.get('summary'),'eligible':obj.get('eligible'),'missingRequirements':obj.get('missingRequirements'),'blocked':obj.get('blocked')})
+
 elif action == 'final':
     accepted=json.loads((work/'acceptance.json').read_text());current=service()
     assert accepted['accepted'] and current['MainPID']==accepted['service']['MainPID']
@@ -296,3 +302,4 @@ elif action == 'final':
     save('final.json',result);emit(result)
 else:
     raise ValueError('Unknown stage')
+
