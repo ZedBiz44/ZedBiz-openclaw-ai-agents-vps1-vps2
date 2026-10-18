@@ -15,7 +15,7 @@ function verify(text) {
   const section = text.slice(start + marker.length, text.indexOf('//#endregion', start));
   let limit = 3 * 1024 ** 3, events = [], retired = 0;
   const context = { process: {constrainedMemory: () => limit, versions: {}, uptime: () => 1},
-    getHeapStatistics: () => ({heap_size_limit: 2 * 1024 ** 3}), totalmem: () => 32 * 1024 ** 3,
+    getHeapStatistics: () => ({heap_size_limit: 2 * 1024 ** 3}), getHeapSpaceStatistics: () => [], totalmem: () => 32 * 1024 ** 3,
     createSubsystemLogger: () => ({child: () => ({warn() {}, error() {}})}),
     sampleTrackedWorkerMemory: () => ({}), emitInternalDiagnosticEvent: e => events.push(e),
     channel: () => ({publish: () => retired++}) };
