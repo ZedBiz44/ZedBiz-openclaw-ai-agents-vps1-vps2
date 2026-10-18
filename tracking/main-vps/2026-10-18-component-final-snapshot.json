@@ -1,0 +1,359 @@
+{
+  "measuredAtUTC": "2026-10-18T20:59:16Z",
+  "agents": [
+    {
+      "agent": "wilma",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 2193412096,
+      "memoryMinusInactiveFileBytes": 1948893184,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "vivian",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 1983623168,
+      "memoryMinusInactiveFileBytes": 1881272320,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "inga",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 1923182592,
+      "memoryMinusInactiveFileBytes": 1868181504,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "maggie",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 1756782592,
+      "memoryMinusInactiveFileBytes": 1696190464,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "gohzed",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 1727254528,
+      "memoryMinusInactiveFileBytes": 1691525120,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "grogar",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 1955291136,
+      "memoryMinusInactiveFileBytes": 1701822464,
+      "memoryMax": "3221225472",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "terry",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 2607882240,
+      "memoryMinusInactiveFileBytes": 2046550016,
+      "memoryMax": "4294967296",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "edith",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 2795048960,
+      "memoryMinusInactiveFileBytes": 1956614144,
+      "memoryMax": "10737418240",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "marsha",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 2579546112,
+      "memoryMinusInactiveFileBytes": 2330259456,
+      "memoryMax": "5368709120",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "amanda",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 3005296640,
+      "memoryMinusInactiveFileBytes": 2325123072,
+      "memoryMax": "5368709120",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "agent": "victor",
+      "gatewayHealthy": true,
+      "asanaHealthy": true,
+      "restartCount": 0,
+      "imageManifestMatches": true,
+      "memoryCurrentBytes": 2837331968,
+      "memoryMinusInactiveFileBytes": 2405183488,
+      "memoryMax": "5368709120",
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    }
+  ],
+  "publicRoutes": [
+    {
+      "agent": "wilma",
+      "status": 200
+    },
+    {
+      "agent": "vivian",
+      "status": 200
+    },
+    {
+      "agent": "inga",
+      "status": 200
+    },
+    {
+      "agent": "maggie",
+      "status": 200
+    },
+    {
+      "agent": "gohzed",
+      "status": 200
+    },
+    {
+      "agent": "grogar",
+      "status": 200
+    },
+    {
+      "agent": "terry",
+      "status": 200
+    },
+    {
+      "agent": "edith",
+      "status": 200
+    },
+    {
+      "agent": "marsha",
+      "status": 200
+    },
+    {
+      "agent": "amanda",
+      "status": 200
+    },
+    {
+      "agent": "victor",
+      "status": 200
+    }
+  ],
+  "sharedContainers": [
+    {
+      "name": "1password-connect-api",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "1password-connect-sync",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "mem0-dev-qdrant-1",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "caddy",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "uptime-kuma",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "portainer",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "dozzle",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "homepage",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "hindsight",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "z-code-notion-mirror",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "hindsight-db",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "filebrowser",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "docker-socket-proxy",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "z-code-allocator",
+      "running": true,
+      "health": "healthy",
+      "restarts": 0
+    },
+    {
+      "name": "z-code-admin",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "rocky-restart-bridge",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "zedbiz-restart-api",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    },
+    {
+      "name": "rocky-tunnel-bridge",
+      "running": true,
+      "health": null,
+      "restarts": 0
+    }
+  ]
+}

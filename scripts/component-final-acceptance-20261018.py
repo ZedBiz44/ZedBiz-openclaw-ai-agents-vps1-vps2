@@ -5,7 +5,8 @@ base=Path('/opt/openclaw/backups/components-20261018')
 names=['wilma','vivian','inga','maggie','gohzed','grogar','terry','edith','marsha','amanda','victor']
 source=Path('/home/jackadmin/components-20261018/accept.py').read_text()
 source=source.replace('agent:main:cody-components-acceptance','agent:main:cody-components-post-host')
-source=source.replace('Read-only acceptance. State one existing fact from automatically supplied Hindsight memories.', "Read-only post-restart memory acceptance. From automatically supplied Hindsight memories, state what changed during Cody's October 18 component maintenance. If that maintenance fact is unavailable, say so.")
+source=source.replace('Read-only acceptance. State one existing fact from automatically supplied Hindsight memories.', 'Read-only post-restart memory acceptance. From automatically supplied Hindsight memories, state what changed during the October 18 component maintenance performed by Cody. If that maintenance fact is unavailable, say so.')
+compile(source, 'post-host-accept.py', 'exec')
 final_script=base/'post-host-accept.py';final_script.write_text(source)
 results=[]
 for name in names:
