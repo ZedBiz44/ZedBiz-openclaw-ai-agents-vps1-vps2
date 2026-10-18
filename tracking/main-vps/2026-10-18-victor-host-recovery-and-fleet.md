@@ -94,8 +94,8 @@ Wilma is the first remaining agent. Offline backup and fresh extraction/integrit
 passed; archive SHA256 `e21a5401eedd5c2775911f14e7533be9f55aaec211454a21d25f68298eda2104`.
 Eight schedules recorded. Both isolated and live Doctor migrations passed, with
 schedule rows, model policy, memory backend and MCP preserved. All enabled official
-plugins passed the 10.4 version gate. Wilma and Vivian are accepted; Inga's Hindsight
-rehearsal is underway. New capability cohorts receive isolated migration rehearsals; matching
+plugins passed the 10.4 version gate. Wilma, Vivian, Inga, Maggie, Gohzed and
+Grogar are accepted; Terry's Mem0 rehearsal is underway. New capability cohorts receive isolated migration rehearsals; matching
 agents still receive individual offline backup extraction, integrity/preservation
 checks, plugin gates, managed activation and actual runtime acceptance. No fleet
 completion is claimed until every named agent passes.
@@ -104,12 +104,31 @@ completion is claimed until every named agent passes.
 |---|---:|---|---|
 | Wilma | 8 | `8c5c167c-5110-4468-aa43-9dda2cda7492` | GPT-6.1 Sol, no reroute; memory, own Asana, Notion, all five command tools; Discord/Telegram connected |
 | Vivian | 8 | `59ca76d3-db01-4bdc-aab6-2f31dda056cd` | GPT-6.1 Sol, no reroute; memory, own Asana, Notion, all five command tools; Discord connected |
+| Inga | 9 | `77dfddd7-bfa7-48e9-a4a9-f6a5a47da97b` | GPT-6.1 Sol, no reroute; actual Hindsight recall, own Asana, Notion, all five command tools; Discord/Telegram connected |
+| Maggie | 8 | `c38fd1c1-b71c-43ed-b6ff-920f1d4253a3` | GPT-6.1 Sol, no reroute; actual Hindsight recall, own Asana, Notion, all five command tools; Discord connected |
+| Gohzed | 8 | `e127e3a1-be8d-45fa-8dbe-e3c9f92028ad` | GPT-6.1 Sol, no reroute; actual Hindsight recall, own Asana, Notion, all five command tools; Discord connected |
+| Grogar | 8 | `51012656-07b6-4032-acc6-6ad2c8d5706d` | Dedicated Workshop image and startup safeguard passed; GPT-6.1 Sol, no reroute; actual Hindsight, own Asana, Notion and all five command tools; Discord connected |
 
 Vivian's rollback archive SHA256 is
 `83def7ae89902ae805f5a676214ffa0cf24d3ef1011b1ea3170b95dd8ba1019a`.
 The archive is about 22 GiB. Accepted disposable restored copies were removed
 for Wilma and Vivian; archives and receipts remain. Vivian correctly identified
 her recalled role fact as historical; no memory content was rewritten by this test.
+Inga, Maggie, Gohzed and Grogar's disposable copies were likewise removed after acceptance.
+Original-archive comparisons for Wilma/Vivian/Inga/Maggie/Gohzed confirmed exact
+preservation of tool permissions, channels, gateway authentication and selected
+memory-plugin configuration. The same checks were added to the migration gate;
+Grogar's live gate passed them.
+
+The original Inga generic-memory run used local Markdown, not Hindsight. It was
+preserved separately and acceptance withheld until the backend-specific repeat
+passed. The acceptance script now requires agent_knowledge_recall for Hindsight,
+mem0_search for Mem0 and memory_recall for LanceDB. Operator CLI sessions have no
+stable message provider, so Hindsight automatic recall/retain skips them; explicit
+static-bank recall was proved through the agent's own tool. The retained Hindsight
+source SHA256 `3402f3b923dbaa4ab6488ee1a93cdac63985b13d50b05c9211216c108ee487a1`
+matches a pre-migration archive copy. Its provenance-invalid warning is retained;
+no trust override or reinstall was used to hide the warning.
 
 Terry/Edith preflight found the existing Mem0 host-peer helper explicitly gated
 to 9.8 and an old hashed module name. The prepared replacement accepts only the
@@ -117,7 +136,10 @@ reviewed 9.8/10.4 host modules, retains Mem0 1.2.1 and Qdrant 1.18.0 and leaves 
 existing explicit-retention repair intact. A disposable real-module test passed
 link creation, idempotence and rejection of unexpected plugin/root values. Its
 first nonroot fixture could not read the protected source mount; root fixture
-passed. Each actual migrated tree still requires the runtime-UID compatibility
+passed, then the fixture passed all four cases under runtime UID 1000 after
+copying the test source into the disposable container. The compatibility gate
+mounts the separate agent npm storage, matching actual Compose layout.
+Each actual migrated tree still requires the runtime-UID compatibility
 gate and real memory recall before activation/acceptance.
 
 Read-only cgroup/PSS snapshots distinguish anonymous memory, file cache and
