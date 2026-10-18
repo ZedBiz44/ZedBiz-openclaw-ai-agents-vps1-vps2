@@ -11,6 +11,7 @@ import sys
 import time
 
 MANIFEST = Path('/opt/openclaw/recovery/amanda-20261018/manifest.json')
+RESTORE_LOCK = Path('/run/lock/openclaw-image-restore.lock')
 
 
 def log(message):
@@ -40,6 +41,12 @@ def digest(path):
 
 
 def recover(manifest, run=command):
+    with os.fdopen(os.open(RESTORE_LOCK, os.O_CREAT | os.O_RDWR, 0o600), 'a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        return recover_locked(manifest, run)
+
+
+def recover_locked(manifest, run=command):
     expected = {i['ref']: i['id'] for i in manifest['images'] if i['automatic']}
     wrapper = Path(manifest['wrapper'])
     if digest(wrapper) != manifest['wrapper_sha256']:
