@@ -56,7 +56,10 @@ after = rpc('cron.list', {'includeDisabled': True})
 keys = ['id', 'name', 'enabled', 'schedule', 'sessionTarget', 'wakeMode', 'payload', 'delivery']
 normalize = lambda obj: sorted([{k: job.get(k) for k in keys} for job in obj['jobs']], key=lambda job: job['id'])
 assert normalize(before) == normalize(after), 'schedule definitions changed'
-prompt = ('Read-only upgrade acceptance. Use actual tools to recall one existing ZedBiz or VPS1 memory using your configured memory backend, get your own Asana user identity, and fetch Notion page 3a4a3e33d58180bb8d8ac911f0f4163e. Also use a harmless shell tool to check command availability for gog, himalaya, ffmpeg, ntn and gh. Return only a short memory fact, Asana name/GID, Notion title and whether those binaries exist. Do not send external messages, edit files, create tasks or memories, or delegate.')
+config = json.loads((Path('/opt/openclaw/agents')/name/'config/openclaw.json').read_text())
+backend = config.get('plugins', {}).get('slots', {}).get('memory')
+memory_tool = 'agent_knowledge_recall' if backend == 'hindsight-openclaw' else 'mem0_search' if backend == 'openclaw-mem0' else 'memory_recall'
+prompt = ('Read-only upgrade acceptance. You MUST use '+memory_tool+' to recall one existing ZedBiz or VPS1 memory from your configured backend; local Markdown memory_search is not sufficient. Get your own Asana user identity and fetch Notion page 3a4a3e33d58180bb8d8ac911f0f4163e. Also use a harmless shell tool to check command availability for gog, himalaya, ffmpeg, ntn and gh. Return only the memory tool used and short recalled fact, Asana name/GID, Notion title and whether those binaries exist. Report any backend failure plainly. Do not send external messages, edit files, create tasks or memories, or delegate.')
 p = subprocess.run(['docker', 'exec', '-u', 'node', name, 'node', '/app/openclaw.mjs', 'agent', '--agent', 'main', '--session-key', 'agent:main:cody-fleet-10-4-acceptance', '--message', prompt, '--timeout', '240', '--json'], capture_output=True, text=True, timeout=270)
 for suffix, content in [('json', p.stdout), ('stderr', p.stderr)]:
     f = work/('capability.'+suffix); f.write_text(content); f.chmod(0o600)
@@ -67,9 +70,9 @@ assert receipt and receipt.get('rerouted') is False, 'missing receipt or fallbac
 tools = receipt.get('successfulToolNames', [])
 assert any('asana_get_user' in t for t in tools), 'Asana identity tool not proved'
 assert any('notion' in t and ('fetch' in t or 'retrieve' in t) for t in tools), 'Notion access not proved'
-assert any(any(x in t for x in ['memory', 'recall', 'hindsight', 'mem0_search', 'mem0_get']) for t in tools), 'memory tool not proved'
+assert any(memory_tool in t for t in tools), 'configured memory backend tool not proved'
 channels = {k: {a: {x: v.get(x) for x in ['configured', 'running', 'connected', 'lastError']} for a, v in channel.get('accounts', {}).items()} for k, channel in health.get('channels', {}).items()}
-result = dict(agent=name, accepted=True, http=200, containerId=d['Id'], image=d['Image'], cronCount=len(after['jobs']), schedulesUnchanged=True, channels=channels, receipt=receipt)
+result = dict(agent=name, accepted=True, http=200, containerId=d['Id'], image=d['Image'], cronCount=len(after['jobs']), schedulesUnchanged=True, channels=channels, memoryBackend=backend, requiredMemoryTool=memory_tool, receipt=receipt)
 (work/'acceptance.json').write_text(json.dumps(result, indent=2))
 print(json.dumps(result), flush=True)
 print(json.dumps(obj.get('result', {}).get('payloads', [])), flush=True)
