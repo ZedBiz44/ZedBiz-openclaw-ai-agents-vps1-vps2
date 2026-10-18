@@ -11,6 +11,9 @@ case "${HOME:-}" in
       . "$STORE/keyring.env"
       set +a
     fi
+    if [ -r "$STORE/email-mode" ] && [ "$(tr -d '\r\n' < "$STORE/email-mode")" = "draft_only" ]; then
+      set -- --gmail-no-send "$@"
+    fi
     # Preserve an explicitly selected home; ordinary calls use this agent's store.
     for arg in "$@"; do
       case "$arg" in --home|--home=*) exec "$REAL" "$@" ;; esac
