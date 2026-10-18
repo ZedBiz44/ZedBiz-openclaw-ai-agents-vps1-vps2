@@ -24,6 +24,7 @@ with log.open('w') as stream:
     log.chmod(0o600)
     p = subprocess.run(['docker', 'run', '--rm', '--network', 'none', '--user', '1000:1000',
         '-v', str(root/'config')+':/home/node/.openclaw',
+        '-v', str(root/'npm')+':/home/node/.openclaw/npm',
         '-v', str(root/'workspace')+':/home/node/.openclaw/workspace',
         '--entrypoint', 'sh', image, '/home/node/.openclaw/workspace/ensure-mem0-compat.sh'],
         stdout=stream, stderr=subprocess.STDOUT, timeout=120)
