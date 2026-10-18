@@ -204,7 +204,19 @@ console.log('Verified Mem0 peer matches native 10.4 host');"""
     emit({'retainedMem0Source':True,'acceptedExistingTools':sorted(expected),'hostPeerVerified':True})
 
 elif action == 'install':
-    assert (work/'rehearsal-preservation.json').exists() and (work/'rehearsal-plugin-gate.json').exists()
+    if extra == ['proven']:
+        assert name=='suzy' and json.loads((BASE/'frank/acceptance.json').read_text())['accepted']
+        frank=BASE/'frank/extracted/root/.openclaw-frank'
+        relative='npm/projects/vectorize-io-hindsight-openclaw-c23cf52a67__openclaw-generation__g-989ed928a8fa24e4/node_modules/@vectorize-io/hindsight-openclaw'
+        for leaf in ['package.json','openclaw.plugin.json','dist/index.js']:
+            assert sha(original/relative/leaf)==sha(frank/relative/leaf),'Unproved Hindsight cohort'
+        fp=BASE/'frank/extracted/opt/openclaw-frank'
+        assert json.loads((program/'package.json').read_text())==json.loads((fp/'package.json').read_text())
+        assert (program/'start-suzy.sh').read_text().replace('suzy','frank').replace('4200','4300')==(fp/'start-frank.sh').read_text(),'Unproved startup difference'
+        save('proven-cohort.json',{'pilot':'frank','hindsightSourceAndManifestMatch':True,'packagePolicyMatches':True,'launcherMatchesExceptIdentityPort':True})
+    else:
+        assert not extra
+        assert (work/'rehearsal-preservation.json').exists() and (work/'rehearsal-plugin-gate.json').exists()
     assert service()['MainPID']=='0'
     assert not (work/'old-node_modules').exists()
     (program/'node_modules').rename(work/'old-node_modules')
