@@ -10,7 +10,9 @@ if p.returncode: raise SystemExit('Secret/Compose resolution failed; no values p
 cfg = json.loads(p.stdout)['services']['victor']
 network = os.environ.get('REHEARSAL_NETWORK', 'none')
 assert network in ('none', 'bridge')
-args = ['docker','run','--rm','--network',network,'--memory','4g','--memory-swap','5g','--cpus','2','--user','1000:1000','--entrypoint','openclaw']
+entrypoint=os.environ.get('REHEARSAL_ENTRYPOINT','openclaw')
+assert entrypoint in ('openclaw','node')
+args = ['docker','run','--rm','--network',network,'--memory','4g','--memory-swap','5g','--cpus','2','--user','1000:1000','--entrypoint',entrypoint,'-v',str(work/'scripts')+':/checks:ro']
 for volume in cfg['volumes']:
     source, target = volume['source'], volume['target']
     if source == '/var/run/docker.sock': continue

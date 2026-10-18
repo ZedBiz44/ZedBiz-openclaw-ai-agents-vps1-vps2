@@ -17,6 +17,7 @@ if action=='migrate':
     assert not existing, 'Victor container appeared; recheck before migration'
     captures=work/'live-doctor-captures'
     captures.mkdir(mode=0o700,exist_ok=True)
+    subprocess.run(['docker','run','--rm','--network','none','--user','root','--entrypoint','chown','-v',str(captures)+':/captures',image,'1000:1000','/captures'],check=True)
     args=['docker','run','--rm','--network','openclaw','--memory','5g','--memory-swap','6g','--cpus','2','--user','1000:1000','--entrypoint','openclaw','-v',str(captures)+':/home/node/.openclaw.update-captures']
     for vol in cfg['volumes']:
         source=vol['source']
