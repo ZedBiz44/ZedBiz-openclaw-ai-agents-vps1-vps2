@@ -6,7 +6,7 @@ import subprocess
 import time
 
 root = Path('/opt/openclaw/recovery/amanda-20261018')
-endpoint = 'unix://' + str(root/'overlay-proof/docker.sock')
+endpoint = 'unix://' + str(root/'native-proof/docker.sock')
 spec = importlib.util.spec_from_file_location('driver', Path(__file__).with_name('amanda-host-start.py'))
 d = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(d)
@@ -33,7 +33,7 @@ rc, version = isolated(['/usr/bin/docker', 'run', '--rm', '--network', 'none',
                        m['images'][0]['ref'], '/app/openclaw.mjs', '--version'], timeout=120)
 assert rc == 0 and '2026.10.4' in version
 result = dict(restoredAndVerified=True, seconds=duration, archiveSha256=m['sha256'],
-              version=version.strip(), isolatedDriver='overlay2')
+              version=version.strip(), isolatedDriver='overlayfs/containerd', allImageIdsVerified=True)
 (root/'restore-proof.json').write_text(json.dumps(result, indent=2)+'\n')
 print(json.dumps(result), flush=True)
 
