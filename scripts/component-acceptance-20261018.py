@@ -70,7 +70,22 @@ if len(sys.argv)>2 and sys.argv[2]=='reuse':
     proof_start=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime((work/'capability.json').stat().st_mtime-300))
     p=SimpleNamespace(returncode=0,stdout=(work/'capability.json').read_text(),stderr=(work/'capability.stderr').read_text())
 else:
-    p = subprocess.run(['docker', 'exec', '-u', 'node', name, 'node', '/app/openclaw.mjs', 'agent', '--channel', 'discord', '--agent', 'main', '--session-key', 'agent:main:cody-components-acceptance', '--message', prompt, '--timeout', '240', '--json'], capture_output=True, text=True, timeout=270)
+    for attempt in range(6):
+        p = subprocess.run(['docker', 'exec', '-u', 'node', name, 'node', '/app/openclaw.mjs', 'agent', '--channel', 'discord', '--agent', 'main', '--session-key', 'agent:main:cody-components-acceptance', '--message', prompt, '--timeout', '240', '--json'], capture_output=True, text=True, timeout=270)
+        if p.returncode == 0:
+            break
+        try:
+            error = json.loads(p.stdout[p.stdout.index('{'):])
+        except (ValueError, json.JSONDecodeError):
+            break
+        # Health may pass before the CLI's own agent database admission finishes.
+        # Retry only a pre-turn CLI admission rejection, never an uncertain model/tool run.
+        if error.get('ok') is not False or error.get('result') or error.get('error',{}).get('type')!='cli_error' or 'has not completed startup inspection and preparation' not in error.get('error',{}).get('message',''):
+            break
+        (work/('admission-retry-'+str(attempt)+'.json')).write_text(p.stdout)
+        (work/('admission-retry-'+str(attempt)+'.stderr')).write_text(p.stderr)
+        if attempt < 5:
+            time.sleep(15)
 for suffix, content in [('json', p.stdout), ('stderr', p.stderr)]:
     f = work/('capability.'+suffix); f.write_text(content); f.chmod(0o600)
 assert p.returncode == 0, 'actual runtime test failed; inspect protected receipt'

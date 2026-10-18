@@ -4,6 +4,7 @@ from pathlib import Path
 os.umask(0o077)
 names=['wilma','vivian','inga','maggie','gohzed','grogar','terry','edith','marsha','amanda','victor']
 base=Path('/opt/openclaw/backups/components-20261018');work=base/'host'
+assert shutil.disk_usage(base).free>10*1024**3, 'Host maintenance requires at least 10 GiB free'
 def run(args,timeout=180,**kw):
     return subprocess.run(args,check=True,timeout=timeout,**kw)
 def emit(message):print(message,flush=True)
@@ -69,7 +70,18 @@ finally:
     time.sleep(15)
     for name in stopped:
         run(['systemctl','start','openclaw-'+name+'.service'],1510);emit('Managed start: '+name)
+        if name==stopped[0]:
+            for _ in range(84):
+                d=inspect(name)
+                if d['State'].get('Health',{}).get('Status')=='healthy':break
+                time.sleep(5)
+            else:raise RuntimeError('First post-Docker gateway failed readiness; inspect before proceeding')
+            assert d['RestartCount']==0 and not d['State']['OOMKilled']
+            emit('First post-Docker gateway healthy without restart/OOM')
+        else:time.sleep(5)
     # If Wilma failed before the stop list was populated, restore its restart policy.
-    if 'wilma' not in stopped:run(['docker','update','--restart=unless-stopped','wilma'],capture_output=True)
+    if 'wilma' not in stopped:
+        run(['docker','update','--restart=unless-stopped','wilma'],capture_output=True)
+        if not inspect('wilma')['State']['Running']:run(['docker','start','wilma'],capture_output=True)
 result={'aptSucceeded':apt_ok,'agentsRestarted':stopped,'sharedRestarted':shared,'rebootRequired':Path('/var/run/reboot-required').exists(),'docker':subprocess.check_output(['docker','version','--format','{{.Server.Version}}'],text=True).strip(),'containerd':subprocess.check_output(['containerd','--version'],text=True).strip()}
 (work/'activation.json').write_text(json.dumps(result,indent=2));emit(json.dumps(result))

@@ -7,6 +7,17 @@ os.umask(0o077)
 live=Path('/opt/openclaw/agents')/name
 work=Path('/opt/openclaw/backups/components-20261018')/name
 work.mkdir(parents=True,exist_ok=True)
+# A state snapshot can be much larger than the running SQLite files because
+# matched migration backups are retained. Refuse before stopping the agent.
+excluded=[live/'config/backups',live/'config/npm',live/'config/.openclaw-private-update-capture']
+state_bytes=0
+for root in [live/'config',live/'agents']:
+    for parent,dirs,files in os.walk(root,followlinks=False):
+        dirs[:]=[d for d in dirs if Path(parent)/d not in excluded]
+        for file in files:
+            p=Path(parent)/file
+            if not p.is_symlink():state_bytes+=p.stat().st_size
+assert shutil.disk_usage(live).free>state_bytes+5*1024**3, 'Insufficient room for state archive plus 5 GiB reserve; reclaim verified disposable data first'
 catalog=json.loads(Path('/opt/openclaw/recovery/components-20261018/catalog.json').read_text())
 proof=json.loads(Path('/opt/openclaw/recovery/components-20261018/archive-proof.json').read_text())
 assert proof['allImageIdsVerified'] and proof['archiveSha256']==catalog['sha256']
@@ -24,6 +35,10 @@ for method,params in [('health',None),('cron.list',{'includeDisabled':True})]:
 d=json.loads(subprocess.check_output(['docker','inspect',name],text=True))[0]
 old=d['Config']['Image'];new='zedbiz/'+(name if name in {'amanda','victor','grogar','marsha'} else 'openclaw-base')+':2026.10.4-components-20261018'
 assert old!=new,'Already activated; verify instead of repeating'
+ids={i['ref']:i['id'] for i in catalog['images']}
+planned_refs=subprocess.check_output(['docker','compose','--env-file','.env','config','--images'],cwd=live,text=True).split()
+planned_refs=[new if ref==old else ref for ref in planned_refs]
+assert set(planned_refs)<=ids.keys(), 'Recovery catalog lacks a planned image; resolve before stopping the agent'
 manifest=(Path('/opt/openclaw/recovery')/(name+'-20261018')/'manifest.json') if name in {'amanda','victor'} else Path('/opt/openclaw/recovery/fleet-20261018')/name/'manifest.json'
 assert manifest.exists()
 shutil.copy2(manifest,work/'manifest-before.json');shutil.copy2(live/'docker-compose.yml',work/'compose-before.yml')
