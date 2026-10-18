@@ -243,13 +243,19 @@ elif action == 'accept':
         except Exception:pass
         time.sleep(5)
     else:raise RuntimeError('HTTP readiness deadline exceeded')
-    health=rpc('health',suffix='after');assert health.get('ok') is True
     old=json.loads((work/'health-before.json').read_text())
-    for channel,details in old.get('channels',{}).items():
-        for account,values in details.get('accounts',{}).items():
-            now=health.get('channels',{}).get(channel,{}).get('accounts',{}).get(account,{})
-            for field in ['running','connected']:
-                if values.get(field) is True:assert now.get(field) is True,'Channel regression: '+channel
+    channel_deadline=time.monotonic()+120
+    while True:
+        health=rpc('health',suffix='after');assert health.get('ok') is True
+        pending=[]
+        for channel,details in old.get('channels',{}).items():
+            for account,values in details.get('accounts',{}).items():
+                now=health.get('channels',{}).get(channel,{}).get('accounts',{}).get(account,{})
+                for field in ['running','connected']:
+                    if values.get(field) is True and now.get(field) is not True:pending.append(channel+'/'+account+'/'+field)
+        if not pending:break
+        assert time.monotonic()<channel_deadline,'Channels did not become ready: '+','.join(pending)
+        time.sleep(5)
     cron=rpc('cron.list',{'includeDisabled':True},'after')
     keys=['id','name','enabled','schedule','sessionTarget','wakeMode','payload','delivery']
     normalize=lambda o:sorted([{k:j.get(k) for k in keys} for j in o['jobs']],key=lambda j:j['id'])
