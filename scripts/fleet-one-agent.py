@@ -23,9 +23,13 @@ run('fleet-10-4-backup.py', name)
 if cohort == 'rehearse':
     run('fleet-10-4-cli.py', name, 'rehearsal', image, 'doctor', '--fix', '--non-interactive')
     run('verify-fleet-migration.py', name, 'rehearsal')
+    if name in {'edith', 'terry'}:
+        run('fleet-mem0-compat.py', name, 'rehearsal', image)
     run('fleet-plugin-gate.py', name, 'rehearsal', image)
 run('fleet-10-4-cli.py', name, 'live', image, 'doctor', '--fix', '--non-interactive')
 run('verify-fleet-migration.py', name, 'live')
+if name in {'edith', 'terry'}:
+    run('fleet-mem0-compat.py', name, 'live', image)
 run('fleet-plugin-gate.py', name, 'live', image)
 run('fleet-post-migration.py', name, 'live')
 run('fleet-10-4-activate.py', name)
