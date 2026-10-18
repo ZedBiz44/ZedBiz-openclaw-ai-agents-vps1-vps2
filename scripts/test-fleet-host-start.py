@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import multiprocessing
 from pathlib import Path
 import tempfile
 import unittest
@@ -15,6 +16,9 @@ class StartupTests(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory()
         self.addCleanup(self.tmp.cleanup)
         p = Path(self.tmp.name)
+        self.lock_patch = patch.object(d, 'RESTORE_LOCK', p/'restore.lock')
+        self.lock_patch.start()
+        self.addCleanup(self.lock_patch.stop)
         (p/'wrapper').write_text('approved')
         (p/'images.tar').write_bytes(b'archive')
         self.m = dict(wrapper=str(p/'wrapper'), wrapper_sha256=d.digest(p/'wrapper'),
@@ -95,6 +99,34 @@ class StartupTests(unittest.TestCase):
         with patch.object(d.sys, 'argv', ['fleet-host-start.py', '../amanda']):
             with self.assertRaisesRegex(RuntimeError, 'unexpected arguments'):
                 d.main()
+
+    def test_simultaneous_missing_image_imports_once(self):
+        loaded = Path(self.tmp.name)/'loaded'
+        imports = Path(self.tmp.name)/'imports'
+        def worker():
+            def run(args, **kwargs):
+                if 'config' in args:
+                    return 0, 'current\n'
+                if 'info' in args:
+                    return 0, 'version'
+                if 'inspect' in args:
+                    return (0, 'sha256:good\n') if loaded.exists() else (1, '')
+                if 'load' in args:
+                    d.time.sleep(0.1)
+                    with imports.open('a') as out:
+                        out.write('import\n')
+                    loaded.touch()
+                    return 0, ''
+                raise AssertionError(args)
+            d.recover(self.m, run)
+        context = multiprocessing.get_context('fork')
+        children = [context.Process(target=worker) for _ in range(2)]
+        for child in children:
+            child.start()
+        for child in children:
+            child.join(5)
+            self.assertEqual(child.exitcode, 0)
+        self.assertEqual(imports.read_text().splitlines(), ['import'])
 
 
 if __name__ == '__main__':
