@@ -205,5 +205,24 @@ elif action == 'accept':
     assert json.loads((program/'node_modules/openclaw/package.json').read_text())['version']=='2026.10.4'
     result={'agent':name,'accepted':True,'service':current,'cronCount':len(cron['jobs']),'receipt':receipt,'payloads':obj['result'].get('payloads'),'channels':{k:{a:{f:v.get(f) for f in ['running','connected','lastError']} for a,v in d.get('accounts',{}).items()} for k,d in health.get('channels',{}).items()}}
     save('acceptance.json',result);emit(result)
+elif action == 'final':
+    accepted=json.loads((work/'acceptance.json').read_text());current=service()
+    assert accepted['accepted'] and current['MainPID']==accepted['service']['MainPID']
+    assert current['NRestarts']=='0' and current['ActiveState']=='active' and current['Result']=='success'
+    assert subprocess.check_output(['systemctl','is-enabled',unit],text=True).strip()=='enabled'
+    assert json.loads((program/'node_modules/openclaw/package.json').read_text())['version']=='2026.10.4'
+    assert urllib.request.urlopen('https://'+name+'.zbiz.ca/healthz',timeout=15).status==200
+    c=json.loads((state/'openclaw.json').read_text());assert c['mcp']['sessionIdleTtlMs']==600000
+    assert sha(program/('start-'+name+'.sh'))==json.loads((work/'baseline.json').read_text())['launcherSha256']
+    cg=Path('/sys/fs/cgroup/system.slice')/unit
+    stats=dict(line.split() for line in (cg/'memory.stat').read_text().splitlines())
+    usage=int((cg/'memory.current').read_text());pss=0
+    for pid in (cg/'cgroup.procs').read_text().split():
+        try:
+            for line in Path('/proc/'+pid+'/smaps_rollup').read_text().splitlines():
+                if line.startswith('Pss:'):pss+=int(line.split()[1])*1024
+        except (FileNotFoundError,ProcessLookupError):pass
+    result={'agent':name,'finalPassed':True,'service':current,'version':'2026.10.4','publicHttp':200,'launcherPreserved':True,'memoryCurrent':usage,'memoryMinusInactiveFile':usage-int(stats.get('inactive_file',0)),'processPss':pss,'memoryEvents':dict(line.split() for line in (cg/'memory.events').read_text().splitlines())}
+    save('final.json',result);emit(result)
 else:
     raise ValueError('Unknown stage')
