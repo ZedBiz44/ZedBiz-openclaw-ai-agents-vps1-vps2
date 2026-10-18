@@ -5,11 +5,14 @@ import os
 from pathlib import Path
 import subprocess
 import sqlite3
+import shutil
 import sys
 
 name, mode, image = sys.argv[1:]
 assert name in {'edith', 'terry'} and mode in {'rehearsal', 'live'}
 work = Path('/opt/openclaw/backups/fleet-20261018')/name
+if name == 'terry' and mode == 'live' and not (work/'rehearsal-mem0-consent.json').exists():
+    subprocess.run(['python3', __file__, name, 'rehearsal', image], check=True)
 root = work/'rehearsal' if mode == 'rehearsal' else Path('/opt/openclaw/agents')/name
 if mode == 'live':
     assert not subprocess.check_output(['docker', 'ps', '-q', '--filter', f'name=^/{name}$'], text=True).strip()
@@ -47,6 +50,7 @@ assert before['plugins']['entries']['openclaw-mem0']['enabled'] is True
 # 9.8 plugin. Accept only the byte-identical existing implementation/declarations.
 subprocess.run(['python3', '/home/jackadmin/fleet-10.4-20261018/scripts/fleet-10-4-cli.py',
     name, mode, image, 'plugins', 'enable', 'openclaw-mem0', '--accept-capabilities'], check=True)
+shutil.copy2(work/(mode+'-plugins.log'), work/(mode+'-mem0-consent-command.log'))
 after = json.loads((root/'config/openclaw.json').read_text())
 assert before.get('plugins') == after.get('plugins'), 'plugin policy changed unexpectedly'
 with sqlite3.connect('file:'+str(root/'config/state/openclaw.sqlite')+'?mode=ro',uri=True) as db:
@@ -55,5 +59,8 @@ with sqlite3.connect('file:'+str(root/'config/state/openclaw.sqlite')+'?mode=ro'
 expected_tools = set(json.loads(manifest.read_text())['contracts']['tools'])
 assert set(accepted['tools']) == expected_tools, 'accepted tool set differs from retained plugin'
 assert not any(accepted.get(k) for k in ['channels','providers','hooks','mcpServers','cliCommands','cliBackends','dangerousConfigFlags']), 'unexpected additional capability'
-print(json.dumps(dict(agent=name, mode=mode, mem0Compatibility=True, retainedCapabilityConsentVerified=True, acceptedTools=sorted(expected_tools))), flush=True)
+result = dict(agent=name, mode=mode, mem0Compatibility=True, retainedCapabilityConsentVerified=True, acceptedTools=sorted(expected_tools))
+receipt = work/(mode+'-mem0-consent.json')
+receipt.write_text(json.dumps(result)); receipt.chmod(0o600)
+print(json.dumps(result), flush=True)
 
