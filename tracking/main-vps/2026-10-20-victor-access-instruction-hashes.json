@@ -1,0 +1,28 @@
+{
+  "retain": "All unrelated role, memory, identity, routing, privacy, safety, unlimited-work and reporting instructions.",
+  "supersede": "Only Victor-specific SSH and reporting-only access ceiling, per Jack October20. Standard task scope and destructive-action approvals retained.",
+  "relocate": "None",
+  "changes": [
+    {
+      "file": "AGENTS.md",
+      "beforeHash": "29c80fdb24e46d5edf9ab6c083c170388e346eb5c7bbfb99c638029e9b8c0201",
+      "afterHash": "1466a8cb3df3e080601e4b8d1f2bd51a0b2768fcc508722300133140f1a6e3f5",
+      "beforeChars": 20862,
+      "afterChars": 22264
+    },
+    {
+      "file": "health-operations.md",
+      "beforeHash": "87d9e45c72e898bc9dab26845139f7cb4e4067f664651c1263298772f943f292",
+      "afterHash": "b7fa3c96d1f50b6f1e5cee482834473c70375f95e6d99b511008991765357d93",
+      "beforeChars": 7774,
+      "afterChars": 7502
+    },
+    {
+      "file": "scripts/victor-fleet-inspect.py",
+      "beforeHash": "c909d67d099d316ecd774819a3c1b87105f02cdaccafe9f4eed09f208797743a",
+      "afterHash": "8c071b4bd631ffc02bb73ce8176dfd0734ba51bf509f14fc998e904b923d771d",
+      "beforeChars": 1744,
+      "afterChars": 1814
+    }
+  ]
+}
