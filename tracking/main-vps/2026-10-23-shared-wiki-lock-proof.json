@@ -1,0 +1,207 @@
+{
+  "audit": [
+    {
+      "agent": "gohzed",
+      "image": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "grogar",
+      "image": "zedbiz/grogar:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "inga",
+      "image": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "maggie",
+      "image": "zedbiz/maggie:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "marsha",
+      "image": "zedbiz/marsha:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "amanda",
+      "image": "zedbiz/amanda:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "edith",
+      "image": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "terry",
+      "image": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "victor",
+      "image": "zedbiz/victor:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "vivian",
+      "image": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    },
+    {
+      "agent": "wilma",
+      "image": "zedbiz/wilma:2026.10.4-wikilock-20261023",
+      "imageCorrect": true,
+      "restartCount": 0,
+      "health": "healthy",
+      "startupGuard": true,
+      "wrapperHashValid": true,
+      "recoveryImageIdsValid": true,
+      "archive": "/opt/openclaw/recovery/wiki-lock-20261023/images.tar.gz",
+      "corpus": "wiki",
+      "lockDevice": 2049,
+      "lockInode": 1059413,
+      "ready": 200
+    }
+  ],
+  "concurrency": [
+    {
+      "agent": "maggie",
+      "http": 200,
+      "ok": true,
+      "cacheCollision": false,
+      "seconds": 26.2,
+      "issueCount": 1071,
+      "severities": {
+        "warning": 1071
+      },
+      "reportPath": "reports/lint.md"
+    },
+    {
+      "agent": "marsha",
+      "http": 200,
+      "ok": true,
+      "cacheCollision": false,
+      "seconds": 37.53,
+      "issueCount": 1071,
+      "severities": {
+        "warning": 1071
+      },
+      "reportPath": "reports/lint.md"
+    },
+    {
+      "agent": "edith",
+      "http": 200,
+      "ok": true,
+      "cacheCollision": false,
+      "seconds": 16.37,
+      "issueCount": 1071,
+      "severities": {
+        "warning": 1071
+      },
+      "reportPath": "reports/lint.md"
+    }
+  ]
+}

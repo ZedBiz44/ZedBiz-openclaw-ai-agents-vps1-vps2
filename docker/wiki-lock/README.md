@@ -33,5 +33,7 @@ The dated installation is `/opt/openclaw/recovery/wiki-lock-20261023`. `images.j
 - `probe.mjs`: actual bundled coordinator; nested calls, shared counter, exception release and holder termination.
 - `wiki-probe.mjs`: actual ingest, compile and lint on a separate Wiki copy, with an independent compiled cache per process. Never use this fixture against the production Wiki.
 - `check-live.py AGENT`: installed guard, live default Wiki search, readiness and Discord state without printing credentials.
+- `live-tool.py AGENT TOOL JSON_ARGS`: explicit live verification call; callers should summarize results rather than print large lint reports.
+- `audit-live.py`: verifies all eleven containers use the same lock inode and checks image references, recovery IDs, wrapper hashes and Wiki-only settings.
 
 The dated technical record contains the observed test results and rollout status.

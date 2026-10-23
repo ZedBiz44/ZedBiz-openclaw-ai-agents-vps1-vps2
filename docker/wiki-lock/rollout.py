@@ -4,7 +4,6 @@ import pathlib
 import subprocess
 import sys
 import time
-import urllib.request
 
 ROOT = '/opt/openclaw/recovery/wiki-lock-20261023'
 ports = {'amanda':3000,'victor':3002,'wilma':3003,'inga':3004,'marsha':3005,'gohzed':3006,'grogar':3007,'maggie':3008,'vivian':3009,'terry':3010,'edith':3011}
@@ -28,8 +27,9 @@ for agent in sys.argv[1:]:
         root_run([agent,'activate'])
     for attempt in range(36):
         try:
-            with urllib.request.urlopen('http://127.0.0.1:'+str(ports[agent])+'/readyz',timeout=5) as r:
-                if r.status==200:break
+            js = "fetch('http://127.0.0.1:"+str(ports[agent])+"/readyz',{signal:AbortSignal.timeout(5000)}).then(r=>console.log(r.status)).catch(()=>process.exit(1))"
+            ready = subprocess.run(['docker','exec',agent,'node','-e',js],capture_output=True,text=True,timeout=10)
+            if ready.returncode==0 and ready.stdout.strip()=='200':break
         except Exception:
             pass
         if attempt%3==0:print(agent,'waiting for startup',attempt*10,'seconds',flush=True)
