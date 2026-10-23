@@ -94,6 +94,9 @@ elif action == 'namespace':
     os.execv(executable,[executable,*extra])
 
 elif action == 'backup':
+    if name!='frank':
+        previous='frank' if name=='harry' else 'harry'
+        assert json.loads((BASE/previous/'acceptance.json').read_text())['accepted'],'Previous agent not accepted'
     work.mkdir(mode=0o700,parents=True,exist_ok=True)
     assert not (work/'before.tar').exists(), 'Existing backup; inspect before retry'
     status=rpc('status')
@@ -177,6 +180,8 @@ elif action == 'compare':
     assert before['plugins'].get('slots')==after['plugins'].get('slots')
     memory=before['plugins']['slots']['memory']
     assert before['plugins']['entries'][memory]==after['plugins']['entries'][memory]
+    inventory=lambda root:{str(p.relative_to(root)):sha(p) for p in (root/'workspace/skills').rglob('*') if p.is_file()}
+    assert inventory(original)==inventory(target),'Custom skill contents changed'
     migrated_tools=False
     for leaf in ['AGENTS.md','SOUL.md','USER.md','IDENTITY.md']:
         old_file=original/'workspace'/leaf;new_file=target/'workspace'/leaf
@@ -185,7 +190,7 @@ elif action == 'compare':
             expected=old_file.read_text().rstrip()+'\n\n## Tools\n\n### Local notes (migrated from TOOLS.md)\n\n'+(original/'workspace/TOOLS.md').read_text().strip()
             assert new_file.read_text().strip()==expected.strip(),'Unexpected AGENTS migration'
             migrated_tools=True
-    result={'agent':name,'mode':mode,'preservationPassed':True,'toolsNotesFoldedExactly':migrated_tools,'databasesChecked':integrity(target),'cronCount':len(cron_rows(target)),'agentsCharacters':len((target/'workspace/AGENTS.md').read_text()),'bootstrapBudget':after['agents']['defaults'].get('bootstrapMaxChars',20000)}
+    result={'agent':name,'mode':mode,'preservationPassed':True,'customSkillsPreserved':True,'retiredBuiltinReviewCount':len(retired),'toolsNotesFoldedExactly':migrated_tools,'databasesChecked':integrity(target),'cronCount':len(cron_rows(target)),'agentsCharacters':len((target/'workspace/AGENTS.md').read_text()),'bootstrapBudget':after['agents']['defaults'].get('bootstrapMaxChars',20000)}
     assert result['agentsCharacters']<=result['bootstrapBudget'],'Instruction allowance too small'
     save(mode+'-preservation.json',result);emit(result)
 
@@ -224,7 +229,7 @@ const [root,host]=process.argv.slice(1);
 const {a:linkHost}=await import(host+'/dist/plugin-peer-link-Cq6_4lfP.mjs');
 const r=await linkHost({installedDir:root,peerDependencies:{openclaw:'2026.10.6'},hostRoot:host,logger:console});
 if(r.skipped||fs.realpathSync(root+'/node_modules/openclaw')!==host)throw Error('Host peer repair failed');
-console.log('Verified Mem0 peer matches native 10.4 host');"""
+console.log('Verified Mem0 peer matches native 10.6 host');"""
     subprocess.run(['node','--input-type=module','-e',js,str(project),str(host)],check=True)
     subprocess.run(['bash',str(program/'ensure-mem0-110-compat.sh'),str(project)],check=True,timeout=180)
     before=json.loads((state/'openclaw.json').read_text())
@@ -296,7 +301,7 @@ elif action == 'accept':
     assert normalize(cron)==normalize(json.loads((work/'cron.list-before.json').read_text()))
     memory='mem0_search' if name=='harry' else None
     memory_instruction='Use mem0_search explicitly to recall one existing ZedBiz memory.' if memory else 'Report one existing ZedBiz fact from automatically supplied Hindsight memories if present. Do not call removed agent_knowledge tools.'
-    prompt='Read-only upgrade acceptance. '+memory_instruction+' Get your own Asana user identity and fetch Notion page ee1a3e33d58183948bd58119d92c7d01. Check availability of gog, himalaya, ffmpeg, ntn and gh using a harmless shell command. Return only memory fact, Asana name/GID, Notion title and binary availability. Report any failure. Do not send messages, create tasks, change files, explicitly write memories or delegate.'
+    prompt='Read-only upgrade acceptance. '+memory_instruction+' Get your own Asana user identity and fetch Notion page ee1a3e33d58183948bd58119d92c7d01. Check availability of gog, himalaya, ffmpeg, ntn and gh using a harmless shell command. Perform one small read-only Google Drive list using the existing GOG account routing; report only success/count, not file contents. Return only memory fact, Asana name/GID, Notion title, Drive result and binary availability. Report any failure. Do not send messages, create tasks, change files, explicitly write memories or delegate.'
     started=int(time.time())
     log=cli('live',['agent','--agent','main','--session-key','agent:main:webchat:direct:cody-upgrade-20261023','--message',prompt,'--timeout','240','--json'],'capability',300)
     t=log.read_text();obj=json.loads(t[t.index('{'):]);receipt=obj.get('result',{}).get('meta',{}).get('agentMeta',{}).get('terminalReceipt',{})
