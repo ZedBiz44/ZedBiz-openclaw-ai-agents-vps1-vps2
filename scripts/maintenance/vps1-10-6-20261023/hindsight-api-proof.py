@@ -13,9 +13,9 @@ existing=call('/ghl/memories/recall',{'query':'ZedBiz','budget':'low','max_token
 assert existing.get('results'),'Existing-bank recall returned no memories'
 bank='/release-proof-20261023'
 call(bank,{},'PUT')
-retained=call(bank+'/memories',{'items':[{'content':'The isolated upgrade test uses the project marker amber-lighthouse-731.','context':'Disposable upgrade test; no business or user fact.','document_id':'release-proof-20261023'}],'async':False})
+retained=call(bank+'/memories',{'items':[{'content':'Aurora Lab chose amber-lighthouse-731 as its permanent project codename. The team uses this codename on all weekly reports.','document_id':'release-proof-20261023-v2'}],'async':False})
 (root/'retain-proof.json').write_text(json.dumps(retained))
-recalled=call(bank+'/memories/recall',{'query':'What project marker does the upgrade test use?','budget':'low','max_tokens':500})
+recalled=call(bank+'/memories/recall',{'query':'What permanent project codename does Aurora Lab use?','budget':'low','max_tokens':500})
 (root/'new-recall.json').write_text(json.dumps(recalled))
 assert 'amber-lighthouse-731' in json.dumps(recalled),'New fact not recalled'
 result={'passed':True,'existingBankRecallCount':len(existing['results']),'newFactRetainAndRecallPassed':True,'productionEndpointUsed':False,'workerDisabled':True}
