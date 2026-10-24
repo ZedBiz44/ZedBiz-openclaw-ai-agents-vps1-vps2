@@ -119,6 +119,18 @@ elif action=='finish-host-services':
   unchanged(baseline,containers())
  save('applied',{'passed':True,'installed':installed,'versions':versions(),'containersUninterrupted':False,'managedAgentPairsRestarted':11,'sharedContainersPreserved':18,'allContainerProcessesPreservedDuringFollowupServices':True,'rebootRequired':P('/var/run/reboot-required').exists()})
  save('accepted-container-baseline',containers());print(json.dumps(read('applied')),flush=True)
+elif action=='verify-boot':
+ intent=read('reboot-intent');boot=P('/proc/sys/kernel/random/boot_id').read_text().strip();assert boot!=intent['bootIdBefore'],'Host has not rebooted'
+ expected=read('before')['containers'];deadline=time.monotonic()+1200
+ while True:
+  after=containers();missing=set(expected)-set(after)
+  bad=[n for n,x in expected.items() if n in after and x['health']=='healthy' and after[n]['health']!='healthy']
+  if not missing and not bad:break
+  assert time.monotonic()<deadline,'Post-reboot recovery deadline: '+str(sorted(missing))+str(bad)
+  time.sleep(10)
+ for n,x in expected.items():assert after[n]['image']==x['image'] and not after[n]['oom'] and after[n]['restarts']==0,n+' unexpected image/restart/OOM'
+ units={n:run(['systemctl','show','openclaw-'+n+'.service','-p','Result','--value']).stdout.strip() for n in ['terry','edith','amanda','victor','vivian','wilma','gohzed','grogar','inga','maggie','marsha']};assert all(v=='success' for v in units.values())
+ save('accepted-container-baseline',after);save('reboot-verified',{'passed':True,'bootIdAfter':boot,'imageIdentitiesPreserved':True,'all40ContainersRecovered':len(after)==40,'managedUnitResults':units});print(json.dumps(read('reboot-verified')),flush=True)
 elif action=='verify':
  applied=read('applied');assert applied['passed'];before=read('before');after=containers();unchanged(read('accepted-container-baseline'),after)
  pending=plan('remaining-plan');assert not pending,'Further installable updates remain after refreshed plan'
