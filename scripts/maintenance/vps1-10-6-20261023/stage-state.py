@@ -58,7 +58,7 @@ elif action=='prepare-mem0':
  shutil.copy2(target,work/'mem0-peer-before.mjs')
  s=target.stat();target.write_bytes(pathlib.Path('/home/jackadmin/vps1-10-6-20261023/repair-mem0-host-peer.mjs').read_bytes());os.chown(target,s.st_uid,s.st_gid)
  print(json.dumps({'preparedMem0Guard':True,'scope':'restored copy'}),flush=True)
-elif action in ['lint','migrate','plugins','mem0','models','model-probe']:
+elif action in ['lint','migrate','plugins','mem0','models','model-probe','model-profile']:
  assert (work/'checkpoint.json').exists()
  args=['docker','run','--rm','--network','mem0-dev_mem0_network','--network','openclaw','--memory','3g','--env-file',str(work/'runtime.env'),'--user','node','--entrypoint','node']
  for m in json.loads((work/'mounts-before.json').read_text()):
@@ -69,13 +69,20 @@ elif action in ['lint','migrate','plugins','mem0','models','model-probe']:
   else:
    args+=['-v',src+':'+dst+':ro'];continue
   args+=['-v',src+':'+dst+('' if m['RW'] else ':ro')]
+ selected='model-probe' if action=='model-profile' else action
  command={'lint':['doctor','--lint','--json'],'migrate':['doctor','--fix','--non-interactive'],'plugins':['plugins','list','--json'],'mem0':[],
  'models':['models','status','--json'],
- 'model-probe':['agent','--local','--agent','main','--session-id','cody-10-6-restored-model-proof','--message','Read-only upgrade rehearsal. Reply exactly MODEL_OK. Do not call tools, modify files, send messages, or delegate.','--json']}[action]
+ 'model-probe':['agent','--local','--agent','main','--session-id','cody-10-6-restored-model-proof','--message','Read-only upgrade rehearsal. Reply exactly MODEL_OK. Do not call tools, modify files, send messages, or delegate.','--json']}[selected]
  if action=='mem0':
   args[args.index('--entrypoint')+1]='sh'
   args+=[image,'/home/node/.openclaw/workspace/ensure-mem0-compat.sh']
- else:args+=[image,'/app/openclaw.mjs',*command]
+ else:
+  flags=[]
+  if action=='model-profile':
+   profiles=work/'cpu-profiles';profiles.mkdir(mode=0o700,exist_ok=True);os.chown(profiles,1000,1000)
+   args+=['-v',str(profiles)+':/profiles']
+   flags=['--cpu-prof','--cpu-prof-dir=/profiles']
+  args+=[image,*flags,'/app/openclaw.mjs',*command]
  log=work/('rehearsal-'+action+'-'+str(int(time.time()))+'.log')
  with log.open('w') as out:p=subprocess.run(args,stdout=out,stderr=subprocess.STDOUT)
  receipt={'phase':action,'exit':p.returncode,'privateLog':str(log)}
