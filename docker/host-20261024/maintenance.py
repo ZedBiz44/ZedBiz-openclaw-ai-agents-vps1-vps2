@@ -13,7 +13,7 @@ def digest(p):
  with P(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def containers():
  ids=run(['docker','ps','-q']).stdout.split()
- return {x['Name'].lstrip('/'):{'id':x['Id'],'pid':x['State']['Pid'],'image':x['Image'],'ref':x['Config']['Image'],'health':x['State'].get('Health',{}).get('Status'),'restarts':x['RestartCount'],'oom':x['State']['OOMKilled'],'started':x['State']['StartedAt']} for x in json.loads(run(['docker','inspect',*ids]).stdout)}
+ return {x['Name'].lstrip('/'):{'id':x['Id'],'pid':x['State']['Pid'],'image':x['Image'],'ref':x['Config']['Image'],'health':x['State'].get('Health',{}).get('Status'),'restarts':x['RestartCount'],'oom':x['State']['OOMKilled'],'started':x['State']['StartedAt']} for x in json.loads(run(['docker','inspect',*ids]).stdout) if (x['Config'].get('Labels') or {}).get('cody.host-maintenance-helper')!='true'}
 def versions():return {k:run(a,check=False).stdout.strip() for k,a in {'docker':['docker','version','--format','{{.Server.Version}}'],'compose':['docker','compose','version','--short'],'containerd':['containerd','--version'],'tailscale':['tailscale','version'],'op':['op','--version'],'kernel':['uname','-r'],'liveRestore':['docker','info','--format','{{.LiveRestoreEnabled}}']}.items()}
 def unchanged(before,after):
  assert set(before)<=set(after),'A pre-existing running container disappeared'
@@ -50,6 +50,11 @@ if action=='preflight':
   recovery.append({'agent':name,'manifest':str(m),'archive':j['archive'],'sha256':j['sha256']})
  b['recovery']=recovery;save('before',b)
  print(json.dumps({'preflightPassed':True,'runningContainers':len(b['containers']),'versions':b['versions'],'heldPackages':b['held'],'rebootRequired':b['rebootRequired']}),flush=True)
+elif action=='exclude-first-operator-helper':
+ b=read('before');x=b['containers'].get('friendly_pascal');assert x and x['ref']=='alpine'
+ assert run(['docker','inspect',x['id']],check=False).returncode!=0
+ save('excluded-operator-helper',{'name':'friendly_pascal','container':x,'reason':'Transient Alpine/nsenter preflight operator; not a managed VPS1 service'})
+ del b['containers']['friendly_pascal'];save('before',b);unchanged(b['containers'],containers());print('Transient preflight operator excluded; all40 managed containers still match')
 elif action=='refresh':
  run(['apt-get','update'],'apt-refresh');items=plan();print(json.dumps({'refreshed':True,'packages':items}),flush=True)
 elif action=='prepare':
