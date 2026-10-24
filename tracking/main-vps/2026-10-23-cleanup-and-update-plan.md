@@ -1,0 +1,113 @@
+# VPS1 cleanup and proposed update bundle
+
+Verified October 23, 2026, America/Edmonton. Owner: Cody. Operating owner: Victor.
+Workstream: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/480
+
+## Scope and current state
+
+Jack requested cleanup first, then a concrete list for OpenClaw 10.6, Node, Hindsight and other server/tool updates. This pass performs reversible cleanup and inventories proposed updates. No package upgrade, service restart, reboot, new schedule, access change or external test message is part of the cleanup.
+
+Live host srv1404026 has eleven agents: Amanda, Edith, Gohzed, Grogar, Inga, Maggie, Marsha, Terry, Victor, Vivian and Wilma. All eleven run OpenClaw2026.10.4 and Node24.22.0. All eleven Asana sidecars also run Node24.22.0. Initial containers healthy with zero restarts. Baseline disk: about40GiB free,90% used. That is limited headroom for new images and offline backups, not an outage.
+
+Current image families include the shared base plus Amanda, Grogar, Maggie, Marsha, Victor and Wilma variants. Today's deployed Wiki-lock layer is required for all eleven writers. Main branch does not contain all deployed changes; reconcile the maintenance stack and PR479 before building. Never rebuild from main alone and silently lose deployed fixes.
+
+## Cleanup decisions
+
+- Consolidate783 dated loose backup files from agent root/config/workspace into eleven protected archives. Verify each file's bytes, permissions and ownership; preserve exact restore manifests. Current files and rolling recovery files are excluded. All11 current config/instruction/startup/image checks passed afterward.
+- Losslessly compress historical October18 and October3/17 uncompressed state archives. Verify the decompressed SHA256 equals the original archive, parse every tar entry and test extraction before unlinking the uncompressed duplicate. Every recovery point survives. New companion receipts map old .tar references to .tar.gz and explain restoration.
+- Archive two obsolete Amanda/Victor extracted rehearsal trees, preserving their actual post-rehearsal contents independently of the original state backup. Require no mounts/open files/process working directories; verify every file and symlink before removing the exact extracted tree.
+- Retain live databases, session history, credentials, skills, active npm generations, business projects, media, model caches, current image archives and recovery manifests. Do not call these junk based on size.
+- Retain Hindsight's existing encrypted scheduled backup set. Its14-day policy is already operating; do not add another job or impose an arbitrary shorter retention.
+- Retain the unreferenced Docker volumes until their ownership/recovery role is established. Docker reports about2.8GB potentially reclaimable, which is not deletion approval or proof of obsolete data. No broad system/volume prune.
+- Edith has about12.8GiB in project folder-cleanup working material; Vivian has about14.8GiB of media projects. No asset deletion without source/duplicate/ongoing-use evidence. Whisper model cache is retained because it supports a tool.
+
+Final reclaimed bytes and verification are recorded separately after all running archive work finishes. Initial directory sizes are occupied bytes, not promised savings: backups165.7GiB, image recovery30.0GiB, agents67.3GiB, Hindsight service directory10.9GiB, mostly scheduled backups.
+
+## Proposed primary update bundle
+
+| Component | Installed | Candidate | Decision and required proof |
+|---|---|---|---|
+| OpenClaw, all11 | 2026.10.4 | 2026.10.6 | Update in new immutable images, with restored-copy migration rehearsal and per-agent acceptance. |
+| Node, gateways and11 Asana sidecars | 24.22.0 | 24.22.1 | Required security patch; remain on Node24. Verify running executable, not only package metadata. |
+| Bundled/managed OpenClaw plugins | Mostly2026.10.4 | Core-matched2026.10.6 | Use supported core migration/convergence. Do not update arbitrary transitive dependencies independently. |
+| Hindsight API, central shared service | 1.0.0 custom FlashRank image | 1.1.0 pinned digest with preserved FlashRank | Rehearse schema migration on restored PostgreSQL; preserve models, embeddings, bank ownership and routing. |
+| Hindsight OpenClaw plugin, Gohzed/Grogar/Inga/Maggie/Marsha | 1.0.0 | 1.2.0 | Pilot direct recall/retain/reflect and knowledge tools, automatic capture and fresh-session persistence. Keep knowledge deletion disabled. |
+| Codex executable, all11 | 0.163.0 | 0.164.0 | Candidate OAuth/model/tool proof before activation. |
+| Gemini CLI, all11 | 0.64.0 | 0.65.0 | Verify installed and effective mounted wrapper; preserve credentials and request behavior. |
+| GOG | 0.45.0 | 0.47.0 | Preserve draft-only safety wrappers; test argument handling and authenticated Drive read. |
+| GitHub CLI | 2.102.0 | 2.103.2 | Verify pinned binary/checksum and existing authenticated read. |
+| summarize | 0.25.2 | 0.25.3 | Harmless local-text/URL read test; preserve model/auth defaults. |
+| mcporter | 0.15.0 | 0.16.0 | Verify existing configured MCP catalog/read; no new connector permissions. |
+| yt-dlp | 2026.08.19 | 2026.10.21 | Metadata-only test against an appropriate existing media source. |
+| rclone | 1.75.1 | 1.75.2 | Existing remote read/list only; no sync/delete test. |
+| pandoc | 3.12 | 3.12.1 | Small local document conversion. |
+| uv | 0.12.22 | 0.13.5 | Test existing Python tool environments; retain old tool environments until acceptance. |
+| npm | 12.2.0 | 12.2.1 | Build-time tooling candidate; verify compatibility and lockfiles. |
+| fzf / just | 0.74.4 / 1.58.0 | 0.74.5 / 1.59.0 | Low-priority image tool patches; local smoke tests. |
+| camsnap / goplaces | 0.6.0 / 0.4.11 | 0.6.1 / 0.4.14 | Optional; confirm actual capability use and no paid-operation smoke test. |
+
+The newer Hindsight plugin supplies the restored direct tools. A backend update alone does not expose them. Neither change grants broader memory-bank access or makes the unsupported Memory Wiki bridge work. Keep approved wiki-only search and the cross-container lock. Rocky's installed versions are useful evidence, but his latest record still leaves real-chat automatic memory acceptance pending; do not claim his upgrade is a fully passed pilot for VPS1.
+
+## Host packages
+
+Read-only simulation from existing apt catalogues lists17 upgrades, no additions or removals. Recheck refreshed metadata and exact transaction before installation. This inventory did not install packages.
+
+| Group | Installed to candidate | Proposed treatment |
+|---|---|---|
+| Docker engine/CLI/rootless extras | 29.9.1 to29.9.2 | Separate controlled host-service window; cold image recovery and all-agent idle checks first. |
+| containerd.io | 2.4.2-2 to2.4.2-3 | Same package family; accompany Docker maintenance after compatibility review. |
+| Buildx / Compose | 0.38.0 to0.38.1 /5.6.0 to5.6.1 | Include with tested Docker tooling. |
+| zlib1g | Ubuntu1.3.dfsg-3.1ubuntu2.2 to2.3 | Security patch candidate. |
+| GLib group,4 packages | 2.80.0-6ubuntu3.9 to3.10 | Keep matching versions together; review restart requirements. |
+| 1Password CLI | 2.41.0 to2.41.1 | Test actual existing CLI service-account route and managed startup. Do not send its CLI token to Connect API. |
+| Tailscale | 1.104.1 to1.104.2 | Verify existing administrative path before/after; no ACL or network-policy changes. |
+| tmux | 3.4-1ubuntu0.1 to0.2 | Optional maintenance patch. |
+| Ubuntu Pro client/l10n | 37.2 to38 | Optional; no subscription change. |
+| cloud-init | 26.1 to26.2 | Defer from core bundle unless reviewed need; do not force phasing. |
+
+No reboot-required marker at preflight. This does not prove no process will need restarting after future package updates. A reboot is a separate decision, not part of cleanup.
+
+## Keep or defer
+
+| Component | Finding | Decision |
+|---|---|---|
+| Mem0 plugin, Edith/Terry | 1.2.1 equals npm latest | Retain pinned package and compatibility patches; verify against10.6. The misleading timeout warning is a separate known bug, not proof of failed recall. |
+| Notion MCP / Asana npm MCP | 2.5.2 /1.8.0 equal latest | Retain; test actual integrations. Custom Asana sidecars still need Node patch and native-heading/identity regression tests. |
+| Himalaya / ClawHub / xurl | 2.2.1 /0.23.3 /1.3.4 equal latest | Retain existing safeguards/configuration. |
+| yq, glow, eza, duf, freeze, vhs, git-cliff, grex, blogwatcher | Installed versions match queried releases | Retain. gron reports dev; verify artifact checksum before calling its provenance confirmed. |
+| debugpy / nano-pdf | Source pins1.8.22 /0.2.1 match latest | Retain; effective environment selection still belongs to build acceptance. |
+| FFmpeg | Existing custom August19 build | Retain pending capability-specific review; do not replace a custom build based only on version age. |
+| Marsha voice-call package | Retained2026.9.8 generation found | Verify selected active plugin and compatibility before convergence; package presence alone is not loaded-version proof. |
+| PostgreSQL | Live18.6, pg18 image | Retain major/image through Hindsight migration; no database-major upgrade. |
+| Qdrant | 1.19.2; newer1.20.0 available | Separate Mem0/client compatibility pilot. Do not bundle an untested memory database change. |
+| Caddy / Filebrowser / Docker socket proxy | 2.11.7 /2.63.23 /0.5.0 match latest | Retain. |
+| Portainer | 2.45.2 to2.45.3 available | Optional separate dashboard patch. |
+| Uptime Kuma | 2.5.6 to2.5.7 available | Optional; upgrading it does not fix the separately recorded missing-monitor coverage. |
+| Dozzle / Homepage | 11.3.2 to11.3.4 /2.6.0 to2.7.0 | Optional separate dashboard changes. |
+| 1Password Connect | Existing pinned October18 images | Retain until actual release/version and authenticated service checks establish need. No credential or account changes. |
+| Shared allocator/mirror/restart bridges | Custom deployments | No automatic dependency upgrade; preserve existing source and service behavior. |
+
+## Release gates and order
+
+1. Finish cleanup and verify current health/recovery paths. Save the approved component decisions in the release record.
+2. Reconcile current deployed source, including Wiki flock and dynamic memory-limit patches, secret-aware startup, custom Asana and model choices. Build core/Node candidate images without activation.
+3. Back up and restore-test a representative agent. Rehearse10.6 migrations and preserve user schedules. The vendor retires only exact skill-collection-review declaration keys; compare all other rows. Do not treat event-driven learning as an equivalent weekly schedule.
+4. Pilot one Hindsight agent and one Mem0/LanceDB image family as applicable. Prove actual model, memory, Asana identity, Notion, Drive and channel status without outbound messages. Hindsight direct tools require the correct real sender context; never broaden access or fabricate identity to pass a test.
+5. Obtain the required rollout decision on concrete pilot evidence under the VPS1 SOP, then proceed sequentially within Jack's authorized scope. Preserve current activity and stop on a material regression.
+6. Rehearse Hindsight database migration separately, back up immediately before activation, preserve PostgreSQL image and approved banks, and verify existing and newly retained memory after restart. Central VPS1 Hindsight has VPS2 consumers; include their compatibility/recovery checks without silently changing their plugins.
+7. Schedule optional Docker/host/dashboard work separately from application migration. All-agent stop is not justified by a successful single-agent pilot.
+
+## Evidence and sources
+
+- Current VPS1 procedure: https://app.notion.com/p/37ba3e33d581816584cdf6b622a0d944
+- Wiki lock implementation and upgrade gate: https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/pull/479
+- Health follow-through remains open: https://github.com/ZedBiz44/z-agent-health-report-Skill/issues/6
+- Prior VPS1 components: PR470; VPS2 10.6: PR478; Rocky: ZedBiz-openclaw-vps4 issue63/comments.
+- OpenClaw release: https://github.com/openclaw/openclaw/releases/tag/v2026.10.6
+- Node security release: https://nodejs.org/en/blog/release/v24.22.1
+- Hindsight backend: https://github.com/vectorize-io/hindsight/releases/tag/v1.1.0
+- Plugin behavior: https://hindsight.vectorize.io/sdks/integrations/openclaw
+- npm registry latest metadata and official GitHub release APIs were queried October23 for every listed candidate. Candidate availability does not itself establish compatibility.
+
+The operator accidentally printed SSH key material from the access file during initial discovery and disclosed this in chat. No keys were committed here. Credential rotation remains a separate unresolved security action; it was not performed during cleanup.
+
