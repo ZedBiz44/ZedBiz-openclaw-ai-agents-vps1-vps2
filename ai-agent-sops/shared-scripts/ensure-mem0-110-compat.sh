@@ -16,7 +16,7 @@ oss_dir="$project_dir/node_modules/mem0ai/dist/oss"
 cd "$project_dir"
 
 plugin_version="$(node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFileSync("node_modules/@mem0/openclaw-mem0/package.json","utf8")); process.stdout.write(p.version)')"
-[[ "$plugin_version" == "1.1.0" ]] || { echo "Compatibility guard stopped: approved only for openclaw-mem0 1.1.0, found $plugin_version" >&2; exit 1; }
+[[ "$plugin_version" == "1.1.0" || "$plugin_version" == "1.2.1" ]] || { echo "Compatibility guard stopped: approved only for openclaw-mem0 1.1.0/1.2.1, found $plugin_version" >&2; exit 1; }
 
 npm pkg set 'dependencies.@qdrant/js-client-rest=1.18.0' 'overrides.@qdrant/js-client-rest=1.18.0'
 qdrant_version="$(node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFileSync("node_modules/@qdrant/js-client-rest/package.json","utf8")); process.stdout.write(p.version)')"
@@ -39,3 +39,5 @@ qdrant_version="$(node -e 'const fs=require("fs"); const p=JSON.parse(fs.readFil
 node -e 'const { QdrantClient } = require("@qdrant/js-client-rest"); if (typeof QdrantClient.prototype.search !== "function") { throw new Error("QdrantClient.search is unavailable"); }'
 echo "Mem0 $plugin_version HTTPS compatibility guard verified; Qdrant JS client $qdrant_version exposes search()."
 
+# Preserve the authorized explicit-retention and tool-routing repair.
+python3 /root/.openclaw-harry/scripts/repair-mem0-explicit-retention.py "$project_dir"

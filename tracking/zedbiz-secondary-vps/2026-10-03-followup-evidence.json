@@ -1,0 +1,42 @@
+{
+  "runId": "2cc09e5b-e31c-48a1-8915-36a87d854333",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "toolSummary": {
+    "calls": 1,
+    "tools": [
+      "mem0_search"
+    ],
+    "failures": 0
+  },
+  "mem0Version": "1.2.1",
+  "originalMemoryConfigurationPreserved": true,
+  "coreInstructionsPreserved": true,
+  "modelChannelsSchedulesSkillsPreserved": true,
+  "health": {
+    "4100": 200,
+    "4200": 200,
+    "4300": 200
+  },
+  "asanaAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "rebootRequired": false
+}
