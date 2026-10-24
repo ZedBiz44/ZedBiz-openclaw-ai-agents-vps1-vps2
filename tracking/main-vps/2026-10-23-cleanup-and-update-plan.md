@@ -14,11 +14,11 @@ Current image families include the shared base plus Amanda, Grogar, Maggie, Mars
 ## Cleanup decisions
 
 - Consolidate783 dated loose backup files from agent root/config/workspace into eleven protected archives. Verify each file's bytes, permissions and ownership; preserve exact restore manifests. Current files and rolling recovery files are excluded. All11 current config/instruction/startup/image checks passed afterward.
-- Losslessly compress historical October18 and October3/17 uncompressed state archives. Verify the decompressed SHA256 equals the original archive, parse every tar entry and test extraction before unlinking the uncompressed duplicate. Every recovery point survives. New companion receipts map old .tar references to .tar.gz and explain restoration.
+- Losslessly compress historical October 18 and October 3/17 uncompressed state archives. Verify the decompressed SHA256 equals the original archive, parse every tar entry and test extraction before unlinking the uncompressed duplicate. Every recovery point survives. New companion receipts map old .tar references to .tar.gz (October 18) or .tar.zst (older archives) and explain restoration.
 - Archive two obsolete Amanda/Victor extracted rehearsal trees, preserving their actual post-rehearsal contents independently of the original state backup. Require no mounts/open files/process working directories; verify every file and symlink before removing the exact extracted tree.
 - Retain live databases, session history, credentials, skills, active npm generations, business projects, media, model caches, current image archives and recovery manifests. Do not call these junk based on size.
 - Retain Hindsight's existing encrypted scheduled backup set. Its14-day policy is already operating; do not add another job or impose an arbitrary shorter retention.
-- Retain the unreferenced Docker volumes until their ownership/recovery role is established. Docker reports about2.8GB potentially reclaimable, which is not deletion approval or proof of obsolete data. No broad system/volume prune.
+- Retain the unreferenced Docker volumes until their recovery role is established. Inspection found about 1.82 GB in an October 18 PostgreSQL 18 volume, 0.93 GB in legacy Hindsight data, and 48 MB in a Mem0 development PostgreSQL volume. These are database contents, not established disposable caches. Other unused volumes contain tiny Caddy/Filebrowser state or are empty. No broad system/volume prune.
 - Edith has about12.8GiB in project folder-cleanup working material; Vivian has about14.8GiB of media projects. No asset deletion without source/duplicate/ongoing-use evidence. Whisper model cache is retained because it supports a tool.
 
 Final reclaimed bytes and verification are recorded separately after all running archive work finishes. Initial directory sizes are occupied bytes, not promised savings: backups165.7GiB, image recovery30.0GiB, agents67.3GiB, Hindsight service directory10.9GiB, mostly scheduled backups.
@@ -29,6 +29,7 @@ Final reclaimed bytes and verification are recorded separately after all running
 |---|---|---|---|
 | OpenClaw, all11 | 2026.10.4 | 2026.10.6 | Update in new immutable images, with restored-copy migration rehearsal and per-agent acceptance. |
 | Node, gateways and11 Asana sidecars | 24.22.0 | 24.22.1 | Required security patch; remain on Node24. Verify running executable, not only package metadata. |
+| Custom Asana MCP protocol SDK | 1.32.1 | 1.32.2 | Candidate patch alongside Node rebuild; preserve tool catalog, own-user identity and custom native-heading behavior. Express5.3.0 and jsdom30.1.3 already match latest. |
 | Bundled/managed OpenClaw plugins | Mostly2026.10.4 | Core-matched2026.10.6 | Use supported core migration/convergence. Do not update arbitrary transitive dependencies independently. |
 | Hindsight API, central shared service | 1.0.0 custom FlashRank image | 1.1.0 pinned digest with preserved FlashRank | Rehearse schema migration on restored PostgreSQL; preserve models, embeddings, bank ownership and routing. |
 | Hindsight OpenClaw plugin, Gohzed/Grogar/Inga/Maggie/Marsha | 1.0.0 | 1.2.0 | Pilot direct recall/retain/reflect and knowledge tools, automatic capture and fresh-session persistence. Keep knowledge deletion disabled. |
@@ -73,9 +74,11 @@ No reboot-required marker at preflight. This does not prove no process will need
 |---|---|---|
 | Mem0 plugin, Edith/Terry | 1.2.1 equals npm latest | Retain pinned package and compatibility patches; verify against10.6. The misleading timeout warning is a separate known bug, not proof of failed recall. |
 | Notion MCP / Asana npm MCP | 2.5.2 /1.8.0 equal latest | Retain; test actual integrations. Custom Asana sidecars still need Node patch and native-heading/identity regression tests. |
+| Asana API SDK inside custom sidecars | 3.0.12; latest3.3.0 | Separate candidate compatibility test before choosing upgrade. Do not confuse this with the unchanged Asana MCP package or protocol SDK. |
 | Himalaya / ClawHub / xurl | 2.2.1 /0.23.3 /1.3.4 equal latest | Retain existing safeguards/configuration. |
 | yq, glow, eza, duf, freeze, vhs, git-cliff, grex, blogwatcher | Installed versions match queried releases | Retain. gron reports dev; verify artifact checksum before calling its provenance confirmed. |
 | debugpy / nano-pdf | Source pins1.8.22 /0.2.1 match latest | Retain; effective environment selection still belongs to build acceptance. |
+| Corepack | 0.36.0 equals latest | Retain. |
 | FFmpeg | Existing custom August19 build | Retain pending capability-specific review; do not replace a custom build based only on version age. |
 | Marsha voice-call package | Retained2026.9.8 generation found | Verify selected active plugin and compatibility before convergence; package presence alone is not loaded-version proof. |
 | PostgreSQL | Live18.6, pg18 image | Retain major/image through Hindsight migration; no database-major upgrade. |
@@ -84,7 +87,7 @@ No reboot-required marker at preflight. This does not prove no process will need
 | Portainer | 2.45.2 to2.45.3 available | Optional separate dashboard patch. |
 | Uptime Kuma | 2.5.6 to2.5.7 available | Optional; upgrading it does not fix the separately recorded missing-monitor coverage. |
 | Dozzle / Homepage | 11.3.2 to11.3.4 /2.6.0 to2.7.0 | Optional separate dashboard changes. |
-| 1Password Connect | Existing pinned October18 images | Retain until actual release/version and authenticated service checks establish need. No credential or account changes. |
+| 1Password Connect | Installed1.8.3 digest confirmed against vendor registry;1.8.4 available | Separate API/sync pair patch candidate. Require vendor-note review, preserved data/config and actual authenticated Connect proof; the working op CLI token is not a Connect token. No credential or account changes. |
 | Shared allocator/mirror/restart bridges | Custom deployments | No automatic dependency upgrade; preserve existing source and service behavior. |
 
 ## Release gates and order
