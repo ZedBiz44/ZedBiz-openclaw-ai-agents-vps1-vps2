@@ -58,7 +58,7 @@ elif action=='prepare-mem0':
  shutil.copy2(target,work/'mem0-peer-before.mjs')
  s=target.stat();target.write_bytes(pathlib.Path('/home/jackadmin/vps1-10-6-20261023/repair-mem0-host-peer.mjs').read_bytes());os.chown(target,s.st_uid,s.st_gid)
  print(json.dumps({'preparedMem0Guard':True,'scope':'restored copy'}),flush=True)
-elif action in ['lint','migrate','plugins','mem0']:
+elif action in ['lint','migrate','plugins','mem0','models','model-probe']:
  assert (work/'checkpoint.json').exists()
  args=['docker','run','--rm','--network','mem0-dev_mem0_network','--network','openclaw','--memory','3g','--env-file',str(work/'runtime.env'),'--user','node','--entrypoint','node']
  for m in json.loads((work/'mounts-before.json').read_text()):
@@ -69,7 +69,9 @@ elif action in ['lint','migrate','plugins','mem0']:
   else:
    args+=['-v',src+':'+dst+':ro'];continue
   args+=['-v',src+':'+dst+('' if m['RW'] else ':ro')]
- command={'lint':['doctor','--lint','--json'],'migrate':['doctor','--fix','--non-interactive'],'plugins':['plugins','list','--json'],'mem0':[]}[action]
+ command={'lint':['doctor','--lint','--json'],'migrate':['doctor','--fix','--non-interactive'],'plugins':['plugins','list','--json'],'mem0':[],
+ 'models':['models','status','--json'],
+ 'model-probe':['agent','--local','--agent','main','--session-id','cody-10-6-restored-model-proof','--message','Read-only upgrade rehearsal. Reply exactly MODEL_OK. Do not call tools, modify files, send messages, or delegate.','--json']}[action]
  if action=='mem0':
   args[args.index('--entrypoint')+1]='sh'
   args+=[image,'/home/node/.openclaw/workspace/ensure-mem0-compat.sh']
