@@ -3,6 +3,10 @@ import pathlib,subprocess,json,time,os,sys
 P=pathlib.Path;os.umask(0o077);W=P('/opt/openclaw/backups/host-20261024');label=sys.argv[1];before=json.loads((W/'before.json').read_text());names=[n for n in before['containers'] if (P('/opt/openclaw/agents')/n/'config/openclaw.json').is_file()];assert len(names)==11
 out=[];deadline=time.monotonic()+900
 for n in names:
+ probe=subprocess.run(['docker','inspect',n],capture_output=True,text=True)
+ if n=='terry' and probe.returncode!=0:
+  state=subprocess.check_output(['systemctl','show','openclaw-terry.service','-p','ActiveState','--value'],text=True).strip();result=subprocess.check_output(['systemctl','show','openclaw-terry.service','-p','Result','--value'],text=True).strip();assert label=='before-reboot' and state=='inactive' and result=='success'
+  row={'agent':n,'managedStoppedBeforeReboot':True,'activeWork':{},'runningSchedules':0};out.append(row);print(json.dumps(row),flush=True);continue
  while True:
   d=json.loads(subprocess.check_output(['docker','inspect',n]))[0]
   assert d['State']['Running'] and d['Image']==before['containers'][n]['image'] and not d['State']['OOMKilled'] and d['RestartCount']==0
