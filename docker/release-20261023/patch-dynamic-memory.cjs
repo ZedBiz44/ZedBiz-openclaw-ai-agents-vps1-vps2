@@ -41,4 +41,3 @@ fs.writeFileSync(path, patched);
 console.log(JSON.stringify({before, after, assertions: 6,
   beforeHash: crypto.createHash('sha256').update(source).digest('hex'),
   afterHash: crypto.createHash('sha256').update(patched).digest('hex')}));
-
