@@ -72,6 +72,9 @@ if action in ['migrate','plugin-update','plugin-plan']:
  assert action=='migrate' or agent=='gohzed'
  tail=['doctor','--fix','--non-interactive'] if action=='migrate' else ['plugins','update','@vectorize-io/hindsight-openclaw@1.2.0']
  if action=='plugin-plan':tail+=['--dry-run']
+ # Reviewed 1.2 manifest declares the requested memory/knowledge tools; no new secret inputs.
+ # Knowledge deletion stays disabled, and existing bank routing is retained.
+ if action=='plugin-update':tail+=['--accept-capabilities']
  with (w/(action+'.log')).open('w') as out:p=subprocess.run(args()+tail,stdout=out,stderr=subprocess.STDOUT)
  if action=='plugin-update' and p.returncode==0:
   config=stage/'config/openclaw.json';c=json.loads(config.read_text())
