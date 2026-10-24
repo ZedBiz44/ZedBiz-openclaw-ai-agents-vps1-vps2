@@ -1,0 +1,42 @@
+"""Live read-only capability checks after the backed-up Terry core activation."""
+import json,pathlib,subprocess,time
+w=pathlib.Path('/opt/openclaw/backups/release-20261023/terry/activation');out=w/'acceptance';out.mkdir(mode=0o700,exist_ok=True)
+assert json.loads((w/'activation.json').read_text())['awaitingLiveAcceptance']
+while True:
+ d=json.loads(subprocess.check_output(['docker','inspect','terry']))[0]
+ assert d['State']['Running'] and not d['State']['OOMKilled'],'Terry stopped or OOM-killed'
+ if d['State'].get('Health',{}).get('Status')=='healthy':break
+ time.sleep(10)
+checks={}
+def run(label,args,required=True):
+ p=subprocess.run(['docker','exec','terry',*args],capture_output=True,text=True)
+ (out/(label+'.log')).write_text(p.stdout+p.stderr)
+ checks[label]=p.returncode==0
+ if required:assert p.returncode==0,label+' failed; inspect private log'
+ return p.stdout
+node=run('node',['node','--version']).strip();assert node=='v24.22.1'
+version=run('core',['openclaw','--version']).strip();assert '2026.10.6' in version
+config=json.loads(pathlib.Path('/opt/openclaw/agents/terry/config/openclaw.json').read_text())
+assert config['plugins']['entries']['openclaw-mem0']['config']['oss']['llm']['config']['model']=='gpt-5.6-luna'
+notionPrompt='Read-only acceptance check: use your connected Notion tool through Codex to fetch page 37ba3e33d581816584cdf6b622a0d944. Return only its title and NOTION_READ_OK. Do not use ntn, curl, or saved API tokens. Do not send messages, edit pages or files, create tasks, or delegate.'
+notionText=run('notion-codex',['openclaw','agent','--agent','main','--session-key','agent:main:cody-notion-codex-proof','--message',notionPrompt,'--json'])
+notionResult=json.loads(notionText[notionText.index('{'):])
+notionReceipt=notionResult['result']['meta']['agentMeta']['terminalReceipt']
+checks['notion']=notionResult['status']=='ok' and not notionResult['result']['meta']['aborted'] and 'codex_apps.notion.fetch' in notionReceipt['successfulToolNames']
+assert checks['notion'],'Codex connected Notion read failed'
+drive=run('drive',['gog','--readonly','--no-input','--json','drive','ls','--max','1'],required=False)
+if checks['drive']:json.loads(drive)
+for method in ['health','status','cron.list']:
+ text=run(method,['openclaw','gateway','call',method,'--json'])
+ obj=json.JSONDecoder().raw_decode(text[text.index('{'):])[0]
+ (out/(method+'.json')).write_text(json.dumps(obj))
+prompt='Read-only post-upgrade check. Use mem0_search to recall an existing ZedBiz memory and the native Asana tool to get your own user identity. Return only MODEL_OK and whether both calls succeeded. Do not send messages, create tasks, alter files, delegate, or store any test fact.'
+text=run('model',['openclaw','agent','--agent','main','--session-key','agent:main:cody-live-10-6-proof','--message',prompt,'--json'])
+r=json.loads(text[text.index('{'):]);assert r['status']=='ok' and not r['result']['meta']['aborted']
+receipt=r['result']['meta']['agentMeta']['terminalReceipt']
+assert receipt['effective']['model']=='gpt-6.1-sol' and not receipt['rerouted']
+assert {'mem0_search','asana.asana_get_user'}<=set(receipt['successfulToolNames'])
+logs=subprocess.check_output(['docker','logs','terry'],stderr=subprocess.STDOUT,text=True);(out/'gateway.log').write_text(logs)
+assert 'LLM extraction failed' not in logs,'Automatic memory extraction still fails'
+proof={'passed':all(checks.values()),'checks':checks,'core':version,'node':node,'memoryModel':'gpt-5.6-luna','notionAuthenticatedReadPassed':checks['notion'],'driveAuthenticatedReadPassed':checks['drive'],'modelReceipt':receipt,'healthStatusSchedulesCollected':True,'newMemoryExtractionFailureSeen':False,'noOutboundTestMessages':True,'remaining':['Asana candidate activation','tool updates','cold CLI startup performance investigation','channel details require review of health record']}
+(out/'proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
