@@ -15,9 +15,9 @@ config.vectorStore.config={url:'http://release-20261023-mem0-proof:6333',collect
 config.disableHistory=true;
 config.customInstructions=entry.customInstructions;
 const memory=new Memory(config);
-const userId='release-proof-20261023';
+const userId='release-proof-20261023-'+Date.now();
 const added=await memory.add([{role:'user',content:'For this isolated test, my preferred project marker is amber-lighthouse-731.'}],{userId});
 assert(added.results?.length>0,'Extraction returned no saved facts');
-const recalled=await memory.search('What is my preferred project marker?',{userId,limit:3});
+const recalled=await memory.search('What is my preferred project marker?',{filters:{userId},limit:3});
 assert(JSON.stringify(recalled).includes('amber-lighthouse-731'),'Saved fact was not recalled');
 console.log(JSON.stringify({passed:true,model:config.llm.config.model,extractedFacts:added.results.length,recallPassed:true,productionVectorStoreUsed:false}));
