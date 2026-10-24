@@ -7,7 +7,10 @@ let coordinate;
 for (const name of files.filter(name => name.startsWith('presentation-') && name.endsWith('.mjs'))) {
   if ((await fs.readFile('/app/dist/' + name, 'utf8')).includes('zedbiz-wiki-flock-v1')) {
     const module = await import('/app/dist/' + name);
-    coordinate = module.b;
+    const source = await fs.readFile('/app/dist/' + name, 'utf8');
+    const exported = source.match(/withMemoryWikiVaultMutation as ([A-Za-z0-9_]+)/);
+    assert.ok(exported, 'Coordinator export missing');
+    coordinate = module[exported[1]];
   }
 }
 assert.equal(typeof coordinate, 'function');
