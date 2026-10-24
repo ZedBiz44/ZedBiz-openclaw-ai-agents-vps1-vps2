@@ -1,0 +1,24 @@
+ARG UPSTREAM_IMAGE=ghcr.io/openclaw/openclaw@sha256:7dbff0fe5f5359b1badefe90a23efa9f203cd0d3c36bee095f4896c7a1d3864b
+ARG BASE_IMAGE
+FROM ${UPSTREAM_IMAGE} AS upstream
+FROM ${BASE_IMAGE}
+ARG COHORT
+USER root
+RUN test -f /app/openclaw.mjs && rm -rf /app
+COPY --from=upstream /app /app
+COPY --from=upstream /usr/local/bin/node /usr/local/bin/node
+ENV NODE_VERSION=24.22.1
+COPY wiki-lock/ /opt/zedbiz/wiki-lock/
+COPY patch-dynamic-memory.cjs /opt/zedbiz/patch-dynamic-memory-10-6.cjs
+COPY patch-core.py /opt/zedbiz/patch-core-10-6.py
+COPY patch-amanda-active-work.cjs /opt/zedbiz/patch-amanda-active-work-10-6.cjs
+COPY marsha-owner-scheduling.mjs /opt/zedbiz/marsha-owner-scheduling-10-6.mjs
+RUN python3 /opt/zedbiz/patch-core-10-6.py \
+ && python3 /opt/zedbiz/wiki-lock/patch.py /app \
+ && python3 /opt/zedbiz/wiki-lock/verify.py \
+ && if [ "$COHORT" = amanda ]; then node /opt/zedbiz/patch-amanda-active-work-10-6.cjs /app/dist/diagnostic-stuck-session-recovery.runtime-CZf9xpaE.mjs; fi \
+ && if [ "$COHORT" = marsha ]; then OPENCLAW_PATCH_BACKUP=/opt/zedbiz/marsha-10-6-originals node /opt/zedbiz/marsha-owner-scheduling-10-6.mjs --apply; fi \
+ && test "$(node --version)" = v24.22.1 \
+ && node /app/openclaw.mjs --version
+LABEL com.zedbiz.release="2026.10.6-20261023" com.zedbiz.wiki-lock="flock-v1"
+USER node
