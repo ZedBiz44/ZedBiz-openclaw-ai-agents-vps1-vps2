@@ -1,0 +1,74 @@
+[
+  {
+    "source": "/root/cody-frank-maintenance-20261003",
+    "originalBytes": 1989316608,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-frank-maintenance-20261003.tar.gz",
+    "archiveBytes": 656101800,
+    "sha256": "8e0601f731e4aa03bb6a3a00ceba6ec85493ef7627d15935a00d7234e57855b6",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/cody-suzy-maintenance-20261003",
+    "originalBytes": 2618343424,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-suzy-maintenance-20261003.tar.gz",
+    "archiveBytes": 807097202,
+    "sha256": "36ca84c5dad7c1487bd2822104fd72981198da65aded709dea2fe7be2186c737",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/cody-harry-maintenance-20261003",
+    "originalBytes": 22143229952,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-harry-maintenance-20261003.tar.gz",
+    "archiveBytes": 13244257944,
+    "sha256": "361c01271212c1283c09029fbe8dfa05e5a4d9c628b68c1039acc40e1494229d",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/cody-vps2-20261018",
+    "originalBytes": 16482316288,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-vps2-20261018.tar.zst",
+    "archiveBytes": 6460168012,
+    "sha256": "d7abeabcf2f3232d3868acb2a3b7b586c8b63bab7e8fbb3716a2ec2a5097a542",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/cody-components-20261018",
+    "originalBytes": 2770546688,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-components-20261018.tar.zst",
+    "archiveBytes": 1875888472,
+    "sha256": "219e51dff8d764c27bd57cff77d10742e26a0dc35ad277633221443bcfe8852a",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/cody-vps2-followup-20261003",
+    "originalBytes": 23438548992,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/cody-vps2-followup-20261003.tar.zst",
+    "archiveBytes": 19861712302,
+    "sha256": "f1d444b5370c221cc1b5e4c9ba724fdd6ddc416cd0ae62592a4654426f26d84f",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/openclaw-fleet94-20260912",
+    "originalBytes": 8485208064,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/openclaw-fleet94-20260912.tar.zst",
+    "archiveBytes": 3639445407,
+    "sha256": "94c8bab4b233977a9ac8e46b8d42ff978d1520669e89d8f6ba76662fe1580745",
+    "contentCompared": true
+  },
+  {
+    "source": "/root/openclaw-pilot-20260912",
+    "originalBytes": 4502671360,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/openclaw-pilot-20260912.tar.zst",
+    "archiveBytes": 4496056821,
+    "sha256": "0491ed8d54258325f415931de3bb4ad7c354d548c62fc8bc161e5f0f6828226f",
+    "contentCompared": true
+  },
+  {
+    "source": "/opt/zedbiz-tests/mem0-clean-20260929",
+    "originalBytes": 2171645952,
+    "archive": "/root/zedbiz-maintenance-archives/2026-10-23/mem0-clean-20260929.tar.zst",
+    "archiveBytes": 652003270,
+    "sha256": "26b60c968b6ca57925ee871a5375b1ea95c64e9f94a7783a7f462ecbc6427729",
+    "contentCompared": true
+  }
+]
