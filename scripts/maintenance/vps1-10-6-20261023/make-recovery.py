@@ -1,9 +1,14 @@
 """Archive candidate images and prove recovery in an independent Docker store."""
 import hashlib,json,os,pathlib,shutil,subprocess,sys,time
 os.umask(0o077)
-root=pathlib.Path('/opt/openclaw/recovery/release-20261023-core')
+fleet=sys.argv[2:]==['fleet']
+root=pathlib.Path('/opt/openclaw/recovery/release-20261023-'+('fleet' if fleet else 'core'))
 root.mkdir(mode=0o700,parents=True,exist_ok=True)
 refs=['zedbiz/openclaw-base:2026.10.6-core-20261023','zedbiz/asana-http-mcp:2.0.0-components-20261018']
+if fleet:
+ cohorts=json.loads(pathlib.Path('/opt/openclaw/backups/release-20261023/cohort-builds/images.json').read_text())
+ assert {x['agent'] for x in cohorts}=={'amanda','victor','wilma','grogar','maggie','marsha'}
+ refs=[refs[0],*[x['ref'] for x in cohorts],'zedbiz/asana-http-mcp:2.0.0-components-20261023','zedbiz/asana-http-mcp:2.0.0-edith-components-20261023','zedbiz/hindsight:1.1.0-flashrank-20261023']
 def sha(p):
  with pathlib.Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 if sys.argv[1]=='archive':
@@ -49,7 +54,7 @@ elif sys.argv[1]=='clean-proof-store':
  assert proof['allImageIdsVerified'] and proof['archiveSha256']==catalog['sha256']
  assert pathlib.Path(catalog['archive']).is_file()
  p=root/'native-proof'
- assert p.resolve()==pathlib.Path('/opt/openclaw/recovery/release-20261023-core/native-proof')
+ assert p.resolve() in [pathlib.Path('/opt/openclaw/recovery/release-20261023-'+scope+'/native-proof') for scope in ['core','fleet']]
  for name in ['release-20261023-docker-proof','release-20261023-containerd-proof']:
   assert subprocess.run(['docker','inspect',name],capture_output=True).returncode!=0
  for entry in pathlib.Path('/proc').glob('[0-9]*/mountinfo'):
