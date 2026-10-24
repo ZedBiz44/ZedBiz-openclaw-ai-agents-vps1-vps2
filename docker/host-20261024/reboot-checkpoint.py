@@ -4,9 +4,9 @@ P=pathlib.Path;os.umask(0o077);W=P('/opt/openclaw/backups/host-20261024');D=W/'d
 def sha(p):
  with P(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 def run(a):return subprocess.run(a,capture_output=True,text=True,timeout=900)
-fleet=json.loads((W/'before-reboot-fleet.json').read_text());assert len(fleet)==11
-assert all(x['activeWork'] is not None and not any(x['activeWork'].values()) and x['runningSchedules']==0 for x in fleet),'Active or unknown work; refresh fleet check and wait'
-proof={'sqlite':[],'postgres':{},'qdrant':[],'bootIdBefore':P('/proc/sys/kernel/random/boot_id').read_text().strip()}
+baseline=json.loads((W/'before.json').read_text());fleet=[{'agent':n} for n in baseline['containers'] if (P('/opt/openclaw/agents')/n/'config/openclaw.json').is_file()];assert len(fleet)==11
+# These are consistent online copies; a separate fresh fleet-idle gate is required before reboot.
+proof={'sqlite':[],'postgres':{},'qdrant':[],'consistentOnlineBackups':True,'bootIdBefore':P('/proc/sys/kernel/random/boot_id').read_text().strip()}
 for row in fleet:
  base=P('/opt/openclaw/agents')/row['agent'];out=D/row['agent'];out.mkdir(mode=0o700,exist_ok=True)
  # Consistent SQLite backup APIs retain committed WAL content without copying live files.
