@@ -1,0 +1,23 @@
+// Real extraction and recall against a disposable, empty Qdrant instance.
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root='/home/node/.openclaw';
+const projects=path.join(root,'npm/projects');
+const packageDir=fs.readdirSync(projects).filter(x=>x.startsWith('mem0-')).map(x=>path.join(projects,x,'node_modules/mem0ai/dist/oss/index.mjs')).find(x=>fs.existsSync(x));
+assert(packageDir);
+const {Memory}=await import(packageDir);
+const entry=JSON.parse(fs.readFileSync(path.join(root,'openclaw.json'),'utf8')).plugins.entries['openclaw-mem0'].config;
+const config=structuredClone(entry.oss);
+assert.equal(config.llm.config.model,'gpt-4.1-nano-2025-04-14');
+config.llm.config.model='gpt-5.6-luna';
+config.vectorStore.config={url:'http://release-20261023-mem0-proof:6333',collectionName:'release_extraction_proof'};
+config.disableHistory=true;
+config.customInstructions=entry.customInstructions;
+const memory=new Memory(config);
+const userId='release-proof-20261023';
+const added=await memory.add([{role:'user',content:'For this isolated test, my preferred project marker is amber-lighthouse-731.'}],{userId});
+assert(added.results?.length>0,'Extraction returned no saved facts');
+const recalled=await memory.search('What is my preferred project marker?',{userId,limit:3});
+assert(JSON.stringify(recalled).includes('amber-lighthouse-731'),'Saved fact was not recalled');
+console.log(JSON.stringify({passed:true,model:config.llm.config.model,extractedFacts:added.results.length,recallPassed:true,productionVectorStoreUsed:false}));
