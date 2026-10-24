@@ -6,6 +6,19 @@ base=pathlib.Path('/opt/openclaw/agents')/agent
 w=pathlib.Path('/opt/openclaw/backups/release-20261023')/agent;stage=w/'rehearsal'
 name='release-20261023-'+agent+'-gateway'
 candidate='zedbiz/'+('amanda' if agent=='amanda' else 'openclaw-base')+':2026.10.6-core-20261023'
+if action=='release-cloned-lease':
+ assert stage.resolve()==pathlib.Path('/opt/openclaw/backups/release-20261023')/agent/'rehearsal'
+ for container in subprocess.check_output(['docker','ps','-q'],text=True).split():
+  d=json.loads(subprocess.check_output(['docker','inspect',container]))[0]
+  assert not any(m['Source'].startswith(str(stage)+'/') for m in d['Mounts']),'A rehearsal process still owns this copy'
+ p=stage/'config/state/openclaw.sqlite'
+ with sqlite3.connect(p) as db:
+  rows=db.execute("select * from state_leases where scope='gateway-owner' and lease_key='global'").fetchall()
+  assert len(rows)==1 and db.execute('select count(*) from state_leases').fetchone()[0]==1
+  assert db.execute('select count(*) from agent_database_leases').fetchone()[0]==0
+  (w/'cloned-owner-lease-before.json').write_text(json.dumps(rows))
+  db.execute("delete from state_leases where scope='gateway-owner' and lease_key='global'")
+ print('Released only the copied gateway owner lease; live database untouched',flush=True);sys.exit()
 if action=='prepare':
  w.mkdir(mode=0o700)
  d=json.loads(subprocess.check_output(['docker','inspect',agent]))[0]
