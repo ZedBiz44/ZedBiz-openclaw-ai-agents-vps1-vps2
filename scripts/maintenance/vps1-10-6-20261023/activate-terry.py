@@ -7,7 +7,7 @@ import hashlib,json,os,pathlib,shutil,sqlite3,subprocess,sys,time
 os.umask(0o077)
 name='terry';live=pathlib.Path('/opt/openclaw/agents/terry')
 rehearsal=pathlib.Path('/opt/openclaw/backups/release-20261023/terry')
-work=rehearsal/'activation';work.mkdir(mode=0o700)
+work=rehearsal/'activation'
 candidate='zedbiz/openclaw-base:2026.10.6-core-20261023'
 recovery=pathlib.Path('/opt/openclaw/recovery/release-20261023-core')
 manifest=pathlib.Path('/opt/openclaw/recovery/fleet-20261018/terry/manifest.json')
@@ -27,6 +27,7 @@ def rpc(method,params=None):
 assert json.loads((rehearsal/'rehearsal-preservation.json').read_text())['passed']
 assert json.loads((rehearsal/'rehearsal-migrate-receipt.json').read_text())['exit']==0
 assert json.loads((rehearsal/'readiness-gate.json').read_text())['passed'],'Rehearsal acceptance gate required'
+work.mkdir(mode=0o700)
 catalog=json.loads((recovery/'catalog.json').read_text());proof=json.loads((recovery/'archive-proof.json').read_text())
 assert proof['allImageIdsVerified'] and proof['archiveSha256']==catalog['sha256']
 assert sha(catalog['archive'])==catalog['sha256']
@@ -80,6 +81,14 @@ try:
  assert compare.count(old)==1
  compare=compare.replace(old,"w=pathlib.Path("+repr(str(work))+");stage=pathlib.Path("+repr(str(live))+");ref=w/'comparison-original'")
  exec(compile(compare,'preservation-check','exec'),{'__name__':'__main__'})
+ # API shutdown on 2026-10-23: preserve the memory workload and use its documented replacement.
+ configPath=live/'config/openclaw.json';config=json.loads(configPath.read_text())
+ llm=config['plugins']['entries']['openclaw-mem0']['config']['oss']['llm']
+ assert llm['provider']=='openai' and llm['config']['model']=='gpt-4.1-nano-2025-04-14'
+ assert json.loads((rehearsal/'mem0-extraction-proof.json').read_text())['passed']
+ llm['config']['model']='gpt-5.6-luna'
+ configPath.write_text(json.dumps(config,indent=2)+'\n')
+ (work/'memory-model-migration.json').write_text(json.dumps({'from':'gpt-4.1-nano-2025-04-14','to':'gpt-5.6-luna','reason':'Official shutdown 2026-10-23','isolatedExtractionAndRecallPassed':True}))
  text=(live/'docker-compose.yml').read_text();assert text.count(d['Config']['Image'])==1
  (live/'docker-compose.yml').write_text(text.replace(d['Config']['Image'],candidate))
  m=json.loads(manifest.read_text());m.update(archive=catalog['archive'],sha256=catalog['sha256'],images=[{'ref':r,'id':ids[r],'automatic':True} for r in sorted(set(newrefs))]);manifest.write_text(json.dumps(m,indent=2))
