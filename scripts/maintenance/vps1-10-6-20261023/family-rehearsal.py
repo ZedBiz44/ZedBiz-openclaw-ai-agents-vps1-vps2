@@ -6,6 +6,17 @@ base=pathlib.Path('/opt/openclaw/agents')/agent
 w=pathlib.Path('/opt/openclaw/backups/release-20261023')/agent;stage=w/'rehearsal'
 name='release-20261023-'+agent+'-gateway'
 candidate='zedbiz/'+('amanda' if agent=='amanda' else 'openclaw-base')+':2026.10.6-core-20261023'
+def stage_lancedb():
+ assert agent=='amanda'
+ c=json.loads((stage/'config/openclaw.json').read_text())
+ source=pathlib.Path(c['plugins']['entries']['memory-lancedb']['config']['dbPath'])
+ assert source==pathlib.Path('/opt/openclaw/shared/external-memory/lancedb/amanda')
+ assert not (w/'lancedb').exists()
+ assert not any(p.is_symlink() for p in source.rglob('*')),'Review external LanceDB links before copying'
+ subprocess.run(['cp','-a',str(source),str(w/'lancedb')],check=True)
+ (w/'lancedb-copy.json').write_text(json.dumps({'source':str(source),'isolatedCopy':str(w/'lancedb'),'liveDatabaseModified':False}))
+if action=='prepare-lancedb':
+ stage_lancedb();print('Copied Amanda external LanceDB for isolated writes',flush=True);sys.exit()
 if action=='release-cloned-lease':
  assert stage.resolve()==pathlib.Path('/opt/openclaw/backups/release-20261023')/agent/'rehearsal'
  for container in subprocess.check_output(['docker','ps','-q'],text=True).split():
@@ -53,6 +64,7 @@ if action=='prepare':
  config.write_text(json.dumps(c,indent=2)+'\n')
  shutil.copytree('/opt/openclaw/shared/knowledge/wiki',w/'wiki',copy_function=shutil.copy2)
  subprocess.run(['chown','-R','1000:1000',str(w/'wiki')],check=True)
+ if agent=='amanda':stage_lancedb()
  print('Prepared isolated '+agent+' state and SQLite snapshots',flush=True);sys.exit()
 def args(detached=False):
  a=['docker','run','-d' if detached else '--rm','--network','openclaw']
@@ -66,7 +78,11 @@ def args(detached=False):
   if src.startswith(str(base)+'/'):src=str(stage/src[len(str(base))+1:]);mode='' if m['RW'] else ':ro'
   else:mode=':ro'
   a+=['-v',src+':'+dst+mode]
- a+=['-v',str(w/'wiki')+':/opt/openclaw/shared/knowledge/wiki',candidate,'/app/openclaw.mjs']
+ a+=['-v',str(w/'wiki')+':/opt/openclaw/shared/knowledge/wiki']
+ if agent=='amanda':
+  assert (w/'lancedb').is_dir(),'External memory copy required'
+  a+=['-v',str(w/'lancedb')+':/opt/openclaw/shared/external-memory/lancedb/amanda']
+ a+=[candidate,'/app/openclaw.mjs']
  return a
 if action in ['migrate','plugin-update','plugin-plan']:
  assert action=='migrate' or agent=='gohzed'
