@@ -31,6 +31,14 @@ server.registerTool(
     title: "Analyze a public YouTube video",
     description:
       "Watch one public YouTube video with Gemini and return audio, visual, timestamp, claim, and uncertainty details.",
+    // Analysis uses store:false and does not modify the source or publish output.
+    // It contacts Google and consumes API usage; repeated calls are not idempotent.
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
     inputSchema: {
       youtube_url: z.string().describe("One public HTTPS YouTube URL."),
       question: z

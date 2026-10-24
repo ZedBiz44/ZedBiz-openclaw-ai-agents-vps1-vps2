@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ghcr.io/zedbiz44/openclaw-base:2026.8.2
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.9.4-9ae62eca-imapfix
 FROM ${BASE_IMAGE}
 
 ARG DOCKER_CLI_VERSION=29.7.2

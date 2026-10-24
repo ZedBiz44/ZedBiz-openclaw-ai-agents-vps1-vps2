@@ -1,0 +1,5 @@
+# Video cohort inherits the complete shared toolchain and patched OpenClaw.
+# Supply the immutable shared-base image ID produced by this release build.
+ARG BASE_IMAGE
+FROM ${BASE_IMAGE}
+USER node
