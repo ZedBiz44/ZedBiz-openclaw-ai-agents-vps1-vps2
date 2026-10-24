@@ -28,4 +28,12 @@ The dated scripts in scripts/ are execution evidence for this maintenance, with 
 
 ## Final verification
 
-Pending completion of historical archive consolidation and controlled reboot.
+Completed. Nine historical/test folders totaling 78.792 GiB were retained in 48.143 GiB of checked archives, reclaiming another 30.649 GiB. The retired /opt/zedbiz-tests/mem0-clean-20260929 directory is included. Current release rollback files remain separate. Final disk: 54% used, 89 GiB available (193 GiB filesystem), versus approximately 89% used / 23 GiB free before the approved cleanup.
+
+The reboot changed boot ID from 22148c68-508d-4aa0-98af-6becaa13020f to 6e26b5e3-3bb1-41fe-b058-32c38d1b8a7f. All agents, their Asana services and Caddy started automatically. Kernel 6.8.0-147-generic matches the installed expected kernel. needrestart lists no pending service/session restarts; no failed units. Only phased cloud-init remains deferred.
+
+Initial gateway checks during startup timed out at the default ten-second limit; Harry's plugin startup took about three minutes before normal operation. A memory recall initially timed out, followed by successful injected memories and explicit mem0_search. Harry recorded 440 memory.high pressure events during warm-up, but no memory.max, OOM or OOM-kill events; no service restarted. This is an observed startup delay, not a claim of long-term performance validation. No memory limits were changed. All subsequent public/CLI health, Discord, plugin, Asana identity/task and schedule checks passed. Retained business schedules: Frank 6, Harry 6, Suzy 7.
+
+All three then completed actual postboot GPT-6.1-Sol turns with rerouted=false and successful memory, own Asana identity, Notion SOP fetch, three Google Drive results and all seven CLI version checks. Harry again noted the previously absent TOOLS.md; it did not prevent any requested check. Terminal run IDs and machine-readable host verification are in 2026-10-23-followup-verification.json. Archive sizes/checksums are in 2026-10-23-recovery-archive-manifest.json. Sensitive raw logs remain protected on VPS2.
+
+GitHub publication read-back caught output truncation in the first lockfile transfer. Commit 670d386 restored the complete lockfile, and all changed/new source blob hashes were checked against the worktree before proceeding. Deployed files were unaffected. PR #478 remains the review branch and is not merged to main.
