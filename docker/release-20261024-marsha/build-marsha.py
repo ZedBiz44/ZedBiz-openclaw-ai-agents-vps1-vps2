@@ -8,13 +8,16 @@ for name,blob in expected.items():
 for a in json.loads((context/'tool-assets-proof.json').read_text()):
  with (context/'tool-assets'/a['binary']).open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==a['binarySha256']
 def inspect(ref):return json.loads(subprocess.check_output(['docker','image','inspect',ref]))[0]
-core=inspect('zedbiz/marsha:2026.10.6-core-20261023');cli=inspect('zedbiz/openclaw-base:2026.10.6-tools-20261023')
+coreRef='zedbiz/marsha:2026.10.6-core-20261023'
+core=inspect(coreRef);cli=inspect('zedbiz/openclaw-base:2026.10.6-tools-20261023')
 assert core['Id'].startswith('sha256:fa82667a2550')
 assert cli['Id']=='sha256:07671069e4d7fc7f4b426e7ad88bd8c4fb14c29fb6872a2c605843f3111de90f'
 tag='zedbiz/marsha:2026.10.6-tools-full-20261024'
 assert subprocess.run(['docker','image','inspect',tag],capture_output=True).returncode!=0,'Existing candidate; inspect before reuse'
-w=P('/opt/openclaw/backups/release-20261024-marsha');w.mkdir(mode=0o700)
-with (w/'build.log').open('w') as log:subprocess.run(['docker','build','--network','host','--build-arg','BASE_IMAGE='+core['Id'],'-f','Dockerfile.tools-full','-t',tag,'.'],cwd=context,stdout=log,stderr=subprocess.STDOUT,check=True)
+w=P('/opt/openclaw/backups/release-20261024-marsha');w.mkdir(mode=0o700,exist_ok=True)
+assert not (w/'build.json').exists(),'Do not replace a completed build'
+with (w/'build-tag-retry.log').open('x') as log:subprocess.run(['docker','build','--network','host','--build-arg','BASE_IMAGE='+coreRef,'-f','Dockerfile.tools-full','-t',tag,'.'],cwd=context,stdout=log,stderr=subprocess.STDOUT,check=True)
+assert inspect(coreRef)['Id']==core['Id'] and inspect('zedbiz/openclaw-base:2026.10.6-tools-20261023')['Id']==cli['Id'],'Build input tag moved'
 result={'sourceCommit':'05346ca11e9ca1d56789fff400edb953e75ff357','sourceBlobs':expected,'baseId':core['Id'],'cliId':cli['Id'],'candidate':tag,'candidateId':inspect(tag)['Id'],'buildSmokeTestsPassed':True}
 (w/'build.json').write_text(json.dumps(result,indent=2));print(json.dumps(result),flush=True)
 
