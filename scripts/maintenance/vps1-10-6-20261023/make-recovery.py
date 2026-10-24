@@ -55,6 +55,9 @@ elif sys.argv[1]=='clean-proof-store':
  for entry in pathlib.Path('/proc').glob('[0-9]*/mountinfo'):
   try: assert str(p) not in entry.read_text(), 'Proof store still mounted'
   except (FileNotFoundError,ProcessLookupError,PermissionError):pass
+  except OSError as e:
+   status=(entry.parent/'status').read_text()
+   assert e.errno==22 and any(x.startswith('State:') and 'Z (zombie)' in x for x in status.splitlines()), 'Cannot inspect live process mounts'
  for entry in pathlib.Path('/proc').glob('[0-9]*/cmdline'):
   try: assert str(p).encode() not in entry.read_bytes(), 'Proof store process still active'
   except (FileNotFoundError,ProcessLookupError,PermissionError):pass
