@@ -1,7 +1,9 @@
 """Restore an online database snapshot to isolated containers; no production writes."""
-import hashlib,json,os,pathlib,subprocess,time,urllib.parse,urllib.request
+import hashlib,json,os,pathlib,subprocess,sys,time,urllib.parse,urllib.request
 os.umask(0o077)
-root=pathlib.Path('/opt/openclaw/backups/release-20261023/hindsight-rehearsal');root.mkdir(mode=0o700)
+root=pathlib.Path('/opt/openclaw/backups/release-20261023/hindsight-rehearsal')
+resume=sys.argv[1:]==['resume-database-init']
+if not resume:root.mkdir(mode=0o700)
 network='release-20261023-hindsight-rehearsal';dbName=network+'-db';apiName=network+'-api'
 candidate='zedbiz/hindsight:1.1.0-flashrank-20261023'
 old=json.loads(subprocess.check_output(['docker','inspect','hindsight']))[0]
@@ -10,16 +12,26 @@ apiEnv=dict(x.split('=',1) for x in old['Config']['Env'] if '=' in x)
 dbEnv=dict(x.split('=',1) for x in db['Config']['Env'] if '=' in x)
 user=dbEnv.get('POSTGRES_USER','postgres');database=dbEnv.get('POSTGRES_DB',user)
 dump=root/'before.dump'
-with dump.open('xb') as out,(root/'dump.stderr').open('w') as err:
- subprocess.run(['docker','exec','hindsight-db','pg_dump','-U',user,'-d',database,'-Fc'],stdout=out,stderr=err,check=True)
+if not resume:
+ with dump.open('xb') as out,(root/'dump.stderr').open('w') as err:
+  subprocess.run(['docker','exec','hindsight-db','pg_dump','-U',user,'-d',database,'-Fc'],stdout=out,stderr=err,check=True)
 with dump.open('rb') as f:digest=hashlib.file_digest(f,'sha256').hexdigest()
 with (root/'dump-catalog.txt').open('w') as out:
  subprocess.run(['docker','run','--rm','--network','none','--entrypoint','pg_restore','-v',str(dump)+':/backup.dump:ro',db['Image'],'--list','/backup.dump'],stdout=out,check=True)
 assert dump.stat().st_size>1024
 (root/'database.env').write_text('\n'.join(k+'='+v for k,v in dbEnv.items() if k in ['POSTGRES_USER','POSTGRES_PASSWORD','POSTGRES_DB'])+'\n')
-subprocess.run(['docker','network','create',network],check=True,stdout=subprocess.DEVNULL)
-(root/'data').mkdir()
-subprocess.run(['docker','run','-d','--name',dbName,'--network',network,'--memory','1g','--env-file',str(root/'database.env'),'-v',str(root/'data')+':/var/lib/postgresql',db['Image']],check=True,stdout=subprocess.DEVNULL)
+if not resume:
+ subprocess.run(['docker','network','create',network],check=True,stdout=subprocess.DEVNULL)
+ (root/'data').mkdir()
+else:
+ prior=json.loads(subprocess.check_output(['docker','inspect',dbName]))[0]
+ assert not prior['State']['Running'] and prior['Image']==db['Image']
+ assert any(m['Source']==str(root/'data') and m['Destination']=='/var/lib/postgresql' for m in prior['Mounts'])
+ assert not (root/'data/18/docker/PG_VERSION').exists(),'Do not reinitialize an existing database'
+# The entrypoint changes only PGDATA ownership; its parent must also be traversable.
+os.chown(root/'data',999,999)
+if resume:subprocess.run(['docker','start',dbName],check=True,stdout=subprocess.DEVNULL)
+else:subprocess.run(['docker','run','-d','--name',dbName,'--network',network,'--memory','1g','--env-file',str(root/'database.env'),'-v',str(root/'data')+':/var/lib/postgresql',db['Image']],check=True,stdout=subprocess.DEVNULL)
 while True:
  p=subprocess.run(['docker','exec',dbName,'pg_isready','-U',user,'-d',database],capture_output=True)
  if p.returncode==0:break
