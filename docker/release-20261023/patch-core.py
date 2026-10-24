@@ -5,4 +5,3 @@ files=[p for p in root.glob('*.mjs') if 'options?.processMemoryLimitBytes ?? DEF
 assert len(files)==1,'Unexpected dynamic-memory patch target count'
 subprocess.run(['node','/opt/zedbiz/patch-dynamic-memory-10-6.cjs',str(files[0])],check=True)
 subprocess.run(['node','--check',str(files[0])],check=True)
-
