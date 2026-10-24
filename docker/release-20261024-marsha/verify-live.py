@@ -45,7 +45,9 @@ for values in d['NetworkSettings']['Ports'].values():
     with urllib.request.urlopen('http://127.0.0.1:'+b['HostPort']+'/healthz',timeout=5) as resp:ports.append({'port':b['HostPort'],'status':resp.status})
    except Exception:pass
 assert any(p['status']==200 for p in ports),'Published gateway health route failed'
+with urllib.request.urlopen('https://marsha.zbiz.ca/healthz',timeout=20) as response:publicStatus=response.status
+assert publicStatus==200,'Public HTTPS health route failed'
 with (a/'gateway-first-start.log').open('w') as f:f.write(log)
-proof={'passed':True,'versions':versions,'gatewayId':d['Image'],'sidecarId':side['Image'],'restarts':d['RestartCount'],'oom':d['State']['OOMKilled'],'retainedSchedules':len(after),'retiredBuiltinReviewJobs':len(retired),'protectedScheduleDefinitionsPreserved':True,'marshaSchedulingPatchVerified':True,'productionMemoryPolicyPreserved':True,'publishedHealth':ports,'phases':phases,'resourceSamples':samples,'activeWorkAtSample':r['status'].get('shutdownBudget',{}).get('activeWork')}
+proof={'passed':True,'versions':versions,'gatewayId':d['Image'],'sidecarId':side['Image'],'restarts':d['RestartCount'],'oom':d['State']['OOMKilled'],'retainedSchedules':len(after),'retiredBuiltinReviewJobs':len(retired),'protectedScheduleDefinitionsPreserved':True,'marshaSchedulingPatchVerified':True,'productionMemoryPolicyPreserved':True,'publishedHealth':ports,'publicHttpsHealth':publicStatus,'phases':phases,'resourceSamples':samples,'activeWorkAtSample':r['status'].get('shutdownBudget',{}).get('activeWork')}
 (w/'live-runtime-proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
 
