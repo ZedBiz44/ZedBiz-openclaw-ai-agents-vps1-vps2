@@ -3,7 +3,7 @@ import json,os,pathlib,subprocess
 root=pathlib.Path('/opt/openclaw/recovery/release-20261023-core/wiki-proof');root.mkdir(mode=0o700,parents=True,exist_ok=True)
 os.chown(root,1000,1000)
 image='zedbiz/openclaw-base:2026.10.6-core-20261023'
-base=['docker','run','--rm','--network','none','--memory','768m','--entrypoint','node','-v',str(root)+':/proof',image,'/opt/zedbiz/wiki-lock/probe.mjs','/proof']
+base=['docker','run','--rm','--network','none','--memory','768m','--entrypoint','node','-v',str(root)+':/proof','-v','/home/jackadmin/vps1-10-6-20261023/wiki-lock/probe.mjs:/opt/zedbiz/wiki-lock/probe.mjs:ro',image,'/opt/zedbiz/wiki-lock/probe.mjs','/proof']
 def call(action):
  p=subprocess.run(base+[action],capture_output=True,text=True)
  (root/(action+'.log')).write_text(p.stdout+p.stderr)
