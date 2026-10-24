@@ -1,0 +1,16 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.6-core-20261023
+FROM node:24.22.1-bookworm-slim@sha256:2dd9a4f758e173b65fee15388f7706af6fb01ef50cf7a2c0538711d67a6981ae AS tools
+RUN npm install -g --no-audit --no-fund @openai/codex@0.164.0 @google/gemini-cli@0.65.0 npm@12.2.1 \
+ && npm list --global --json > /tool-package-versions.json
+FROM ${BASE_IMAGE}
+USER root
+RUN rm -rf /usr/local/lib/node_modules/@openai/codex /usr/local/lib/node_modules/@google/gemini-cli /usr/local/lib/node_modules/npm
+COPY --from=tools /usr/local/lib/node_modules/@openai/ /usr/local/lib/node_modules/@openai/
+COPY --from=tools /usr/local/lib/node_modules/@google/ /usr/local/lib/node_modules/@google/
+COPY --from=tools /usr/local/lib/node_modules/npm/ /usr/local/lib/node_modules/npm/
+COPY --from=tools /tool-package-versions.json /opt/zedbiz/tool-package-versions-20261023.json
+RUN test "$(node --version)" = v24.22.1 \
+ && test "$(codex --version)" = 'codex-cli 0.164.0' \
+ && test "$(npm --version)" = 12.2.1 \
+ && gemini --version
+USER node
