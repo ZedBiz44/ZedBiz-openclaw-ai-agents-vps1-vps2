@@ -98,13 +98,21 @@ No reboot-required marker at preflight. This does not prove no process will need
 
 ## Release gates and order
 
-1. Finish cleanup and verify current health/recovery paths. Save the approved component decisions in the release record.
-2. Reconcile current deployed source, including Wiki flock and dynamic memory-limit patches, secret-aware startup, custom Asana and model choices. Build core/Node candidate images without activation.
-3. Back up and restore-test a representative agent. Rehearse10.6 migrations and preserve user schedules. The vendor retires only exact skill-collection-review declaration keys; compare all other rows. Do not treat event-driven learning as an equivalent weekly schedule.
-4. Pilot one Hindsight agent and one Mem0/LanceDB image family as applicable. Prove actual model, memory, Asana identity, Notion, Drive and channel status without outbound messages. Hindsight direct tools require the correct real sender context; never broaden access or fabricate identity to pass a test.
-5. Obtain the required rollout decision on concrete pilot evidence under the VPS1 SOP, then proceed sequentially within Jack's authorized scope. Preserve current activity and stop on a material regression.
-6. Rehearse Hindsight database migration separately, back up immediately before activation, preserve PostgreSQL image and approved banks, and verify existing and newly retained memory after restart. Central VPS1 Hindsight has VPS2 consumers; include their compatibility/recovery checks without silently changing their plugins.
-7. Schedule optional Docker/host/dashboard work separately from application migration. All-agent stop is not justified by a successful single-agent pilot.
+### Jack's Terry-first planning decision
+
+Jack selected Terry as the first OpenClaw 2026.10.6 pilot and requested a plan before authorizing execution. No upgrade is authorized by this planning request. Fresh registry checks confirm Mem0 1.2.1 remains current, Hindsight plugin 1.2.0, LanceDB plugin 2026.10.6, Codex 0.164.0, Gemini 0.65.0, Notion MCP 2.5.2, Asana MCP 1.8.0, MCP protocol SDK 1.32.2 and Asana API SDK 3.3.0. Installed versions above are from the completed live cleanup inventory. A subsequent read-only SSH attempt could not use the temporary key because that file is now absent; do not infer failed server health or credential rotation from that result. Revalidate approved access, live versions and refreshed package candidates before execution.
+
+Proposed execution batches, after Jack starts the work:
+
+1. **Prepare Terry.** Record current image, effective settings, Mem0 routing, jobs, active work and resource baseline. Preserve deployed Wiki locking, memory-limit fixes, startup secret handling, model selections and communication safeguards. Back up Terry and his Asana sidecar configuration; preserve exact old images and prove recovery in an isolated restored copy. Build pinned candidate images, not live npm overlays.
+2. **Terry core/runtime pilot.** Upgrade OpenClaw 2026.10.4 to 2026.10.6, Node 24.22.0 to 24.22.1 and selected core-managed plugins together. Keep Mem0 1.2.1 and shared Qdrant 1.19.2 initially. Patch Node in Terry's Asana sidecar separately with its own before/after checks. Do not change the shared Hindsight service in this batch.
+3. **Terry tools pilot.** Once core/runtime passes, test and apply the proposed CLI/tool updates in a separately identifiable image revision. Test MCP protocol SDK 1.32.2; treat Asana API SDK 3.3.0 as a separate compatibility decision. Check actual model response, tool availability, existing-memory recall, approved test-memory persistence across a new session, Asana own-user identity, Notion/Drive read, channel connectivity, startup and schedules. No outbound test messages without authorization. Compare gateway, workers, connectors and sidecar RAM under the same workload; a healthy container alone is insufficient.
+4. **Other memory families.** Propose Amanda as the LanceDB pilot, updating its managed plugin with core 10.6 and validating existing indexes/recall. Propose Gohzed as the Hindsight pilot, subject to current workload. First rehearse Hindsight 1.1.0 on a restored, isolated database with plugin 1.2.0. Prove existing memories, new memory, automatic capture in genuine sender context, routing, and permissions. Preserve PostgreSQL 18.6 and the custom FlashRank integration. Shared Hindsight activation needs compatibility checks for all VPS1/VPS2 consumers, including those still on old plugins; if mixed versions fail, prepare a coordinated service/plugin transition. Preserve an isolated rollback route for both database and image, not just the old image.
+5. **Controlled agent rollout.** Present pilot evidence and obtain the rollout decision. Update remaining agents sequentially, covering every custom image family and each memory provider. Keep failed or skipped capability checks open; revert the affected agent on material regression rather than continuing the rollout.
+6. **Shared services and host maintenance.** After application acceptance, handle Qdrant 1.20.0 as a separate Mem0 compatibility/migration test with snapshot restoration. Patch 1Password Connect API/sync together in their own tested window. Apply reviewed host security/library packages, 1Password CLI and Tailscale with access checks. Docker/containerd/Buildx/Compose need a separate planned interruption: live restore was false at inventory, so do not assume agents survive a daemon restart. Optional dashboards follow individually. Reassess reboot need from the actual transaction; do not reboot by default.
+
+Every batch records exact versions, backup/restore evidence, behavior tests, resource comparisons and unresolved findings in GitHub, with a concise Notion journal update. Existing health issues are not closed merely because an update succeeds. The prior key-exposure review remains separate and unresolved; absence of a temporary file does not establish that keys were rotated.
+
 
 ## Evidence and sources
 
@@ -119,4 +127,5 @@ No reboot-required marker at preflight. This does not prove no process will need
 - npm registry latest metadata and official GitHub release APIs were queried October23 for every listed candidate. Candidate availability does not itself establish compatibility.
 
 The operator accidentally printed SSH key material from the access file during initial discovery and disclosed this in chat. No keys were committed here. Credential rotation remains a separate unresolved security action; it was not performed during cleanup.
+
 
