@@ -15,8 +15,10 @@ if action=='release-cloned-lease':
  with sqlite3.connect(p) as db:
   rows=db.execute("select * from state_leases where scope='gateway-owner' and lease_key='global'").fetchall()
   assert len(rows)==1 and db.execute('select count(*) from state_leases').fetchone()[0]==1
-  assert db.execute('select count(*) from agent_database_leases').fetchone()[0]==0
-  (w/'cloned-owner-lease-before.json').write_text(json.dumps(rows))
+  agentRows=db.execute('select * from agent_database_leases').fetchall()
+  assert all(str(r[2]).startswith('/home/node/.openclaw/agents/') and str(r[2]).endswith('/agent/openclaw-agent.sqlite') for r in agentRows)
+  (w/'cloned-owner-lease-before.json').write_text(json.dumps({'state':rows,'agents':agentRows}))
+  db.execute('delete from agent_database_leases')
   db.execute("delete from state_leases where scope='gateway-owner' and lease_key='global'")
  print('Released only the copied gateway owner lease; live database untouched',flush=True);sys.exit()
 if action=='prepare':
