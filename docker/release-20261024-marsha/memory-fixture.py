@@ -9,7 +9,7 @@ if sys.argv[1]=='start':
  p=subprocess.run(['docker','exec',db,'psql','-U','hindsight','-d','postgres','-At','-c',"select datname from pg_database where datname='"+dbname+"'"],capture_output=True,text=True,check=True);assert not p.stdout.strip()
  subprocess.run(['docker','exec',db,'psql','-U','hindsight','-d','postgres','-v','ON_ERROR_STOP=1','-c','CREATE DATABASE '+dbname],check=True,stdout=subprocess.DEVNULL)
  prod=inspect('hindsight');e=dict(x.split('=',1) for x in prod['Config']['Env'] if '=' in x);url=urllib.parse.urlsplit(e['HINDSIGHT_API_DATABASE_URL']);auth=url.netloc.rsplit('@',1)[0]
- e['HINDSIGHT_API_DATABASE_URL']=urllib.parse.urlunsplit((url.scheme,auth+'@'+db+':5432','/'+dbname,url.query,url.fragment));e.update(HINDSIGHT_API_WORKER_ENABLED='true',HINDSIGHT_API_WORKER_MAX_SLOTS='1',HINDSIGHT_API_WORKER_CONSOLIDATION_MAX_SLOTS='1',HINDSIGHT_API_WORKER_ID='cody-marsha-isolated',HINDSIGHT_CP_ENABLED='false')
+ e['HINDSIGHT_API_DATABASE_URL']=urllib.parse.urlunsplit((url.scheme,auth+'@'+db+':5432','/'+dbname,url.query,url.fragment));e.update(HINDSIGHT_API_WORKER_ENABLED='true',HINDSIGHT_API_WORKER_MAX_SLOTS='2',HINDSIGHT_API_WORKER_CONSOLIDATION_MAX_SLOTS='1',HINDSIGHT_API_WORKER_ID='cody-marsha-isolated',HINDSIGHT_CP_ENABLED='false')
  env=w/'hindsight-fixture.env';env.write_text('\n'.join(k+'='+v for k,v in e.items())+'\n')
  # Existing API fixture remains stopped with its original database and backlog intact.
  old=inspect('release-20261023-hindsight-rehearsal-api');(w/'prior-fixture-state.json').write_text(json.dumps({'apiWasRunning':old['State']['Running'],'apiId':old['Id'],'originalDatabaseUnchanged':True}))
@@ -23,6 +23,14 @@ if sys.argv[1]=='start':
   time.sleep(2)
  else:raise RuntimeError('Isolated API readiness deadline')
  result={'container':name,'imageId':prod['Image'],'backendVersionMatchesProduction':True,'emptyDatabase':dbname,'workerEnabled':True,'copiedBacklogReplayed':False};(w/'memory-fixture.json').write_text(json.dumps(result));print(json.dumps(result),flush=True)
+elif sys.argv[1]=='resume-retain':
+ d=inspect(name);proof=json.loads((w/'memory-fixture.json').read_text());assert d['Image']==proof['imageId'] and list(d['NetworkSettings']['Networks'])==[network]
+ env=w/'hindsight-fixture.env';e=dict(x.split('=',1) for x in env.read_text().splitlines() if '=' in x);assert dbname in e['HINDSIGHT_API_DATABASE_URL'] and e['HINDSIGHT_API_WORKER_ID']=='cody-marsha-isolated'
+ shutil=__import__('shutil');shutil.copy2(env,w/'hindsight-fixture-env-before-slots.env');e['HINDSIGHT_API_WORKER_MAX_SLOTS']='2';env.write_text('\n'.join(k+'='+v for k,v in e.items())+'\n')
+ with (w/'memory-fixture-before-slots.log').open('w') as f:subprocess.run(['docker','logs',name],stdout=f,stderr=subprocess.STDOUT)
+ subprocess.run(['docker','stop',name],check=True,stdout=subprocess.DEVNULL);subprocess.run(['docker','rm',name],check=True,stdout=subprocess.DEVNULL)
+ subprocess.run(['docker','run','-d','--name',name,'--network',network,'--memory','1536m','--memory-swap','1536m','--env-file',str(env),d['Image'],*d['Config']['Cmd']],check=True,stdout=subprocess.DEVNULL)
+ print(json.dumps({'testWorkerSlots':2,'consolidationReservedSlots':1,'retainSlots':1,'testQueuePreserved':True,'productionUnchanged':True}),flush=True)
 elif sys.argv[1]=='stop':
  if subprocess.run(['docker','inspect',name],capture_output=True).returncode==0:
   with (w/'memory-fixture.log').open('w') as f:subprocess.run(['docker','logs',name],stdout=f,stderr=subprocess.STDOUT)
