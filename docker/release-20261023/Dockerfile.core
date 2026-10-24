@@ -18,4 +18,3 @@ RUN python3 /opt/zedbiz/patch-core-10-6.py \
  && node /app/openclaw.mjs --version
 LABEL com.zedbiz.release="2026.10.6-20261023" com.zedbiz.wiki-lock="flock-v1"
 USER node
-
