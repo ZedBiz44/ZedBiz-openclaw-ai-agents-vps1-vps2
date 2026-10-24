@@ -51,7 +51,14 @@ if action=='backup':
  assert checked
  result={'archive':str(archive),'sha256':sha(archive),'restoredDatabases':checked,'originalImage':d['Image'],'stage':str(stage)}
  (work/'checkpoint.json').write_text(json.dumps(result,indent=2));print(json.dumps(result),flush=True)
-elif action in ['lint','migrate','plugins']:
+elif action=='prepare-mem0':
+ assert (work/'checkpoint.json').exists()
+ target=stage/'config/scripts/repair-mem0-host-peer.mjs'
+ assert target.is_file() and '2026.10.6' not in target.read_text()
+ shutil.copy2(target,work/'mem0-peer-before.mjs')
+ s=target.stat();target.write_bytes(pathlib.Path('/home/jackadmin/vps1-10-6-20261023/repair-mem0-host-peer.mjs').read_bytes());os.chown(target,s.st_uid,s.st_gid)
+ print(json.dumps({'preparedMem0Guard':True,'scope':'restored copy'}),flush=True)
+elif action in ['lint','migrate','plugins','mem0']:
  assert (work/'checkpoint.json').exists()
  args=['docker','run','--rm','--network','host','--memory','3g','--env-file',str(work/'runtime.env'),'--user','node','--entrypoint','node']
  for m in json.loads((work/'mounts-before.json').read_text()):
@@ -62,8 +69,11 @@ elif action in ['lint','migrate','plugins']:
   else:
    args+=['-v',src+':'+dst+':ro'];continue
   args+=['-v',src+':'+dst+('' if m['RW'] else ':ro')]
- command={'lint':['doctor','--lint','--json'],'migrate':['doctor','--fix','--non-interactive'],'plugins':['plugins','list','--json']}[action]
- args+=[image,'/app/openclaw.mjs',*command]
+ command={'lint':['doctor','--lint','--json'],'migrate':['doctor','--fix','--non-interactive'],'plugins':['plugins','list','--json'],'mem0':[]}[action]
+ if action=='mem0':
+  args[args.index('--entrypoint')+1]='sh'
+  args+=[image,'/home/node/.openclaw/workspace/ensure-mem0-compat.sh']
+ else:args+=[image,'/app/openclaw.mjs',*command]
  with (work/('rehearsal-'+action+'.log')).open('w') as out:p=subprocess.run(args,stdout=out,stderr=subprocess.STDOUT)
  print(json.dumps({'phase':action,'exit':p.returncode,'privateLog':str(work/('rehearsal-'+action+'.log'))}),flush=True)
  sys.exit(p.returncode)
