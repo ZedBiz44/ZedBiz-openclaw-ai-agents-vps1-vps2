@@ -4,7 +4,7 @@ name=sys.argv[1];label=sys.argv[2]
 assert name in ['marsha','cody-marsha-10-6-rehearsal']
 d=json.loads(subprocess.check_output(['docker','inspect',name]))[0]
 env=w/(label+'-rpc-runtime.env');env.write_text('\n'.join(d['Config']['Env'])+'\n')
-a=['docker','run','--rm','-i','--pid=container:'+name,'--hostname',d['Config']['Hostname'],'--network','openclaw','--memory','512m','--user','node','--env-file',str(env),'--entrypoint','node','-e','CODY_RPC_HOST='+name]
+a=['docker','run','--rm','-i','--pid=container:'+name,'--hostname',d['Config']['Hostname'],'--network','container:'+name,'--memory','512m','--user','node','--env-file',str(env),'--entrypoint','node','-e','CODY_RPC_HOST=127.0.0.1']
 for m in d['Mounts']:
  if m['Destination'].startswith('/home/node/.openclaw'):a+=['-v',m['Source']+':'+m['Destination']+':ro']
 a+=['zedbiz/openclaw-base:2026.10.6-core-20261023','--input-type=module']
