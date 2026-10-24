@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "memoryPluginVersion": "1.2.1",
+  "receipt": {
+    "runId": "0f115af1-8adc-4d10-91cd-9581f2c6146d",
+    "sessionId": "afe3691d-c8cb-485b-bce5-d972bddea825",
+    "turnId": "01a16ee6-f97f-7b10-8a04-b3986071a39e",
+    "requested": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol"
+    },
+    "effective": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "responseModel": "gpt-6.1-sol"
+    },
+    "successfulToolNames": [
+      "mem0_search"
+    ],
+    "assistantTranscriptIdempotencyKey": "codex-app-server:01a16ee6-f87a-79a2-bcfc-21db1bddac42:01a16ee6-f97f-7b10-8a04-b3986071a39e:assistant",
+    "rerouted": false,
+    "terminalDisposition": "visible"
+  },
+  "payloads": [
+    {
+      "text": "Memory recall succeeded. `mem0_search` retrieved an existing fact: ZedBiz runs a VPS-hosted agent system with concise memories for project status, preferences, and system checks.",
+      "mediaUrl": null
+    }
+  ],
+  "health": true
+}

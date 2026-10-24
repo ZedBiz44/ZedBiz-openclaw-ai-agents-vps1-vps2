@@ -1,0 +1,4 @@
+[
+  {"op":"test","path":"/plugins/entries/openclaw-mem0/config/oss/llm/config/model","value":"gpt-4.1-nano-2025-04-14"},
+  {"op":"replace","path":"/plugins/entries/openclaw-mem0/config/oss/llm/config/model","value":"gpt-6-luna"}
+]
