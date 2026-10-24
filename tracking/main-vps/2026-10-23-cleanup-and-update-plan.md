@@ -21,7 +21,13 @@ Current image families include the shared base plus Amanda, Grogar, Maggie, Mars
 - Retain the unreferenced Docker volumes until their recovery role is established. Inspection found about 1.82 GB in an October 18 PostgreSQL 18 volume, 0.93 GB in legacy Hindsight data, and 48 MB in a Mem0 development PostgreSQL volume. These are database contents, not established disposable caches. Other unused volumes contain tiny Caddy/Filebrowser state or are empty. No broad system/volume prune.
 - Edith has about12.8GiB in project folder-cleanup working material; Vivian has about14.8GiB of media projects. No asset deletion without source/duplicate/ongoing-use evidence. Whisper model cache is retained because it supports a tool.
 
-Final reclaimed bytes and verification are recorded separately after all running archive work finishes. Initial directory sizes are occupied bytes, not promised savings: backups165.7GiB, image recovery30.0GiB, agents67.3GiB, Hindsight service directory10.9GiB, mostly scheduled backups.
+Cleanup completed at 18:47 MDT on October 23 (00:47 UTC October 24). All 22 historical archives passed original-versus-decompressed SHA256 verification, full tar traversal and sample extraction. Their file sizes fell by 60,812,943,784 bytes (56.64 GiB). Both rehearsal archives passed every-file verification before their extracted folders were removed: 121,872 entries preserved, with a further 4.89 GiB reduction in regular-file bytes. All 783 dated loose files are preserved in eleven verified archives, reducing their file bytes by another 8,538,136 bytes. These file-size reductions are distinct from allocated filesystem blocks.
+
+Final filesystem free space was 101.07 GiB, about 74% used, compared with approximately 40 GiB free and 90% used initially. Ordinary live activity can affect the exact free-space delta. All eleven agents passed container health, public HTTP 200 health endpoints, zero restarts, no OOM flag, unchanged running image and unchanged baseline configuration/instruction/startup-file hashes. Their recovery image identities, startup-wrapper hashes and archive paths also passed. This is cleanup acceptance, not an all-clear for unrelated incidents or a model/memory capability test. No software updates were installed.
+
+Sanitized evidence: [cleanup verification](2026-10-23-cleanup-verification.json). Private per-file restore manifests and archives remain under `/opt/openclaw/backups/cleanup-20261023`; archive-compaction receipts also live beside each historical recovery point. Existing dated records are preserved; use the companion receipt to resolve a former raw `.tar` path. Restore into an empty private staging directory, never over live production state.
+
+Initial directory sizes were occupied bytes, not promised savings: backups 165.7 GiB, image recovery 30.0 GiB, agents 67.3 GiB, Hindsight service directory 10.9 GiB, mostly scheduled backups. Retained business assets and legacy database volumes require separate ownership/duplicate/recovery evidence before any further deletion.
 
 ## Proposed primary update bundle
 
@@ -80,7 +86,7 @@ No reboot-required marker at preflight. This does not prove no process will need
 | debugpy / nano-pdf | Source pins1.8.22 /0.2.1 match latest | Retain; effective environment selection still belongs to build acceptance. |
 | Corepack | 0.36.0 equals latest | Retain. |
 | FFmpeg | Existing custom August19 build | Retain pending capability-specific review; do not replace a custom build based only on version age. |
-| Marsha voice-call package | Retained2026.9.8 generation found | Verify selected active plugin and compatibility before convergence; package presence alone is not loaded-version proof. |
+| Marsha voice-call package | Retained 2026.9.8 generation found; current config explicitly disables voice-call and excludes it from the allow list | Inactive package, not an active plugin outage. Leave capability disabled; let supported plugin convergence handle retained generations during the core update. |
 | PostgreSQL | Live18.6, pg18 image | Retain major/image through Hindsight migration; no database-major upgrade. |
 | Qdrant | 1.19.2; newer1.20.0 available | Separate Mem0/client compatibility pilot. Do not bundle an untested memory database change. |
 | Caddy / Filebrowser / Docker socket proxy | 2.11.7 /2.63.23 /0.5.0 match latest | Retain. |
