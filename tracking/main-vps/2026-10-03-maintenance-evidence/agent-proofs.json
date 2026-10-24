@@ -1,0 +1,332 @@
+[
+  {
+    "agent": "amanda",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "cc0b07a6-e726-40b3-82d0-de05d6ed9be8",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "memory_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "edith",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "834051c3-49df-44df-8a0d-1d9e730f84e0",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "mem0_search"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "gohzed",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "a111fd5b-9643-401d-87a4-d123426f4f43",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "agent_knowledge_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "grogar",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "cc5510c2-059d-4053-83f8-226ca601c226",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "agent_knowledge_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "inga",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "45efe900-4837-41fd-ac41-b37483ad3152",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "agent_knowledge_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "maggie",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "0b68d943-1118-454a-8cfb-8b8047b5e4c1",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "agent_knowledge_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "marsha",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "64e0af6f-7c42-4639-95dd-980a527d08b1",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6-astra",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "agent_knowledge_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "terry",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "bdb46d16-b3e7-4d25-a768-54cbdae9e00b",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "mem0_search"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "victor",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "54b52492-3433-46ba-baf2-a977582b572b",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "memory_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "vivian",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "ea0c5332-f0e9-4451-969f-25ad3303168a",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "memory_recall"
+      ],
+      "failures": 0
+    }
+  },
+  {
+    "agent": "wilma",
+    "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+    "apiProfileRotationExcluded": true,
+    "cliExit": 0,
+    "runId": "a7486ec3-7a54-4f70-9a93-740bdcf04c73",
+    "status": "ok",
+    "trace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "tools": {
+      "calls": 2,
+      "tools": [
+        "bash",
+        "memory_recall"
+      ],
+      "failures": 0
+    }
+  }
+]

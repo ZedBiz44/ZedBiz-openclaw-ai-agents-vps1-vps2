@@ -1,0 +1,7 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.4-victor-20261017
+FROM ${BASE_IMAGE}
+USER root
+COPY scripts/patch-dynamic-memory-10-4.cjs /opt/zedbiz/patch-dynamic-memory-10-4.cjs
+RUN node /opt/zedbiz/patch-dynamic-memory-10-4.cjs /app/dist/diagnostic-DxMcmqTS.mjs \
+ && node --check /app/dist/diagnostic-DxMcmqTS.mjs
+USER node

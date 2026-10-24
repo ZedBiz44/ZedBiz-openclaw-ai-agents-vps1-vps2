@@ -1,0 +1,7 @@
+FROM zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix
+USER root
+COPY marsha-owner-scheduling-20261003.mjs /opt/zedbiz-patches/marsha-owner-scheduling-20261003.mjs
+RUN OPENCLAW_PATCH_BACKUP=/opt/zedbiz-patches/originals node /opt/zedbiz-patches/marsha-owner-scheduling-20261003.mjs --apply \
+ && node --check /app/dist/run-attempt-YqVz5rSC.mjs \
+ && node --check /app/dist/dynamic-tools-BqrhwIYf.mjs
+USER node

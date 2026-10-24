@@ -1,0 +1,651 @@
+[
+  {
+    "agent": "terry",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "terry",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "terry",
+      "runId": "f4d54f0b-7b7c-4b5e-bc9c-167ede876968",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "mem0_search"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "amanda",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "amanda",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "amanda",
+      "runId": "efaa2486-ad90-4afc-9830-413603724d5b",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "edith",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "edith",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "edith",
+      "runId": "abfd0fca-8e39-454f-8ef8-2fefd38eb670",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "mem0_search"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "gohzed",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "gohzed",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "gohzed",
+      "runId": "b66367a1-e7c7-4aab-b116-3d09cc633470",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "grogar",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "grogar",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "grogar",
+      "runId": "6b4e2bf2-3c82-410a-92b3-e8796b374ae2",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "inga",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "inga",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "inga",
+      "runId": "29127216-046a-400b-8641-5ba1bae20ab2",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "maggie",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "maggie",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "maggie",
+      "runId": "a0f85b64-873e-4fe5-a85f-ca83459c5cf9",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "marsha",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/marsha:2026.9.8-owner-scheduling-20261003",
+    "model": "openai/gpt-6-astra@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "marsha",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "marsha",
+      "runId": "d4d942fa-71a1-42ce-a990-7f2b2ce1ef3c",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6-astra",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6-astra",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 5,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "victor",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-victor:2026.9.8-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "victor",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "victor",
+      "runId": "a9d53d0d-455a-4954-80a1-08fe6eae466e",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "vivian",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "vivian",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "vivian",
+      "runId": "02e0ccd3-01b9-420e-8452-e832079c8d6c",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      }
+    }
+  },
+  {
+    "agent": "wilma",
+    "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+    "dockerHealth": "healthy",
+    "gatewayHealthy": true,
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "model": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+    "authOrder": [
+      "openai:jzedbiz@gmail.com"
+    ],
+    "codexCommand": "/usr/local/bin/codex",
+    "apiKeysCleared": true,
+    "emailCredentialsResolved": true,
+    "skillSha256": "5dedc02816e25290b3355e7c9a482c4bd984cf18d6ebcb1f1c12bff4b9199c4c",
+    "skillEligible": true,
+    "skillModelVisible": true,
+    "skillPath": "/home/node/.openclaw/workspace/skills/himalaya/SKILL.md",
+    "emailTests": {
+      "agent": "wilma",
+      "mode": "live",
+      "version": "himalaya v2.2.1 +msgraph +imap +sieve +rustls-ring +gmail +jmap +pimdir +smtp +mbox +maildir",
+      "imapAuth": true,
+      "smtpAuth": true,
+      "mailboxCount": 7,
+      "envelopesReturned": 2,
+      "messageRead": true,
+      "readFlagsUnchanged": true,
+      "draftCompose": true,
+      "senderMatchesConfiguredAccount": true,
+      "sent": false,
+      "savedToMailbox": false
+    },
+    "agentProof": {
+      "agent": "wilma",
+      "runId": "d868e914-d3cc-484e-b38e-fed623c73836",
+      "trace": {
+        "winnerProvider": "openai",
+        "winnerModel": "gpt-6.1-sol",
+        "attempts": [
+          {
+            "provider": "openai",
+            "model": "gpt-6.1-sol",
+            "result": "success",
+            "stage": "assistant"
+          }
+        ],
+        "fallbackUsed": false,
+        "runner": "embedded"
+      },
+      "tools": {
+        "calls": 4,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      }
+    }
+  }
+]

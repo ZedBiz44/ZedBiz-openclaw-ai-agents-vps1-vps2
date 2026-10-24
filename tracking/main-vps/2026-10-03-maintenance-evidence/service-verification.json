@@ -1,0 +1,118 @@
+[
+  {
+    "service": "caddy",
+    "oldImage": "caddy:2",
+    "oldImageId": "sha256:25cdc846626b62d05f6b633b9b40c2c9f6ef89b515dc76133cefd920f7dbe562",
+    "newImage": "caddy@sha256:13b7fbadd017b042956fddbceedeeea12bb1e560534f9b3df281269dbcc61813",
+    "newImageId": "sha256:13b7fbadd017b042956fddbceedeeea12bb1e560534f9b3df281269dbcc61813",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-caddy"
+  },
+  {
+    "service": "docker-socket-proxy",
+    "oldImage": "tecnativa/docker-socket-proxy:v0.4.2",
+    "oldImageId": "sha256:1f3a6f303320723d199d2316a3e82b2e2685d86c275d5e3deeaf182573b47476",
+    "newImage": "tecnativa/docker-socket-proxy@sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459",
+    "newImageId": "sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-docker-socket-proxy"
+  },
+  {
+    "service": "dozzle",
+    "oldImage": "amir20/dozzle:latest",
+    "oldImageId": "sha256:03ac4280eec733d004de0a46a3944e8ef0d3fbd9c317027b19492d4ed360aa89",
+    "newImage": "amir20/dozzle@sha256:db7e19fd36189823c66239894e821561cb201248af35362ec6d39a08e23ff88b",
+    "newImageId": "sha256:db7e19fd36189823c66239894e821561cb201248af35362ec6d39a08e23ff88b",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-dozzle"
+  },
+  {
+    "service": "filebrowser",
+    "oldImage": "filebrowser/filebrowser:latest",
+    "oldImageId": "sha256:9805b21cf910f3ef6f4a1c8f441f1dd6cc4197136f9541fe2a1ab6d050706e4b",
+    "newImage": "filebrowser/filebrowser@sha256:a469ea076d4a1b4b1d86a41d130f2f536cd9da996a2b1fb39c0d7635f9d89b9a",
+    "newImageId": "sha256:a469ea076d4a1b4b1d86a41d130f2f536cd9da996a2b1fb39c0d7635f9d89b9a",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-filebrowser"
+  },
+  {
+    "service": "hindsight",
+    "image": "zedbiz/hindsight@sha256:4602a7b74223756ac43a5260244d6f55c2435d24f1922d7f79b5f436b09786ee",
+    "running": true,
+    "httpHealthy": true,
+    "health": {
+      "status": "healthy",
+      "database": "connected",
+      "db_acquire_ms": 2.0,
+      "db_pool_waiting": 0,
+      "db_pool_in_use": 0,
+      "db_pool_max": 100,
+      "db_pool_idle": 1
+    }
+  },
+  {
+    "service": "hindsight-db",
+    "oldImage": "pgvector/pgvector:pg18@sha256:2ba9ca5f2e7daa0f0e7723cba1ee9167bab54efd3640516a44ac1a928dd67e7a",
+    "oldImageId": "sha256:2ba9ca5f2e7daa0f0e7723cba1ee9167bab54efd3640516a44ac1a928dd67e7a",
+    "newImage": "pgvector/pgvector@sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
+    "newImageId": "sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-hindsight-db"
+  },
+  {
+    "service": "homepage",
+    "oldImage": "ghcr.io/gethomepage/homepage:latest",
+    "oldImageId": "sha256:cc84f2f5eb3c7734353701ccbaa24ed02dacb0d119114e50e4251e2005f3990a",
+    "newImage": "ghcr.io/gethomepage/homepage@sha256:643bd0be730d40f69d58028a55d1a896739333e8815786df42bc97f109ecbe61",
+    "newImageId": "sha256:643bd0be730d40f69d58028a55d1a896739333e8815786df42bc97f109ecbe61",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-homepage"
+  },
+  {
+    "service": "mem0-dev-qdrant-1",
+    "image": "qdrant/qdrant@sha256:12364fe851b9f17356fc88189fc06d1b521262e04659ec7345975b00c9246a10",
+    "running": true,
+    "httpHealthy": true,
+    "version": "1.19.1",
+    "collections": [
+      {
+        "name": "mem0_vps1_agents",
+        "points": 543
+      },
+      {
+        "name": "mem0_vps1_agents_entities",
+        "points": 3075
+      },
+      {
+        "name": "memory_migrations",
+        "points": 1
+      }
+    ]
+  },
+  {
+    "service": "portainer",
+    "oldImage": "portainer/portainer-ce:latest",
+    "oldImageId": "sha256:1ae8e65d50ca5498cb2c33e617495a1e3ef245b0d2392b4a44c70ae09b822891",
+    "newImage": "portainer/portainer-ce@sha256:4d616db18cfeb5dd41a69c0958bc825c84483ea9cde1106eb82a5d26f3bd8b0e",
+    "newImageId": "sha256:4d616db18cfeb5dd41a69c0958bc825c84483ea9cde1106eb82a5d26f3bd8b0e",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-portainer"
+  },
+  {
+    "service": "uptime-kuma",
+    "oldImage": "louislam/uptime-kuma:1",
+    "oldImageId": "sha256:3d632903e6af34139a37f18055c4f1bfd9b7205ae1138f1e5e8940ddc1d176f9",
+    "newImage": "louislam/uptime-kuma@sha256:c74379ac4509ce2d2c2633f509e67003ee2e45b6e995c5e43fc101f45a0e1fbe",
+    "newImageId": "sha256:c74379ac4509ce2d2c2633f509e67003ee2e45b6e995c5e43fc101f45a0e1fbe",
+    "running": true,
+    "httpHealthy": true,
+    "backup": "/opt/openclaw/builds/vps1-complete-20261003/service-uptime-kuma"
+  }
+]

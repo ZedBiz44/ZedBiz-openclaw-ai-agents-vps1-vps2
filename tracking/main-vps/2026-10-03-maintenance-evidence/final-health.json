@@ -1,0 +1,84 @@
+{
+  "agents": [
+    {
+      "agent": "amanda",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "edith",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "gohzed",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "grogar",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "inga",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "maggie",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "marsha",
+      "image": "zedbiz/marsha:2026.9.8-owner-scheduling-20261003",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "terry",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "victor",
+      "image": "zedbiz/openclaw-victor:2026.9.8-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "vivian",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    },
+    {
+      "agent": "wilma",
+      "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+      "dockerHealth": "healthy",
+      "httpHealthy": true,
+      "response": "{\"ok\":true,\"status\":\"live\"}"
+    }
+  ],
+  "rebootRequired": false,
+  "failedServices": "",
+  "packageAudit": ""
+}

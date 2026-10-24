@@ -1,0 +1,300 @@
+{
+  "agents": [
+    {
+      "agent": "terry",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "0bf136bf-1c84-4f2c-9503-e3f57f93498d",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "mem0_search"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "amanda",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "df1c7b24-c226-44f9-93ba-758a747678e4",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "edith",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "da4fe62f-3123-4339-9114-c137011303ce",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "mem0_search"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "gohzed",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "5256bf78-bcf9-446e-9b4d-1cd52498a9c5",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "grogar",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "18233e4f-3c99-47c6-8537-4d814e4c8e5a",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "inga",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "14ccd50a-8f85-4d98-9afc-854998ae3555",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "maggie",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "113146c4-4085-468e-a9e1-85ce316d1d21",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "agent_knowledge_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "victor",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "8ae7ae1a-27c7-4bd3-8db5-362cd095fd36",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "vivian",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "fd8aef68-a8b8-4b1f-8ab1-22cafac83d96",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    },
+    {
+      "agent": "wilma",
+      "primary": "openai/gpt-6.1-sol@openai:jzedbiz@gmail.com",
+      "checks": {
+        "primaryOAuth": true,
+        "oauthOnlyOrder": true,
+        "executable": true,
+        "apiEnvironmentCleared": true,
+        "fallbacksPreserved": true,
+        "thinkingPreserved": true,
+        "skillsPreserved": true,
+        "memorySlotPreserved": true,
+        "exactSol": true,
+        "noFallback": true,
+        "toolsPassed": true,
+        "codexVersion": true,
+        "httpHealthy": true
+      },
+      "runId": "06893f2c-f3f2-4a22-a327-d709773b4800",
+      "tools": {
+        "calls": 2,
+        "tools": [
+          "bash",
+          "memory_recall"
+        ],
+        "failures": 0
+      },
+      "codexVersion": "codex-cli 0.160.0"
+    }
+  ],
+  "marsha": {
+    "primary": "openai/gpt-6-astra",
+    "healthy": true
+  },
+  "rebootRequired": false,
+  "kernel": "6.8.0-146-generic"
+}

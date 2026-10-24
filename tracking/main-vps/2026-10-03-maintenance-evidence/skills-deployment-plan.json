@@ -1,0 +1,1493 @@
+[
+  {
+    "agent": "amanda",
+    "skill": "z-ai-skill-developer",
+    "path": "amanda/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-audio-production",
+    "path": "amanda/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-biz-plan",
+    "path": "amanda/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-notion-knowledge-publish",
+    "path": "amanda/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-notion-knowledge-publish",
+    "path": "amanda/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-small-bite-task",
+    "path": "amanda/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-analysis",
+    "path": "amanda/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-analysis",
+    "path": "amanda/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-analysis",
+    "path": "amanda/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-critique",
+    "path": "amanda/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-critique",
+    "path": "amanda/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-critique",
+    "path": "amanda/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-production",
+    "path": "amanda/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-production",
+    "path": "amanda/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-production",
+    "path": "amanda/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "amanda",
+    "skill": "z-video-production",
+    "path": "amanda/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-ai-skill-developer",
+    "path": "edith/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-audio-production",
+    "path": "edith/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-biz-plan",
+    "path": "edith/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-files-folders",
+    "path": "edith/workspace/skills/z-files-folders/SKILL.md",
+    "before": "50347582344e7173df2e1fce4b5c4e72975a48d427efa1c7e428deaf6283e542",
+    "after": "d6bd6f123cb034293a80cfec490e96fbf924ce3e78994ca06eddc1bef3572191"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-files-folders",
+    "path": "edith/workspace/skills/z-files-folders/agents/openai.yaml",
+    "before": null,
+    "after": "7194556ff91be97e2866ce4ab227edf7593ca9931315189c47ed249ffa59be53"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-notion-knowledge-publish",
+    "path": "edith/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-notion-knowledge-publish",
+    "path": "edith/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-small-bite-task",
+    "path": "edith/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-analysis",
+    "path": "edith/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-analysis",
+    "path": "edith/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-analysis",
+    "path": "edith/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-critique",
+    "path": "edith/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-critique",
+    "path": "edith/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-critique",
+    "path": "edith/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-production",
+    "path": "edith/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-production",
+    "path": "edith/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-production",
+    "path": "edith/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "edith",
+    "skill": "z-video-production",
+    "path": "edith/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-ai-skill-developer",
+    "path": "gohzed/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-audio-production",
+    "path": "gohzed/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-biz-plan",
+    "path": "gohzed/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-notion-knowledge-publish",
+    "path": "gohzed/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-notion-knowledge-publish",
+    "path": "gohzed/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-small-bite-task",
+    "path": "gohzed/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-analysis",
+    "path": "gohzed/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-analysis",
+    "path": "gohzed/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-analysis",
+    "path": "gohzed/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-critique",
+    "path": "gohzed/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-critique",
+    "path": "gohzed/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-critique",
+    "path": "gohzed/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-production",
+    "path": "gohzed/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-production",
+    "path": "gohzed/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-production",
+    "path": "gohzed/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "gohzed",
+    "skill": "z-video-production",
+    "path": "gohzed/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-ai-skill-developer",
+    "path": "grogar/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-audio-production",
+    "path": "grogar/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-biz-plan",
+    "path": "grogar/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-notion-knowledge-publish",
+    "path": "grogar/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-notion-knowledge-publish",
+    "path": "grogar/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-small-bite-task",
+    "path": "grogar/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-analysis",
+    "path": "grogar/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-analysis",
+    "path": "grogar/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-analysis",
+    "path": "grogar/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-critique",
+    "path": "grogar/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-critique",
+    "path": "grogar/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-critique",
+    "path": "grogar/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-production",
+    "path": "grogar/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-production",
+    "path": "grogar/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-production",
+    "path": "grogar/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "grogar",
+    "skill": "z-video-production",
+    "path": "grogar/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-ai-skill-developer",
+    "path": "inga/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-audio-production",
+    "path": "inga/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-biz-plan",
+    "path": "inga/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-notion-knowledge-publish",
+    "path": "inga/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-notion-knowledge-publish",
+    "path": "inga/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-small-bite-task",
+    "path": "inga/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-analysis",
+    "path": "inga/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-analysis",
+    "path": "inga/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-analysis",
+    "path": "inga/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-critique",
+    "path": "inga/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-critique",
+    "path": "inga/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-critique",
+    "path": "inga/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-production",
+    "path": "inga/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-production",
+    "path": "inga/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-production",
+    "path": "inga/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "inga",
+    "skill": "z-video-production",
+    "path": "inga/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-ai-skill-developer",
+    "path": "maggie/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-audio-production",
+    "path": "maggie/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-biz-plan",
+    "path": "maggie/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-notion-knowledge-publish",
+    "path": "maggie/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-notion-knowledge-publish",
+    "path": "maggie/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-small-bite-task",
+    "path": "maggie/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-analysis",
+    "path": "maggie/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-analysis",
+    "path": "maggie/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-analysis",
+    "path": "maggie/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-critique",
+    "path": "maggie/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-critique",
+    "path": "maggie/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-critique",
+    "path": "maggie/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-production",
+    "path": "maggie/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-production",
+    "path": "maggie/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-production",
+    "path": "maggie/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "maggie",
+    "skill": "z-video-production",
+    "path": "maggie/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-ai-skill-developer",
+    "path": "marsha/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-audio-production",
+    "path": "marsha/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-biz-plan",
+    "path": "marsha/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-notion-knowledge-publish",
+    "path": "marsha/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-notion-knowledge-publish",
+    "path": "marsha/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-small-bite-task",
+    "path": "marsha/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-analysis",
+    "path": "marsha/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-analysis",
+    "path": "marsha/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-analysis",
+    "path": "marsha/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-critique",
+    "path": "marsha/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-critique",
+    "path": "marsha/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-critique",
+    "path": "marsha/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-production",
+    "path": "marsha/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-production",
+    "path": "marsha/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-production",
+    "path": "marsha/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "marsha",
+    "skill": "z-video-production",
+    "path": "marsha/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "terry",
+    "skill": "z-audio-production",
+    "path": "terry/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": null,
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-ai-skill-developer",
+    "path": "victor/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-audio-production",
+    "path": "victor/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-biz-plan",
+    "path": "victor/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-notion-knowledge-publish",
+    "path": "victor/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-notion-knowledge-publish",
+    "path": "victor/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-small-bite-task",
+    "path": "victor/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-analysis",
+    "path": "victor/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-analysis",
+    "path": "victor/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-analysis",
+    "path": "victor/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-critique",
+    "path": "victor/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-critique",
+    "path": "victor/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-critique",
+    "path": "victor/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-production",
+    "path": "victor/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-production",
+    "path": "victor/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-production",
+    "path": "victor/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "victor",
+    "skill": "z-video-production",
+    "path": "victor/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-ai-skill-developer",
+    "path": "vivian/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-audio-production",
+    "path": "vivian/workspace/skills/z-audio-production/agents/openai.yaml",
+    "before": null,
+    "after": "4a29dffcf2d753c2f8ca19814aa640ea03e558254417f02a357a43dc67090309"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-audio-production",
+    "path": "vivian/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": null,
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-biz-plan",
+    "path": "vivian/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-notion-knowledge-publish",
+    "path": "vivian/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-notion-knowledge-publish",
+    "path": "vivian/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-small-bite-task",
+    "path": "vivian/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-video-analysis",
+    "path": "vivian/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-video-analysis",
+    "path": "vivian/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-video-analysis",
+    "path": "vivian/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-video-critique",
+    "path": "vivian/workspace/skills/z-video-critique/SKILL.md",
+    "before": "5451b9a7527bd825848d7aaacea902bbe6bf156ad7f0c95f1d7156124339e994",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "vivian",
+    "skill": "z-video-critique",
+    "path": "vivian/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-ai-skill-developer",
+    "path": "wilma/workspace/skills/z-ai-skill-developer/SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/SKILL.md",
+    "before": "5837d4dcf8a24302c9154af1f0aca93916b89526321ef29951808112f154529b",
+    "after": "4a9370c299dacc7716d89769cbc109500bcdf396c771e580905fe6498b9fd11b"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/references/audio-workflows.md",
+    "before": "233cb0cf04570d431facc408ba67642004bd25ac858b18761e74317aaf915b40",
+    "after": "965d644ad8f2446ed26aed347b4d91c1d1d627d0cc02ebacb53835c1b88eebb2"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/references/provider-selection.md",
+    "before": "3583bf721e1c8ef03d6b6830f69124fd1642b300c2bc09d4afa034a93fbe104a",
+    "after": "b47a45b0bc7c4aa7d3e6fd88905e9e97dcbf3520ec18e9453756d7c64b6e4222"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/references/test-prompts.md",
+    "before": "409a1e07cadb7a2d521151085e7f245e44c5d64edead20c25f461199df078e64",
+    "after": "29e9bf14d78c1bebf9a6b409d8abeb273416047208fed104b91c1106b03dc7e8"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/references/video-handoff.md",
+    "before": "307b91d38c2e4d42f059d264544845d5e2ffaa3998670abb7a0efcb4417b8b2c",
+    "after": "4932878e19ca0fbc5c87d03b5287519c4afb004f996895681d3ff6594529474c"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/assets/audio-manifest-template.json",
+    "before": "eff30784cb40d2b4bbac4bebf2944f9fd769fba4968f6927e1faef028d24a86d",
+    "after": "a23125a9dceb4f449048bdbf68524c172ec0e17ebf22dbf72c66537ca03233c6"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-audio-production",
+    "path": "wilma/workspace/skills/z-audio-production/assets/brand-voice-package-template.md",
+    "before": null,
+    "after": "e52c99217d236e854a7045cae5193191fe5a38ae8631335cdbf2e912826d2463"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-biz-plan",
+    "path": "wilma/workspace/skills/z-biz-plan/SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-notion-knowledge-publish",
+    "path": "wilma/workspace/skills/z-notion-knowledge-publish/SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-notion-knowledge-publish",
+    "path": "wilma/workspace/skills/z-notion-knowledge-publish/references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-small-bite-task",
+    "path": "wilma/workspace/skills/z-small-bite-task/SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-analysis",
+    "path": "wilma/workspace/skills/z-video-analysis/SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-analysis",
+    "path": "wilma/workspace/skills/z-video-analysis/agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-analysis",
+    "path": "wilma/workspace/skills/z-video-analysis/references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-critique",
+    "path": "wilma/workspace/skills/z-video-critique/SKILL.md",
+    "before": "b33b0312ac5019deec352563e747f01f7c92bd0bafab6a986f953c8cd993d968",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-critique",
+    "path": "wilma/workspace/skills/z-video-critique/agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-critique",
+    "path": "wilma/workspace/skills/z-video-critique/references/video-checklists.md",
+    "before": "05beef32f02d38569534a60291ada4aa4259ee1f9e8419f45040670bc6a32879",
+    "after": "c56fd8ecf27577952b9e1bcf8bcb5dec22e46434c8d32b1e667d2ea02120953f"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-production",
+    "path": "wilma/workspace/skills/z-video-production/SKILL.md",
+    "before": "38797d49cc819385578a08681b536057dffd05f0acd6673773a6a3d88232e590",
+    "after": "e3928060f06108a4dc50206af01ef6e557ca3ca3f726a01303a70d16597cac8a"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-production",
+    "path": "wilma/workspace/skills/z-video-production/references/advanced-production.md",
+    "before": "d469f343e304a6f028aafe37e891f5e554b4db7513f7a6fe494df3a058a92aec",
+    "after": "3bf89f73383d6764641f7589dac02b59cd9aabd85102a93d285894add0ba0a2f"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-production",
+    "path": "wilma/workspace/skills/z-video-production/references/remotion-production.md",
+    "before": null,
+    "after": "d37beedccc1cdf199b36a9c95d75e2423a6c954c9b3240f78f1a33b55ab4b012"
+  },
+  {
+    "agent": "wilma",
+    "skill": "z-video-production",
+    "path": "wilma/workspace/skills/z-video-production/references/video-critique-handoff.md",
+    "before": null,
+    "after": "fc46f906bb80d244ff82edae853eb65609b85bd9910006dd5bdd3931d33027e0"
+  }
+]

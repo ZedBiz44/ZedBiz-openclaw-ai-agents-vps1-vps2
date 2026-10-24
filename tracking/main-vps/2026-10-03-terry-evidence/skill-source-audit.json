@@ -1,0 +1,147 @@
+[
+  {
+    "name": "z-agent-communication",
+    "url": "https://github.com/ZedBiz44/z-agent-communication-Skill",
+    "head": "bd60ee4c071008a38c704e4391666411b48dcb07",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-agent-health-report",
+    "url": "https://github.com/ZedBiz44/z-agent-health-report-Skill",
+    "head": "c7e86fe3c1bb1a515944f1b1c9d734da9c4c2712",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-agent-knowledge-mapper",
+    "url": "https://github.com/ZedBiz44/z-agent-knowledge-mapper-Skill",
+    "head": "9a02b32cd0a2e3f1b1132d9a8d462355e9cdcc63",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-ai-skill-developer",
+    "url": "https://github.com/ZedBiz44/z-ai-skill-developer-Skill",
+    "head": "b8b8ddaa3b7d1f807bdae98ee66b3b3772e8e8ba",
+    "changed": [
+      "SKILL.md"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-audio-production",
+    "url": "https://github.com/ZedBiz44/z-audio-production-Skill",
+    "head": "c415938db16efc84a4a06cdddff6dfe42d6eb83d",
+    "changed": [
+      "agents\\openai.yaml",
+      "references\\test-prompts.md",
+      "scripts\\build_dist.sh"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-biz-plan",
+    "url": "https://github.com/ZedBiz44/z-biz-plan-Skill",
+    "head": "09e84a6434fc4f865eb48d6593d8e448148feebd",
+    "changed": [
+      "SKILL.md"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-code-allocation",
+    "url": "https://github.com/ZedBiz44/z-code-allocation-Skill",
+    "head": "99a87358023d9474451eeb9eb0e00c7f0560aa96",
+    "changed": [
+      "SKILL.md",
+      "scripts\\request_z_code.mjs",
+      "scripts\\request_z_code.py"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-drive-gog",
+    "url": "https://github.com/ZedBiz44/z-drive-gog-Skill",
+    "head": "830cf6d0e1d58c65b0ee161566bc1d0a7e7bf8a0",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-files-folders",
+    "url": "https://github.com/ZedBiz44/z-files-folders-Skill",
+    "head": "4b8ebe6a478c621d86429192a5465887d0d435ea",
+    "changed": [
+      "SKILL.md",
+      "scripts\\build_package.py",
+      "agents\\openai.yaml"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-gmail-gog",
+    "url": "https://github.com/ZedBiz44/z-gmail-gog-Skill",
+    "head": "06adebe0482c5875aad1d405d370391f3b8eb029",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-graphic-production",
+    "url": "https://github.com/ZedBiz44/z-graphic-production-Skill",
+    "head": "1032f7dfce5a0667f40a61d35748a0d8194f2d9c",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-record-knowledge",
+    "url": "https://github.com/ZedBiz44/z-record-knowledge-Skill",
+    "head": "d0862bc83cb537d109786cbaf029486698c8b54d",
+    "changed": [
+      "SKILL.md",
+      "references\\memory-layer-routing.md"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-sop-framework",
+    "url": "https://github.com/ZedBiz44/z-sop-framework-Skill",
+    "head": "0113b1932fcd495fe4b07a93a9dcd70b1629dc49",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-support-doc-ingestion",
+    "url": "https://github.com/ZedBiz44/z-support-doc-ingestion-Skill",
+    "head": "d7f62100bd838152482a5067ee4a0acc6d6619c0",
+    "changed": [],
+    "status": "current"
+  },
+  {
+    "name": "z-video-analysis",
+    "url": "https://github.com/ZedBiz44/z-video-analysis-Skill",
+    "head": "81462e755657fde64d8d302fbf01191b394922a5",
+    "changed": [
+      "SKILL.md",
+      "agents\\openai.yaml",
+      "references\\chatgpt-codex.md"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-video-critique",
+    "url": "https://github.com/ZedBiz44/z-video-critique-Skill",
+    "head": "cb2666e066e9f3ea97476c800921042391be800c",
+    "changed": [
+      "SKILL.md",
+      "agents\\openai.yaml"
+    ],
+    "status": "diff"
+  },
+  {
+    "name": "z-video-production",
+    "url": "https://github.com/ZedBiz44/z-video-production-Skill",
+    "head": "82eb02cd87cbd40051b0100a32692941c56d0657",
+    "changed": [],
+    "status": "current"
+  }
+]

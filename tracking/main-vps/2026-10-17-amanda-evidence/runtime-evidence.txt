@@ -1,0 +1,63 @@
+{
+  "utc": "2026-10-18T04:43:05.293239+00:00",
+  "containers": [
+    {
+      "container": "amanda",
+      "image": "sha256:4e5f5b8536785b8307d44e4e5ec1d83449976e149c5cd18e515880ec7336665a",
+      "status": "running",
+      "health": "healthy",
+      "restarts": 0,
+      "oomKilled": false,
+      "limitBytes": 5368709120,
+      "memoryPlusSwapLimitBytes": 6442450944,
+      "currentBytes": 2888048640,
+      "inactiveFileBytes": 338108416,
+      "workingSetBytes": 2549940224,
+      "swapBytes": 0,
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    },
+    {
+      "container": "amanda-asana-mcp",
+      "image": "sha256:8d0560464a3b4f0f5dcc8de88f2549934582aa649aadcc2ccfc403ad19905b94",
+      "status": "running",
+      "health": "healthy",
+      "restarts": 0,
+      "oomKilled": false,
+      "limitBytes": 402653184,
+      "memoryPlusSwapLimitBytes": 805306368,
+      "currentBytes": 74244096,
+      "inactiveFileBytes": 0,
+      "workingSetBytes": 74244096,
+      "swapBytes": 0,
+      "memoryEvents": {
+        "low": "0",
+        "high": "0",
+        "max": "0",
+        "oom": "0",
+        "oom_kill": "0",
+        "oom_group_kill": "0"
+      }
+    }
+  ]
+}
+PID                 PPID                RSS                 COMMAND
+3259006             3258981             1284                tini
+3259050             3259006             1660                dash
+3260161             3259050             2046892             openclaw-gatewa
+3260680             3260161             69604               MainThread
+3260713             3260161             89616               MainThread
+3264417             3260680             89148               MainThread
+3264876             3260161             50104               MainThread
+3264923             3264876             110748              codex
+3265847             3260161             49952               MainThread
+3265863             3265847             109520              codex
+3267554             3260161             50076               MainThread
+3267563             3267554             352784              codex
+3267851             3267563             40504               codex-code-mode

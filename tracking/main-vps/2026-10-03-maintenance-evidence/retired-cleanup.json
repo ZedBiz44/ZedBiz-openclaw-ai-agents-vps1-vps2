@@ -1,0 +1,55 @@
+{
+  "removedContainers": [
+    "hindsight-candidate",
+    "hindsight-pre-086-20260805",
+    "hindsight-flashrank-l12-50-20260804-154157",
+    "hindsight-flashrank-100-20260804-154020",
+    "z-code-db-emergency",
+    "hindsight-pre-response-first-20260804-153815",
+    "mem0-dev-mem0-dashboard-1",
+    "mem0-dev-mem0-1",
+    "mem0-dev-postgres-1",
+    "hungry_kalam",
+    "upbeat_visvesvaraya",
+    "fix_amanda",
+    "vibrant_mendeleev"
+  ],
+  "volumesPreserved": true,
+  "imageRemoval": [
+    {
+      "image": "3eeecee75791",
+      "success": true,
+      "output": "Untagged: zedbiz/hindsight:0.8.4-flashrank-20260804\nDeleted: sha256:3eeecee75791758fefed2d7fbe00e53a5478547f247ef6ba0e6b037e0044e199\n"
+    },
+    {
+      "image": "2c60f233eaba",
+      "success": true,
+      "output": "Untagged: ghcr.io/vectorize-io/hindsight:latest\nDeleted: sha256:2c60f233eaba8f51db31adb920a560735aaf6f314e4b63c36c73159742dfa1a7\n"
+    },
+    {
+      "image": "5572230c8d6d",
+      "success": true,
+      "output": "Untagged: mem0-dev-mem0:latest\nDeleted: sha256:5572230c8d6d21a5e20c6a04e28656e8c488457f78af803f1e0773e106b89693\n"
+    },
+    {
+      "image": "1a1011c9d2bd",
+      "success": true,
+      "output": "Deleted: sha256:1a1011c9d2bd3cecb3a6d6d5ed57b4ba3961e7483c6d3100c8b5bb871166b0f4\n"
+    },
+    {
+      "image": "1c5194c8e56c",
+      "success": true,
+      "output": "Untagged: mem0-dev-mem0-dashboard:latest\nDeleted: sha256:1c5194c8e56c3755372f8a69447e34b24a1f76ac14768224cc68167fea23c397\n"
+    },
+    {
+      "image": "dd467f03ca5c",
+      "success": true,
+      "output": "Untagged: pgvector/pgvector:pg17\nDeleted: sha256:dd467f03ca5c5581222490e5217e48a262864ccb659be559f8491bbafdc97da0\n"
+    },
+    {
+      "image": "135f4ad4cad7",
+      "success": true,
+      "output": "Untagged: ghcr.io/coleifer/sqlite-web:latest\nDeleted: sha256:135f4ad4cad70b3f786a77679fcec6a4d7847c23b2cb549cced4aa6d6f0a0b6f\n"
+    }
+  ]
+}

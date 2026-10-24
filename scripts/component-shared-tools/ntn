@@ -1,0 +1,2 @@
+#!/bin/sh
+exec /opt/openclaw/shared/tools-20261018/bin/ntn "$@"
