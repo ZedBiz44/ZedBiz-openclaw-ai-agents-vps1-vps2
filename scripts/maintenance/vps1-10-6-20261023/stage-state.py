@@ -60,7 +60,7 @@ elif action=='prepare-mem0':
  print(json.dumps({'preparedMem0Guard':True,'scope':'restored copy'}),flush=True)
 elif action in ['lint','migrate','plugins','mem0']:
  assert (work/'checkpoint.json').exists()
- args=['docker','run','--rm','--network','host','--memory','3g','--env-file',str(work/'runtime.env'),'--user','node','--entrypoint','node']
+ args=['docker','run','--rm','--network','mem0-dev_mem0_network','--network','openclaw','--memory','3g','--env-file',str(work/'runtime.env'),'--user','node','--entrypoint','node']
  for m in json.loads((work/'mounts-before.json').read_text()):
   src=m['Source'];dst=m['Destination']
   if src.startswith(str(live)+'/'):src=str(stage/src[len(str(live))+1:])
@@ -74,8 +74,10 @@ elif action in ['lint','migrate','plugins','mem0']:
   args[args.index('--entrypoint')+1]='sh'
   args+=[image,'/home/node/.openclaw/workspace/ensure-mem0-compat.sh']
  else:args+=[image,'/app/openclaw.mjs',*command]
- with (work/('rehearsal-'+action+'.log')).open('w') as out:p=subprocess.run(args,stdout=out,stderr=subprocess.STDOUT)
- print(json.dumps({'phase':action,'exit':p.returncode,'privateLog':str(work/('rehearsal-'+action+'.log'))}),flush=True)
+ log=work/('rehearsal-'+action+'-'+str(int(time.time()))+'.log')
+ with log.open('w') as out:p=subprocess.run(args,stdout=out,stderr=subprocess.STDOUT)
+ receipt={'phase':action,'exit':p.returncode,'privateLog':str(log)}
+ (work/('rehearsal-'+action+'-receipt.json')).write_text(json.dumps(receipt,indent=2))
+ print(json.dumps(receipt),flush=True)
  sys.exit(p.returncode)
 else:raise SystemExit('Unsupported stage')
-
