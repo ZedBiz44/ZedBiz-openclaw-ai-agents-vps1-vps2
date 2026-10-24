@@ -1,0 +1,6 @@
+FROM ghcr.io/vectorize-io/hindsight:1.1.0@sha256:97e5a1b0fab0ebb2c313976f6ec772b8d858b762230766670633872fc438994a
+USER root
+# Preserve the established local reranker and its dependency version.
+RUN pip install --no-cache-dir "flashrank==0.2.10" \
+ && python -c "from importlib.metadata import version; assert version('flashrank') == '0.2.10'; print('FlashRank', version('flashrank'))"
+USER hindsight
