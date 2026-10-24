@@ -1,0 +1,114 @@
+{
+  "model": "gpt-6-luna",
+  "user": "cody-harry-luna-pilot-20261024",
+  "calls": [
+    {
+      "requested": "gpt-6-luna",
+      "effective": "gpt-6-luna",
+      "ms": 2665,
+      "usage": {
+        "prompt_tokens": 7749,
+        "completion_tokens": 112,
+        "total_tokens": 7861,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 7746,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 66,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    },
+    {
+      "requested": "gpt-6-luna",
+      "effective": "gpt-6-luna",
+      "ms": 8857,
+      "usage": {
+        "prompt_tokens": 7776,
+        "completion_tokens": 140,
+        "total_tokens": 7916,
+        "prompt_tokens_details": {
+          "cached_tokens": 7606,
+          "cache_write_tokens": 167,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 78,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      }
+    }
+  ],
+  "add": {
+    "results": [
+      {
+        "id": "fcdf6210-d354-4b48-a9ef-92a9c9772652",
+        "memory": "For synthetic acceptance project Cedar-Pilot-484, Tuesday is the approved dispatch weekday.",
+        "metadata": {
+          "event": "ADD"
+        }
+      }
+    ]
+  },
+  "recall": {
+    "results": [
+      {
+        "id": "fcdf6210-d354-4b48-a9ef-92a9c9772652",
+        "memory": "For synthetic acceptance project Cedar-Pilot-484, Tuesday is the approved dispatch weekday.",
+        "hash": "ae737782bb2ef8e08361b5e53932c05d",
+        "createdAt": "2026-10-24T17:08:47.481Z",
+        "updatedAt": "2026-10-24T17:08:47.481Z",
+        "score": 0.72394342,
+        "metadata": {},
+        "user_id": "cody-harry-luna-pilot-20261024"
+      }
+    ]
+  },
+  "update": {
+    "results": [
+      {
+        "id": "ce803e63-995c-4d8a-9c01-044d95ebdd9c",
+        "memory": "The approved dispatch weekday for synthetic acceptance project Cedar-Pilot-484 has changed from Tuesday to Thursday; Thursday is the current weekday.",
+        "metadata": {
+          "event": "ADD"
+        }
+      }
+    ]
+  },
+  "updatedRecall": {
+    "results": [
+      {
+        "id": "ce803e63-995c-4d8a-9c01-044d95ebdd9c",
+        "memory": "The approved dispatch weekday for synthetic acceptance project Cedar-Pilot-484 has changed from Tuesday to Thursday; Thursday is the current weekday.",
+        "hash": "d6aa249c8aee0a561ee70530ff04138f",
+        "createdAt": "2026-10-24T17:08:58.242Z",
+        "updatedAt": "2026-10-24T17:08:58.242Z",
+        "score": 0.8333194266666667,
+        "metadata": {},
+        "user_id": "cody-harry-luna-pilot-20261024"
+      },
+      {
+        "id": "fcdf6210-d354-4b48-a9ef-92a9c9772652",
+        "memory": "For synthetic acceptance project Cedar-Pilot-484, Tuesday is the approved dispatch weekday.",
+        "hash": "ae737782bb2ef8e08361b5e53932c05d",
+        "createdAt": "2026-10-24T17:08:47.481Z",
+        "updatedAt": "2026-10-24T17:08:47.481Z",
+        "score": 0.8206930933333334,
+        "metadata": {},
+        "user_id": "cody-harry-luna-pilot-20261024"
+      }
+    ]
+  },
+  "passed": true,
+  "cleanupIds": [
+    "ce803e63-995c-4d8a-9c01-044d95ebdd9c",
+    "fcdf6210-d354-4b48-a9ef-92a9c9772652"
+  ],
+  "cleaned": true
+}
