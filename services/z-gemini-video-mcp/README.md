@@ -1,49 +1,25 @@
-# ZedBiz Gemini Video MCP
+# ZedBiz Gemini Video MCP 0.2.0
 
-This private MCP server gives approved ZedBiz agents one tool for analyzing a public YouTube video with Gemini.
+`analyze_media_file` reviews an authorized file accessible to the calling runtime. It sends the real video with its audio (or an audio-only file) to Gemini, returns timestamped findings and usage, and deletes the temporary Google File upload. Model: `gemini-3.8-flash`; Interactions storage disabled; SDK automatic retries disabled. This is sampled audiovisual analysis, not continuous human playback or a guarantee of lip-sync accuracy.
 
-## Tool
+Inputs: absolute `file_path`, optional `question` (4000 characters), video `fps` (0.1–24, default 4), optional `start_seconds` and `end_seconds`. Supported video includes MP4, MOV, WebM, MPEG, AVI and WMV. Supported audio includes MP3, WAV, M4A, AAC, FLAC and OGG. Maximum file size: 500 MiB. Private source uploads need the user's authorization. Do not infer visuals or sound from the filename or transcript.
 
-- `analyze_youtube_video`
+`analyze_youtube_video` remains available for public HTTPS YouTube URLs. A Drive sharing page is not a local media file: retrieve the authorized file through the approved Drive route first.
 
-The tool accepts one public HTTPS YouTube URL and an optional business question. It returns a plain-language analysis with timestamps and separates visible or audible observations from presenter claims.
+## Runtime connections
 
-## Security
+- VPS1: `/opt/openclaw/shared/tools/z-gemini-video-mcp-v020/server.mjs`, using each agent's protected Gemini environment.
+- VPS2: `/opt/openclaw-shared/tools/z-gemini-video-mcp-v020/server.mjs`, using the protected gateway child environment after `op run`.
+- Rocky: `/home/openclaw/.local/share/openclaw-tools/z-gemini-video-mcp-v020/server.mjs`.
+- Ruby: `/opt/data/tools/z-gemini-video-mcp-v020/launch-ssh.mjs`. Reuses her existing SSH key and pinned known-hosts file to obtain the dedicated Gemini credential from Terry's protected runtime. The credential is captured in memory and passed to the local server; video files are uploaded from Ruby, not copied to VPS1. No new key or vault grant was created. VPS1 availability is a dependency.
+- Cody: `$CODEX_HOME/tools/z-gemini-video-mcp/launch-cody.mjs`, registered as global MCP server `gemini-video`, with startup timeout 30 seconds and tool timeout 600 seconds. Reuses Cody's existing authorized SSH access to the same protected credential. Files are uploaded directly from Cody's machine. VPS1 availability is a dependency.
 
-- The Gemini key is read only from `GEMINI_API_KEY` at runtime.
-- The key must come from 1Password and must never be committed or written to logs.
-- Only public YouTube URLs are accepted in the first release.
-- The request uses `store: false` so the Interactions API does not retain conversation state.
-- The tool does not download, modify, or delete the source video.
+## Current-session Codex fallback
 
-## Run
+An already running Codex task may not refresh its native MCP tool catalog. It can call the installed service immediately with `call.mjs`; no app restart is needed for this fallback. Write a JSON request with `name: "analyze_media_file"` and `arguments: {"file_path": "absolute/path/to/video.mp4", "question": "..."}`. Run `node <tool-directory>/call.mjs <request.json>` with `ZEDBIZ_GEMINI_SSH_KEY` pointing to the existing approved key path. The helper prints only the analysis result. Fresh Codex sessions discover the registered MCP tools.
 
-```bash
-npm ci --omit=dev
-GEMINI_API_KEY='resolved-at-runtime' node server.mjs
-```
+## Verification and recovery
 
-## Test
+`npm test` covers MCP discovery, invalid URL rejection, file checks, interval/sampling request construction, cleanup, and no retry after a failed analysis request. `verify.mjs <server-or-launcher> [media-file]` checks discovery and optionally makes one real metered call. Never rerun a submitted analysis automatically after an uncertain result. Resolve credentials through the real runtime, not an ordinary SSH shell.
 
-```bash
-npm test
-```
-
-## Rollback
-
-Remove the `gemini-video` MCP entry from the agent's OpenClaw configuration, remove the `GEMINI_API_KEY` environment mapping, restart the agent through its approved 1Password-aware launcher, and remove the deployed package only after no agent references it.
-
-## OpenClaw install rule (do not regress)
-
-When adding this MCP with `openclaw mcp add gemini-video`:
-
-- Keep the `gemini-video` server.
-- Do **not** pass `--approval auto`.
-- Do **not** write `mcp.servers.gemini-video.codex.defaultToolsApprovalMode=auto`.
-
-On OpenClaw 2026.9.4 that auto setting turns on global MCP write elicitations. Interactive Codex Notion writes then auto-decline as `user rejected MCP tool call`, with no approve button.
-
-Install scripts for Terry, Harry, and Rocky must omit the approval flag. After any video install or rebuild, confirm the live `openclaw.json` has no `defaultToolsApprovalMode` under `gemini-video`.
-
-See GitHub issue https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/350
-\n
+OpenClaw config backups end in `.before-gemini-files-20260921`; Ruby's config has the same suffix. The original 0.1 tool folders remain intact. Restore only the affected Gemini config entry from the backup to roll back, then reload that runtime's MCP connection. Do not overwrite unrelated configuration changes. Removing Cody's `gemini-video` MCP entry reverses its registration.
