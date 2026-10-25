@@ -169,4 +169,3 @@ except BaseException as error:
    failed=A/'failed-preactivation-state';assert live.resolve()==P('/opt/openclaw/agents')/agent and not failed.exists();live.rename(failed);live.mkdir();run(['tar','-xf',str(archive),'-C',str(live)],'restore-preactivation-state',1800);shutil.copy2(A/'manifest-before.json',manifest)
   run(['systemctl','start','openclaw-'+agent+'.service'],'resume-original',1500)
  raise
-
