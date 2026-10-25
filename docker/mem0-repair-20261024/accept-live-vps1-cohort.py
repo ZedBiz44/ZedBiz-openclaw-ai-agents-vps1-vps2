@@ -29,11 +29,16 @@ def rpc(method,params=None,options=None):
 assert rpc('health').get('ok')
 cron=rpc('cron.list',{'includeDisabled':True});assert len(cron['jobs'])==preserved['userSchedulesPreserved'],'Schedule count changed'
 prompt='Read-only upgrade acceptance. '+memory+' Through your connected Codex Notion app use codex_apps.notion.fetch to read page 37ba3e33d581816584cdf6b622a0d944. Use native Asana to get your own user identity. Return only which calls succeeded. Do not save test facts, change files or pages, create tasks, send messages, or delegate.'
-r=rpc('agent',{'agentId':'main','sessionKey':'agent:main:cody-upgrade-live-20261024','message':prompt,'idempotencyKey':str(uuid.uuid4()),'deliver':False,'disableMessageTool':True},{'expectFinal':True})
+sessionKey='agent:main:main' if slot=='hindsight-openclaw' else 'agent:main:cody-upgrade-live-20261024'
+idleStart=time.monotonic()
+while True:
+ active=rpc('status').get('shutdownBudget',{}).get('activeWork');assert active,'Missing active-work counters'
+ if all(v==0 for v in active.values()):break
+ assert time.monotonic()-idleStart<1200,'Busy agent; defer the maintenance test';time.sleep(15)
+r=rpc('agent',{'agentId':'main','sessionKey':sessionKey,'message':prompt,'idempotencyKey':str(uuid.uuid4()),'deliver':False,'disableMessageTool':True},{'expectFinal':True})
 meta=r['result']['meta'];receipt=meta['agentMeta']['terminalReceipt'];assert r['status']=='ok' and not meta.get('aborted') and not receipt.get('rerouted') and required<=set(receipt.get('successfulToolNames',[])),'Live model/tool proof failed'
 run(['docker','exec',name,'gog','--readonly','--no-input','--json','drive','ls','--max','1'],'drive',timeout=120)
 with urllib.request.urlopen('https://'+name+'.zbiz.ca/healthz',timeout=25) as response:assert response.status==200
 phases=[{'phase':m[1],'ms':float(m[2]),'totalMs':float(m[3])} for m in re.finditer(r'startup phase: (\S+) ([\d.]+)ms total=([\d.]+)ms',log)]
 proof={'passed':True,'agent':name,'imageId':d['Image'],'core':'2026.10.6','node':'24.22.1','schedules':len(cron['jobs']),'memoryProvider':slot,'restarts':d['RestartCount'],'oom':d['State']['OOMKilled'],'httpsHealth':200,'effectiveModel':receipt.get('effective',{}).get('model'),'successfulTools':receipt.get('successfulToolNames',[]),'existingMemoryRead':True,'authenticatedDriveRead':True,'startupPhases':phases}
 (A/'acceptance.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
-
