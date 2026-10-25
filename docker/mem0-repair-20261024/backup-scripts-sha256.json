@@ -1,0 +1,5 @@
+{
+  "backup-current-vps1-agent.py": "ffc02dfdc5fe4d7b86288a7dd88078a1fa28b702f392cf6a2326e981d73c57c5",
+  "cleanup-replaced-vps1-agent-backups.py": "676eba8c6ec413ca3f2d3bc36045bfc796c34aad711ba84e717bf8e81bf2f9cf",
+  "backup-vps1-shared-recovery.py": "69bf0d26d507cf889686ff7b7c0efffbb8be675fd88cdddc6c270852b8856c68"
+}
