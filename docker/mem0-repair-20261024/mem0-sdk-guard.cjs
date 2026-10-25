@@ -12,4 +12,3 @@ assert.ok(read('package.json').dependencies['@mem0/openclaw-mem0'].startsWith('f
 assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(project,'package-lock.json'))).digest('hex'),'e4180c3b5587246e6b6f04d4a3ec52c85432f00c87dc6d79ab2134601a9e519c');
 for(const unused of ['cloudflare','@azure/identity','@mistralai/mistralai'])assert.ok(!fs.existsSync(path.join(project,'node_modules',unused)));
 console.log('[mem0-sdk] Reproducible SDK3.3.1 package, custom tools and dependency lock verified.');
-
