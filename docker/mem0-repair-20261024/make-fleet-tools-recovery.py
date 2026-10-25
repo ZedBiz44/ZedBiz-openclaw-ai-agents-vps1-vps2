@@ -3,7 +3,7 @@ import hashlib,json,os,pathlib,shutil,subprocess,sys,time
 os.umask(0o077)
 root=pathlib.Path('/opt/openclaw/recovery/release-20261024-fleet-tools');root.mkdir(mode=0o700,parents=True,exist_ok=True)
 refs=['zedbiz/openclaw-base:2026.10.6-tools-full-20261023',*[f'zedbiz/{n}:2026.10.6-tools-full-20261023' for n in ['amanda','victor','wilma','grogar','maggie']],'zedbiz/marsha:2026.10.6-tools-full-20261024','zedbiz/asana-http-mcp:2.0.0-components-20261023','zedbiz/asana-http-mcp:2.0.0-edith-components-20261023']
-assert shutil.disk_usage(root).free>40*1024**3,'Require cold-proof capacity'
+if sys.argv[1] in ['archive','prove']:assert shutil.disk_usage(root).free>40*1024**3,'Require cold-proof capacity'
 def sha(p):
  with pathlib.Path(p).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
 if sys.argv[1]=='archive':
