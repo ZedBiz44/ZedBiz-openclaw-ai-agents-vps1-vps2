@@ -3,7 +3,12 @@ import pathlib,json,subprocess,time,hashlib,shutil,os
 P=pathlib.Path;os.umask(0o077);W=P('/opt/openclaw/backups/private-recovery-20261024/supporting-images');catalog=json.loads((W/'proof.json').read_text());assert catalog['passed'];archive=W/catalog['archive']['archive']
 with archive.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==catalog['archive']['sha256']
 assert shutil.disk_usage(W).free>30*1024**3,'Require isolated proof headroom'
-S=W/'cold-proof-store';assert not S.exists();S.mkdir();(S/'daemon.json').write_text('{}');(S/'containerd.toml').write_text('version = 3\ndisabled_plugins = ["io.containerd.cri.v1.images", "io.containerd.cri.v1.runtime", "io.containerd.grpc.v1.cri"]\n')
+S=P('/opt/openclaw/backups/support-cold-20261024');resuming=S.exists();assert not S.is_symlink() and S.resolve()==S
+if resuming:
+ assert (W/'cold-load.private.log').exists(),'Only resume the known completed archive load'
+ for name in ['cody-support-containerd-proof','cody-support-docker-proof']:assert subprocess.run(['docker','inspect',name],capture_output=True).returncode!=0
+else:S.mkdir(mode=0o700)
+(S/'daemon.json').write_text('{}');(S/'containerd.toml').write_text('version = 3\ndisabled_plugins = ["io.containerd.cri.v1.images", "io.containerd.cri.v1.runtime", "io.containerd.grpc.v1.cri"]\n')
 names=['cody-support-containerd-proof','cody-support-docker-proof'];started=[]
 def run(args,label,timeout=900):
  p=subprocess.run(args,capture_output=True,text=True,timeout=timeout);(W/(label+'.private.log')).write_text(p.stdout+p.stderr);assert p.returncode==0,label+' failed';return p.stdout
@@ -19,7 +24,7 @@ try:
   if subprocess.run(docker+['info'],capture_output=True).returncode==0:break
   time.sleep(1)
  else:raise RuntimeError('Isolated Docker unavailable')
- assert not subprocess.check_output(docker+['image','ls','-q'],text=True).strip()
+ if not resuming:assert not subprocess.check_output(docker+['image','ls','-q'],text=True).strip()
  run(docker+['image','load','-i',str(archive)],'cold-load',1200)
  for image in catalog['images']:
   loaded=json.loads(run(docker+['image','inspect',image['imageId']],'inspect-'+image['container']))[0];assert loaded['Id']==image['imageId']
@@ -30,15 +35,17 @@ try:
   path=W/item['archive']
   with path.open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==item['sha256']
   tag='cody/'+item['container']+'-recovered:20261024';run(docker+['image','import',str(path),tag],'import-'+item['container'])
-  nodePath=run(['docker','exec',item['container'],'node','-p','process.execPath'],'source-node-path-'+item['container']).strip();assert nodePath.startswith('/') and '\n' not in nodePath
-  original=run(['docker','exec',item['container'],'node','--version'],'source-node-version-'+item['container']).strip();restored=run(docker+['run','--rm','--network','none','--memory','256m','--entrypoint',nodePath,tag,'--version'],'restored-node-version-'+item['container']).strip();assert restored==original;imported.append({'container':item['container'],'coldImportVerified':True,'restoredNodeVersion':restored})
- proof={'passed':True,'archiveSha256':catalog['archive']['sha256'],'coldLoadedImageIds':[i['imageId'] for i in catalog['images']],'allImageIdsMatched':True,'requiredLocalTagsRestoredInFixture':True,'runningFilesystemImports':imported,'productionServicesUnchanged':True,'isolatedStoresInitiallyEmpty':True}
+  runtime='python3';runtimePath=run(['docker','exec',item['container'],'sh','-c','command -v '+runtime],'source-runtime-path-'+item['container']).strip();assert runtimePath.startswith('/') and '\n' not in runtimePath
+  original=run(['docker','exec',item['container'],runtime,'--version'],'source-runtime-version-'+item['container']).strip();restored=run(docker+['run','--rm','--network','none','--memory','256m','--entrypoint',runtimePath,tag,'--version'],'restored-runtime-version-'+item['container']).strip();assert restored==original;imported.append({'container':item['container'],'coldImportVerified':True,'runtime':runtime,'restoredVersion':restored})
+ proof={'passed':True,'archiveSha256':catalog['archive']['sha256'],'coldLoadedImageIds':[i['imageId'] for i in catalog['images']],'allImageIdsMatched':True,'requiredLocalTagsRestoredInFixture':True,'runningFilesystemImports':imported,'productionServicesUnchanged':True,'resumedKnownIsolatedArchiveLoad':resuming}
  (W/'cold-proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
 finally:
  for name in reversed(started):
+  log=subprocess.run(['docker','logs',name],capture_output=True,text=True);(W/(name+'.private.log')).write_text(log.stdout+log.stderr)
+  state=json.loads(subprocess.check_output(['docker','inspect',name]))[0]['State'];(W/(name+'-state.json')).write_text(json.dumps({k:state.get(k) for k in ['Status','Running','OOMKilled','ExitCode','Error']}))
   run(['docker','stop','-t','20',name],name+'-stop',90);run(['docker','rm',name],name+'-remove',60)
 if (W/'cold-proof.json').exists():
- assert S.resolve()==W/'cold-proof-store' and not S.is_symlink()
+ assert S.resolve()==P('/opt/openclaw/backups/support-cold-20261024') and not S.is_symlink()
  for entry in P('/proc').glob('[0-9]*/mountinfo'):
   try:assert str(S) not in entry.read_text(),'Test store still mounted'
   except (FileNotFoundError,ProcessLookupError,PermissionError):pass
