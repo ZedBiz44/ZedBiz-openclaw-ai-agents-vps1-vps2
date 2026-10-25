@@ -1,7 +1,7 @@
 """Serial, backed-up 10.6 cohort activation. Run acceptance before the next agent."""
 import pathlib,json,subprocess,os,sys,time,hashlib,shutil,sqlite3,tarfile,re
 P=pathlib.Path;os.umask(0o077);agent=sys.argv[1]
-allowed=['edith','vivian','amanda','victor','wilma','gohzed','grogar','inga','maggie','terry'];assert agent in allowed
+allowed=['amanda','victor','wilma','gohzed','grogar','inga','maggie','terry'];assert agent in allowed
 W=P('/opt/openclaw/backups/fleet-10-6-20261024');W.mkdir(exist_ok=True,mode=0o700);A=W/agent;live=P('/opt/openclaw/agents')/agent
 M=P('/opt/openclaw/backups/mem0-repair-20261024-r2');R=P('/opt/openclaw/recovery/release-20261024-fleet-tools')
 assert json.loads((M/'terry-activation/acceptance.json').read_text())['passed']
@@ -19,6 +19,7 @@ def run(args,label,timeout=1800,input=None):
 d=obj(agent);side=obj(agent+'-asana-mcp');assert d['State']['Health']['Status']=='healthy' and not d['State']['OOMKilled']
 cfg=json.loads((live/'config/openclaw.json').read_text());slot=cfg['plugins']['slots']['memory']
 cohort=agent if agent in ['amanda','victor','wilma','grogar','maggie'] else 'openclaw-base';target='zedbiz/'+cohort+':2026.10.6-tools-full-20261023';sideTarget='zedbiz/asana-http-mcp:2.0.0-'+('edith-' if agent=='edith' else '')+'components-20261023'
+controlPlan=json.loads((W/'remaining-control-plan.json').read_text());control=controlPlan['agents'][agent];assert controlPlan['allExistingRecoveryArchivesVerified'] and control['targetGuardPassed'] and control['targetImage']==target
 ids={v['ref']:v['id'] for v in catalog['images']};assert imageId(target)==ids[target] and imageId(sideTarget)==ids[sideTarget]
 assert d['Config']['Image']!=target,'Agent already selects this image; inspect acceptance instead'
 assert all('\n' not in value for value in d['Config']['Env']);(A/'runtime.env').write_text('\n'.join(d['Config']['Env'])+'\n')
@@ -37,7 +38,8 @@ while True:
  print(json.dumps({'agent':agent,'waitingForIdle':True,'activeWork':active}),flush=True);assert time.monotonic()-gateStart<1200,'Still active; no interruption';time.sleep(20)
 used=int(subprocess.check_output(['du','-sb',str(live)],text=True).split()[0]);dbFiles=[live/'config/state/openclaw.sqlite',*(live/'agents').glob('*/agent/openclaw-agent.sqlite')]
 assert shutil.disk_usage(live).free>25*1024**3+used+sum(p.stat().st_size for p in dbFiles if p.exists()),'Require checkpoint and recovery headroom'
-manifest=P('/opt/openclaw/recovery/fleet-20261018')/agent/'manifest.json';oldManifest=json.loads(manifest.read_text());assert sha(oldManifest['wrapper'])==oldManifest['wrapper_sha256']
+manifest=P(control['manifest']);oldManifest=json.loads(manifest.read_text());assert oldManifest['wrapper']==control['wrapper'] and sha(oldManifest['wrapper'])==oldManifest['wrapper_sha256']==control['wrapperSha256']
+oldImagePins={v['ref']:v['id'] for v in oldManifest['images']};assert oldImagePins[d['Config']['Image']]==d['Image'] and oldImagePins[side['Config']['Image']]==side['Image']
 shutil.copy2(manifest,A/'manifest-before.json');shutil.copy2(live/'docker-compose.yml',A/'compose-before.yml');shutil.copy2(live/'workspace/post-start.sh',A/'post-start-before.sh')
 instructions={};skills={}
 for f in (live/'workspace').glob('*.md'):
@@ -54,12 +56,12 @@ def cronRows(path):
  with sqlite3.connect('file:'+str(path)+'?mode=ro',uri=True) as db:
   cols=[r[1] for r in db.execute('pragma table_info(cron_jobs)')];rows=db.execute('select * from cron_jobs').fetchall()
  return cols,rows
-archive=A/'state-before.tar.gz';stopped=False;checkpoint=False;changed=False;startedNew=False;startAttempted=False
+archive=A/'state-before.tar.gz';stopped=False;checkpoint=False;changed=False;startedNew=False;startAttempted=False;schemaSidecar='cody-'+agent+'-asana-schema'
 try:
  run(['systemctl','stop','openclaw-'+agent+'.service'],'managed-stop',650);stopped=True;assert subprocess.run(['docker','inspect','--type','container',agent],capture_output=True).returncode!=0
  cols,oldRows=cronRows(live/'config/state/openclaw.sqlite');(A/'cron-before.json').write_text(json.dumps({'columns':cols,'rows':oldRows}))
  run(['nice','-n','15','tar','-I','pigz -p 2 -3','-cf',str(archive),'-C',str(live),'.'],'offline-backup',3600)
- run(['tar','-tf',str(archive)],'backup-list',600)
+ # The selected restore traverses the compressed archive and verifies tar headers/CRC.
  restore=A/'restore-check';restore.mkdir();run(['tar','-xf',str(archive),'-C',str(restore),'./config/state','./agents'],'restore-databases',900)
  checked=[]
  for p in [restore/'config/state/openclaw.sqlite',*(restore/'agents').glob('*/agent/openclaw-agent.sqlite')]:
@@ -69,7 +71,10 @@ try:
   checked.append(str(p.relative_to(restore)))
  assert checked
  if external:
-  run(['nice','-n','15','tar','-I','pigz -p 2 -3','-cf',str(A/'lancedb-before.tar.gz'),'-C',str(external),'.'],'external-memory-backup',900);run(['tar','-tf',str(A/'lancedb-before.tar.gz')],'external-memory-list',120)
+  run(['nice','-n','15','tar','-I','pigz -p 2 -3','-cf',str(A/'lancedb-before.tar.gz'),'-C',str(external),'.'],'external-memory-backup',900)
+  externalRestore=A/'lancedb-restore-check';externalRestore.mkdir();run(['tar','-xf',str(A/'lancedb-before.tar.gz'),'-C',str(externalRestore)],'external-memory-restore',900)
+  externalFiles={str(p.relative_to(external)):sha(p) for p in external.rglob('*') if p.is_file()};restoredFiles={str(p.relative_to(externalRestore)):sha(p) for p in externalRestore.rglob('*') if p.is_file()};assert externalFiles and externalFiles==restoredFiles,'External memory restore differs'
+  (A/'external-memory-restore.json').write_text(json.dumps({'passed':True,'files':len(externalFiles),'allFileHashesMatched':True}))
  (A/'checkpoint.json').write_text(json.dumps({'archive':str(archive),'sha256':sha(archive),'sqliteChecks':checked,'externalMemory':str(external) if external else None,'externalArchiveSha256':sha(A/'lancedb-before.tar.gz') if external else None}));checkpoint=True
  maint=['docker','run','--rm','--name','cody-'+agent+'-offline-maintenance','--memory','3g','--memory-swap','3g','--env-file',str(A/'runtime.env'),'--user','node','--entrypoint','node']
  for network in d['NetworkSettings']['Networks']:maint+=['--network',network]
@@ -78,9 +83,17 @@ try:
   src=mount['Source'];dest=mount['Destination']
   if src in ['/var/run/docker.sock','/dev/shm']:continue
   mode='' if src.startswith(str(live)+'/') and mount['RW'] else ':ro';maint+=['-v',src+':'+dest+mode]
+ assert all('\n' not in value for value in side['Config']['Env']);(A/'asana-runtime.env').write_text('\n'.join(side['Config']['Env'])+'\n')
+ sideNetworks=list(side['NetworkSettings']['Networks']);assert sideNetworks
+ sideArgs=['docker','run','-d','--name',schemaSidecar,'--network',sideNetworks[0],'--network-alias',agent+'-asana-mcp','--env-file',str(A/'asana-runtime.env'),'--label','cody.asana-schema=true']
+ for mount in side['Mounts']:sideArgs+=['-v',mount['Source']+':'+mount['Destination']+('' if mount['RW'] else ':ro')]
+ run(sideArgs+[sideTarget,*side['Config']['Cmd']],'schema-sidecar-start',120)
+ for network in sideNetworks[1:]:run(['docker','network','connect','--alias',agent+'-asana-mcp',network,schemaSidecar],'schema-sidecar-network-'+network,120)
  maint+=[target,'/app/openclaw.mjs'];changed=True
  if '2026.10.4' in d['Config']['Image']:run(maint+['doctor','--fix','--non-interactive'],'core-migration',1800)
  c=json.loads((live/'config/openclaw.json').read_text())
+ scriptsDir=live/'config/scripts';assert not scriptsDir.is_symlink()
+ if not scriptsDir.exists():scriptsDir.mkdir(mode=0o755);os.chown(scriptsDir,1000,1000)
  if slot=='openclaw-mem0':
   assert json.loads((M/'edith-sdk6-proof/sdk-memory-proof.json').read_text())['passed'] if agent=='edith' else True
   projects=list((live/'npm/projects').glob('mem0-*/node_modules/@mem0/openclaw-mem0/package.json'));assert len(projects)==1;project=projects[0].parents[3]
@@ -102,7 +115,8 @@ try:
  elif slot=='hindsight-openclaw':
   run(maint+['plugins','update','@vectorize-io/hindsight-openclaw@1.2.0','--accept-capabilities'],'memory-plugin-update',1800)
   c=json.loads((live/'config/openclaw.json').read_text());c['plugins']['entries'][slot]['config']['allowKnowledgeDelete']=False;(live/'config/openclaw.json').write_text(json.dumps(c,indent=2)+'\n')
- lint=subprocess.run(maint+['doctor','lint','--json'],capture_output=True,text=True,timeout=1200)
+ print(json.dumps({'agent':agent,'phase':'doctor-lint','started':True}),flush=True)
+ lint=subprocess.run(maint+['doctor','--lint','--json'],capture_output=True,text=True,timeout=1200)
  (A/'lint.private.log').write_text(lint.stdout+'\n'+lint.stderr)
  raw=lint.stdout;begin=raw.find('{');assert begin>=0,'Doctor lint returned no JSON'
  lintData=json.JSONDecoder().raw_decode(raw[begin:])[0];assert 'findings' in lintData and lintData.get('checksRun'),'Doctor lint incomplete'
@@ -141,10 +155,13 @@ try:
  (live/'docker-compose.yml').write_text(compose)
  m=json.loads(manifest.read_text());m.update(archive=catalog['archive'],sha256=catalog['sha256'],images=[v for v in catalog['images'] if v['ref'] in [target,sideTarget]]);manifest.write_text(json.dumps(m,indent=2))
  (A/'preservation.json').write_text(json.dumps({'passed':True,'skills':len(skills),'userSchedulesPreserved':len(kept),'retiredBuiltinReviews':len(retired),'memorySlot':slot,'target':target,'targetId':ids[target],'sidecar':sideTarget,'sidecarId':ids[sideTarget]}))
+ run(['docker','stop','-t','20',schemaSidecar],'schema-sidecar-stop',90);run(['docker','rm',schemaSidecar],'schema-sidecar-remove',60)
  startAttempted=True;run(['systemctl','start','openclaw-'+agent+'.service'],'managed-start',1500);startedNew=True
  (A/'activation.json').write_text(json.dumps({'activated':True,'target':target,'targetId':ids[target],'sidecar':sideTarget,'sidecarId':ids[sideTarget],'awaitingLiveAcceptance':True,'checkpoint':str(archive)}));print(json.dumps({'activated':agent,'target':target,'awaitingLiveAcceptance':True}),flush=True)
 except BaseException as error:
  (A/'failure.json').write_text(json.dumps({'errorType':type(error).__name__,'message':str(error),'stopped':stopped,'checkpoint':checkpoint,'changed':changed,'startedNew':startedNew}))
+ if subprocess.run(['docker','inspect','--type','container',schemaSidecar],capture_output=True).returncode==0:
+  run(['docker','rm','-f',schemaSidecar],'cleanup-schema-sidecar',120)
  if stopped and not startAttempted:
   maintName='cody-'+agent+'-offline-maintenance'
   if subprocess.run(['docker','inspect','--type','container',maintName],capture_output=True).returncode==0:run(['docker','rm','-f',maintName],'stop-failed-maintenance',180)
@@ -152,4 +169,3 @@ except BaseException as error:
    failed=A/'failed-preactivation-state';assert live.resolve()==P('/opt/openclaw/agents')/agent and not failed.exists();live.rename(failed);live.mkdir();run(['tar','-xf',str(archive),'-C',str(live)],'restore-preactivation-state',1800);shutil.copy2(A/'manifest-before.json',manifest)
   run(['systemctl','start','openclaw-'+agent+'.service'],'resume-original',1500)
  raise
-
