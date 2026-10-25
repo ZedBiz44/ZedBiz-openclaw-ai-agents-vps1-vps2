@@ -391,7 +391,15 @@
   },
   "totalCurrentUserSchedules": 93,
   "upgradeWaveCompleteMarker": true,
-  "currentBackupsComplete": false,
+  "currentBackupsComplete": true,
   "startupTimingLimit": "Observed individual starts under differing load/cache; overlapping phases are not additive; no controlled fleet speed ratio.",
-  "backupStage": "Current agent backups running; image archive already verified offsite."
+  "backupStage": "Complete: 13 encrypted recovery files freshly verified in Drive; index published; replaced October18 data and temporary upload/key copies removed.",
+  "closeoutRecord": "tracking/main-vps/2026-10-25-vps1-closeout.json",
+  "backupIndexUrl": "https://drive.google.com/file/d/1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO/view",
+  "finalFleetReadbackPassed": true,
+  "finalProductionServicesRunning": 40,
+  "finalReadbackUtc": "2026-10-25T06:15:14.857106+00:00",
+  "finalFreeDiskBytes": 121710600192,
+  "finalDiskUsedPercent": 70.66255206988667,
+  "performanceLimits": "All11 working-set RAM samples are below2GiB after maintenance, but long-term growth is unproven; swap remains mostly occupied. Shared synchronous guarded-file startup overhead remains; Terry observed readiness118.57sec, recovery123.91sec. Production Hindsight backend remains1.0."
 }
