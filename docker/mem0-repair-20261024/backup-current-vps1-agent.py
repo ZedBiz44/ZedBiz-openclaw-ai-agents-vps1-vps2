@@ -53,9 +53,15 @@ try:
    for proc in [tar,enc]:
     if proc.poll() is None:proc.kill();proc.wait()
  assert cipher.stat().st_size>1024
+ (A/'snapshot-metadata.json').write_text(json.dumps({'plaintextSha256':plaintextSha,'protectedFiles':protected,'externalFiles':externalFiles},indent=2))
 finally:
  if stopped:run(['systemctl','start','openclaw-'+agent+'.service'],'managed-start',1500)
-assert obj(agent)['State']['Health']['Status']=='healthy'
+readinessStart=time.monotonic()
+while True:
+ current=obj(agent);assert current['State']['Running'] and not current['State']['OOMKilled'] and current['Image']==d['Image'],'Gateway failed after backup restart'
+ if current['State'].get('Health',{}).get('Status')=='healthy':break
+ assert time.monotonic()-readinessStart<1000,'Gateway readiness deadline after backup';time.sleep(3)
+(A/'post-backup-readiness.json').write_text(json.dumps({'healthy':True,'waitedSeconds':round(time.monotonic()-readinessStart,2)}))
 restore=A/'restore-check';restore.mkdir();selected=['agents/'+agent+'/config/state','agents/'+agent+'/agents','agents/'+agent+'/config/openclaw.json','agents/'+agent+'/docker-compose.yml']
 selected.extend(k for k in protected if '/workspace/' in k)
 if external:selected.append(str(external.relative_to(base)))
