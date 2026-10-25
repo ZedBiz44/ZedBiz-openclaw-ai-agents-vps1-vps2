@@ -28,4 +28,3 @@ if slot=='openclaw-mem0':
  ids=set(re.findall(r'[a-f0-9]{8}-[a-f0-9-]{27,}',text));gets=[m for m in tools if m.get('toolName')=='mem0_get' and not m.get('isError')];assert gets
  assert any(ids&set(re.findall(r'[a-f0-9]{8}-[a-f0-9-]{27,}','\n'.join(x.get('text','') for x in m.get('content',[]) if isinstance(x,dict)))) for m in gets),'Get did not read a searched memory identifier'
 proof.update(actualMemoryResultValidated=True,recalledExistingMemories=count,storedScheduleDefinitionsCompared=True);(A/'acceptance.json').write_text(json.dumps(proof,indent=2));print(json.dumps({'agent':agent,'actualMemoryResultValidated':True,'recalledExistingMemories':count,'storedScheduleDefinitionsPreserved':len(current)}),flush=True)
-
