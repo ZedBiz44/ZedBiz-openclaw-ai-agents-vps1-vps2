@@ -1,0 +1,900 @@
+{
+  "checkedUtc": "2026-10-25T06:15:14.857106+00:00",
+  "current-backups-complete": {
+    "passed": true,
+    "agents": 11,
+    "sharedMemoryAndRecoveryVerified": true,
+    "currentAgentStatesOffsite": true,
+    "oldOctober18AgentDataReplaced": true,
+    "marshaSlackPreserved": true
+  },
+  "cloud-backup-set-readback": {
+    "passed": true,
+    "checkedUtc": "2026-10-25T06:12:12.121000+00:00",
+    "files": 13,
+    "totalEncryptedBytes": 47418472466,
+    "allCloudMd5SizeAndParentVerified": true,
+    "indexSha256": "467f71af8a153976c708b509335ac60cdde08e3d367a1669e1af87306161468e",
+    "indexPath": "/opt/openclaw/backups/private-recovery-20261024/VPS1-current-backup-index.json"
+  },
+  "backup-index-published": {
+    "passed": true,
+    "checkedUtc": "2026-10-25T06:12:51.197329+00:00",
+    "indexFileId": "1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO",
+    "keyReferenceFileId": "17Xqakx1la2dy5Hnv1543SwBnGHasMhAB",
+    "cloudSizeMd5ParentVerified": true,
+    "files": [
+      {
+        "component": "index",
+        "id": "1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO",
+        "md5Checksum": "3fb771153c8427f9ac93664bf65cbca1",
+        "name": "VPS1-current-backup-index.json",
+        "parents": [
+          "19RU1qtUM-w0k2c66Cpj1im3OPOV3llaZ"
+        ],
+        "size": "10064",
+        "webViewLink": "https://drive.google.com/file/d/1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO/view?usp=drivesdk"
+      },
+      {
+        "component": "key-reference",
+        "id": "17Xqakx1la2dy5Hnv1543SwBnGHasMhAB",
+        "md5Checksum": "a4902c9c0db706ed5803098672e75462",
+        "name": "VPS1-backup-key-reference.json",
+        "parents": [
+          "19RU1qtUM-w0k2c66Cpj1im3OPOV3llaZ"
+        ],
+        "size": "651",
+        "webViewLink": "https://drive.google.com/file/d/17Xqakx1la2dy5Hnv1543SwBnGHasMhAB/view?usp=drivesdk"
+      }
+    ]
+  },
+  "oct18-shared-data-cleanup": {
+    "passed": true,
+    "checkedUtc": "2026-10-25T06:13:02.480147+00:00",
+    "removedOldDataPaths": [
+      "/opt/openclaw/backups/fleet-20261018/shared-memory",
+      "/opt/openclaw/backups/components-20261018/shared-tools",
+      "/opt/openclaw/backups/components-20261018/shared",
+      "/opt/openclaw/backups/components-20261018/host",
+      "/opt/openclaw/backups/components-20261018/asana",
+      "/opt/openclaw/backups/components-20261018/shared-services",
+      "/opt/openclaw/backups/fleet-20261018",
+      "/opt/openclaw/backups/components-20261018"
+    ],
+    "smallAuditFilesPreserved": 27,
+    "oldPostgresFilesRemoved": [
+      {
+        "name": "hindsight-20261012T121701Z.dump.enc",
+        "bytes": 161832112
+      },
+      {
+        "name": "hindsight-20261013T121701Z.dump.enc",
+        "bytes": 171514672
+      },
+      {
+        "name": "hindsight-20261010T121701Z.dump.enc",
+        "bytes": 161678016
+      },
+      {
+        "name": "hindsight-20261011T001701Z.dump.enc",
+        "bytes": 164692208
+      },
+      {
+        "name": "hindsight-20261017T181701Z.dump.enc",
+        "bytes": 190908608
+      },
+      {
+        "name": "hindsight-20261016T121701Z.dump.enc",
+        "bytes": 167842544
+      },
+      {
+        "name": "hindsight-20261015T061701Z.dump.enc",
+        "bytes": 169552400
+      },
+      {
+        "name": "hindsight-20261011T181701Z.dump.enc",
+        "bytes": 163462912
+      },
+      {
+        "name": "hindsight-20261017T121701Z.dump.enc",
+        "bytes": 191268336
+      },
+      {
+        "name": "hindsight-20261015T181701Z.dump.enc",
+        "bytes": 172311456
+      },
+      {
+        "name": "hindsight-20261014T061701Z.dump.enc",
+        "bytes": 165755840
+      },
+      {
+        "name": "hindsight-20261015T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261015T121701Z.dump.enc",
+        "bytes": 174538032
+      },
+      {
+        "name": "hindsight-20261012T181701Z.dump.enc",
+        "bytes": 167855600
+      },
+      {
+        "name": "hindsight-20261014T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261013T181701Z.dump.enc",
+        "bytes": 167372560
+      },
+      {
+        "name": "hindsight-20261016T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261012T061702Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261010T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261012T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261017T061701Z.dump.enc",
+        "bytes": 178546224
+      },
+      {
+        "name": "hindsight-20261018T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261015T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261017T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261013T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261018T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261018T121701Z.dump.enc",
+        "bytes": 168842448
+      },
+      {
+        "name": "hindsight-20261017T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261013T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261016T061701Z.dump.enc",
+        "bytes": 172311456
+      },
+      {
+        "name": "hindsight-20261014T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261016T001701Z.dump.enc",
+        "bytes": 172311456
+      },
+      {
+        "name": "hindsight-20261014T121701Z.dump.enc",
+        "bytes": 166136704
+      },
+      {
+        "name": "hindsight-20261011T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261016T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261015T001701Z.dump.enc",
+        "bytes": 169851680
+      },
+      {
+        "name": "hindsight-20261018T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261016T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261010T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261013T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261011T061701Z.dump.enc",
+        "bytes": 164692208
+      },
+      {
+        "name": "hindsight-20261016T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261011T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261018T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261014T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261018T001701Z.dump.enc",
+        "bytes": 179181184
+      },
+      {
+        "name": "hindsight-20261013T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261016T181701Z.dump.enc",
+        "bytes": 166550096
+      },
+      {
+        "name": "hindsight-20261017T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261017T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261017T001701Z.dump.enc",
+        "bytes": 178546224
+      },
+      {
+        "name": "hindsight-20261012T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261010T061701Z.dump.enc",
+        "bytes": 161676208
+      },
+      {
+        "name": "hindsight-20261011T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261014T001701Z.dump.enc",
+        "bytes": 165499248
+      },
+      {
+        "name": "hindsight-20261018T061701Z.dump.enc",
+        "bytes": 179181184
+      },
+      {
+        "name": "hindsight-20261012T001701Z.dump.enc",
+        "bytes": 161411536
+      },
+      {
+        "name": "hindsight-20261010T181701Z.dump.enc",
+        "bytes": 161329952
+      },
+      {
+        "name": "hindsight-20261012T061702Z.dump.enc",
+        "bytes": 161411536
+      },
+      {
+        "name": "hindsight-20261018T181701Z.dump.enc",
+        "bytes": 170134224
+      },
+      {
+        "name": "hindsight-20261013T001701Z.dump.enc",
+        "bytes": 170980144
+      },
+      {
+        "name": "hindsight-20261015T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261014T061701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261010T121701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261012T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261011T181701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261013T061701Z.dump.enc",
+        "bytes": 171320976
+      },
+      {
+        "name": "hindsight-20261015T001701Z.dump.enc.sha256",
+        "bytes": 152
+      },
+      {
+        "name": "hindsight-20261011T121701Z.dump.enc",
+        "bytes": 164820256
+      },
+      {
+        "name": "hindsight-20261014T181701Z.dump.enc",
+        "bytes": 169922624
+      }
+    ],
+    "freeBytesRecovered": 7375355904,
+    "currentOffsiteSharedBackupId": "1wlVHPH3bFg1z6TxJroFxBPOJWqyWBPc7",
+    "activeRecoveryControlDirectoriesPreserved": true,
+    "currentPostgresBackupScheduleUnchanged": true
+  },
+  "temporary-backup-copy-cleanup": {
+    "passed": true,
+    "checkedUtc": "2026-10-25T06:14:27.504755+00:00",
+    "vaultKeyFreshReadbackVerified": true,
+    "publicRecipient": "age1pv08um2d8w3jhyryjrlp6junfmgufv9fq2nxgm40n3kymjw8hdaslwnfly",
+    "vault": "z-backups",
+    "itemId": "3kgz2ekjiqzbtd4kwebuinp7lq",
+    "temporaryLocalIdentityRemoved": true,
+    "verifiedUploadCopiesRemoved": [
+      {
+        "name": "VPS1-2026-10-24-10.6-terry-state.tar.gz.age",
+        "bytes": 2068224201
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-marsha-state.tar.gz.age",
+        "bytes": 989773229
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-amanda-state.tar.gz.age",
+        "bytes": 1788564892
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-victor-state.tar.gz.age",
+        "bytes": 1513177857
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-wilma-state.tar.gz.age",
+        "bytes": 1477072810
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-gohzed-state.tar.gz.age",
+        "bytes": 596342729
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-grogar-state.tar.gz.age",
+        "bytes": 600529803
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-inga-state.tar.gz.age",
+        "bytes": 930313975
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-maggie-state.tar.gz.age",
+        "bytes": 564279436
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-edith-state.tar.gz.age",
+        "bytes": 14728185118
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-vivian-state.tar.gz.age",
+        "bytes": 14577844803
+      },
+      {
+        "name": "VPS1-2026-10-24-10.6-shared-memory-and-recovery.tar.gz.age",
+        "bytes": 1933787792
+      }
+    ],
+    "totalBytesRemoved": 41768096645,
+    "offsiteFilesAndAllRecoveryReceiptsRetained": true
+  },
+  "final-fixture-cleanup": {
+    "passed": true,
+    "checkedUtc": "2026-10-25T06:14:50.112256+00:00",
+    "removedVerifiedTemporaryCopies": [
+      "/opt/openclaw/backups/private-recovery-20261024/hindsight-final-proof/data",
+      "/opt/openclaw/backups/private-recovery-20261024/qdrant-final-proof/restore-data",
+      "/opt/openclaw/backups/private-recovery-20261024/shared-recovery/inputs"
+    ],
+    "freeBytesRecovered": 2118782976,
+    "sourceSnapshotsAndRestoreProofsRetained": true
+  },
+  "final-fleet-readback": {
+    "passed": true,
+    "agents": [
+      {
+        "agent": "terry",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+        "memoryProvider": "openclaw-mem0",
+        "memoryPluginVersion": "1.2.1",
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "slack": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1048678400,
+          "workingSetBytes": 955736064,
+          "anonymousBytes": 868200448,
+          "fileCacheBytes": 95223808,
+          "swapBytes": 802283520
+        }
+      },
+      {
+        "agent": "marsha",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:1a150640cb059b9253db95f836205d0b26709d7eb8e9d842d1c559fe03870d2c",
+        "memoryProvider": "hindsight-openclaw",
+        "memoryPluginVersion": "1.2.0",
+        "schedules": 12,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1162354688,
+          "workingSetBytes": 1054797824,
+          "anonymousBytes": 922734592,
+          "fileCacheBytes": 146006016,
+          "swapBytes": 974270464
+        }
+      },
+      {
+        "agent": "edith",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+        "memoryProvider": "openclaw-mem0",
+        "memoryPluginVersion": "1.2.1",
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1830965248,
+          "workingSetBytes": 1619558400,
+          "anonymousBytes": 1531711488,
+          "fileCacheBytes": 211488768,
+          "swapBytes": 0
+        }
+      },
+      {
+        "agent": "vivian",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+        "memoryProvider": "memory-lancedb",
+        "memoryPluginVersion": null,
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 2229596160,
+          "workingSetBytes": 1655091200,
+          "anonymousBytes": 1564196864,
+          "fileCacheBytes": 575721472,
+          "swapBytes": 0
+        }
+      },
+      {
+        "agent": "amanda",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:df8c999434aceadc60194cda80bd5653d097d52bae20e20d1c9d08a1b42c268d",
+        "memoryProvider": "memory-lancedb",
+        "memoryPluginVersion": null,
+        "schedules": 8,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1694904320,
+          "workingSetBytes": 1523097600,
+          "anonymousBytes": 1409925120,
+          "fileCacheBytes": 188579840,
+          "swapBytes": 490369024
+        }
+      },
+      {
+        "agent": "victor",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:4c57eaa5d369a7ecda8aab01166dc8385cb4adbf6b995b85e1c790085296e62e",
+        "memoryProvider": "memory-lancedb",
+        "memoryPluginVersion": null,
+        "schedules": 24,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1811591168,
+          "workingSetBytes": 1662115840,
+          "anonymousBytes": 1557565440,
+          "fileCacheBytes": 161845248,
+          "swapBytes": 169345024
+        }
+      },
+      {
+        "agent": "wilma",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:e870eeb61b16dd0d83432e18990d555587fa444181f904cd520d0db3361c2697",
+        "memoryProvider": "memory-lancedb",
+        "memoryPluginVersion": null,
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1506447360,
+          "workingSetBytes": 1450696704,
+          "anonymousBytes": 1328173056,
+          "fileCacheBytes": 86921216,
+          "swapBytes": 391319552
+        }
+      },
+      {
+        "agent": "gohzed",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+        "memoryProvider": "hindsight-openclaw",
+        "memoryPluginVersion": "1.2.0",
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1242460160,
+          "workingSetBytes": 1184722944,
+          "anonymousBytes": 1046495232,
+          "fileCacheBytes": 123748352,
+          "swapBytes": 483323904
+        }
+      },
+      {
+        "agent": "grogar",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:3e85eba4b7cbfd2b74e9fbbf51558626b48ab6d2f2abb8a453902426e90d4bdb",
+        "memoryProvider": "hindsight-openclaw",
+        "memoryPluginVersion": "1.2.0",
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1787154432,
+          "workingSetBytes": 1671938048,
+          "anonymousBytes": 1559248896,
+          "fileCacheBytes": 149979136,
+          "swapBytes": 70995968
+        }
+      },
+      {
+        "agent": "inga",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+        "memoryProvider": "hindsight-openclaw",
+        "memoryPluginVersion": "1.2.0",
+        "schedules": 7,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 1873735680,
+          "workingSetBytes": 1803149312,
+          "anonymousBytes": 1722871808,
+          "fileCacheBytes": 71372800,
+          "swapBytes": 65536
+        }
+      },
+      {
+        "agent": "maggie",
+        "passed": true,
+        "core": "2026.10.6",
+        "node": "24.22.1",
+        "imageId": "sha256:d7530874c0812d2634ce858d5af3eef774caeba77ffe88419172136aa813b164",
+        "memoryProvider": "hindsight-openclaw",
+        "memoryPluginVersion": "1.2.0",
+        "schedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allRunningAndConnected": true
+          }
+        },
+        "restarts": 0,
+        "oom": false,
+        "httpsHealth": 200,
+        "systemdEnabledAndActive": true,
+        "recoveryWrapperHashVerified": true,
+        "resourceSample": {
+          "currentBytes": 2057326592,
+          "workingSetBytes": 1840500736,
+          "anonymousBytes": 1745768448,
+          "fileCacheBytes": 227856384,
+          "swapBytes": 0
+        }
+      }
+    ],
+    "supportingServices": [
+      {
+        "service": "hindsight",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:25b4515cfc45b308159d0e5f91e09e39ddd2197c8de8f7623c5fa1b5e602586f"
+      },
+      {
+        "service": "hindsight-db",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11"
+      },
+      {
+        "service": "mem0-dev-qdrant-1",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:b7b0444c4c351c970b98e90a6f89c2ee4287c65b44e52b4cb503fa5b2aa927ad"
+      },
+      {
+        "service": "1password-connect-api",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:656e4b10df83ca258d8a75b2a051f7c06dd608212f8ae5ba4722e3fe164099d3"
+      },
+      {
+        "service": "1password-connect-sync",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:a760350c941a3e7c98dd66394e9fc3c7e68b6a0a2246a837c74084e534f75f6b"
+      },
+      {
+        "service": "caddy",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:685ae3d7c34d9b5f8caeddc5d14051db7bbd88ff1f5a2fa0c16bd8ca328fb7af"
+      },
+      {
+        "service": "z-code-allocator",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:b371073fae295aeba622bc4f32f118efdeee00a80e6dfb57c3222538aeb6d177"
+      },
+      {
+        "service": "z-code-admin",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:b371073fae295aeba622bc4f32f118efdeee00a80e6dfb57c3222538aeb6d177"
+      },
+      {
+        "service": "z-code-notion-mirror",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:65614526f8297c94a15402d9f749138bc83acd81018337298204f35d0e1bac45"
+      },
+      {
+        "service": "zedbiz-restart-api",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:17717cc707a0cc6d4cdcde15bd59e5c8e2c282ef6a6b21629367b0c104ba1019"
+      },
+      {
+        "service": "rocky-restart-bridge",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:bf9a1ea1c418c8e9a212f3645872e7f794011fd5ee5aad925807f1d1a6c799c3"
+      },
+      {
+        "service": "rocky-tunnel-bridge",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:bf9a1ea1c418c8e9a212f3645872e7f794011fd5ee5aad925807f1d1a6c799c3"
+      },
+      {
+        "service": "portainer",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:03f94a406496dc84d37b552795fc424ccad8d0d7200353b6a82915f6e8f73ab0"
+      },
+      {
+        "service": "filebrowser",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:a469ea076d4a1b4b1d86a41d130f2f536cd9da996a2b1fb39c0d7635f9d89b9a"
+      },
+      {
+        "service": "uptime-kuma",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:9912da7d7d9b6ddc0c2d904beb84d24689c1ed9c33b81419eb9008663a92a329"
+      },
+      {
+        "service": "dozzle",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:0d8cf9702f422d65a7e8ad238785dc6b05b2b9c43c945f6bbdf3358ad5da5f6c"
+      },
+      {
+        "service": "homepage",
+        "running": true,
+        "configuredHealth": "healthy",
+        "imageId": "sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8"
+      },
+      {
+        "service": "docker-socket-proxy",
+        "running": true,
+        "configuredHealth": null,
+        "imageId": "sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459"
+      }
+    ],
+    "productionServiceCount": 40,
+    "allFortyProductionServicesRunning": true,
+    "allElevenOn106WithTools": true,
+    "allConfiguredChannelsConnected": true,
+    "marshaSlackPluginEnabled": true,
+    "marshaSlackChannelConfigured": false,
+    "mem0AgentsOnVps1": [
+      "terry",
+      "edith"
+    ],
+    "harryMem0SeparatelyVerified": true,
+    "currentBackupsAccepted": true,
+    "freeDiskBytes": 121710604288,
+    "hostMemoryBytes": {
+      "MemTotal": 33653841920,
+      "MemAvailable": 14210019328,
+      "SwapTotal": 4294963200,
+      "SwapFree": 29458432
+    },
+    "rebootRequired": false
+  },
+  "currentDisk": {
+    "totalBytes": 414921494528,
+    "usedBytes": 293194117120,
+    "freeBytes": 121710600192
+  },
+  "allElevenOldAgentDataCopiesRetired": true,
+  "temporaryAgeKeyAbsent": true,
+  "oct18DataRootsAbsent": true,
+  "noBackupTestContainers": true
+}
