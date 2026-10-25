@@ -12,4 +12,3 @@ client=new GatewayClient({url:`ws://127.0.0.1:${config.gateway.port}`,token,shar
  catch(e){console.error(e.message);process.exitCode=2;}
  finally{await client.stopAndWait();clearTimeout(timer);}
 }});client.start();
-
