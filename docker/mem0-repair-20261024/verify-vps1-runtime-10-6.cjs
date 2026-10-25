@@ -12,4 +12,3 @@ if(process.argv[2]==='amanda'){
 }
 if(process.argv[2]==='grogar')assert.ok(!files.some(x=>x.startsWith('skill-collection-review-monitor-')),'Unexpected retired Workshop runtime requires review');
 console.log('OpenClaw10.6, Node and applicable cohort safeguards verified');
-
