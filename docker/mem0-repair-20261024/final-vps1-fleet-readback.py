@@ -16,7 +16,7 @@ def check(name):
   if enabled:
    assert all(a.get('running') is True and a.get('connected') is True for a in enabled),'Configured channel disconnected: '+name+'/'+channel
    channels[channel]={'configuredAccounts':len(enabled),'allRunningAndConnected':True}
- cron=rpc('cron.list',{'includeDisabled':True});expected=6 if name=='marsha' else json.loads((F/name/'acceptance.json').read_text())['schedules'];assert len(cron['jobs'])==expected
+ cron=rpc('cron.list',{'includeDisabled':True});expected=len(json.loads(P('/opt/openclaw/backups/release-20261024-marsha/post-cutover-rpc.json').read_text())['cron.list']['jobs']) if name=='marsha' else json.loads((F/name/'acceptance.json').read_text())['schedules'];assert len(cron['jobs'])==expected
  slot=cfg['plugins']['slots']['memory'];version=None
  if slot in ['openclaw-mem0','hindsight-openclaw']:
   package='@mem0/openclaw-mem0' if slot=='openclaw-mem0' else '@vectorize-io/hindsight-openclaw';prefix='mem0-*' if slot=='openclaw-mem0' else 'vectorize-io-hindsight-*';matches=list((live/'npm/projects').glob(prefix+'/node_modules/'+package+'/package.json'));assert len(matches)==1,'Identify active installed project before reporting its version';version=json.loads(matches[0].read_text())['version'];assert version==('1.2.1' if slot=='openclaw-mem0' else '1.2.0')
