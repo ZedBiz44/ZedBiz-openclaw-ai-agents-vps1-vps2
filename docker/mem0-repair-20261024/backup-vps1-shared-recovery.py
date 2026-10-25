@@ -30,6 +30,9 @@ for source in sources:
   if include(p):files[str(p).lstrip('/')]=p
 for rel in ['hindsight-fresh-proof/before.dump','hindsight-fresh-proof/proof.json','qdrant-current-proof/storage.snapshot','qdrant-current-proof/proof.json','key-receipt.json']:
  files['private-recovery/'+rel]=W/rel
+support=json.loads((W/'supporting-images/proof.json').read_text());assert support['passed']
+for p in (W/'supporting-images').iterdir():
+ if p.is_file() and (p.name.endswith('.tar.gz') or p.name=='proof.json'):files['private-recovery/supporting-images/'+p.name]=p
 for p in stage.rglob('*'):
  if p.is_file():files['private-recovery/inputs/'+str(p.relative_to(stage))]=p
 assert all('age-identity' not in name and 'z-backups-service-account-token' not in name for name in files)
@@ -56,7 +59,7 @@ try:
  with cipher.open('rb') as f:md5=hashlib.file_digest(f,'md5').hexdigest()
  with cipher.open('rb') as f:cipherSha=hashlib.file_digest(f,'sha256').hexdigest()
  assert cloud['md5Checksum']==md5 and int(cloud['size'])==cipher.stat().st_size and folder in cloud['parents']
- proof={'passed':True,'fileId':cloud['id'],'url':cloud.get('webViewLink'),'name':name,'bytes':cipher.stat().st_size,'cipherSha256':cipherSha,'cipherMd5':md5,'plaintextSha256':plainSha,'allArchivedFileBytesVerified':len(files),'decryptionRoundtripVerified':True,'cloudMd5AndSizeVerified':True,'hindsightFreshRestoreVerified':True,'qdrantSnapshotRestoreVerified':True,'scope':'shared memory snapshots, runtime credentials/configuration, shared tools and recovery controls; excludes dashboard databases, image archives and private age identity'}
+ proof={'passed':True,'fileId':cloud['id'],'url':cloud.get('webViewLink'),'name':name,'bytes':cipher.stat().st_size,'cipherSha256':cipherSha,'cipherMd5':md5,'plaintextSha256':plainSha,'allArchivedFileBytesVerified':len(files),'decryptionRoundtripVerified':True,'cloudMd5AndSizeVerified':True,'hindsightFreshRestoreVerified':True,'qdrantSnapshotRestoreVerified':True,'scope':'shared memory snapshots, runtime credentials/configuration, shared tools, custom support images/allocator rootfs and recovery controls; excludes dashboard databases, agent image archives and private age identity'}
  (A/'offsite.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
 finally:
  if link.exists():link.unlink()
