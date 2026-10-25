@@ -42,4 +42,3 @@ with urllib.request.urlopen('https://'+name+'.zbiz.ca/healthz',timeout=25) as re
 phases=[{'phase':m[1],'ms':float(m[2]),'totalMs':float(m[3])} for m in re.finditer(r'startup phase: (\S+) ([\d.]+)ms total=([\d.]+)ms',log)]
 proof={'passed':True,'agent':name,'imageId':d['Image'],'core':'2026.10.6','node':'24.22.1','schedules':len(cron['jobs']),'memoryProvider':slot,'restarts':d['RestartCount'],'oom':d['State']['OOMKilled'],'httpsHealth':200,'effectiveModel':receipt.get('effective',{}).get('model'),'successfulTools':receipt.get('successfulToolNames',[]),'existingMemoryRead':True,'authenticatedDriveRead':True,'startupPhases':phases}
 (A/'acceptance.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
-
