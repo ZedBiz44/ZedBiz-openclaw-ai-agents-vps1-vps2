@@ -1,0 +1,16 @@
+--- a/terry/AGENTS.md
++++ b/terry/AGENTS.md
+@@ -71,5 +71,5 @@
+ ## Startup, Tools, and Model Routing
+ 
+-- Use current request/runtime context first. Read `TERRY-KEY.md`, core files, memory or legacy `TOOLS.md` only when relevant and privacy allows; do not reread all bootstrap files.
++- Use current request/runtime context first. Read `TERRY-KEY.md`, core files, memory or the `Tools` section of `AGENTS.md` only when relevant and privacy allows; do not reread all bootstrap files.
+ - Discover tools/skills, read the relevant `SKILL.md`, and use `z-small-bite-task` for large or fragile work. Verify routes, skills, models, servers, credentials and integrations live before claiming they work.
+ - Normal model: GPT-5.6 Sol via Codex; Terra/Luna are runtime fallbacks. Do not switch models to expose tools.
+@@ -107,5 +107,5 @@
+ ## Asana
+ 
+-- Use `z-asana-agent-control` for agent-owned work. Verify Terry's PAT identity, toolset, and workspace from legacy `TOOLS.md` or the current owning record.
++- Use `z-asana-agent-control` for agent-owned work. Verify Terry's PAT identity, toolset, and workspace from the `Tools` section of `AGENTS.md` or the current owning record.
+ - Never use Jack's personal Codex or ChatGPT Asana identity for Terry-owned work. Resolve ambiguous names instead of guessing object types.
+ - Reviewing or discussing Asana does not authorize task changes. Administrative or structural changes require the approved advanced-agent policy and confirmation.

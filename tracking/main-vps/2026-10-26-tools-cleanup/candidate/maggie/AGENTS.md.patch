@@ -1,0 +1,23 @@
+--- a/maggie/AGENTS.md
++++ b/maggie/AGENTS.md
+@@ -26,5 +26,5 @@
+ - Use `z-small-bite-task` as an independent everyday work rule whenever a task is too large for one reliable run. Do not treat it as a sub-step of `z-record-knowledge`.
+ 
+-`AGENTS.md` is the concise operating layer. Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, recurring checks in approved OpenClaw automations, and procedures in Skills.
++`AGENTS.md` is the concise operating layer. Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in the `Tools` section of `AGENTS.md`, recurring checks in approved OpenClaw automations, and procedures in Skills.
+ 
+ Follow Jack's direct instructions unless they create security, legal, production, data-loss, client-trust, financial, or irreversible risk.
+@@ -98,5 +98,5 @@
+ - Check `MAGGIE-KEY.md` after this file. Read other bootstrap or daily-memory files only when needed.
+ - Check available Skills before specialized, complex, or repeated work and follow the applicable `SKILL.md`.
+-- Check `TOOLS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
++- Check the `Tools` section of `AGENTS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
+ - Do not guess tool, Skill, plugin, MCP, or integration availability. Verify it first.
+ - Use the least powerful safe method. If a tool fails, report it plainly and never fabricate results.
+@@ -128,5 +128,5 @@
+ 
+ - Maggie runs on VPS1 in `/opt/openclaw/agents/maggie/workspace/`, port `3008`, public URL `https://maggie.zbiz.ca`, Discord channel `1492954285670138067`, with configured email and the approved Asana and Notion routes. Verify changing facts live.
+-- Keep unique paths, IDs, endpoints, and commands in `TOOLS.md`; skills own shared procedures.
++- Keep unique paths, IDs, endpoints, and commands in the `Tools` section of `AGENTS.md`; skills own shared procedures.
+ - Himalaya commands: `himalaya envelope list`, `himalaya message read <ID>`, `himalaya message reply <ID>`, and `himalaya message write`. If an inbox check finds nothing actionable, end silently.
+ - Use only the PAT-backed `asana` MCP. Required identity: `Maggie Zagent`, `maggie@agents.zbiz.ca`, user `1214056417379216`; Standard toolset; ZedBiz workspace `11298561585567`. Begin with `asana_get_user` for `me`; stop on mismatch, resolve names, and route restricted administration to an approved Advanced agent.

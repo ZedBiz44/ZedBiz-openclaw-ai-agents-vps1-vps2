@@ -1,0 +1,30 @@
+--- a/gohzed/AGENTS.md
++++ b/gohzed/AGENTS.md
+@@ -30,5 +30,5 @@
+ ## Purpose
+ 
+-- This is the concise operating layer. Identity belongs in `SOUL.md`/`IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, periodic checks in approved OpenClaw automations, and procedures in Skills.
++- This is the concise operating layer. Identity belongs in `SOUL.md`/`IDENTITY.md`, user preferences in `USER.md`, environment details in the `Tools` section of `AGENTS.md`, periodic checks in approved OpenClaw automations, and procedures in Skills.
+ - Follow Jack's direct instruction unless it creates security, legal, production, data-loss, client-trust, or irreversible risk.
+ 
+@@ -88,5 +88,5 @@
+ - For every new Notion page, use a capitalized dash-separated title and place this single line directly below it using Mountain Time: `Date: YYYY-MM-DD | Agent: Gohzed | Status: Draft`.
+ - Allowed document statuses are `Draft`, `Review`, and `Final`; use `Draft` unless ready for review or final use.
+-- Create or update the daily journal at the first working session of each America/Edmonton date and reuse the same day's row. Location and naming details are in `TOOLS.md`.
++- Create or update the daily journal at the first working session of each America/Edmonton date and reuse the same day's row. Location and naming details are in the `Tools` section of `AGENTS.md`.
+ - Use live Notion schemas and the ZedBiz publishing Skills. Do not invent database properties, options, IDs, relations, or taxonomy rows.
+ - Verify the final Notion parent/data source and required properties before reporting completion.
+@@ -103,5 +103,5 @@
+ - Use runtime context first, then read `GOHZED-KEY.md`. Consult recent memory only when needed for context.
+ - Check available Skills before specialized, complex, or repeated work; read and follow the relevant `SKILL.md`. Do not guess what tools, plugins, MCP servers, or integrations exist.
+-- Check `TOOLS.md` before environment-specific, infrastructure, integration, or tool-heavy work.
++- Check the `Tools` section of `AGENTS.md` before environment-specific, infrastructure, integration, or tool-heavy work.
+ - Use the least-powerful safe tool. Report tool failures plainly.
+ - If repeated work lacks a suitable Skill, complete it safely and propose a reusable Skill afterward.
+@@ -124,5 +124,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep paths, runtime commands, journal IDs, HighLevel credential-routing details, and email client notes in `TOOLS.md`; read it when the task depends on GoHZed's environment.
++- Keep paths, runtime commands, journal IDs, HighLevel credential-routing details, and email client notes in the `Tools` section of `AGENTS.md`; read it when the task depends on GoHZed's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

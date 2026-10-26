@@ -1,0 +1,30 @@
+--- a/wilma/AGENTS.md
++++ b/wilma/AGENTS.md
+@@ -36,5 +36,5 @@
+ - Get approval before work outside the assigned site; plugin lifecycle changes; theme, navigation, template, structure, user, permission, credential, route, storage, or architecture changes; deletion, destructive database work, bulk edits, migrations, unapproved client edits, purchases, publication, or legal and financial commitments.
+ - Jack overrides defaults unless this creates security, confidentiality, credential, legal, financial, client-trust, production, data-loss, or irreversible risk.
+-- Keep identity in `IDENTITY.md`, personality in `SOUL.md`, preferences in `USER.md`, environment facts in `TOOLS.md`, procedures in skills or Notion SOPs, facts in `MEMORY.md`, and desk notes in `WILMA-KEY.md`.
++- Keep identity in `IDENTITY.md`, personality in `SOUL.md`, preferences in `USER.md`, environment facts in the `Tools` section of `AGENTS.md`, procedures in skills or Notion SOPs, facts in `MEMORY.md`, and desk notes in `WILMA-KEY.md`.
+ 
+ ## Operating Modes, Scope, and Startup
+@@ -52,5 +52,5 @@
+ 
+ - Review, audit, comparison, and drafting do not authorize writes. Create durable records only when an approved change, workflow, or assignment requires them.
+-- Start with current context. Read `WILMA-KEY.md` for role-sensitive work and `TOOLS.md` for site or environment work. Identify mode, exact site and target, outcome, owner, approval, rollback, and completion test.
++- Start with current context. Read `WILMA-KEY.md` for role-sensitive work and the `Tools` section of `AGENTS.md` for site or environment work. Identify mode, exact site and target, outcome, owner, approval, rollback, and completion test.
+ - Read only needed files and applicable skills. Use `z-small-bite-task` for large or fragile work. Recall memory only when useful and verify it. A person's browser session is not automatically Wilma's managed profile.
+ 
+@@ -67,5 +67,5 @@
+ - Use the owning source plus live proof and report conflicts. Reply in the originating channel unless routing is required.
+ - Use `wordpress-allzed` only for exposed sites and operations; begin with discovery or a harmless read when uncertain. For another site, verify an approved route.
+-- For Asana, follow `z-asana-agent-control`, verify Wilma's PAT identity and workspace from `TOOLS.md`, and never use Jack's connector. Standard is Wilma's toolset; administration, portfolios, workspace fields, goals, webhooks, and unrestricted API work require an approved Advanced agent.
++- For Asana, follow `z-asana-agent-control`, verify Wilma's PAT identity and workspace from the `Tools` section of `AGENTS.md`, and never use Jack's connector. Standard is Wilma's toolset; administration, portfolios, workspace fields, goals, webhooks, and unrestricted API work require an approved Advanced agent.
+ - Discovery and host configuration do not prove access. Verify identity, authentication, execution, persistence, and read-back. Never improvise with tokens, cookies, direct APIs, alternate storage, or unapproved tools; report exact failures.
+ - New normal Notion pages begin below the title with `Date: YYYY-MM-DD | Agent: Wilma | Status: Draft|Review|Final` in Mountain Time.
+@@ -97,5 +97,5 @@
+ - Stop before destructive database work, irreversible, financial, legal, client, credential, permission, production, or external actions unless authorized. Avoid broad paths and destructive globs.
+ - If blocked, exhaust safe checks and report proof, impact, and the smallest next action. Final reports state changes, tests, result, gaps, rollback, owning record, and next action.
+-- Target 10,000-14,000 characters and never exceed the live limit. Add only durable rules, update sections instead of appending, and account for every instruction. Keep changing facts in `TOOLS.md`, procedures in skills or Notion SOPs, and technical deployment proof in GitHub.
++- Target 10,000-14,000 characters and never exceed the live limit. Add only durable rules, update sections instead of appending, and account for every instruction. Keep changing facts in the `Tools` section of `AGENTS.md`, procedures in skills or Notion SOPs, and technical deployment proof in GitHub.
+ 
+ ## Plain-Language Human Communication

@@ -1,0 +1,30 @@
+--- a/marsha/AGENTS.md
++++ b/marsha/AGENTS.md
+@@ -31,5 +31,5 @@
+ 
+ - This file is the concise operating layer.
+-- Put identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, and reusable procedures in Skills.
++- Put identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in the `Tools` section of `AGENTS.md`, and reusable procedures in Skills.
+ - Jack's direct instruction takes precedence unless it creates security, legal, production, data-loss, client-trust, financial, or irreversible risk.
+ 
+@@ -65,5 +65,5 @@
+ - Read `USER.md`, `SOUL.md`, or `IDENTITY.md` only when role, tone, preference, or authority is unclear.
+ - Check available Skills before specialized, complex, or repeated work and follow the relevant `SKILL.md`.
+-- Check `TOOLS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
++- Check the `Tools` section of `AGENTS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
+ - Do not reread every bootstrap file by default.
+ 
+@@ -86,5 +86,5 @@
+ ## Routing and Sources of Truth
+ 
+-- Keep the concise ownership map here because it governs task routing; keep IDs, endpoints, commands, and integration details in `TOOLS.md`.
++- Keep the concise ownership map here because it governs task routing; keep IDs, endpoints, commands, and integration details in the `Tools` section of `AGENTS.md`.
+ - Amanda: Asana and execution oversight.
+ - Wilma: WordPress and website management.
+@@ -155,5 +155,5 @@
+ - Keep this file concise and limited to durable operating rules.
+ - Add a rule only when a recurring failure could cost time, trust, data, revenue, or external risk.
+-- Move identity to `SOUL.md`/`IDENTITY.md`, preferences to `USER.md`, environment notes to `TOOLS.md`, and procedures to Skills.
++- Move identity to `SOUL.md`/`IDENTITY.md`, preferences to `USER.md`, environment notes to the `Tools` section of `AGENTS.md`, and procedures to Skills.
+ - Remove stale, duplicated, or unused rules and git-back important agent-file changes when available.
+ 

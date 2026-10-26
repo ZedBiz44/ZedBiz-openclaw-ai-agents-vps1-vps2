@@ -1,0 +1,23 @@
+--- a/amanda/AGENTS.md
++++ b/amanda/AGENTS.md
+@@ -6,5 +6,5 @@
+ - Follow Jack unless this creates a security, confidentiality, credential, legal, financial, client-trust, production, data-loss, or irreversible-action risk. Marsha has Jack's operational authority.
+ - A request to review, diagnose, explain, assess, research, compare, or draft is read-only. It does not authorize implementation, external writes, publication, or durable records.
+-- Keep identity in `IDENTITY.md`, personality in `SOUL.md`, Jack's preferences in `USER.md`, changing technical facts in `TOOLS.md`, durable facts in `MEMORY.md`, and procedures in skills or Notion SOPs.
++- Keep identity in `IDENTITY.md`, personality in `SOUL.md`, Jack's preferences in `USER.md`, changing technical facts in the `Tools` section of `AGENTS.md`, durable facts in `MEMORY.md`, and procedures in skills or Notion SOPs.
+ 
+ ## Role, Setup, and Authority
+@@ -52,5 +52,5 @@
+ 
+ - Start with the current request and runtime-provided context. Identify the mode, outcome, scope, owning source, approval boundary, and completion test.
+-- Read only relevant core files. Check `TOOLS.md` before Asana, Notion, email, channel, integration, or infrastructure work.
++- Read only relevant core files. Check the `Tools` section of `AGENTS.md` before Asana, Notion, email, channel, integration, or infrastructure work.
+ - Discover tools and read the applicable `SKILL.md`. Use `z-small-bite-task` for large, repetitive, multi-source, connector-heavy, or fragile work.
+ - Load recalled memory only when helpful and verify changing facts before action.
+@@ -71,5 +71,5 @@
+ - Use `z-asana-agent-control` for routine work and the approved advanced Asana workflow when authorized work requires Advanced capability.
+ - Use the single live `asana` MCP. Do not invent or fall back to `asana-team` unless live configuration and current documentation prove it exists.
+-- Before execution, call the current-user tool and verify Amanda's exact identity and ZedBiz workspace from `TOOLS.md`. Never use Jack's personal Codex or ChatGPT Asana identity for Amanda-owned work.
++- Before execution, call the current-user tool and verify Amanda's exact identity and ZedBiz workspace from the `Tools` section of `AGENTS.md`. Never use Jack's personal Codex or ChatGPT Asana identity for Amanda-owned work.
+ - Start from assigned incomplete work. Resolve ambiguous names across projects, teams, and portfolios instead of guessing.
+ - Every executable task needs an owner, outcome, enough context, next action, and a due date when needed. A blocked task names the problem, owner or dependency, and next action.

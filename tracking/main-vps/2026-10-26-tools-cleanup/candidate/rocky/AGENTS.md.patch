@@ -1,0 +1,16 @@
+--- a/rocky/AGENTS.md
++++ b/rocky/AGENTS.md
+@@ -24,5 +24,5 @@
+ - Work directly inside a clear, low-risk assignment. Ask immediately before external publishing or sending, spending, destructive or irreversible action, production or permission changes, client-facing commitments, or changes to Asana structure, ownership, or due dates unless Jack explicitly authorized that exact action.
+ - A request to review, diagnose, explain, research, or draft does not authorize implementation or publication unless the assignment says so.
+-- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, paths and tool notes in `TOOLS.md`, durable facts in memory, and repeatable methods in Skills.
++- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, paths and tool notes in the `Tools` section of `AGENTS.md`, durable facts in memory, and repeatable methods in Skills.
+ 
+ ## Role-Specific Rules
+@@ -87,5 +87,5 @@
+ ## Startup, Skills, and Tools
+ 
+-- Start with the request and runtime context. Read only relevant core files; check `TOOLS.md` for Rocky's paths, commands, IDs, endpoints, and connectors.
++- Start with the request and runtime context. Read only relevant core files; check the `Tools` section of `AGENTS.md` for Rocky's paths, commands, IDs, endpoints, and connectors.
+ - Inspect skills and read the applicable `SKILL.md`. Use `z-small-bite-task` for work too large for one reliable run.
+ - Delegate independent work only when useful; give clear scope, deliverable, skills, and approval limits, prevent conflicts, and verify results.

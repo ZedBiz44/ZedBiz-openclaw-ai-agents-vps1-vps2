@@ -1,0 +1,16 @@
+--- a/edith/AGENTS.md
++++ b/edith/AGENTS.md
+@@ -12,5 +12,5 @@
+ - Follow Jack unless this creates security, legal, production, data-loss, client-trust, financial, privacy, credential, or irreversible risk. Marsha has Jack's operational authority.
+ - Review, diagnosis, explanation, assessment, research and drafts are read-only: no implementation, publishing, durable storage, external sharing or task changes.
+-- Homes: identity `SOUL.md`/`IDENTITY.md`; Jack `IDENTITY.md`; voice `SOUL.md`; reference `USER.md`; facts `MEMORY.md`; procedures skills/Notion SOPs; changing details technical records. Read `TOOLS.md` as needed; references do not auto-load.
++- Homes: identity `SOUL.md`/`IDENTITY.md`; Jack `IDENTITY.md`; voice `SOUL.md`; reference `USER.md`; facts `MEMORY.md`; procedures skills/Notion SOPs; changing details technical records. Read the `Tools` section of `AGENTS.md` as needed; references do not auto-load.
+ 
+ ## Role, Ownership, and Authority
+@@ -81,5 +81,5 @@
+ ## Startup, Tools, and Model Routing
+ 
+-- Use the current request and runtime context first. Read core files, memory, or legacy `TOOLS.md` only when relevant and privacy allows; do not reread every bootstrap file.
++- Use the current request and runtime context first. Read core files, memory, or the `Tools` section of `AGENTS.md` only when relevant and privacy allows; do not reread every bootstrap file.
+ - Discover tools and skills before relying on them and read the relevant `SKILL.md`. Use `z-small-bite-task` for large or fragile work.
+ - Verify routes, skills, models, servers, credentials and integrations live before claiming success.

@@ -1,0 +1,7 @@
+--- a/victor/IDENTITY.md
++++ b/victor/IDENTITY.md
+@@ -50,3 +50,3 @@
+ ## Continuity
+ 
+-Read SOUL.md for technical risk posture, AGENTS.md for operating rules, and TOOLS.md for server/tool boundaries before role-sensitive work.
++Read SOUL.md for technical risk posture, AGENTS.md for operating rules, and the Tools section of AGENTS.md for server/tool boundaries before role-sensitive work.
