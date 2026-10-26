@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "checkedUtc": "2026-10-26T23:10:39.585833+00:00",
+  "fileId": "1GlLkXPMWEyhu60awhZP-UcLiUvQg9GZk",
+  "independentCloudDownload": true,
+  "downloadBytes": 5748828648,
+  "cipherSha256": "6846ea5b003210ace13c9eee29e9c63c0488f279d66393fff223c55d74e73e89",
+  "cipherMd5": "1024add41c3ea35f14017e2e99af5968",
+  "freshVaultKeyRead": true,
+  "decryptionAuthenticated": true,
+  "allManifestFilesVerified": 60,
+  "tarMembers": 114,
+  "exactRecoveryArchivePathVerified": true,
+  "decryptedImageArchiveMatchesPriorColdRestore": true,
+  "imageArchiveSha256": "ef7d9084bb391dc9edf5d0e4a75a48f55d8fc3741cb2f31bd256b2aa029ad51d",
+  "productionChanged": false,
+  "privateKeyRemoved": true
+}
