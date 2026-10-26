@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "agent": "amanda",
+  "image": "sha256:f796447d54424b324bf9948f4d5d314ff311d9e06d43ed5adfd76eb47b2429a9",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ],
+    "telegram": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": null,
+        "activeRuns": null
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

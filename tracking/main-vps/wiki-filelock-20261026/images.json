@@ -1,0 +1,90 @@
+[
+  {
+    "agent": "gohzed",
+    "before": "zedbiz/gohzed:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:0051553929d4c52008843028b42a12ba8caa180efc8c3ff4a302b51a5dcd83c8",
+    "after": "zedbiz/gohzed:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:02a4a6ab403e638f20916f0355492af34a657fdd7eb82f2d2a68d8bf4ba0cf2b",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "grogar",
+    "before": "zedbiz/grogar:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:c5800a19c55a459ebdfae274ac3af993d8fbc11f04d257f48592fb0002b308a9",
+    "after": "zedbiz/grogar:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:f462562ac7f4a963616045c0633a0b6780acec5f80359fff154a33d90493d15c",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "inga",
+    "before": "zedbiz/inga:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:c0907efa5f9b4329f3a5634982aefe1323fb646545c00c7c2cc0d9cc3b7b9a1f",
+    "after": "zedbiz/inga:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:3a715841ae2069b45c26c97d44d370387d4377f832d1fa6aea222175b06320c7",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "maggie",
+    "before": "zedbiz/maggie:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:9516e27faf6c61ea0c08a33ee385e00e5e9b53979d46729ae8399d439be03d6e",
+    "after": "zedbiz/maggie:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:607c1d902c3aa18b795c2bb681d4cc22a37f9d34281b88f802a1d688f15a19fe",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "marsha",
+    "before": "zedbiz/marsha:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:407beef4c248cbf679e884cc04ba135d80166810f521dc9d558e469b54636d80",
+    "after": "zedbiz/marsha:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:76a811c366aa493c924f0339f2575bdf53f8aee2fad3cfc09f96c169390d29e4",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "amanda",
+    "before": "zedbiz/amanda:2026.10.6-mcp-reconnect-20261026-v2",
+    "baseId": "sha256:84399c3324292213a1374334041446379ab9f8f08c5f80a172346b09af75ba98",
+    "after": "zedbiz/amanda:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:f796447d54424b324bf9948f4d5d314ff311d9e06d43ed5adfd76eb47b2429a9",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "edith",
+    "before": "zedbiz/edith:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:79ed466dd79463b3f9b2b2cf27c1faed5eca33e585313fdba15bd7188d63166b",
+    "after": "zedbiz/edith:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:67e5f827b7a90fd0b21f6ee4082508e4a671308e5c5788ff36016a681e595df0",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "terry",
+    "before": "zedbiz/terry:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:d6cf0a6a3157f5ef72b75c8cbbf2a03b57c02a8eb2296172a156842bc8ef3500",
+    "after": "zedbiz/terry:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:9d7b10eb1587837adda32b1352922c6b495e1cbcf312c9a7f22a7ff8affe46d5",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "victor",
+    "before": "zedbiz/victor:2026.10.6-mcp-reconnect-20261026-v2",
+    "baseId": "sha256:c8e5ea587fdb3c4523325ca03fc65a074c36982106050ca0762c3d8e15cf372e",
+    "after": "zedbiz/victor:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:2fa39eaaf12a15a3eccc9c2f27f8ad742e7ed0c0a7c9f28aa0a0e6a9ec946df7",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "vivian",
+    "before": "zedbiz/vivian:2026.10.6-mcp-reconnect-manus-20261026",
+    "baseId": "sha256:ba95e4a72bc79e0b811bd0a3d85f9a0120115fc1093d8a0505d453259fabfabd",
+    "after": "zedbiz/vivian:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:bdb0019439cc3ce465bb4c8b423aecaed1c95c130cc45f2f5ed912147536bcee",
+    "baseLayersAndRuntimeConfigPreserved": true
+  },
+  {
+    "agent": "wilma",
+    "before": "zedbiz/wilma:2026.10.6-mcp-reconnect-20261026-v2",
+    "baseId": "sha256:dd10e35e797466e2aa296196bec3543483b4edadd2c7f61a62fe2ff5b5050bbd",
+    "after": "zedbiz/wilma:2026.10.6-wiki-filelock-20261026",
+    "id": "sha256:ec895e063597cb56e93f77d61948275a9de7954b249bbd65850092eca0176a8a",
+    "baseLayersAndRuntimeConfigPreserved": true
+  }
+]

@@ -1,0 +1,30 @@
+{
+  "oldImageBaseline": true,
+  "agent": "marsha",
+  "channels": {
+    "discord": [
+      {
+        "running": true,
+        "connected": true,
+        "enabled": true,
+        "configured": true
+      }
+    ],
+    "slack": [
+      {
+        "running": false,
+        "connected": null,
+        "enabled": true,
+        "configured": false
+      }
+    ],
+    "telegram": [
+      {
+        "running": true,
+        "connected": true,
+        "enabled": true,
+        "configured": true
+      }
+    ]
+  }
+}

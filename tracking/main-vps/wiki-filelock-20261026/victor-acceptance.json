@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "agent": "victor",
+  "image": "sha256:2fa39eaaf12a15a3eccc9c2f27f8ad742e7ed0c0a7c9f28aa0a0e6a9ec946df7",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ],
+    "telegram": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": null,
+        "activeRuns": null
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

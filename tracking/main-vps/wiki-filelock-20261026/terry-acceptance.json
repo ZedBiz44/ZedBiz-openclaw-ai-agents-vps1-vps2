@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "agent": "terry",
+  "image": "sha256:9d7b10eb1587837adda32b1352922c6b495e1cbcf312c9a7f22a7ff8affe46d5",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ],
+    "slack": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": null,
+        "activeRuns": null
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}
