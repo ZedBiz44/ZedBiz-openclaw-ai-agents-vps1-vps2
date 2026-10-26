@@ -37,7 +37,11 @@ def safe(d):
 before=inspect(a);assert inspect(candidate)['Id']==candidateId,'Candidate changed; stop'
 assert before['Image'] in [parentId,candidateId],'Running source image changed; stop'
 if before['Image']==candidateId:
- result={'agent':a,'state':'already_deployed_needs_current_acceptance','newImage':candidateId,'root':str(root)}
+ original=root/'manus-deployment.json';assert original.exists(),'Deployed image lacks original receipt; inspect without changes'
+ result=json.loads(original.read_text());assert result.get('beforeSettingsHashes') and result.get('beforeEnvironmentHash'),'Original preservation proof missing; stop'
+ result['afterSettingsHashes']=settings();result['configurationGroupsUnchanged']=result['beforeSettingsHashes']==result['afterSettingsHashes'];result['afterEnvironmentHash']=envhash(before);result['runtimeEnvironmentUnchanged']=result['beforeEnvironmentHash']==result['afterEnvironmentHash'];result['crashRestarts']=before['RestartCount'];result['readOnlyRecoveryNoNewRestart']=True
+ assert result['configurationGroupsUnchanged'] and result['runtimeEnvironmentUnchanged'] and before['RestartCount']==0,'Current preservation differs; stop'
+ result['state']='already_deployed_needs_current_acceptance'
 else:
  deadline=time.monotonic()+300
  while True:
@@ -83,6 +87,11 @@ for attempt in range(4):
  except RuntimeError:
   if attempt==3:raise
   print(a+': startup settling; repeating only the read-only health query',flush=True);time.sleep(5)
+if check.get('health',{}).get('ok') is not True or check.get('health',{}).get('eventLoop',{}).get('degraded'):
+ (root/'initial-poststartup-health-warning.json').write_text(json.dumps(check,indent=2)+'\n')
+ for attempt in range(3):
+  print(a+': preserving initial startup warning; waiting without changes before another health sample',flush=True);time.sleep(15);check=node(healthCode)
+  if check.get('health',{}).get('ok') is True and not check.get('health',{}).get('eventLoop',{}).get('degraded'):break
 assert check.get('health',{}).get('ok') is True and not check.get('health',{}).get('eventLoop',{}).get('degraded'),'Current health failed; stop'
 assert all(x.get('running') and x.get('connected') for x in check['channels'] if x.get('configured') is not False and x.get('enabled') is not False),'Current messaging connection failed; stop'
 result['currentHealthAndConnections']=check;result['state']='deployed_static_health_pass_needs_native_reads';(root/'manus-deployment.json').write_text(json.dumps(result,indent=2)+'\n')
