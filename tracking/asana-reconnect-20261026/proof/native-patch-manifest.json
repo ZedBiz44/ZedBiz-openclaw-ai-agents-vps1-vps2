@@ -1,0 +1,49 @@
+{
+  "guard": {
+    "originalSnippet": "await racePromiseWithAbortSignal(getCatalog(), signal);\n\t\treturn requireConnectedSession();",
+    "replacement": "await racePromiseWithAbortSignal(getCatalog(), signal);\n\t\tif (!currentSession?.connected || !currentSession?.toolMetadata) await racePromiseWithAbortSignal(loadCatalog(), signal);\n\t\treturn requireConnectedSession();",
+    "expectedOriginalSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d"
+  },
+  "files": [
+    {
+      "server": "vps2",
+      "agent": "frank",
+      "path": "/opt/openclaw-frank/node_modules/openclaw/dist/agents/agent-bundle-mcp-runtime.js",
+      "originalSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+      "patchedSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+      "mode": "600",
+      "uid": 0,
+      "gid": 0
+    },
+    {
+      "server": "vps2",
+      "agent": "harry",
+      "path": "/opt/openclaw-harry/node_modules/openclaw/dist/agents/agent-bundle-mcp-runtime.js",
+      "originalSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+      "patchedSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+      "mode": "600",
+      "uid": 0,
+      "gid": 0
+    },
+    {
+      "server": "vps2",
+      "agent": "suzy",
+      "path": "/opt/openclaw-suzy/node_modules/openclaw/dist/agents/agent-bundle-mcp-runtime.js",
+      "originalSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+      "patchedSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+      "mode": "600",
+      "uid": 0,
+      "gid": 0
+    },
+    {
+      "server": "vps4",
+      "agent": "rocky",
+      "path": "/home/openclaw/.npm-global/lib/node_modules/openclaw/dist/agents/agent-bundle-mcp-runtime.js",
+      "originalSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+      "patchedSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+      "mode": "600",
+      "uid": 1000,
+      "gid": 1000
+    }
+  ]
+}

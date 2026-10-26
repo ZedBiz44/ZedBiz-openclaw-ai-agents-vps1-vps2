@@ -1,0 +1,44 @@
+[
+  {
+    "agent": "wilma",
+    "state": "passed_real_expiry_same_session_native_call",
+    "idleDurationMs": 1142875,
+    "sameConversationPreserved": true,
+    "oldServiceSessionsBefore": 0,
+    "serviceSessionsAfter": 2,
+    "nativeReads": [
+      {
+        "seq": 19,
+        "at": 1793028266457,
+        "role": "toolResult",
+        "tool": "asana.asana_get_user",
+        "calls": [],
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true
+      }
+    ],
+    "failedNativeOperationReplayed": false
+  },
+  {
+    "agent": "amanda",
+    "state": "passed_real_expiry_same_session_native_call",
+    "idleDurationMs": 1748027,
+    "sameConversationPreserved": true,
+    "oldServiceSessionsBefore": 0,
+    "serviceSessionsAfter": 2,
+    "nativeReads": [
+      {
+        "seq": 21,
+        "at": 1793028830830,
+        "role": "toolResult",
+        "tool": "asana.asana_get_user",
+        "calls": [],
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true
+      }
+    ],
+    "failedNativeOperationReplayed": false
+  }
+]
