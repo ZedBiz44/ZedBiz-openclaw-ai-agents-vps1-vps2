@@ -1,0 +1,67 @@
+{
+  "checkedUtc": "2026-10-26T23:09:15.028Z",
+  "scope": "Authorized follow-through on Manus review; no production redeployment",
+  "memory": {
+    "agents": [
+      "gohzed",
+      "grogar",
+      "maggie"
+    ],
+    "sinceUtc": "2026-10-26T20:58:00Z",
+    "newManualMemoryCalls": 0,
+    "observedRejections": 0,
+    "permanentRepairProven": false,
+    "issue": 498,
+    "next": "Capture the exact handoff if rejection recurs; preserve audience and bank protections; pilot any repair on Gohzed."
+  },
+  "amanda": {
+    "originalSession": "6014eda0-1f09-4805-8408-45fd2b830454",
+    "toolCalls": 27,
+    "toolResults": 27,
+    "unpaired": 0,
+    "oversizedTool": "codex_apps.notion.fetch",
+    "oversizedResultBytes": 257437,
+    "finalizationTextLimitBytes": 65536,
+    "separateLearningContext": {
+      "messages": 4605,
+      "compactionTokens": 272001,
+      "payloadBytes": 3775095
+    },
+    "conclusion": "Oversized result explains field_limit. Separate learning history overflow is not proven to be caused by that rejection.",
+    "proposedRepair": "Give background learning bounded task-scoped history, preserving paired calls/results and references to omitted content. Test without mutating live histories; retain automatic learning."
+  },
+  "rocky": {
+    "originalSession": "4793c0ff-22d6-4e16-9f16-5494c9b7ee5c",
+    "toolCalls": 35,
+    "toolResults": 35,
+    "unpaired": 0,
+    "oversizedResults": 0,
+    "conclusion": "Saved original turn is balanced. Exact finalization projection responsible for invalid_pairing remains unresolved; no deletion or identity bypass warranted."
+  },
+  "ruby": {
+    "source": "/opt/hermes-ruby/logs/agent.log",
+    "attempt": "78f8c98b742a4e10b1901c048b73c557",
+    "timeUtc": "2026-10-26T20:13:22.689Z",
+    "totalDurationMs": 177820,
+    "summaryGenerationMs": 176416,
+    "queueWaitMs": 0,
+    "commitMs": 607,
+    "promptBuildMs": 31,
+    "provider": "xai-oauth",
+    "model": "grok-4.7",
+    "summaryPromptTokens": 20235,
+    "recordCount": 148,
+    "messagesBefore": 180,
+    "messagesAfter": 32,
+    "failure": null,
+    "fallback": false,
+    "repeatedModernTelemetryFound": false,
+    "conclusion": "Summary model call dominates measured delay; queue and disk commit do not explain it. No evidence yet of a repeated comparable slow event.",
+    "next": "Compare next natural compression telemetry before proposing a model or threshold change; no forced history rewrite."
+  },
+  "validation": {
+    "mem0TimerRegression": "passed: fast success has zero timeout warnings, genuine failure remains visible, real timeout remains bounded",
+    "initialLocalTestInvocation": "Missing input path failed; corrected invocation passed."
+  },
+  "productionChanges": []
+}
