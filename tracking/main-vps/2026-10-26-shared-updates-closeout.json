@@ -1,0 +1,1379 @@
+{
+  "schemaVersion": 1,
+  "dateMountain": "2026-10-26",
+  "agent": "Cody",
+  "passed": true,
+  "checkedUtc": "2026-10-26T18:36:34.075482+00:00",
+  "updates": {
+    "hindsight": {
+      "passed": true,
+      "checkedUtc": "2026-10-26T17:28:37.834451+00:00",
+      "version": "1.1.0",
+      "oldImageId": "sha256:25b4515cfc45b308159d0e5f91e09e39ddd2197c8de8f7623c5fa1b5e602586f",
+      "newImageId": "sha256:7b52bf008c64f3ff129bb39004b5a7e930843aea23a6a9fd526cd1fbc4eec42a",
+      "flashrankVersion": "0.2.10",
+      "postgresImageUnchanged": true,
+      "modelsCredentialsAndRuntimeSettingsPreserved": true,
+      "actualAutomaticCaptureAndFreshRecallPilotPassed": true,
+      "freshFullMigrationCountsExactlyPreserved": true,
+      "businessCountsAtLeastCheckpoint": true,
+      "checkpointCounts": {
+        "banks": 5,
+        "documents": 1293,
+        "memory_units": 29449,
+        "entities": 6758,
+        "mental_models": 9,
+        "knowledge_pages": 0,
+        "chunks": 8383,
+        "directives": 0,
+        "webhooks": 0
+      },
+      "countsAfter": {
+        "banks": 5,
+        "documents": 1293,
+        "memory_units": 29449,
+        "entities": 6758,
+        "mental_models": 9,
+        "knowledge_pages": 0,
+        "chunks": 8383,
+        "directives": 0,
+        "webhooks": 0
+      },
+      "rollbackDumpSha256": "ac3ad21ae2fce24dd01ea032eef1408198c32f90cee45bc0cc5e67e592b17b0e",
+      "rollbackDumpBytes": 203727378,
+      "onlyComposeImageChanged": true,
+      "workerEnabled": true
+    },
+    "qdrant": {
+      "passed": true,
+      "checkedUtc": "2026-10-26T17:15:22.286446+00:00",
+      "version": "1.20.0",
+      "oldImageId": "sha256:b7b0444c4c351c970b98e90a6f89c2ee4287c65b44e52b4cb503fa5b2aa927ad",
+      "newImageId": "sha256:9bfc89f9914fc14876a88c05270685921a55b8877b254a98bcc1cc2f0a424cd2",
+      "pinnedRef": "qdrant/qdrant@sha256:9bfc89f9914fc14876a88c05270685921a55b8877b254a98bcc1cc2f0a424cd2",
+      "actualMem0SdkPilotPassed": true,
+      "businessCollectionCountsPreserved": true,
+      "collections": 3,
+      "allPoints": 4481,
+      "authKeyMountsAndPortBindingsPreserved": true,
+      "onlyComposeImageChanged": true,
+      "coherentRollbackStoragePreserved": true
+    },
+    "connect": {
+      "passed": true,
+      "checkedUtc": "2026-10-26T17:22:08.264140+00:00",
+      "version": "1.8.4",
+      "apiImageId": "sha256:0f74924c55c9156b8116f59f485223b2c2d30a5148d362562aa27838159bdffa",
+      "syncImageId": "sha256:ca34850f2a20ca302e688a9347cdb696f29ce3bfc011d2554eff338e315c9089",
+      "pairRunning": true,
+      "existingAccountDataAvailable": true,
+      "credentialsMountsPortsAndEnvironmentPreserved": true,
+      "onlyComposeImagePinsChanged": true,
+      "isolatedPairPilotPassed": true,
+      "authenticatedCallerVaultReadPassed": false,
+      "baselineCallerState": "Existing service reports TOKEN_NEEDED/UNINITIALIZED; no configured Connect bearer token found. Existing op-token.txt is a service-account token and was never sent to Connect.",
+      "healthAfter": {
+        "name": "1Password Connect API",
+        "version": "1.8.4",
+        "dependencies": [
+          {
+            "service": "sqlite",
+            "status": "ACTIVE",
+            "message": "Connected to /home/opuser/.op/data/1password.sqlite"
+          },
+          {
+            "service": "account_data",
+            "status": "AVAILABLE",
+            "message": "Account data is available"
+          },
+          {
+            "service": "sync",
+            "status": "UNKNOWN"
+          },
+          {
+            "service": "1Password",
+            "status": "UNINITIALIZED",
+            "message": "Make a request with a valid bearer token to initialize"
+          }
+        ]
+      },
+      "rollbackCachePreserved": true
+    },
+    "portainer": {
+      "passed": true,
+      "service": "portainer",
+      "checkedUtc": "2026-10-26T17:05:38.343823+00:00",
+      "oldImageId": "sha256:03f94a406496dc84d37b552795fc424ccad8d0d7200353b6a82915f6e8f73ab0",
+      "newImageId": "sha256:3609c307943bca8e5c492f69ddd6965df177208b50678a4cff28391c8dd4e96e",
+      "pinnedRef": "portainer/portainer-ce@sha256:3609c307943bca8e5c492f69ddd6965df177208b50678a4cff28391c8dd4e96e",
+      "pilotPassed": true,
+      "http": [
+        {
+          "path": "/api/status",
+          "status": 200
+        },
+        {
+          "path": "/api/users/admin/check",
+          "status": 204
+        }
+      ],
+      "onlyComposeImageChanged": true,
+      "environmentAndMountsPreserved": true,
+      "rollbackStatePreserved": true
+    },
+    "uptime-kuma": {
+      "passed": true,
+      "service": "uptime-kuma",
+      "checkedUtc": "2026-10-26T17:06:59.871941+00:00",
+      "oldImageId": "sha256:9912da7d7d9b6ddc0c2d904beb84d24689c1ed9c33b81419eb9008663a92a329",
+      "newImageId": "sha256:4b95dbe7ac5343b768f8e04e3035ccd59997872b1a35ab9b0f082d2cc279070e",
+      "pinnedRef": "louislam/uptime-kuma@sha256:4b95dbe7ac5343b768f8e04e3035ccd59997872b1a35ab9b0f082d2cc279070e",
+      "pilotPassed": true,
+      "http": [
+        {
+          "path": "/",
+          "status": 200
+        }
+      ],
+      "onlyComposeImageChanged": true,
+      "environmentAndMountsPreserved": true,
+      "rollbackStatePreserved": true
+    },
+    "dozzle": {
+      "passed": true,
+      "service": "dozzle",
+      "checkedUtc": "2026-10-26T17:11:52.523321+00:00",
+      "oldImageId": "sha256:0d8cf9702f422d65a7e8ad238785dc6b05b2b9c43c945f6bbdf3358ad5da5f6c",
+      "newImageId": "sha256:8796ae7e1ecbe011482319cb7040e69aae91a0632b87bbe24b3f643e7455d94b",
+      "pinnedRef": "amir20/dozzle@sha256:8796ae7e1ecbe011482319cb7040e69aae91a0632b87bbe24b3f643e7455d94b",
+      "pilotPassed": true,
+      "http": [
+        {
+          "path": "/",
+          "status": 200
+        },
+        {
+          "path": "/healthcheck",
+          "status": 200
+        }
+      ],
+      "onlyComposeImageChanged": true,
+      "environmentAndMountsPreserved": true,
+      "rollbackStatePreserved": true
+    },
+    "homepage": {
+      "passed": true,
+      "service": "homepage",
+      "checkedUtc": "2026-10-26T17:12:34.923499+00:00",
+      "oldImageId": "sha256:3e38fe788223cb46a3ce1f046ef11667b40f7707fdca0dcbfa3f86c5c42bf1e8",
+      "newImageId": "sha256:19c5c09184458a41b7b5915e71463a39f36cd33540f41bdbed008791b8182d5f",
+      "pinnedRef": "ghcr.io/gethomepage/homepage@sha256:19c5c09184458a41b7b5915e71463a39f36cd33540f41bdbed008791b8182d5f",
+      "pilotPassed": true,
+      "http": [
+        {
+          "path": "/api/healthcheck",
+          "status": 200
+        },
+        {
+          "path": "/",
+          "status": 200
+        }
+      ],
+      "onlyComposeImageChanged": true,
+      "environmentAndMountsPreserved": true,
+      "rollbackStatePreserved": true
+    },
+    "cloud-init": {
+      "passed": true,
+      "checkedUtc": "2026-10-26T17:29:00.589518+00:00",
+      "before": "26.1-0ubuntu1~24.04.1",
+      "after": "26.2-0ubuntu1~24.04.2",
+      "normalUbuntuPhasingAllowed": true,
+      "phasingNotForced": true,
+      "onlyCloudInitUpdated": true,
+      "noRebootPerformed": true,
+      "rebootRequired": false,
+      "existingConfigurationKept": true
+    }
+  },
+  "currentAgentConfiguration": {
+    "passed": true,
+    "checkedUtc": "2026-10-26T18:16:41.464267+00:00",
+    "files": [
+      {
+        "agent": "terry",
+        "path": "/opt/openclaw/agents/terry/config/openclaw.json",
+        "sha256": "d5327c30aa364f8c87d394c83876de467b0080a4332a27fdc0e8e79aba0a711c",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "terry",
+        "path": "/opt/openclaw/agents/terry/docker-compose.yml",
+        "sha256": "dd20f8a452a390aac61e2e812b18bc058f21316740b7e33de13cb8e232d0cb4a",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "marsha",
+        "path": "/opt/openclaw/agents/marsha/config/openclaw.json",
+        "sha256": "2bd628926c07213745d240fc13718393407cc90b721478ec8622fef786de5f46",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "marsha",
+        "path": "/opt/openclaw/agents/marsha/docker-compose.yml",
+        "sha256": "05a539867357b66c8a83d0a6f9b3d49f4607476a6ff76710b094249c9aec2679",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "edith",
+        "path": "/opt/openclaw/agents/edith/config/openclaw.json",
+        "sha256": "accf85056fb7f7d2f7e08f377cc94a1862290c4283b03173afa8f36589c8da1b",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "edith",
+        "path": "/opt/openclaw/agents/edith/docker-compose.yml",
+        "sha256": "5dfe7187401239dc4d5b2e8e485112b0f2894245ffbe57e7b30163645542fb2c",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "vivian",
+        "path": "/opt/openclaw/agents/vivian/config/openclaw.json",
+        "sha256": "554f1d3164f5aae47807df8483955895b56c4c191f627866fc2e5ef164b39905",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "vivian",
+        "path": "/opt/openclaw/agents/vivian/docker-compose.yml",
+        "sha256": "ed2b59d3f34322bea23afc58bbc2a8a1d86d08c2cf9642c2206f6c9cfa907bc5",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "amanda",
+        "path": "/opt/openclaw/agents/amanda/config/openclaw.json",
+        "sha256": "9cc934b5776598540b123a47ecacc5c4a3781b52553f0f26090267f9760bbcf9",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "amanda",
+        "path": "/opt/openclaw/agents/amanda/docker-compose.yml",
+        "sha256": "04c3aa1a59652d92502188f38a0cdae791d4ae3b2e39732627c7cbb4338deb76",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "victor",
+        "path": "/opt/openclaw/agents/victor/config/openclaw.json",
+        "sha256": "b2b24ceaf1b2f4fc97c76d4c62f236950dec62f1a7a678a165ea4f21c7db4e06",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "victor",
+        "path": "/opt/openclaw/agents/victor/docker-compose.yml",
+        "sha256": "b2bf857d599205a8eff11c2d7cb3f583f0aa35d1ca6f724434d605cc82cebfe1",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "wilma",
+        "path": "/opt/openclaw/agents/wilma/config/openclaw.json",
+        "sha256": "66867165e6fedf7299e7b3cd0bb727463449d2b14658d84447cc44eeb7e7f2f1",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "wilma",
+        "path": "/opt/openclaw/agents/wilma/docker-compose.yml",
+        "sha256": "25f2e9938d89485c5171e6faf3d08c6260eafb4dc0f4a1a7a4d5c4193d331d57",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "gohzed",
+        "path": "/opt/openclaw/agents/gohzed/config/openclaw.json",
+        "sha256": "15d3b8bb579e8a57c6b9a44ca46fa518cced5a0c83fb859abcbc527652a7ead2",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "gohzed",
+        "path": "/opt/openclaw/agents/gohzed/docker-compose.yml",
+        "sha256": "e758798a43aabe6ed0b5d1d6400ad90dcb85f11ae2dd489dfce819ec81d036df",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "grogar",
+        "path": "/opt/openclaw/agents/grogar/config/openclaw.json",
+        "sha256": "b39f3bf8f2cf5e48ba6c43f3c299dd791b75ed7d9008a2145d6fddefb595f65f",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "grogar",
+        "path": "/opt/openclaw/agents/grogar/docker-compose.yml",
+        "sha256": "54340a34b13103072243f775489142e5d64eb21dfebe8fdd890b1864f56b7b59",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "inga",
+        "path": "/opt/openclaw/agents/inga/config/openclaw.json",
+        "sha256": "d73d2edee39102e2e5fc51bc95a7f18c523c748aaab741c0a2c75e82b052c199",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "inga",
+        "path": "/opt/openclaw/agents/inga/docker-compose.yml",
+        "sha256": "bda4fb3a4c22ea5942521a5ce928ea699126eb57a4309b05b6106df8ed9cc614",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "maggie",
+        "path": "/opt/openclaw/agents/maggie/config/openclaw.json",
+        "sha256": "50163adacc6a3a764a5a3cfccc4f7e5f4cd8e0da285059ac6b901cd76fe667e4",
+        "currentPostManusConfigurationIncluded": true
+      },
+      {
+        "agent": "maggie",
+        "path": "/opt/openclaw/agents/maggie/docker-compose.yml",
+        "sha256": "ccbe154c01fcd1d03973ed745045b58c9629461020b350383720410f00953522",
+        "currentPostManusConfigurationIncluded": true
+      }
+    ],
+    "configurationOnlyFullAgentStateRemainsOctober24": true
+  },
+  "ManusPreservation": {
+    "passed": true,
+    "agents": [
+      {
+        "agent": "terry",
+        "checks": {
+          "terry": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "terry-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "marsha",
+        "checks": {
+          "marsha": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "marsha-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "edith",
+        "checks": {
+          "edith": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "edith-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "vivian",
+        "checks": {
+          "vivian": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "vivian-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "amanda",
+        "checks": {
+          "amanda": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "amanda-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "victor",
+        "checks": {
+          "victor": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "victor-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "wilma",
+        "checks": {
+          "wilma": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "wilma-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "gohzed",
+        "checks": {
+          "gohzed": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "gohzed-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "grogar",
+        "checks": {
+          "grogar": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "grogar-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "inga",
+        "checks": {
+          "inga": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "inga-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      },
+      {
+        "agent": "maggie",
+        "checks": {
+          "maggie": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "maggie-asana-mcp": {
+            "sameImage": true,
+            "sameContainer": true,
+            "healthy": true
+          },
+          "filesUnchanged": true
+        }
+      }
+    ]
+  },
+  "vps1Memory": {
+    "passed": true,
+    "agents": [
+      {
+        "agent": "terry",
+        "passed": true,
+        "provider": "openclaw-mem0",
+        "tool": "mem0_search",
+        "existingMemoryCount": 3,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "edith",
+        "passed": true,
+        "provider": "openclaw-mem0",
+        "tool": "mem0_search",
+        "existingMemoryCount": 3,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "marsha",
+        "passed": true,
+        "provider": "hindsight-openclaw",
+        "tool": "hindsight_recall",
+        "existingMemoryCount": 50,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "gohzed",
+        "passed": true,
+        "provider": "hindsight-openclaw",
+        "tool": "hindsight_recall",
+        "existingMemoryCount": 50,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "grogar",
+        "passed": true,
+        "provider": "hindsight-openclaw",
+        "tool": "hindsight_recall",
+        "existingMemoryCount": 50,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "inga",
+        "passed": true,
+        "provider": "hindsight-openclaw",
+        "tool": "hindsight_recall",
+        "existingMemoryCount": 50,
+        "ownGatewayToolUsed": true
+      },
+      {
+        "agent": "maggie",
+        "passed": true,
+        "provider": "hindsight-openclaw",
+        "tool": "hindsight_recall",
+        "existingMemoryCount": 50,
+        "ownGatewayToolUsed": true
+      }
+    ]
+  },
+  "recoveryAlignment": {
+    "passed": true,
+    "agents": [
+      {
+        "agent": "terry",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/terry/manifest.json"
+      },
+      {
+        "agent": "marsha",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/marsha/manifest.json"
+      },
+      {
+        "agent": "edith",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/edith/manifest.json"
+      },
+      {
+        "agent": "vivian",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/vivian/manifest.json"
+      },
+      {
+        "agent": "amanda",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/amanda-20261018/manifest.json"
+      },
+      {
+        "agent": "victor",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/victor-20261018/manifest.json"
+      },
+      {
+        "agent": "wilma",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/wilma/manifest.json"
+      },
+      {
+        "agent": "gohzed",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/gohzed/manifest.json"
+      },
+      {
+        "agent": "grogar",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/grogar/manifest.json"
+      },
+      {
+        "agent": "inga",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/inga/manifest.json"
+      },
+      {
+        "agent": "maggie",
+        "currentImagePinsVerified": true,
+        "wrapperUnchanged": true,
+        "manifest": "/opt/openclaw/recovery/fleet-20261018/maggie/manifest.json"
+      }
+    ],
+    "newArchive": "/opt/openclaw/recovery/release-20261026-current-images/images.tar.gz",
+    "coldRestoreVerified": true
+  },
+  "coldImageRestore": {
+    "passed": true,
+    "emptyIndependentDockerStoreUsed": true,
+    "independentContainerdProcessRootStateAndSocket": true,
+    "storeMatchesProductionContainerdSnapshotter": true,
+    "images": [
+      {
+        "imageId": "sha256:d6cf0a6a3157f5ef72b75c8cbbf2a03b57c02a8eb2296172a156842bc8ef3500",
+        "refs": [
+          "zedbiz/terry:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "refs": [
+          "zedbiz/asana-http-mcp:2.0.0-components-20261023"
+        ],
+        "roles": [
+          "asana"
+        ],
+        "runtimeVersion": "v24.22.1",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:407beef4c248cbf679e884cc04ba135d80166810f521dc9d558e469b54636d80",
+        "refs": [
+          "zedbiz/marsha:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:79ed466dd79463b3f9b2b2cf27c1faed5eca33e585313fdba15bd7188d63166b",
+        "refs": [
+          "zedbiz/edith:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:3a8603e8797d5f8ed6afe9e92e44ce21048588a899200ddc65a5429067aa8610",
+        "refs": [
+          "zedbiz/asana-http-mcp:2.0.0-edith-components-20261023"
+        ],
+        "roles": [
+          "asana"
+        ],
+        "runtimeVersion": "v24.22.1",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:ba95e4a72bc79e0b811bd0a3d85f9a0120115fc1093d8a0505d453259fabfabd",
+        "refs": [
+          "zedbiz/vivian:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:84399c3324292213a1374334041446379ab9f8f08c5f80a172346b09af75ba98",
+        "refs": [
+          "zedbiz/amanda:2026.10.6-mcp-reconnect-20261026-v2"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:c8e5ea587fdb3c4523325ca03fc65a074c36982106050ca0762c3d8e15cf372e",
+        "refs": [
+          "zedbiz/victor:2026.10.6-mcp-reconnect-20261026-v2"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:dd10e35e797466e2aa296196bec3543483b4edadd2c7f61a62fe2ff5b5050bbd",
+        "refs": [
+          "zedbiz/wilma:2026.10.6-mcp-reconnect-20261026-v2"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:0051553929d4c52008843028b42a12ba8caa180efc8c3ff4a302b51a5dcd83c8",
+        "refs": [
+          "zedbiz/gohzed:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:c5800a19c55a459ebdfae274ac3af993d8fbc11f04d257f48592fb0002b308a9",
+        "refs": [
+          "zedbiz/grogar:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:c0907efa5f9b4329f3a5634982aefe1323fb646545c00c7c2cc0d9cc3b7b9a1f",
+        "refs": [
+          "zedbiz/inga:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:9516e27faf6c61ea0c08a33ee385e00e5e9b53979d46729ae8399d439be03d6e",
+        "refs": [
+          "zedbiz/maggie:2026.10.6-mcp-reconnect-manus-20261026"
+        ],
+        "roles": [
+          "gateway"
+        ],
+        "runtimeVersion": "2026.10.6",
+        "exactIdentityRestored": true
+      },
+      {
+        "imageId": "sha256:7b52bf008c64f3ff129bb39004b5a7e930843aea23a6a9fd526cd1fbc4eec42a",
+        "refs": [
+          "zedbiz/hindsight:1.1.0-flashrank-20261023"
+        ],
+        "roles": [
+          "hindsight"
+        ],
+        "runtimeVersion": "1.1.0",
+        "exactIdentityRestored": true
+      }
+    ],
+    "postManusGatewayAndAsanaImagesIncluded": true,
+    "hindsight11ImageIncluded": true,
+    "productionDockerStoreUntouched": true,
+    "priorClassicStoreProbeInvalidated": true
+  },
+  "offsiteBackup": {
+    "passed": true,
+    "fileId": "19xr75LjnKxutZEjE5TVAPFQBLVZ-6ZOU",
+    "name": "VPS1-2026-10-26-shared-services-and-current-images.tar.age",
+    "url": "https://drive.google.com/file/d/19xr75LjnKxutZEjE5TVAPFQBLVZ-6ZOU/view?usp=drivesdk",
+    "bytes": 8403018888,
+    "cipherMd5": "f96b9273e06834ad212e2ca1297ce5d1",
+    "cipherSha256": "9fcfbe897e57098e6d5adba4360901b676b49b12869a8c034a96eb6d9373c979",
+    "plaintextSha256": "194a90f0b74f3e7bad09d2124c0d0e3b30ace04f9ac30168f11d748ccf8eddd6",
+    "allInputFilesVerifiedAfterDecryption": 170,
+    "decryptionRoundtripVerified": true,
+    "cloudMd5AndSizeVerified": true,
+    "currentManusPatchedImagesColdRestored": 14,
+    "recoveryManifestsAligned": 11,
+    "currentHindsight11DatabaseRestored": true,
+    "currentQdrantSnapshotIncluded": true,
+    "serviceStateAndCredentialsIncluded": true,
+    "publicThirdPartyImagesUsePinnedReferences": true,
+    "scope": "Shared service recovery and current custom gateway/Asana images. Existing agent-state backups remain dated October24; no claim of a full fresh OS or agent-state image."
+  },
+  "cloudIndexReadback": {
+    "passed": true,
+    "checkedUtc": "2026-10-26T18:34:50.119344+00:00",
+    "backupFiles": [
+      {
+        "component": "images",
+        "fileId": "1aSA55zvZdxwy3qcq35-kEieJgt1UvIBI",
+        "bytes": 5650375821,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "shared-recovery-baseline-20261024",
+        "fileId": "1wlVHPH3bFg1z6TxJroFxBPOJWqyWBPc7",
+        "bytes": 1933787792,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "terry",
+        "fileId": "1CPtGIWc0ogffMAsYl_Ot4mhboOCImQmO",
+        "bytes": 2068224201,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "marsha",
+        "fileId": "1uZLXSRhzfDj6hFU08Lt4CEf9C2ZZQq59",
+        "bytes": 989773229,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "amanda",
+        "fileId": "1MTV3qKe5qQXfr1pyKvXricIvknaiLNU3",
+        "bytes": 1788564892,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "victor",
+        "fileId": "117HIv8rh-vvhTf7FB0hSZn0hal3OWiJw",
+        "bytes": 1513177857,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "wilma",
+        "fileId": "1WDPVKjQ5B5RnfB5E1lRYXvqzgkzSjnlE",
+        "bytes": 1477072810,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "gohzed",
+        "fileId": "1jvKONWQ2haC7VFvCdUjDYTEf9eu1e4Xi",
+        "bytes": 596342729,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "grogar",
+        "fileId": "1CdQu_dx3doCBBMqNsI8V9HmWvFvmU704",
+        "bytes": 600529803,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "inga",
+        "fileId": "1R4RLiDYxJerBQZJumCM8Fae8qSnCnWRz",
+        "bytes": 930313975,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "maggie",
+        "fileId": "1THCCM7Gvp-H6lK66hAqWCzBawJCucxBr",
+        "bytes": 564279436,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "edith",
+        "fileId": "1KTsD7REbQ44GpdcVIBi5J4Fcm7hrwc71",
+        "bytes": 14728185118,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "vivian",
+        "fileId": "1Ik03KIiN7WlmATvUKabX4FSYRY0QPpok",
+        "bytes": 14577844803,
+        "md5AndSizeVerified": true
+      },
+      {
+        "component": "shared-services-and-memory",
+        "fileId": "19xr75LjnKxutZEjE5TVAPFQBLVZ-6ZOU",
+        "bytes": 8403018888,
+        "md5AndSizeVerified": true
+      }
+    ],
+    "metadataFiles": [
+      {
+        "fileId": "1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO",
+        "bytes": 11722,
+        "md5AndSizeVerified": true
+      },
+      {
+        "fileId": "17Xqakx1la2dy5Hnv1543SwBnGHasMhAB",
+        "bytes": 789,
+        "md5AndSizeVerified": true
+      }
+    ],
+    "sharedBaselineRetainedAsRequiredDependency": true,
+    "sharedRestoreOrder": [
+      "1wlVHPH3bFg1z6TxJroFxBPOJWqyWBPc7",
+      "19xr75LjnKxutZEjE5TVAPFQBLVZ-6ZOU"
+    ],
+    "totalEncryptedBytes": 55821491354,
+    "agentStateSnapshotsRemainOctober24": true,
+    "archiveRetentionMonths": 1
+  },
+  "cleanup": {
+    "passed": true,
+    "checkedUtc": "2026-10-26T18:35:43.361430+00:00",
+    "vaultKeyFreshReadbackVerified": true,
+    "temporaryServerKeyRemoved": true,
+    "temporaryUploadCipherRemoved": true,
+    "ownedFixtureContainersRemoved": [
+      "cody-shared-marsha-20261026",
+      "cody-shared-20261026-api",
+      "cody-shared-20261026-db",
+      "cody-qdrant-120-20261026"
+    ],
+    "temporaryPathsRemoved": [
+      "/opt/openclaw/backups/shared-updates-20261026/marsha-pilot/profile",
+      "/opt/openclaw/backups/shared-updates-20261026/marsha-pilot/wiki",
+      "/opt/openclaw/backups/shared-updates-20261026/marsha-pilot-before-Manus/profile",
+      "/opt/openclaw/backups/shared-updates-20261026/marsha-pilot-before-Manus/wiki",
+      "/opt/openclaw/backups/shared-updates-20261026/hindsight-empty-test/data",
+      "/opt/openclaw/backups/shared-updates-20261026/hindsight-migration-proof/data",
+      "/opt/openclaw/backups/shared-updates-20261026/qdrant-pilot/storage",
+      "/opt/openclaw/backups/shared-updates-20261026/offsite/inputs"
+    ],
+    "freeBytesRecovered": 20315807744,
+    "currentColdRecoveryArchiveRetained": "/opt/openclaw/recovery/release-20261026-current-images/images.tar.gz",
+    "allRollbacksProofsAndProductionDataRetained": true,
+    "stoppedPrivateRuntimeDirectoriesRemoved": [
+      "/run/cdy26",
+      "/run/cdy26r2"
+    ],
+    "independentColdDockerAndContainerdStoresRemoved": true
+  },
+  "finalReadback": {
+    "passed": true,
+    "checkedUtc": "2026-10-26T18:36:25.606908+00:00",
+    "agents": [
+      {
+        "agent": "terry",
+        "passed": true,
+        "gatewayImageId": "sha256:d6cf0a6a3157f5ef72b75c8cbbf2a03b57c02a8eb2296172a156842bc8ef3500",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "slack": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "marsha",
+        "passed": true,
+        "gatewayImageId": "sha256:407beef4c248cbf679e884cc04ba135d80166810f521dc9d558e469b54636d80",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 12,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "edith",
+        "passed": true,
+        "gatewayImageId": "sha256:79ed466dd79463b3f9b2b2cf27c1faed5eca33e585313fdba15bd7188d63166b",
+        "asanaImageId": "sha256:3a8603e8797d5f8ed6afe9e92e44ce21048588a899200ddc65a5429067aa8610",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "vivian",
+        "passed": true,
+        "gatewayImageId": "sha256:ba95e4a72bc79e0b811bd0a3d85f9a0120115fc1093d8a0505d453259fabfabd",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "amanda",
+        "passed": true,
+        "gatewayImageId": "sha256:84399c3324292213a1374334041446379ab9f8f08c5f80a172346b09af75ba98",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 8,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "victor",
+        "passed": true,
+        "gatewayImageId": "sha256:c8e5ea587fdb3c4523325ca03fc65a074c36982106050ca0762c3d8e15cf372e",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 24,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "wilma",
+        "passed": true,
+        "gatewayImageId": "sha256:dd10e35e797466e2aa296196bec3543483b4edadd2c7f61a62fe2ff5b5050bbd",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "gohzed",
+        "passed": true,
+        "gatewayImageId": "sha256:0051553929d4c52008843028b42a12ba8caa180efc8c3ff4a302b51a5dcd83c8",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "grogar",
+        "passed": true,
+        "gatewayImageId": "sha256:c5800a19c55a459ebdfae274ac3af993d8fbc11f04d257f48592fb0002b308a9",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "inga",
+        "passed": true,
+        "gatewayImageId": "sha256:c0907efa5f9b4329f3a5634982aefe1323fb646545c00c7c2cc0d9cc3b7b9a1f",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 7,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          },
+          "telegram": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      },
+      {
+        "agent": "maggie",
+        "passed": true,
+        "gatewayImageId": "sha256:9516e27faf6c61ea0c08a33ee385e00e5e9b53979d46729ae8399d439be03d6e",
+        "asanaImageId": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+        "ManusImagesContainersAndConfigurationPreserved": true,
+        "userSchedules": 6,
+        "configuredChannels": {
+          "discord": {
+            "configuredAccounts": 1,
+            "allConnected": true
+          }
+        },
+        "httpsHealth": 200,
+        "currentRecoveryImagePinsAndWrapperHashVerified": true,
+        "containerRestarts": 0
+      }
+    ],
+    "services": [
+      {
+        "service": "hindsight",
+        "imageId": "sha256:7b52bf008c64f3ff129bb39004b5a7e930843aea23a6a9fd526cd1fbc4eec42a",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "hindsight-db",
+        "imageId": "sha256:2358fcba361ed2233a5ed81b5fe4ca779ccb304120ce531a3bf51c0ed7e2bc11",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "mem0-dev-qdrant-1",
+        "imageId": "sha256:9bfc89f9914fc14876a88c05270685921a55b8877b254a98bcc1cc2f0a424cd2",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "1password-connect-api",
+        "imageId": "sha256:0f74924c55c9156b8116f59f485223b2c2d30a5148d362562aa27838159bdffa",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "1password-connect-sync",
+        "imageId": "sha256:ca34850f2a20ca302e688a9347cdb696f29ce3bfc011d2554eff338e315c9089",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "caddy",
+        "imageId": "sha256:685ae3d7c34d9b5f8caeddc5d14051db7bbd88ff1f5a2fa0c16bd8ca328fb7af",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "z-code-allocator",
+        "imageId": "sha256:b371073fae295aeba622bc4f32f118efdeee00a80e6dfb57c3222538aeb6d177",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "z-code-admin",
+        "imageId": "sha256:b371073fae295aeba622bc4f32f118efdeee00a80e6dfb57c3222538aeb6d177",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "z-code-notion-mirror",
+        "imageId": "sha256:65614526f8297c94a15402d9f749138bc83acd81018337298204f35d0e1bac45",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "zedbiz-restart-api",
+        "imageId": "sha256:17717cc707a0cc6d4cdcde15bd59e5c8e2c282ef6a6b21629367b0c104ba1019",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "rocky-restart-bridge",
+        "imageId": "sha256:bf9a1ea1c418c8e9a212f3645872e7f794011fd5ee5aad925807f1d1a6c799c3",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "rocky-tunnel-bridge",
+        "imageId": "sha256:bf9a1ea1c418c8e9a212f3645872e7f794011fd5ee5aad925807f1d1a6c799c3",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "portainer",
+        "imageId": "sha256:3609c307943bca8e5c492f69ddd6965df177208b50678a4cff28391c8dd4e96e",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "filebrowser",
+        "imageId": "sha256:a469ea076d4a1b4b1d86a41d130f2f536cd9da996a2b1fb39c0d7635f9d89b9a",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "uptime-kuma",
+        "imageId": "sha256:4b95dbe7ac5343b768f8e04e3035ccd59997872b1a35ab9b0f082d2cc279070e",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "dozzle",
+        "imageId": "sha256:8796ae7e1ecbe011482319cb7040e69aae91a0632b87bbe24b3f643e7455d94b",
+        "running": true,
+        "configuredHealth": null
+      },
+      {
+        "service": "homepage",
+        "imageId": "sha256:19c5c09184458a41b7b5915e71463a39f36cd33540f41bdbed008791b8182d5f",
+        "running": true,
+        "configuredHealth": "healthy"
+      },
+      {
+        "service": "docker-socket-proxy",
+        "imageId": "sha256:1f5038b54f06c3e18422902cf00ba21803d1c97805aae032e5e6673d532d3459",
+        "running": true,
+        "configuredHealth": null
+      }
+    ],
+    "productionServicesRunning": 40,
+    "totalCurrentUserSchedules": 93,
+    "allManusFixImagesAndConfigurationsPreserved": true,
+    "marshaSlackPluginKeptEnabled": true,
+    "recoveryPinsAlignedToActualImages": 11,
+    "freeDiskBytes": 108252774400,
+    "availableMemoryBytes": 12025901056,
+    "rebootRequired": false
+  },
+  "vps2SelectedProviderMemory": {
+    "passed": true,
+    "agents": [
+      {
+        "agent": "frank",
+        "passed": true,
+        "providerId": "hindsight-openclaw",
+        "rpc": "memory.search",
+        "rpcVersion": 2,
+        "existingMemoryCount": 3,
+        "ownGatewayUsed": true,
+        "sharedVps1BackendCompatibilityVerified": true
+      },
+      {
+        "agent": "suzy",
+        "passed": true,
+        "providerId": "hindsight-openclaw",
+        "rpc": "memory.search",
+        "rpcVersion": 2,
+        "existingMemoryCount": 3,
+        "ownGatewayUsed": true,
+        "sharedVps1BackendCompatibilityVerified": true
+      }
+    ],
+    "httpWorkspaceSearchResultsNotUsedAsProviderProof": true
+  },
+  "hindsightBackupRestore": {
+    "passed": true,
+    "restoredCurrent11Database": true,
+    "counts": {
+      "banks": 5,
+      "documents": 1294,
+      "memory_units": 29449,
+      "entities": 6758,
+      "mental_models": 9,
+      "knowledge_pages": 0,
+      "chunks": 8383,
+      "directives": 0,
+      "webhooks": 0
+    },
+    "sha256": "5ffb07b4417b2067b6d0654d7e505a298c464201d7a1f919d7e4f8ecad179f05"
+  },
+  "qdrantBackup": {
+    "version": "1.20.0",
+    "snapshot": {
+      "name": "full-snapshot-2026-10-26-17-45-47-3.snapshot",
+      "creation_time": "2026-10-26T17:45:47",
+      "size": 83931136,
+      "checksum": "bab9729a7b3925bd99fa171933f05e5e8beff745cc08eb4c83ea403c27a33570"
+    },
+    "sha256": "bab9729a7b3925bd99fa171933f05e5e8beff745cc08eb4c83ea403c27a33570",
+    "collectionCounts": {
+      "mem0_vps1_agents": 657,
+      "mem0_vps1_agents_entities": 3823,
+      "memory_migrations": 1
+    }
+  },
+  "remainingFollowUps": {
+    "connectCaller": "Pre-existing missing Connect bearer token; authenticated caller vault access is not claimed. Service-account token was not sent to Connect.",
+    "startupAndRam": "Prior OpenClaw synchronous file-check overhead and longer-term memory growth remain separate performance follow-ups; updates are not claimed to cure them."
+  },
+  "backupScope": "Current shared services and all post-Manus custom gateway/Asana images refreshed October26. Existing eleven agent-state backups remain dated October24. No full OS image claimed.",
+  "githubIssue": "https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/480",
+  "draftPullRequest": "https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/pull/482"
+}
