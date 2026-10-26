@@ -1,5 +1,7 @@
 # Shared Wiki lock implementation
 
+Historical v1 implementation. The October 26 replacement is documented in [wiki-filelock](../wiki-filelock/README.md), with rollout receipts under `tracking/main-vps/wiki-filelock-20261026`. V1's separate Python holder can die while the Node writer continues; v2 uses maintained filelock to acquire a descriptor retained by Node itself. Keep v1 files for build history and rollback, not as the default for new deployments.
+
 Added by Cody, 2026-10-23, for the eleven VPS1 OpenClaw containers sharing `/opt/openclaw/shared/knowledge/wiki`. Tracking: [issue 476](https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/476).
 
 ## Code boundary

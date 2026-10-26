@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "fileId": "1GlLkXPMWEyhu60awhZP-UcLiUvQg9GZk",
+  "name": "VPS1-2026-10-26-wiki-filelock-overlay.tar.age",
+  "url": "https://drive.google.com/file/d/1GlLkXPMWEyhu60awhZP-UcLiUvQg9GZk/view?usp=drivesdk",
+  "bytes": 5748828648,
+  "cipherSha256": "6846ea5b003210ace13c9eee29e9c63c0488f279d66393fff223c55d74e73e89",
+  "cipherMd5": "1024add41c3ea35f14017e2e99af5968",
+  "cloudMd5AndSizeVerified": true,
+  "plaintextImagesColdRestored": 13,
+  "exactManifestArchivePathIncluded": true,
+  "originalFileAndDirectoryOwnershipModesPreserved": true,
+  "encryptedWithExistingVerifiedRecipient": true,
+  "newDecryptionRoundtripPerformed": false,
+  "scope": "Wiki image/configuration overlay only. Apply after the October26 shared-services overlay; existing agent-state and service backups remain required."
+}

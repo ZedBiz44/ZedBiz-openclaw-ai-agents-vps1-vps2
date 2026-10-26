@@ -1,0 +1,12 @@
+[
+ {"tool":"gog","version":"0.47.0","url":"https://github.com/openclaw/gogcli/releases/download/v0.47.0/gogcli_0.47.0_linux_amd64.tar.gz","sha256":"c3ed94efca90c754cdda300e3c7f8cc2f3d7df86d3fdc5d11f996c7518a09c24","members":["gog"]},
+ {"tool":"gh","version":"2.103.2","url":"https://github.com/cli/cli/releases/download/v2.103.2/gh_2.103.2_linux_amd64.tar.gz","sha256":"62ccf747115ddc61237efffdde66a3c8f70ba249433dc64f70801089b59c59c8","members":["gh"]},
+ {"tool":"rclone","version":"1.75.2","url":"https://github.com/rclone/rclone/releases/download/v1.75.2/rclone-v1.75.2-linux-amd64.zip","sha256":"349ac8fba6ff65d6247043f1750cdcb518ec5d500ef91463a10d37c0ccdf3702","members":["rclone"]},
+ {"tool":"pandoc","version":"3.12.1","url":"https://github.com/jgm/pandoc/releases/download/3.12.1/pandoc-3.12.1-linux-amd64.tar.gz","sha256":"d0c90410e90204c9ca83b8539fac5c7aed01fd537207e4585849f8abc5df20b8","members":["pandoc"]},
+ {"tool":"fzf","version":"0.74.5","url":"https://github.com/junegunn/fzf/releases/download/v0.74.5/fzf-0.74.5-linux_amd64.tar.gz","sha256":"d47d7f882972c7d674dbbba998ffa4116e68379616ffac7695d0671e9a722c5f","members":["fzf"]},
+ {"tool":"just","version":"1.59.0","url":"https://github.com/casey/just/releases/download/1.59.0/just-1.59.0-x86_64-unknown-linux-musl.tar.gz","sha256":"409044617b6f06517c1035e55ca38c8c856ff8b650e41bc2aa1ef82d5903a23e","members":["just"]},
+ {"tool":"uv","version":"0.13.5","url":"https://github.com/astral-sh/uv/releases/download/0.13.5/uv-x86_64-unknown-linux-gnu.tar.gz","sha256":"f68d291c75783122dad58ab77def0e13f3233f358731db5d6d7e8715603b928f","members":["uv","uvx"]},
+ {"tool":"yt-dlp","version":"2026.10.21","url":"https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.21/yt-dlp_linux","sha256":"d8bd33fca9d5b23bd5b9952b3fca36db5c46331933fda9f598a3da14ce2c243f","members":["yt-dlp"],"raw":true},
+ {"tool":"camsnap","version":"0.6.1","url":"https://github.com/steipete/camsnap/releases/download/v0.6.1/camsnap_0.6.1_linux_amd64.tar.gz","sha256":"57b9b85ec4575021e401f94fe9c54d669b7fdd2f92b8a744cebe9f5307977a7c","members":["camsnap"]},
+ {"tool":"goplaces","version":"0.4.14","url":"https://github.com/openclaw/goplaces/releases/download/v0.4.14/goplaces_0.4.14_linux_amd64.tar.gz","sha256":"e34230d96e9888f8cfbf43d0d816415f6cb82f43c36227d12baec7d992796b7f","members":["goplaces"]}
+]

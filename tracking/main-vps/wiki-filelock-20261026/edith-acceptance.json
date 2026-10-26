@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "agent": "edith",
+  "image": "sha256:67e5f827b7a90fd0b21f6ee4082508e4a671308e5c5788ff36016a681e595df0",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

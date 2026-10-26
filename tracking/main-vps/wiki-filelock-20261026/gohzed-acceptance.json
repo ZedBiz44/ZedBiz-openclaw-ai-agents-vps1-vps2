@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "agent": "gohzed",
+  "image": "sha256:02a4a6ab403e638f20916f0355492af34a657fdd7eb82f2d2a68d8bf4ba0cf2b",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

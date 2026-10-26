@@ -1,0 +1,123 @@
+{
+  "images": [
+    {
+      "id": "sha256:02a4a6ab403e638f20916f0355492af34a657fdd7eb82f2d2a68d8bf4ba0cf2b",
+      "refs": [
+        "zedbiz/gohzed:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:f462562ac7f4a963616045c0633a0b6780acec5f80359fff154a33d90493d15c",
+      "refs": [
+        "zedbiz/grogar:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:3a715841ae2069b45c26c97d44d370387d4377f832d1fa6aea222175b06320c7",
+      "refs": [
+        "zedbiz/inga:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:607c1d902c3aa18b795c2bb681d4cc22a37f9d34281b88f802a1d688f15a19fe",
+      "refs": [
+        "zedbiz/maggie:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:76a811c366aa493c924f0339f2575bdf53f8aee2fad3cfc09f96c169390d29e4",
+      "refs": [
+        "zedbiz/marsha:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:f796447d54424b324bf9948f4d5d314ff311d9e06d43ed5adfd76eb47b2429a9",
+      "refs": [
+        "zedbiz/amanda:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:67e5f827b7a90fd0b21f6ee4082508e4a671308e5c5788ff36016a681e595df0",
+      "refs": [
+        "zedbiz/edith:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:9d7b10eb1587837adda32b1352922c6b495e1cbcf312c9a7f22a7ff8affe46d5",
+      "refs": [
+        "zedbiz/terry:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:2fa39eaaf12a15a3eccc9c2f27f8ad742e7ed0c0a7c9f28aa0a0e6a9ec946df7",
+      "refs": [
+        "zedbiz/victor:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:bdb0019439cc3ce465bb4c8b423aecaed1c95c130cc45f2f5ed912147536bcee",
+      "refs": [
+        "zedbiz/vivian:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:ec895e063597cb56e93f77d61948275a9de7954b249bbd65850092eca0176a8a",
+      "refs": [
+        "zedbiz/wilma:2026.10.6-wiki-filelock-20261026"
+      ],
+      "roles": [
+        "gateway"
+      ]
+    },
+    {
+      "id": "sha256:7702a34a7cc329f7dc7422ba919c67263fe488d5633285d69ef602a52c530d6c",
+      "refs": [
+        "zedbiz/asana-http-mcp:2.0.0-components-20261023"
+      ],
+      "roles": [
+        "asana"
+      ]
+    },
+    {
+      "id": "sha256:3a8603e8797d5f8ed6afe9e92e44ce21048588a899200ddc65a5429067aa8610",
+      "refs": [
+        "zedbiz/asana-http-mcp:2.0.0-edith-components-20261023"
+      ],
+      "roles": [
+        "asana"
+      ]
+    }
+  ],
+  "archiveBytes": 5746986387,
+  "archiveSha256": "ef7d9084bb391dc9edf5d0e4a75a48f55d8fc3741cb2f31bd256b2aa029ad51d"
+}

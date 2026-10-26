@@ -1,0 +1,28 @@
+"""Restore current Qdrant storage into 1.20 and exercise Terry's real Mem0 SDK on an isolated collection."""
+import pathlib,subprocess,json,os,time,urllib.request,urllib.parse,hashlib
+P=pathlib.Path;os.umask(0o077);W=P('/opt/openclaw/backups/shared-updates-20261026');A=W/'qdrant-pilot';A.mkdir(mode=0o700);name='cody-qdrant-120-20261026';prod=json.loads(subprocess.check_output(['docker','inspect','mem0-dev-qdrant-1']))[0];env=dict(e.split('=',1) for e in prod['Config']['Env']);key=env['QDRANT__SERVICE__API_KEY'];source='http://'+next(iter(prod['NetworkSettings']['Networks'].values()))['IPAddress']+':6333';network=next(iter(prod['NetworkSettings']['Networks']));catalog=json.loads((W/'candidate-images.json').read_text());candidate=catalog['qdrant'];(A/'runtime.env').write_text('\n'.join(prod['Config']['Env'])+'\n')
+def request(base,path,method='GET',data=None,auth=True):
+ headers={'api-key':key} if auth else {}
+ if data is not None:headers['Content-Type']='application/json';data=json.dumps(data).encode()
+ with urllib.request.urlopen(urllib.request.Request(base+path,data=data,headers=headers,method=method),timeout=120) as response:return json.load(response)
+def counts(base):return {c['name']:request(base,'/collections/'+urllib.parse.quote(c['name'],safe=''))['result']['points_count'] for c in request(base,'/collections')['result']['collections']}
+before=counts(source);(A/'source-counts.private.json').write_text(json.dumps(before));snapshot=request(source,'/snapshots','POST',{})['result'];(A/'snapshot-metadata.private.json').write_text(json.dumps(snapshot));file=A/'storage.snapshot'
+with urllib.request.urlopen(urllib.request.Request(source+'/snapshots/'+urllib.parse.quote(snapshot['name'],safe=''),headers={'api-key':key}),timeout=180) as response,file.open('xb') as out:
+ while True:
+  block=response.read(1024*1024)
+  if not block:break
+  out.write(block)
+with file.open('rb') as f:digest=hashlib.file_digest(f,'sha256').hexdigest()
+(A/'storage').mkdir();p=subprocess.run(['docker','run','-d','--name',name,'--label','cody.shared-update-fixture=true','--network',network,'--memory','1g','--env-file',str(A/'runtime.env'),'-v',str(A/'storage')+':/qdrant/storage','-v',str(file)+':/restore/storage.snapshot:ro',candidate['imageId'],'./qdrant','--storage-snapshot','/restore/storage.snapshot','--disable-telemetry'],capture_output=True,text=True,timeout=60);(A/'start.private.log').write_text(p.stdout+p.stderr);assert p.returncode==0;start=time.monotonic()
+while True:
+ d=json.loads(subprocess.check_output(['docker','inspect',name]))[0];assert d['State']['Running'];base='http://'+d['NetworkSettings']['Networks'][network]['IPAddress']+':6333'
+ try:
+  restored=counts(base);assert restored==before;break
+ except Exception:assert time.monotonic()-start<180;time.sleep(3)
+assert request(base,'/')['version']=='1.20.0'
+try:request(base,'/collections',auth=False);raise AssertionError('Unauthenticated collection access unexpectedly allowed')
+except urllib.error.HTTPError as e:assert e.code in [401,403]
+node=r'''import fs from 'node:fs';import assert from 'node:assert/strict';import{pathToFileURL}from'node:url';
+const root='/home/node/.openclaw/npm/projects';const projects=fs.readdirSync(root).filter(x=>x.startsWith('mem0-')&&fs.existsSync(root+'/'+x+'/node_modules/mem0ai/dist/oss/index.mjs'));assert(projects.length===1);const{Memory}=await import(pathToFileURL(root+'/'+projects[0]+'/node_modules/mem0ai/dist/oss/index.mjs'));
+const raw=fs.readFileSync('/home/node/.openclaw/openclaw.json','utf8').replace(/\$\{([A-Z0-9_]+)\}/g,(m,k)=>{assert(process.env[k]);return process.env[k]});const plugin=JSON.parse(raw).plugins.entries['openclaw-mem0'].config;const cfg=structuredClone(plugin.oss);cfg.vectorStore.config={...cfg.vectorStore.config,host:'cody-qdrant-120-20261026',port:6333,collectionName:'cody_update_20261026'};cfg.vectorStore.config.url='http://cody-qdrant-120-20261026:6333';delete cfg.vectorStore.config.host;delete cfg.vectorStore.config.port;assert(cfg.disableHistory===true);const user='cody-qdrant-120-'+Date.now();const m=new Memory(cfg);const added=await m.add('For fictional acceptance project Copper-Atlas-826, the approved dispatch weekday is Thursday.',{userId:user,infer:true});assert((added.results??added).length);const fresh=new Memory(cfg);const result=await fresh.search('What weekday is Copper-Atlas-826 dispatched?',{filters:{user_id:user},topK:5,threshold:0});assert(JSON.stringify(result).includes('Thursday'));const all=await fresh.getAll({filters:{user_id:user}});for(const row of(all.results??all))await fresh.delete(row.id);const left=await fresh.getAll({filters:{user_id:user}});assert((left.results??left).length===0);console.log(JSON.stringify({passed:true,sdk:'3.3.1',inferredSave:true,freshInstanceRecall:true,testRowsRemoved:true,configuredHelperModel:cfg.llm.config.model}));process.exit(0);'''
+p=subprocess.run(['docker','exec','-i','terry','node','--input-type=module'],input=node,capture_output=True,text=True,timeout=240);(A/'mem0-sdk.private.log').write_text(p.stdout+p.stderr);assert p.returncode==0,'Real Mem0/Qdrant1.20 pilot failed';sdk=json.loads(p.stdout.splitlines()[-1]);assert sdk['passed'];after=counts(base);assert all(after[k]==v for k,v in before.items());proof={'passed':True,'candidate':candidate,'snapshotSha256':digest,'snapshotBytes':file.stat().st_size,'restoredBusinessCollectionCountsMatched':True,'businessCollections':len(before),'unauthenticatedAccessDenied':True,'actualMem0SdkProof':sdk,'productionImageUnchanged':json.loads(subprocess.check_output(['docker','inspect','mem0-dev-qdrant-1']))[0]['Image']==prod['Image']};(A/'proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)

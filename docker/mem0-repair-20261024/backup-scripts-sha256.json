@@ -1,0 +1,7 @@
+{
+  "backup-current-vps1-agent.py": "fb45dff8dde5051b27ac264be0b11c51cd47c9db54bb7e29c7ad47e31cb4567c",
+  "cleanup-replaced-vps1-agent-backups.py": "676eba8c6ec413ca3f2d3bc36045bfc796c34aad711ba84e717bf8e81bf2f9cf",
+  "backup-vps1-shared-recovery.py": "5185a71ec7ebfaf3fef180150021d7e9313cd2e8ec022a4c403a6d1f28a38b19",
+  "rehearse-hindsight-final-20261024.py": "202c3e2c98e8d59ab6ea6c78409d224c65d1d9748cdbe4f15f1360d78d353348",
+  "prove-final-qdrant-snapshot.py": "3b38bf3fc2503679f7ca492a7ce4d9a72bb268e75dacc0a839d79b7d80d65bbf"
+}

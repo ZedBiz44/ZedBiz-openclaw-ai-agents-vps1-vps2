@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "agent": "vivian",
+  "image": "sha256:bdb0019439cc3ce465bb4c8b423aecaed1c95c130cc45f2f5ed912147536bcee",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

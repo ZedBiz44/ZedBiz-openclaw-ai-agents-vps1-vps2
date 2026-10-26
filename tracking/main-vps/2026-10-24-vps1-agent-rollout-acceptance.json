@@ -1,0 +1,405 @@
+{
+  "checkedUtc": "2026-10-25T04:52:37.837549+00:00",
+  "allElevenAgentUpgradesAccepted": true,
+  "agents": [
+    {
+      "agent": "edith",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+      "schedules": 6,
+      "memoryProvider": "openclaw-mem0",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "mem0_search",
+        "codex_apps.notion.fetch",
+        "asana.asana_get_user",
+        "mem0_get"
+      ],
+      "recalledExistingMemories": 5,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 37201,
+          "totalMs": 63441.7
+        },
+        {
+          "phase": "ready",
+          "ms": 0.9,
+          "totalMs": 68309.8
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 3420.2,
+          "totalMs": 72411.2
+        }
+      ]
+    },
+    {
+      "agent": "vivian",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+      "schedules": 6,
+      "memoryProvider": "memory-lancedb",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "codex_apps.notion.fetch",
+        "memory_recall",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 5,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 46215.8,
+          "totalMs": 74541.7
+        },
+        {
+          "phase": "ready",
+          "ms": 1.1,
+          "totalMs": 79860.3
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 3284.1,
+          "totalMs": 83820.7
+        }
+      ]
+    },
+    {
+      "agent": "amanda",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:df8c999434aceadc60194cda80bd5653d097d52bae20e20d1c9d08a1b42c268d",
+      "schedules": 8,
+      "memoryProvider": "memory-lancedb",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "memory_recall",
+        "codex_apps.notion.fetch",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 3,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 50316.4,
+          "totalMs": 83216.2
+        },
+        {
+          "phase": "ready",
+          "ms": 1.1,
+          "totalMs": 96597
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 3340.9,
+          "totalMs": 100622.2
+        }
+      ]
+    },
+    {
+      "agent": "victor",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:4c57eaa5d369a7ecda8aab01166dc8385cb4adbf6b995b85e1c790085296e62e",
+      "schedules": 24,
+      "memoryProvider": "memory-lancedb",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "codex_apps.notion.fetch",
+        "memory_recall",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 3,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 47863.5,
+          "totalMs": 79062.2
+        },
+        {
+          "phase": "ready",
+          "ms": 1.3,
+          "totalMs": 85954.4
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 3587.4,
+          "totalMs": 90223
+        }
+      ]
+    },
+    {
+      "agent": "wilma",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:e870eeb61b16dd0d83432e18990d555587fa444181f904cd520d0db3361c2697",
+      "schedules": 6,
+      "memoryProvider": "memory-lancedb",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "memory_recall",
+        "codex_apps.notion.fetch",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 3,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 48429.2,
+          "totalMs": 77419.7
+        },
+        {
+          "phase": "ready",
+          "ms": 1.1,
+          "totalMs": 84693.5
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 3762.9,
+          "totalMs": 89168.5
+        }
+      ]
+    },
+    {
+      "agent": "gohzed",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+      "schedules": 6,
+      "memoryProvider": "hindsight-openclaw",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "hindsight_recall",
+        "codex_apps.notion.fetch",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 25,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 25525,
+          "totalMs": 50053.8
+        },
+        {
+          "phase": "ready",
+          "ms": 1.1,
+          "totalMs": 55445.4
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 5859.8,
+          "totalMs": 62081.4
+        }
+      ]
+    },
+    {
+      "agent": "grogar",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:3e85eba4b7cbfd2b74e9fbbf51558626b48ab6d2f2abb8a453902426e90d4bdb",
+      "schedules": 6,
+      "memoryProvider": "hindsight-openclaw",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "hindsight_recall",
+        "asana.asana_get_user",
+        "codex_apps.notion.fetch"
+      ],
+      "recalledExistingMemories": 23,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 26279.5,
+          "totalMs": 51655.6
+        },
+        {
+          "phase": "ready",
+          "ms": 1,
+          "totalMs": 56081.6
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 4608.6,
+          "totalMs": 61371.2
+        }
+      ]
+    },
+    {
+      "agent": "inga",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+      "schedules": 7,
+      "memoryProvider": "hindsight-openclaw",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "codex_apps.notion.fetch",
+        "hindsight_recall",
+        "asana.asana_get_user"
+      ],
+      "recalledExistingMemories": 21,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 27866,
+          "totalMs": 56411.7
+        },
+        {
+          "phase": "ready",
+          "ms": 1,
+          "totalMs": 63975.5
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 1795.1,
+          "totalMs": 66499.9
+        }
+      ]
+    },
+    {
+      "agent": "maggie",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d7530874c0812d2634ce858d5af3eef774caeba77ffe88419172136aa813b164",
+      "schedules": 6,
+      "memoryProvider": "hindsight-openclaw",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "hindsight_recall",
+        "asana.asana_get_user",
+        "codex_apps.notion.fetch"
+      ],
+      "recalledExistingMemories": 21,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 26774.6,
+          "totalMs": 52028.6
+        },
+        {
+          "phase": "ready",
+          "ms": 1,
+          "totalMs": 57148.1
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 4016.2,
+          "totalMs": 61878.7
+        }
+      ]
+    },
+    {
+      "agent": "terry",
+      "core": "2026.10.6",
+      "node": "24.22.1",
+      "imageId": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+      "schedules": 6,
+      "memoryProvider": "openclaw-mem0",
+      "restarts": 0,
+      "oom": false,
+      "httpsHealth": 200,
+      "effectiveModel": "gpt-6.1-sol",
+      "successfulTools": [
+        "mem0_search",
+        "codex_apps.notion.fetch",
+        "asana.asana_get_user",
+        "mem0_get"
+      ],
+      "recalledExistingMemories": 3,
+      "actualMemoryResultValidated": true,
+      "storedScheduleDefinitionsCompared": true,
+      "startupPhases": [
+        {
+          "phase": "plugins.runtime-post-bind",
+          "ms": 84935.1,
+          "totalMs": 109563.8
+        },
+        {
+          "phase": "ready",
+          "ms": 1.1,
+          "totalMs": 118566.1
+        },
+        {
+          "phase": "sidecars.subagent-recovery",
+          "ms": 4634,
+          "totalMs": 123914.1
+        }
+      ]
+    }
+  ],
+  "marsha": {
+    "priorPilotAccepted": true,
+    "schedules": 12,
+    "slackPluginKeptEnabled": true,
+    "hindsightAutomaticCaptureProof": {
+      "passed": true,
+      "automaticCaptureTurnUsedNoTools": true,
+      "backendRecallFoundFact": true,
+      "freshSessionRecallPassed": true,
+      "productionBackendVersionTested": "1.0",
+      "pluginVersion": "1.2.0",
+      "productionMemoryModified": false
+    }
+  },
+  "totalCurrentUserSchedules": 93,
+  "upgradeWaveCompleteMarker": true,
+  "currentBackupsComplete": true,
+  "startupTimingLimit": "Observed individual starts under differing load/cache; overlapping phases are not additive; no controlled fleet speed ratio.",
+  "backupStage": "Complete: 13 encrypted recovery files freshly verified in Drive; index published; replaced October18 data and temporary upload/key copies removed.",
+  "closeoutRecord": "tracking/main-vps/2026-10-25-vps1-closeout.json",
+  "backupIndexUrl": "https://drive.google.com/file/d/1AxObfW_mSsJrHbTBoqEO6MTxsUngPsKO/view",
+  "finalFleetReadbackPassed": true,
+  "finalProductionServicesRunning": 40,
+  "finalReadbackUtc": "2026-10-25T06:15:14.857106+00:00",
+  "finalFreeDiskBytes": 121710600192,
+  "finalDiskUsedPercent": 70.66255206988667,
+  "performanceLimits": "All11 working-set RAM samples are below2GiB after maintenance, but long-term growth is unproven; swap remains mostly occupied. Shared synchronous guarded-file startup overhead remains; Terry observed readiness118.57sec, recovery123.91sec. Production Hindsight backend remains1.0."
+}

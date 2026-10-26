@@ -1,0 +1,11 @@
+*.whl
+__pycache__/
+*.log
+test-results*/
+synthetic-wiki*/
+acquisition-faults*/
+*-proof.json
+inventory.json
+images.json
+input-*.md
+corrupt-acquire.py

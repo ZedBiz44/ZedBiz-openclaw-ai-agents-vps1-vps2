@@ -1,0 +1,621 @@
+{
+  "comparisons": [
+    {
+      "case": "full",
+      "agent": "marsha",
+      "variant": "stock",
+      "ready": true,
+      "wallSeconds": 160.20509248399958,
+      "pluginPhaseMs": 47986.5,
+      "mainRecoveryMs": 48592.0,
+      "memoryRegistered": true,
+      "topPluginLoads": [
+        {
+          "phase": "full",
+          "plugin": "discord",
+          "ms": 20456.0
+        },
+        {
+          "phase": "full",
+          "plugin": "slack",
+          "ms": 16605.7
+        },
+        {
+          "phase": "discovery",
+          "plugin": "tavily",
+          "ms": 5620.4
+        },
+        {
+          "phase": "full",
+          "plugin": "tavily",
+          "ms": 4759.2
+        },
+        {
+          "phase": "full:register",
+          "plugin": "discord",
+          "ms": 2165.5
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "discord",
+          "ms": 1909.5
+        },
+        {
+          "phase": "full:register",
+          "plugin": "slack",
+          "ms": 1379.3
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "slack",
+          "ms": 1363.2
+        }
+      ],
+      "workerTimeout": false,
+      "delayedHeartbeat": false,
+      "productionUnchanged": true,
+      "cloneConfigsRestored": true
+    },
+    {
+      "case": "full",
+      "agent": "marsha",
+      "variant": "fs026",
+      "ready": true,
+      "wallSeconds": 125.12072969000019,
+      "pluginPhaseMs": 43585.4,
+      "mainRecoveryMs": 43946.5,
+      "memoryRegistered": true,
+      "topPluginLoads": [
+        {
+          "phase": "full",
+          "plugin": "discord",
+          "ms": 17749.7
+        },
+        {
+          "phase": "full",
+          "plugin": "slack",
+          "ms": 16511.1
+        },
+        {
+          "phase": "discovery",
+          "plugin": "tavily",
+          "ms": 5095.9
+        },
+        {
+          "phase": "full",
+          "plugin": "tavily",
+          "ms": 4350.2
+        },
+        {
+          "phase": "full:register",
+          "plugin": "discord",
+          "ms": 2081.5
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "discord",
+          "ms": 1857.4
+        },
+        {
+          "phase": "full:register",
+          "plugin": "slack",
+          "ms": 1330.2
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "slack",
+          "ms": 1315.8
+        }
+      ],
+      "workerTimeout": false,
+      "delayedHeartbeat": false,
+      "productionUnchanged": true,
+      "cloneConfigsRestored": true
+    },
+    {
+      "case": "mem0-full",
+      "agent": "terry",
+      "variant": "sdk331-lean",
+      "ready": true,
+      "wallSeconds": 133.22317857399958,
+      "pluginPhaseMs": 57956.5,
+      "mainRecoveryMs": 58317.9,
+      "memoryRegistered": true,
+      "topPluginLoads": [
+        {
+          "phase": "full",
+          "plugin": "discord",
+          "ms": 18776.2
+        },
+        {
+          "phase": "full",
+          "plugin": "slack",
+          "ms": 16294.4
+        },
+        {
+          "phase": "full",
+          "plugin": "openclaw-mem0",
+          "ms": 13973.9
+        },
+        {
+          "phase": "discovery",
+          "plugin": "tavily",
+          "ms": 4559.3
+        },
+        {
+          "phase": "full",
+          "plugin": "tavily",
+          "ms": 4327.6
+        },
+        {
+          "phase": "full:register",
+          "plugin": "discord",
+          "ms": 2207.1
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "discord",
+          "ms": 1903.2
+        },
+        {
+          "phase": "full:register",
+          "plugin": "slack",
+          "ms": 1466.9
+        }
+      ],
+      "workerTimeout": false,
+      "delayedHeartbeat": true,
+      "productionUnchanged": true,
+      "cloneConfigsRestored": true
+    },
+    {
+      "case": "mem0-full",
+      "agent": "terry",
+      "variant": "stock",
+      "ready": true,
+      "wallSeconds": 280.88689060900015,
+      "pluginPhaseMs": 205089.8,
+      "mainRecoveryMs": 208995.9,
+      "memoryRegistered": true,
+      "topPluginLoads": [
+        {
+          "phase": "full",
+          "plugin": "openclaw-mem0",
+          "ms": 160756.4
+        },
+        {
+          "phase": "full",
+          "plugin": "discord",
+          "ms": 18233.5
+        },
+        {
+          "phase": "full",
+          "plugin": "slack",
+          "ms": 16731.8
+        },
+        {
+          "phase": "full",
+          "plugin": "tavily",
+          "ms": 4685.2
+        },
+        {
+          "phase": "discovery",
+          "plugin": "tavily",
+          "ms": 4516.2
+        },
+        {
+          "phase": "full:register",
+          "plugin": "discord",
+          "ms": 2320.9
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "discord",
+          "ms": 1718.0
+        },
+        {
+          "phase": "full:register",
+          "plugin": "slack",
+          "ms": 1580.3
+        }
+      ],
+      "workerTimeout": true,
+      "delayedHeartbeat": true,
+      "productionUnchanged": true,
+      "cloneConfigsRestored": true
+    },
+    {
+      "case": "marsha-slack",
+      "agent": "marsha",
+      "variant": "unused-slack-disabled",
+      "ready": true,
+      "wallSeconds": 102.00195387500025,
+      "pluginPhaseMs": 26057.8,
+      "mainRecoveryMs": 27728.5,
+      "memoryRegistered": true,
+      "topPluginLoads": [
+        {
+          "phase": "full",
+          "plugin": "discord",
+          "ms": 17955.2
+        },
+        {
+          "phase": "discovery",
+          "plugin": "tavily",
+          "ms": 5278.1
+        },
+        {
+          "phase": "full",
+          "plugin": "tavily",
+          "ms": 4280.4
+        },
+        {
+          "phase": "full:register",
+          "plugin": "discord",
+          "ms": 1829.2
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "discord",
+          "ms": 1630.6
+        },
+        {
+          "phase": "full:register",
+          "plugin": "telegram",
+          "ms": 566.8
+        },
+        {
+          "phase": "bundled-register:loadChannelPlugin",
+          "plugin": "telegram",
+          "ms": 557.6
+        },
+        {
+          "phase": "bundled-entry-module-load",
+          "plugin": "(bundled-entry)",
+          "ms": 555.3
+        }
+      ],
+      "workerTimeout": false,
+      "delayedHeartbeat": false,
+      "productionUnchanged": true,
+      "cloneConfigsRestored": true
+    }
+  ],
+  "micro": {
+    "stock": {
+      "variant": "stock",
+      "files": 160,
+      "bytesEach": 3800,
+      "elapsedMs": 373.569893,
+      "counts": {
+        "realpathSync": 640,
+        "lstatSync": 6240,
+        "statSync": 640,
+        "openSync": 800,
+        "fstatSync": 3040,
+        "readSync": 800
+      },
+      "mostRepeatedLstats": [
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f",
+          "calls": 1920
+        },
+        {
+          "path": "[fixture]/target/a/b/c/d/e/f",
+          "calls": 1280
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/0.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/1.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/2.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/3.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/4.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/5.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/6.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/7.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/8.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/9.js",
+          "calls": 16
+        }
+      ],
+      "bytesVerified": true,
+      "guards": [
+        {
+          "name": "source-symlink-escape",
+          "rejected": true
+        },
+        {
+          "name": "source-replaced-during-open",
+          "rejected": true
+        }
+      ]
+    },
+    "batch": {
+      "variant": "batch",
+      "files": 160,
+      "bytesEach": 3800,
+      "elapsedMs": 430.165247,
+      "counts": {
+        "realpathSync": 483,
+        "lstatSync": 9462,
+        "statSync": 326,
+        "openSync": 480,
+        "fstatSync": 2560,
+        "readSync": 320
+      },
+      "mostRepeatedLstats": [
+        {
+          "path": "[fixture]/target/a/b/c/d/e/f",
+          "calls": 3369
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f",
+          "calls": 3049
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/0.js",
+          "calls": 17
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/1.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/2.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/3.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/4.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/5.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/6.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/7.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/8.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/9.js",
+          "calls": 15
+        }
+      ],
+      "bytesVerified": true,
+      "guards": [
+        {
+          "name": "source-symlink-escape",
+          "rejected": true
+        },
+        {
+          "name": "source-replaced-during-open",
+          "rejected": true
+        }
+      ]
+    },
+    "fs026": {
+      "variant": "fs026",
+      "files": 160,
+      "bytesEach": 3800,
+      "elapsedMs": 262.10454500000003,
+      "counts": {
+        "lstatSync": 6240,
+        "statSync": 640,
+        "openSync": 800,
+        "fstatSync": 2400,
+        "readSync": 800
+      },
+      "mostRepeatedLstats": [
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f",
+          "calls": 1920
+        },
+        {
+          "path": "[fixture]/target/a/b/c/d/e/f",
+          "calls": 1280
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/0.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/1.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/2.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/3.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/4.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/5.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/6.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/7.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/8.js",
+          "calls": 16
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/9.js",
+          "calls": 16
+        }
+      ],
+      "bytesVerified": true,
+      "guards": [
+        {
+          "name": "source-symlink-escape",
+          "rejected": true
+        },
+        {
+          "name": "source-replaced-during-open",
+          "rejected": true
+        }
+      ]
+    },
+    "fs026-batch": {
+      "variant": "fs026-batch",
+      "files": 160,
+      "bytesEach": 3800,
+      "elapsedMs": 394.82376000000005,
+      "counts": {
+        "lstatSync": 7860,
+        "statSync": 326,
+        "openSync": 480,
+        "fstatSync": 2240,
+        "realpathSync": 321,
+        "readSync": 320
+      },
+      "mostRepeatedLstats": [
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f",
+          "calls": 2408
+        },
+        {
+          "path": "[fixture]/target/a/b/c/d/e/f",
+          "calls": 2408
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/0.js",
+          "calls": 17
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/1.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/2.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/3.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/4.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/5.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/6.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/7.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/8.js",
+          "calls": 15
+        },
+        {
+          "path": "[fixture]/source/a/b/c/d/e/f/9.js",
+          "calls": 15
+        }
+      ],
+      "bytesVerified": true,
+      "guards": [
+        {
+          "name": "source-symlink-escape",
+          "rejected": true
+        },
+        {
+          "name": "source-replaced-during-open",
+          "rejected": true
+        }
+      ]
+    }
+  },
+  "functionalProof": {
+    "sdk": "3.3.1",
+    "configuredModel": "gpt-5.6-luna",
+    "isolatedQdrant": true,
+    "modelUnchanged": true,
+    "calls": [
+      {
+        "requested": "gpt-5.6-luna",
+        "effective": "gpt-5.6-luna"
+      }
+    ],
+    "savedCount": 1,
+    "recall": true,
+    "freshInstanceRecall": true,
+    "testMemoryRemoved": true,
+    "passed": true
+  },
+  "candidateManifest": {
+    "name": "cody-mem0-startup-candidate",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+      "mem0ai": "3.3.1",
+      "@sinclair/typebox": "0.34.47",
+      "@qdrant/js-client-rest": "1.18.0",
+      "better-sqlite3": "12.11.1"
+    }
+  },
+  "candidateLockSha256": "79adcbe80e7827d4d271fdc056d7c252fa2257635ae1f56fbfc330fdcbdf29a1",
+  "finalStatus": {
+    "remainingNetworks": [],
+    "runningProductionContainers": 40,
+    "remainingFixtures": [],
+    "unhealthy": []
+  }
+}
+

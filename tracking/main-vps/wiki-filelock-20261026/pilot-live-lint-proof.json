@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "concurrentGatewayInvocations": 3,
+  "results": [
+    {
+      "agent": "gohzed",
+      "started": 1793049276.5675118,
+      "finished": 1793049311.584629,
+      "http": 200,
+      "ok": true,
+      "isError": false,
+      "issueCounts": [
+        1093
+      ]
+    },
+    {
+      "agent": "grogar",
+      "started": 1793049276.5677743,
+      "finished": 1793049298.1815436,
+      "http": 200,
+      "ok": true,
+      "isError": false,
+      "issueCounts": [
+        1093
+      ]
+    },
+    {
+      "agent": "inga",
+      "started": 1793049276.5686285,
+      "finished": 1793049333.599703,
+      "http": 200,
+      "ok": true,
+      "isError": false,
+      "issueCounts": [
+        1093
+      ]
+    }
+  ]
+}

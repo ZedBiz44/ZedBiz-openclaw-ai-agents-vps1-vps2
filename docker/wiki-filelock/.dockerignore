@@ -1,0 +1,8 @@
+**
+!Dockerfile
+!lock.mjs
+!acquire-lock.py
+!install.py
+!patch.py
+!verify.py
+!filelock-4.2.1-py3-none-any.whl

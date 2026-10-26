@@ -1,0 +1,302 @@
+{
+  "passed": true,
+  "agents": [
+    {
+      "agent": "gohzed",
+      "healthy": true,
+      "image": "sha256:02a4a6ab403e638f20916f0355492af34a657fdd7eb82f2d2a68d8bf4ba0cf2b",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "grogar",
+      "healthy": true,
+      "image": "sha256:f462562ac7f4a963616045c0633a0b6780acec5f80359fff154a33d90493d15c",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "inga",
+      "healthy": true,
+      "image": "sha256:3a715841ae2069b45c26c97d44d370387d4377f832d1fa6aea222175b06320c7",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "telegram": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "maggie",
+      "healthy": true,
+      "image": "sha256:607c1d902c3aa18b795c2bb681d4cc22a37f9d34281b88f802a1d688f15a19fe",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "marsha",
+      "healthy": true,
+      "image": "sha256:76a811c366aa493c924f0339f2575bdf53f8aee2fad3cfc09f96c169390d29e4",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "slack": [],
+        "telegram": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "amanda",
+      "healthy": true,
+      "image": "sha256:f796447d54424b324bf9948f4d5d314ff311d9e06d43ed5adfd76eb47b2429a9",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "telegram": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "edith",
+      "healthy": true,
+      "image": "sha256:67e5f827b7a90fd0b21f6ee4082508e4a671308e5c5788ff36016a681e595df0",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "terry",
+      "healthy": true,
+      "image": "sha256:9d7b10eb1587837adda32b1352922c6b495e1cbcf312c9a7f22a7ff8affe46d5",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "slack": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "victor",
+      "healthy": true,
+      "image": "sha256:2fa39eaaf12a15a3eccc9c2f27f8ad742e7ed0c0a7c9f28aa0a0e6a9ec946df7",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "telegram": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "vivian",
+      "healthy": true,
+      "image": "sha256:bdb0019439cc3ce465bb4c8b423aecaed1c95c130cc45f2f5ed912147536bcee",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    },
+    {
+      "agent": "wilma",
+      "healthy": true,
+      "image": "sha256:ec895e063597cb56e93f77d61948275a9de7954b249bbd65850092eca0176a8a",
+      "sharedLock": {
+        "dev": 2049,
+        "ino": 1059413
+      },
+      "persistentV2Gate": true,
+      "recoveryPinsMatch": true,
+      "configAndWrapperPreserved": true,
+      "configuredChannels": {
+        "discord": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ],
+        "telegram": [
+          {
+            "running": true,
+            "connected": true
+          }
+        ]
+      }
+    }
+  ],
+  "allAgentsShareOriginalLockInode": true,
+  "liveLint": {
+    "passed": true,
+    "concurrentGatewayInvocations": 3,
+    "results": [
+      {
+        "agent": "gohzed",
+        "started": 1793051240.8953369,
+        "finished": 1793051284.1578948,
+        "http": 200,
+        "ok": true,
+        "isError": false,
+        "issueCounts": [
+          1093
+        ]
+      },
+      {
+        "agent": "grogar",
+        "started": 1793051240.8960915,
+        "finished": 1793051270.50644,
+        "http": 200,
+        "ok": true,
+        "isError": false,
+        "issueCounts": [
+          1093
+        ]
+      },
+      {
+        "agent": "inga",
+        "started": 1793051240.8965063,
+        "finished": 1793051259.1621375,
+        "http": 200,
+        "ok": true,
+        "isError": false,
+        "issueCounts": [
+          1093
+        ]
+      }
+    ]
+  }
+}

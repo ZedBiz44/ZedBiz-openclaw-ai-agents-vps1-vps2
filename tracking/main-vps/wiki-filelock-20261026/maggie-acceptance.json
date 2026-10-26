@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "agent": "maggie",
+  "image": "sha256:607c1d902c3aa18b795c2bb681d4cc22a37f9d34281b88f802a1d688f15a19fe",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}
