@@ -109,7 +109,7 @@ if not initial['final'] or 'NATIVE_ROLLOUT_FEATURE_CHECK_COMPLETE' not in initia
   print(a+': '+str(len(current['tools']))+' saved tool results',flush=True);time.sleep(10)
 else:current=initial
 record['features']=current;tools=current['tools'];final=current['final'] or ''
-asana=[x for x in tools if x['name']=='asana.asana_get_user'];notion=[x for x in tools if x['name']=='codex_apps.notion.fetch'];memory=[x for x in tools if 'memory_recall' in x['name'] or ('memory' in x['name'] and any(s in x['name'] for s in ['search','recall','retrieve']))]
+asana=[x for x in tools if x['name']=='asana.asana_get_user'];notion=[x for x in tools if x['name']=='codex_apps.notion.fetch'];memory=[x for x in tools if x['name']=='mem0_search' or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(s in x['name'] for s in ['search','recall','retrieve']))]
 passed=len(asana)==1 and not asana[0]['isError'] and asana[0]['workspaceMatched'] and any(not x['isError'] and x['technicalDocumentationMatched'] for x in notion) and any(not x['isError'] for x in memory) and all(x in final for x in ['ASANA_PASS','NOTION_PASS','MEMORY_READ_PASS'])
 record['state']='deployment_and_current_features_pass' if passed else 'deployment_done_feature_issue_stop';(proof/'deployment.json').write_text(json.dumps(record,indent=2)+'\n');print('NATIVE_BEGIN');print(json.dumps(record));print('NATIVE_END')
 if not passed:raise SystemExit(4)

@@ -58,7 +58,7 @@ print('FEATURE_BEGIN');print(json.dumps(r));print('FEATURE_END')
  final=events['final'] or '';tools=events['tools']
  asana=[x for x in tools if x['name']=='asana.asana_get_user']
  notion=[x for x in tools if x['name']=='codex_apps.notion.fetch']
- memory=[x for x in tools if 'memory_recall' in x['name'] or ('memory' in x['name'] and any(y in x['name'] for y in ['search','recall','retrieve']))]
+ memory=[x for x in tools if x['name']=='mem0_search' or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(y in x['name'] for y in ['search','recall','retrieve']))]
  passed=len(asana)==1 and not asana[0]['isError'] and asana[0]['expectedGidMatched'] and asana[0]['expectedWorkspaceMatched'] and any(not x['isError'] and x['technicalDocumentationMatched'] for x in notion) and any(not x['isError'] for x in memory) and all(x in final for x in ['ASANA_PASS','NOTION_PASS','MEMORY_READ_PASS'])
  result={'state':'passed_current_features' if passed else 'feature_acceptance_failed','request':request,'events':events}
  path=Path('/home/ubuntu/reconnect-current-feature-'+agent+'.json');path.write_text(json.dumps(result,indent=2)+'\n')
