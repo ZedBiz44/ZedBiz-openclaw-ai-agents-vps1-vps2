@@ -7,10 +7,25 @@ assert json.loads((ROOT/'cold-restore-proof.json').read_text())['passed']
 key=json.loads(P('/opt/openclaw/backups/shared-updates-20261026/offsite/key-reference.json').read_text());assert key['passed']
 inputs=W/'inputs';inputs.mkdir();images=inputs/'current-images';images.mkdir();os.link(ROOT/'images.tar.gz',images/'images.tar.gz')
 for name in ['catalog.json','archive.json','cold-restore-proof.json']:shutil.copy2(ROOT/name,images/name)
+original=inputs/'original-paths'
+def original_path(src,hardlink=False):
+ assert src.is_file() and not src.is_symlink()
+ dest=original/str(src).lstrip('/');dest.parent.mkdir(parents=True,exist_ok=True)
+ if hardlink:os.link(src,dest)
+ else:shutil.copy2(src,dest)
+ st=src.stat();os.chown(dest,st.st_uid,st.st_gid)
+ assert dest.stat().st_mode==st.st_mode
+ for parent in dest.parents:
+  if parent==original:break
+  host=P('/')/parent.relative_to(original);st=host.stat()
+  os.chown(parent,st.st_uid,st.st_gid);os.chmod(parent,st.st_mode&0o7777)
+ # Match the exact path referenced by the restored startup manifests. Tar stores
+ # this second archive name as a hardlink, not another multi-GB payload.
+original_path(ROOT/'images.tar.gz',hardlink=True)
 for row in inventory:
  base=P('/opt/openclaw/agents')/row['agent']
  for src in [base/'docker-compose.yml',base/'workspace/post-start.sh',base/'config/openclaw.json',P(row['wrapper']),P(row['manifest'])]:
-  dest=inputs/'original-paths'/str(src).lstrip('/');dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(src,dest)
+  original_path(src)
 def sha(p,kind='sha256'):
  with p.open('rb') as f:return hashlib.file_digest(f,kind).hexdigest()
 expected={str(p.relative_to(inputs)):sha(p) for p in inputs.rglob('*') if p.is_file()}
@@ -29,7 +44,7 @@ try:
  cloud=call(['drive','upload','/home/node/.openclaw/.cody-wiki-backup-upload/'+name,'--parent',folder,'--name',name,'--mime-type','application/octet-stream'],'upload',3600)
  meta=call(['--readonly','drive','get',cloud['id'],'--fields=id,name,size,md5Checksum,parents,webViewLink'],'readback')
  assert meta['md5Checksum']==sha(cipher,'md5') and int(meta['size'])==cipher.stat().st_size and folder in meta['parents']
- proof={'passed':True,'fileId':meta['id'],'name':name,'url':meta.get('webViewLink'),'bytes':cipher.stat().st_size,'cipherSha256':sha(cipher),'cipherMd5':meta['md5Checksum'],'cloudMd5AndSizeVerified':True,'plaintextImagesColdRestored':13,'encryptedWithExistingVerifiedRecipient':True,'newDecryptionRoundtripPerformed':False,'scope':'Wiki image/configuration overlay only. Apply after the October26 shared-services overlay; existing agent-state and service backups remain required.'}
+ proof={'passed':True,'fileId':meta['id'],'name':name,'url':meta.get('webViewLink'),'bytes':cipher.stat().st_size,'cipherSha256':sha(cipher),'cipherMd5':meta['md5Checksum'],'cloudMd5AndSizeVerified':True,'plaintextImagesColdRestored':13,'exactManifestArchivePathIncluded':True,'originalFileAndDirectoryOwnershipModesPreserved':True,'encryptedWithExistingVerifiedRecipient':True,'newDecryptionRoundtripPerformed':False,'scope':'Wiki image/configuration overlay only. Apply after the October26 shared-services overlay; existing agent-state and service backups remain required.'}
  (ROOT/'offsite-proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
 finally:
  (stage/name).unlink();stage.rmdir()

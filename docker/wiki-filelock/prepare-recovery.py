@@ -6,7 +6,7 @@ assert json.loads((SRC/'gate-proof.json').read_text())['passed']
 assert shutil.disk_usage('/opt').free>45*1024**3
 ROOT.mkdir(mode=0o755);os.chmod(ROOT,0o755)
 for p in SRC.iterdir():
- if p.is_file() and (p.suffix in ['.py','.mjs'] or p.name in ['Dockerfile','inventory.json','images.json','test-proof.json','wiki-proof.json','gate-proof.json']):shutil.copy2(p,ROOT/p.name)
+ if p.is_file() and (p.suffix in ['.py','.mjs'] or p.name in ['Dockerfile','.dockerignore','README.md','filelock-4.2.1-py3-none-any.whl','inventory.json','images.json','test-proof.json','wiki-proof.json','gate-proof.json']):shutil.copy2(p,ROOT/p.name)
 images=json.loads((ROOT/'images.json').read_text());inventory=json.loads((ROOT/'inventory.json').read_text());catalog=[]
 for row in images:catalog.append({'id':row['id'],'refs':[row['after']],'roles':['gateway']})
 for row in inventory:

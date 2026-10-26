@@ -50,11 +50,17 @@ def verify(agent,row,image,asana):
  assert result=={'ready':200,'http':200,'ok':True,'isError':False},result
  account=channels(agent)
  assert all(a.get('connected') and a.get('running') for a in account['discord'])
- if agent=='marsha':assert account.get('slack') and all(a.get('running') for a in account['slack'])
+ for values in account.values():
+  for a in values:
+   if a.get('enabled') is False or a.get('configured') is False:continue
+   assert a.get('running') is True and a.get('connected') is not False,agent+' configured channel unavailable'
+ # Marsha requires the Slack plugin to stay enabled; her Slack channel has no
+ # credentials configured. Do not mistake that existing state for a regression.
+ if agent=='marsha':assert account.get('slack') and all(a.get('enabled') for a in account['slack'])
  assert sha(row['wrapper'])==row['wrapperSha']
  assert sha(P('/opt/openclaw/agents')/agent/'config/openclaw.json')==row['configSha']
  current=inspect(agent+'-asana-mcp');assert current['Id']==asana['Id'] and current['Image']==asana['Image'],'Asana service changed'
- proof={'passed':True,'agent':agent,'image':d['Image'],'healthy':True,'wikiSearch':result,'channels':{k:[{n:a.get(n) for n in ['running','connected','busy','activeRuns']} for a in v] for k,v in account.items()},'wrapperAndAgentConfigUnchanged':True,'asanaContainerUnchanged':True}
+ proof={'passed':True,'agent':agent,'image':d['Image'],'healthy':True,'wikiSearch':result,'channels':{k:[{n:a.get(n) for n in ['enabled','configured','running','connected','busy','activeRuns']} for a in v] for k,v in account.items()},'wrapperAndAgentConfigUnchanged':True,'asanaContainerUnchanged':True}
  (ROOT/(agent+'-acceptance.json')).write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)
 def deploy(agent):
  row=next(r for r in INVENTORY if r['agent']==agent);image=next(r for r in IMAGES if r['agent']==agent)

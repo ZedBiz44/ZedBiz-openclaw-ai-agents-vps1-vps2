@@ -19,6 +19,13 @@ for row in inventory:
  lock=json.loads(subprocess.check_output(['docker','exec',agent,'node','-e',js]))
  assert lock=={'dev':2049,'ino':1059413},lock
  assert json.loads((ROOT/(agent+'-acceptance.json')).read_text())['passed']
- rows.append({'agent':agent,'healthy':True,'image':d['Image'],'sharedLock':lock,'persistentV2Gate':True,'recoveryPinsMatch':True,'configAndWrapperPreserved':True})
+ status=subprocess.run(['docker','exec',agent,'openclaw','channels','status','--json'],capture_output=True,text=True,timeout=90);assert status.returncode==0,agent+' channel check failed'
+ accounts=json.loads(status.stdout[status.stdout.index('{'):]).get('channelAccounts',{});assert accounts
+ checked={}
+ for channel,values in accounts.items():
+  active=[a for a in values if a.get('enabled') is not False and a.get('configured') is not False]
+  assert all(a.get('running') is True and a.get('connected') is not False for a in active),(agent,channel,'configured channel not running/connected')
+  checked[channel]=[{k:a.get(k) for k in ['running','connected']} for a in active]
+ rows.append({'agent':agent,'healthy':True,'image':d['Image'],'sharedLock':lock,'persistentV2Gate':True,'recoveryPinsMatch':True,'configAndWrapperPreserved':True,'configuredChannels':checked})
 proof={'passed':True,'agents':rows,'allAgentsShareOriginalLockInode':True,'liveLint':json.loads((ROOT/'live-lint-proof.json').read_text())}
 (ROOT/'final-audit.json').write_text(json.dumps(proof,indent=2));print(json.dumps({'fleetPassed':True,'agents':len(rows),'sharedInodePreserved':True}),flush=True)

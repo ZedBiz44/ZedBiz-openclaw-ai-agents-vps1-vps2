@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "agent": "grogar",
+  "image": "sha256:f462562ac7f4a963616045c0633a0b6780acec5f80359fff154a33d90493d15c",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}
