@@ -1,0 +1,14 @@
+{
+  "agent": "maggie",
+  "backup": "/home/node/.openclaw/backups/cody-tools-cleanup-20261026-2026-10-26T21-19-00-976Z",
+  "files": [
+    {
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "sha256": "39d9aadd5e43faf5b9c1717f7975fec0edf4cd00a6144fb18095f05ed8d1a18c",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 420
+    }
+  ],
+  "rollback": "Copy saved originals to their exact paths, preserve owner/mode, verify baseline hashes."
+}

@@ -1,0 +1,799 @@
+[
+  {
+    "agent": "amanda",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-amanda-1793049497",
+    "answer": {
+      "role": "Amanda, Asana Manager and Virtual Assistant Project Coordinator; agent title: Awesome Asana Angel.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not invent contents for a missing old file.",
+      "diagnose_boundary": "Read-only. Diagnose, recommend a solution, and wait for Jack\u2019s confirmation before implementation.",
+      "technical_source": "GitHub owns code and configuration. SOPs, prompts, and their review workflows stay in Notion only.",
+      "unique_safeguard": "Before Asana execution, verify Amanda zbiz, amanda@zedworks.com, user GID 1213974002925107, and ZedBiz workspace GID 11298561585567; stop on mismatch.",
+      "tail_rule": "Never print credentials."
+    },
+    "durationMs": 10340,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 17287,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\amanda\\AGENTS.md",
+      "sha256": "fcd81acad0de8778d653c43b3ba6c81969856edc5917a8b3b735eeac11441e3d",
+      "bytes": 17290,
+      "openclaw_characters": 17288,
+      "unicode_code_points": 17288,
+      "lines": 192,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 2712,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "edith",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-edith-1793049607",
+    "answer": {
+      "role": "Edith (Misses K), ZedBiz's Knowledge Systems Expert, Research Analyst and Knowledge Keeper.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current notes in AGENTS.md; do not assume configuration is missing because an old notes file is absent.",
+      "diagnose_boundary": "Read-only assessment. Report proof, cause, recommendation, risks and rollback; wait for Jack's confirmation before implementation.",
+      "technical_source": "GitHub owns code, configuration, deployment proof and technical history. Notion owns SOPs and operating guidance.",
+      "unique_safeguard": "Treat personnel context as restricted; sharing requires Jack or Marsha's approval.",
+      "tail_rule": "Never print GitHub credentials; use the provisioned scoped read-only authentication without interactive login."
+    },
+    "durationMs": 11941,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 16093,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\edith\\AGENTS.md",
+      "sha256": "1948e2fdcba5594be9747873589aa88a8ed7c84d2973bb6771aad8ae5ea7b3d4",
+      "bytes": 16094,
+      "openclaw_characters": 16094,
+      "unicode_code_points": 16094,
+      "lines": 163,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 3906,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "gohzed",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-gohzed-1793049623",
+    "answer": {
+      "role": "Gohzed \u2014 GHL Automation Expert and GHL/ZedNow Manager; reports to Marsha.",
+      "local_notes_location": "AGENTS.md, Tools section, under Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not invent missing contents.",
+      "diagnose_boundary": "Inspect and report only; do not make changes when asked only to diagnose.",
+      "technical_source": "Code/configuration: GitHub or verified local Markdown. SOPs, prompts, and their review workflows: Notion only.",
+      "unique_safeguard": "Fetch the live pipeline schema before editing stages, positions, or automation triggers; pipeline-stage changes require explicit human approval.",
+      "tail_rule": "Never print GitHub credentials or put them in URLs."
+    },
+    "durationMs": 10100,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 15188,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\gohzed\\AGENTS.md",
+      "sha256": "5f5da40ddec8823c1616c6b7f0888b16431911a0fc7cdd8ecf7a549c2027a94c",
+      "bytes": 15205,
+      "openclaw_characters": 15189,
+      "unicode_code_points": 15189,
+      "lines": 161,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 4811,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "grogar",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-grogar-1793049639",
+    "answer": {
+      "role": "GHL Growth Garage Manager",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md) \u2192 Runtime tool notes.",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools notes; do not invent missing content.",
+      "diagnose_boundary": "Inspect and report only; do not repair or change systems.",
+      "technical_source": "Code/configuration implementation history belongs in GitHub or verified local Markdown; SOPs, prompts, and their review workflows stay in Notion.",
+      "unique_safeguard": "Use the GHL White Label demo sub-account for demos; never modify client accounts for content research.",
+      "tail_rule": "Use provisioned read-only GitHub authentication without interactive login; never print credentials."
+    },
+    "durationMs": 15537,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 13078,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\grogar\\AGENTS.md",
+      "sha256": "4e11fb1bf095f059a2384851e44596bcbafca2263e8f2d623df63b4e55a4a64e",
+      "bytes": 13083,
+      "openclaw_characters": 13079,
+      "unicode_code_points": 13079,
+      "lines": 136,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "within-recommended-range",
+      "remaining_characters_before_limit": 6921,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "inga",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-inga-1793049760",
+    "answer": {
+      "role": "Digital Product Strategist and Internet Marketing Manager, Digital Darling.",
+      "local_notes_location": "AGENTS.md, Tools section, under Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current notes in AGENTS.md; do not assume the missing file's contents.",
+      "diagnose_boundary": "Inspect, diagnose and report only. Do not implement changes or repairs.",
+      "technical_source": "Code, configuration, repairs and implementation history belong in GitHub or verified local Markdown. SOPs, prompts and their review workflows belong in Notion only.",
+      "unique_safeguard": "Explicit approval is required before live funnel or offer changes, product launches or paid traffic spending.",
+      "tail_rule": "Use provisioned read-only GitHub authentication without interactive login; never print credentials."
+    },
+    "durationMs": 19059,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 14991,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\inga\\AGENTS.md",
+      "sha256": "947ee5b0ec6fa051f3b42a14e6dbc243c10a762691ee629df5c943858f35d5d9",
+      "bytes": 15010,
+      "openclaw_characters": 14992,
+      "unicode_code_points": 14992,
+      "lines": 148,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 5008,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "maggie",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-maggie-1793049685",
+    "answer": {
+      "role": "Maggie, Brand Voice Specialist and Communications Manager.",
+      "local_notes_location": "AGENTS.md, Tools section, under Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the notes now held in AGENTS.md; do not invent missing content.",
+      "diagnose_boundary": "Gather evidence and report findings only; do not repair or change anything.",
+      "technical_source": "Code and configuration belong in GitHub or verified local Markdown. SOPs, prompts, and their review workflows stay in Notion.",
+      "unique_safeguard": "Do not write or approve paid ad copy without the platform, audience, and budget.",
+      "tail_rule": "Never print credentials."
+    },
+    "durationMs": 10327,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 13818,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\maggie\\AGENTS.md",
+      "sha256": "39d9aadd5e43faf5b9c1717f7975fec0edf4cd00a6144fb18095f05ed8d1a18c",
+      "bytes": 13823,
+      "openclaw_characters": 13819,
+      "unicode_code_points": 13819,
+      "lines": 156,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "within-recommended-range",
+      "remaining_characters_before_limit": 6181,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "marsha",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-marsha-1793049701",
+    "answer": {
+      "role": "Marsha \u2014 Beauty Boss Lady; Chief Operations Officer and Chief of Staff for ZedBiz, reporting to Jack.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the local notes now in AGENTS.md; do not assume the missing old file exists.",
+      "diagnose_boundary": "Diagnose and report only; do not perform repairs or changes.",
+      "technical_source": "Code and configuration belong in GitHub/local Markdown; SOPs, prompts, and their review workflows belong in Notion only.",
+      "unique_safeguard": "Marsha has no routine server-repair or technical-record duty; route technical faults to Cody, Manus, Victor, Ruby, or Jack.",
+      "tail_rule": "GitHub CLI and HTTPS Git use the provisioned scoped read-only credential; never print credentials."
+    },
+    "durationMs": 10730,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6-astra",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6-astra",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 20649,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\marsha\\AGENTS.md",
+      "sha256": "14de222358b2f7c618901685d9e7db7bb7e767f66e75757719af76385da1181b",
+      "bytes": 20689,
+      "openclaw_characters": 20650,
+      "unicode_code_points": 20650,
+      "lines": 304,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 21285,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 635,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "terry",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-terry-1793049720",
+    "answer": {
+      "role": "Terry, Business Manager (Business Tiger), specializing in business testing and QA, video/graphic QA, and VA assistance and mentoring.",
+      "local_notes_location": "AGENTS.md, Tools > Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the local notes in AGENTS.md's Tools section; do not invent missing content.",
+      "diagnose_boundary": "Read-only assessment. Report proof, cause, recommendation, risks, and rollback; wait for Jack's confirmation before implementation.",
+      "technical_source": "GitHub owns code, configuration, deployment proof, and technical history. Notion owns SOPs and operating guidance.",
+      "unique_safeguard": "Verify Terry's PAT-backed Asana identity before agent-owned work; never use Jack's personal Asana connector.",
+      "tail_rule": "Never print GitHub credentials."
+    },
+    "durationMs": 12970,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 20545,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\terry\\AGENTS.md",
+      "sha256": "017f7ffda69f78f5f91b1038fc46e25e5e769e13ddeac5c1445542d7c3dc7db8",
+      "bytes": 20560,
+      "openclaw_characters": 20546,
+      "unicode_code_points": 20546,
+      "lines": 249,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 22000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 1454,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "victor",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-victor-1793049741",
+    "answer": {
+      "role": "Infrastructure Architect and AI Systems Lead; IT Tech Manager.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not assume the missing file exists.",
+      "diagnose_boundary": "Read-only investigation; no repairs or system changes.",
+      "technical_source": "Code, configuration and implementation history belong in GitHub/local technical Markdown; SOPs, prompts and their reviews belong in Notion only.",
+      "unique_safeguard": "Diagnose a failed container or service before restarting it.",
+      "tail_rule": "Run fresh VPS2 agent health checks serially; verify health.ok and required account probe/audit and connection results, not exit code alone."
+    },
+    "durationMs": 10324,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 22335,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\victor\\AGENTS.md",
+      "sha256": "55a3dd036adff08b46c054ac574f96405d2dd4e4ff2594fe74bab5cdbd00bf8a",
+      "bytes": 22366,
+      "openclaw_characters": 22336,
+      "unicode_code_points": 22336,
+      "lines": 226,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 24000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 1664,
+      "duplicate_headings": [],
+      "last_nonempty_line": "Cody ran this route serially for all three on October 12 around 08:23 Mountain. All service and required Discord checks passed. Artifacts: investigation-20261012/frank-fresh-gateway-channels.json, harry-fresh-gateway-channels.json and suzy-fresh-gateway-channels.json. Reader RSS was 61\u201362 MiB. These recover today's skipped checks; they do not cure high memory usage or prove a new model reply. Ruby daily/weekly job provider/model overrides are null; her earlier credit failure predates the separate xAI repair. Harry's journal lookup repair evidence is in cody-harry-repair-20261012.txt; do not leave that resolved command fault as an unexplained warning."
+    }
+  },
+  {
+    "agent": "vivian",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-vivian-1793049760",
+    "answer": {
+      "role": "Vivian, ZedBiz\u2019s Video Director and Video Specialist, reporting to Jack and Marsha.",
+      "local_notes_location": "AGENTS.md, Tools section.",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not assume the missing file\u2019s contents.",
+      "diagnose_boundary": "Investigate and present evidence, cause, recommendation, risks, and rollback. Do not implement until Jack confirms.",
+      "technical_source": "GitHub owns code, configuration, deployment evidence, and change history. SOPs, prompts, and their review workflows stay in Notion.",
+      "unique_safeguard": "Never present an animatic, rough cut, unapproved voice, or placeholder as final.",
+      "tail_rule": "Use authenticated GitHub CLI or HTTPS Git without interactive login; never print credentials."
+    },
+    "durationMs": 13199,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 14191,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\vivian\\AGENTS.md",
+      "sha256": "d66bfcc8ac356c8681488050e0fc2645e6230a735175b46d238042075a6f86d5",
+      "bytes": 14198,
+      "openclaw_characters": 14192,
+      "unicode_code_points": 14192,
+      "lines": 156,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 5808,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "wilma",
+    "server": "vps1",
+    "session": "cody-tools-cleanup-wilma-1793049782",
+    "answer": {
+      "role": "Wilma, Website Manager, WordPress Specialist, Web Development Expert, and GHL Sites Expert.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the migrated notes in AGENTS.md; do not invent missing content.",
+      "diagnose_boundary": "Investigate read-only, report findings and recommendation, and wait for Jack\u2019s confirmation before implementing.",
+      "technical_source": "GitHub owns code, configuration, and implementation history; Notion owns SOPs, prompts, and their reviews.",
+      "unique_safeguard": "Require approval before plugin lifecycle changes.",
+      "tail_rule": "Use provisioned read-only GitHub authentication without interactive login; never print credentials."
+    },
+    "durationMs": 12063,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 19081,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\wilma\\AGENTS.md",
+      "sha256": "72863ed04d2731a0117b3e02fa2d7bf09eb54b20dc7dc46dc0efa9fd0c99f349",
+      "bytes": 19090,
+      "openclaw_characters": 19082,
+      "unicode_code_points": 19082,
+      "lines": 234,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 918,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "frank",
+    "server": "vps2",
+    "session": "cody-tools-cleanup-frank-1793049624",
+    "answer": {
+      "role": "Frank FaceMan, Joint-Venture Specialist and Deal Maker, reporting to Jack.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the migrated notes in AGENTS.md; do not invent missing contents.",
+      "diagnose_boundary": "Investigate and present evidence and a proposed solution. Wait for Jack\u2019s confirmation before implementing.",
+      "technical_source": "GitHub or verified local Markdown owns code/configuration and technical history. SOPs, prompts, and their review workflows stay in Notion.",
+      "unique_safeguard": "Proposed deal terms remain non-binding until Jack and required specialists approve them.",
+      "tail_rule": "Use the provisioned read-only GitHub authentication without interactive login; never print credentials."
+    },
+    "durationMs": 11238,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/root/.openclaw-frank/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 22016,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\frank\\AGENTS.md",
+      "sha256": "0ae6496f53b6b50cfb809f86258384b581e9bd5169ee57daa09e004179dd3c4a",
+      "bytes": 22031,
+      "openclaw_characters": 22017,
+      "unicode_code_points": 22017,
+      "lines": 293,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 24000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 1983,
+      "duplicate_headings": [
+        "## Plain-Language Human Communication"
+      ],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "harry",
+    "server": "vps2",
+    "session": "cody-tools-cleanup-harry-1793049640",
+    "answer": {
+      "role": "Harry, Jack Zenert\u2019s business and marketing generalist.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not invent missing file contents.",
+      "diagnose_boundary": "Assess and report; do not implement repairs when asked only to diagnose.",
+      "technical_source": "Code, configuration, repairs, and technical decisions: GitHub or verified local Markdown. SOPs: Notion only.",
+      "unique_safeguard": "Do not mix clients or Jack\u2019s Marketing Jack and Farmer Jack personas.",
+      "tail_rule": "Before journal writes, run the dated journal lookup helper, reuse the existing page, and investigate failed or multiple results before writing."
+    },
+    "durationMs": 9747,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/root/.openclaw-harry/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 14520,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\harry\\AGENTS.md",
+      "sha256": "b1ec1536983321e0076541e09560c810f953d849609d5eb087c5fc330f4bc72e",
+      "bytes": 14523,
+      "openclaw_characters": 14521,
+      "unicode_code_points": 14521,
+      "lines": 144,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 24000,
+      "status": "above-recommended",
+      "remaining_characters_before_limit": 9479,
+      "duplicate_headings": [],
+      "last_nonempty_line": "Journal lookup repair: Before creating or updating the dated journal, run python3 /root/.openclaw-harry/workspace/scripts/harry-journal-lookup.py YYYY-MM-DD using today's America/Edmonton date. This read-only helper uses Harry's approved Notion CLI login and the exact journal data source. Reuse the returned page; if zero results, create exactly one. If multiple results or lookup fails, investigate before writing. Do not call codex_apps.notion.query-data-sources with mode=rows: its exposed schema accepts views, not row queries. This is a tool-schema mismatch, not a permission failure. Continue journal edits and readback through the approved Notion route. Do not retry an uncertain write or create a duplicate."
+    }
+  },
+  {
+    "agent": "suzy",
+    "server": "vps2",
+    "session": "cody-tools-cleanup-suzy-1793049654",
+    "answer": {
+      "role": "Suzy, Side-Hustle Queen and Venture Marketing Expert, reporting to Jack Zenert.",
+      "local_notes_location": "/root/.openclaw-suzy/workspace/AGENTS.md \u2014 Tools section, including Local notes (migrated from TOOLS.md).",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not invent missing contents or assume the old file exists.",
+      "diagnose_boundary": "Perform safe, read-only checks and report findings; do not repair servers or change configuration. Route technical faults to Jack or a technical agent.",
+      "technical_source": "Code, configuration, repairs and implementation history belong in GitHub or verified local Markdown. SOPs, prompts and their review workflows belong in Notion only.",
+      "unique_safeguard": "Treat example prices as proposals until Jack approves them; escalate pricing and major funnel architecture decisions.",
+      "tail_rule": "Do not impose arbitrary work cutoffs; continue authorized work until completion, Jack requests a stop, or a concrete error or missing authorization blocks progress."
+    },
+    "durationMs": 11644,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/root/.openclaw-suzy/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 13966,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\suzy\\AGENTS.md",
+      "sha256": "5cb6f5c4cb237ff69660f28892175594b5ea435ad95cce12a86c2b2c595120bb",
+      "bytes": 13969,
+      "openclaw_characters": 13967,
+      "unicode_code_points": 13967,
+      "lines": 143,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "within-recommended-range",
+      "remaining_characters_before_limit": 6033,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  },
+  {
+    "agent": "rocky",
+    "server": "vps4",
+    "session": "cody-tools-cleanup-rocky-1793049624",
+    "answer": {
+      "role": "Rocky, ZedBiz VA Guide, Assistant, Mentor, and Productivity Coach.",
+      "local_notes_location": "AGENTS.md \u2192 Tools \u2192 Local notes (migrated from TOOLS.md) \u2192 Runtime tool notes.",
+      "missing_old_notes_file": "Use the current AGENTS.md Tools section; do not invent missing contents.",
+      "diagnose_boundary": "Investigate and recommend. Diagnosis alone does not authorize implementation or publication; confirm before risky changes.",
+      "technical_source": "Code and configuration: GitHub or verified local Markdown. SOPs and maintained prompts: Notion.",
+      "unique_safeguard": "Use Rocky\u2019s approved Asana identity and PAT-backed server, never Jack\u2019s connector.",
+      "tail_rule": "Never print credentials."
+    },
+    "durationMs": 10606,
+    "executionTrace": {
+      "winnerProvider": "openai",
+      "winnerModel": "gpt-6.1-sol",
+      "attempts": [
+        {
+          "provider": "openai",
+          "model": "gpt-6.1-sol",
+          "result": "success",
+          "stage": "assistant"
+        }
+      ],
+      "fallbackUsed": false,
+      "runner": "embedded"
+    },
+    "bootstrap": {
+      "name": "AGENTS.md",
+      "path": "/home/openclaw/.openclaw/workspace/AGENTS.md",
+      "missing": false,
+      "rawChars": 13961,
+      "injectionStatus": "native_unverified",
+      "injectedChars": null,
+      "truncated": null
+    },
+    "candidate_analysis": {
+      "path": "D:\\Google Drive\\Documents\\Codex-Projects\\Core MD Files\\tmp\\tools-cleanup-20261026\\candidate\\rocky\\AGENTS.md",
+      "sha256": "0d16268417ad0e63e7530b388dbccf015305d2674daba5e7023ebae394d258ba",
+      "bytes": 13964,
+      "openclaw_characters": 13962,
+      "unicode_code_points": 13962,
+      "lines": 134,
+      "target_min": 10000,
+      "target_max": 14000,
+      "live_limit": 20000,
+      "status": "within-recommended-range",
+      "remaining_characters_before_limit": 6038,
+      "duplicate_headings": [],
+      "last_nonempty_line": "GitHub CLI and HTTPS Git are authenticated with the provisioned scoped read-only credential. Use gh api or normal HTTPS Git without interactive login. The private repository is ZedBiz44/zedbiz-jack-key-info; the required style guide is briefing/style-manifesto.md. Never print credentials. Native gh config is protected in github-runtime-auth/gh-config."
+    }
+  }
+]
