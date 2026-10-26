@@ -1,0 +1,9 @@
+{
+  "fourContainersAndNested": true,
+  "timeoutNoEntry": true,
+  "exceptionRelease": true,
+  "parentCrashRelease": true,
+  "old-new": true,
+  "new-old": true,
+  "noHolderHelperAfterAcquisition": true
+}

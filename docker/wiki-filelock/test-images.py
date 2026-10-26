@@ -26,20 +26,23 @@ def serial(v):
   if row['kind']=='ENTER':assert held is None,rows(v);held=row['id']
   if row['kind']=='LEAVE':assert held==row['id'];held=None
  assert held is None
-proof={}
-v=setup('concurrent');a=start(v,'a',duration=20000);entered(v,'a')
-jobs=[start(v,str(i),'nested' if i==0 else 'hold') for i in range(3)]
-finish(a)
-for j in jobs:finish(j)
-serial(v);assert (v/'counter').read_text()=='4';proof['fourContainersAndNested']=True
-v=setup('timeout');a=start(v,'holder',duration=20000);entered(v,'holder');finish(start(v,'timeout','timeout'),2);finish(a)
-assert [r['kind'] for r in rows(v) if r['id']=='timeout']==['TIMEOUT'];proof['timeoutNoEntry']=True
-v=setup('exception');finish(start(v,'throw','throw'),2);finish(start(v,'afterthrow'));assert (v/'counter').read_text()=='1';proof['exceptionRelease']=True
-v=setup('crash');a=start(v,'crash',duration=60000);entered(v,'crash')
-assert call(['docker','kill',a[1]]).returncode==0;finish(a,137);finish(start(v,'aftercrash'));assert (v/'counter').read_text()=='1';proof['parentCrashRelease']=True
-for generation,first,second in [('old-new',OLD,IMAGE),('new-old',IMAGE,OLD)]:
- v=setup(generation);a=start(v,generation+'a',duration=20000,image=first);entered(v,generation+'a');b=start(v,generation+'b',image=second);finish(a);finish(b);serial(v);assert (v/'counter').read_text()=='2';proof[generation]=True
-(ROOT/'test-proof.json').write_text(json.dumps(proof,indent=2))
+if '--holder-only' in sys.argv:
+ proof=json.loads((ROOT/'test-proof.json').read_text())
+else:
+ proof={}
+ v=setup('concurrent');a=start(v,'a',duration=20000);entered(v,'a')
+ jobs=[start(v,str(i),'nested' if i==0 else 'hold') for i in range(3)]
+ finish(a)
+ for j in jobs:finish(j)
+ serial(v);assert (v/'counter').read_text()=='4';proof['fourContainersAndNested']=True
+ v=setup('timeout');a=start(v,'holder',duration=20000);entered(v,'holder');finish(start(v,'timeout','timeout'),2);finish(a)
+ assert [r['kind'] for r in rows(v) if r['id']=='timeout']==['TIMEOUT'];proof['timeoutNoEntry']=True
+ v=setup('exception');finish(start(v,'throw','throw'),2);finish(start(v,'afterthrow'));assert (v/'counter').read_text()=='1';proof['exceptionRelease']=True
+ v=setup('crash');a=start(v,'crash',duration=60000);entered(v,'crash')
+ assert call(['docker','kill',a[1]]).returncode==0;finish(a,137);finish(start(v,'aftercrash'));assert (v/'counter').read_text()=='1';proof['parentCrashRelease']=True
+ for generation,first,second in [('old-new',OLD,IMAGE),('new-old',IMAGE,OLD)]:
+  v=setup(generation);a=start(v,generation+'a',duration=20000,image=first);entered(v,generation+'a');b=start(v,generation+'b',image=second);finish(a);finish(b);serial(v);assert (v/'counter').read_text()=='2';proof[generation]=True
+ (ROOT/'test-proof.json').write_text(json.dumps(proof,indent=2))
 v=setup('no-helper');a=start(v,'nohelper',duration=20000);entered(v,'nohelper')
-p=call(['docker','top',a[1],'-eo','args']);assert p.returncode==0 and 'acquire-lock.py' not in p.stdout and 'hold-lock.py' not in p.stdout,(p.returncode,p.stdout,p.stderr);finish(a);proof['noHolderHelperAfterAcquisition']=True
+p=call(['docker','top',a[1],'-eo','pid,args']);assert p.returncode==0 and 'acquire-lock.py' not in p.stdout and 'hold-lock.py' not in p.stdout,(p.returncode,p.stdout,p.stderr);finish(a);proof['noHolderHelperAfterAcquisition']=True
 (ROOT/'test-proof.json').write_text(json.dumps(proof,indent=2));print(json.dumps(proof),flush=True)

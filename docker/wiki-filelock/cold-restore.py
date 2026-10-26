@@ -1,7 +1,7 @@
 """Prove recovery from an empty independent Docker/containerd store on VPS1."""
 import json,os,pathlib,shutil,signal,subprocess,time
-P=pathlib.Path;ROOT=P('/opt/openclaw/recovery/wiki-filelock-20261026');A=ROOT/'restore-proof';A.mkdir(mode=0o700)
-runtime=P('/run/wiki-v2-proof');runtime.mkdir(mode=0o700);cs=A/'containerd-store';ds=A/'docker-store';os.umask(0o077)
+P=pathlib.Path;ROOT=P('/opt/openclaw/recovery/wiki-filelock-20261026');A=ROOT/'restore-proof-v2';A.mkdir(mode=0o700)
+runtime=P('/run/wiki-v2-proof2');runtime.mkdir(mode=0o700);cs=A/'containerd-store';ds=A/'docker-store';os.umask(0o077)
 config=A/'containerd.toml';config.write_text('version = 3\ndisabled_plugins = ["io.containerd.cri.v1.images", "io.containerd.cri.v1.runtime"]\n')
 clog=(A/'containerd.private.log').open('w');dlog=(A/'docker.private.log').open('w')
 cont=subprocess.Popen(['containerd','--config',str(config),'--root',str(cs),'--state',str(runtime/'containerd'),'--address',str(runtime/'containerd.sock'),'--log-level','warn'],stdout=clog,stderr=subprocess.STDOUT);daemon=None
@@ -39,7 +39,7 @@ finally:
  clog.close();dlog.close()
  if (ROOT/'cold-restore-proof.json').exists():
   for target in [ds,cs,runtime]:
-   assert target.resolve()==target and not target.is_symlink() and (A in target.parents or target==P('/run/wiki-v2-proof'))
+   assert target.resolve()==target and not target.is_symlink() and (A in target.parents or target==P('/run/wiki-v2-proof2'))
    for line in P('/proc/self/mountinfo').read_text().splitlines():assert not line.split()[4].startswith(str(target)+'/')
    for p in P('/proc').glob('[0-9]*/cmdline'):
     try:cmd=p.read_bytes().replace(b'\0',b' ').decode()

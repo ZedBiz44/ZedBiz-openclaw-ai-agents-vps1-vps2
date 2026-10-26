@@ -1,0 +1,71 @@
+{
+  "passed": true,
+  "containers": 3,
+  "ingestCompileLintRounds": 9,
+  "allNineSourcePagesRetained": true,
+  "rounds": [
+    {
+      "id": "0",
+      "i": 0,
+      "ingested": "sources/diagnosis-0-0.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "0",
+      "i": 1,
+      "ingested": "sources/diagnosis-0-1.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "0",
+      "i": 2,
+      "ingested": "sources/diagnosis-0-2.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "1",
+      "i": 0,
+      "ingested": "sources/diagnosis-1-0.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "1",
+      "i": 1,
+      "ingested": "sources/diagnosis-1-1.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "1",
+      "i": 2,
+      "ingested": "sources/diagnosis-1-2.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "2",
+      "i": 0,
+      "ingested": "sources/diagnosis-2-0.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "2",
+      "i": 1,
+      "ingested": "sources/diagnosis-2-1.md",
+      "compiled": 0,
+      "lint": 0
+    },
+    {
+      "id": "2",
+      "i": 2,
+      "ingested": "sources/diagnosis-2-2.md",
+      "compiled": 0,
+      "lint": 0
+    }
+  ]
+}
