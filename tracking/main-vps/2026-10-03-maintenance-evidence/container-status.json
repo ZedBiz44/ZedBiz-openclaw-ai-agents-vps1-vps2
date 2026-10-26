@@ -1,0 +1,202 @@
+[
+  {
+    "name": "hindsight-db",
+    "image": "2358fcba361e",
+    "status": "Up 18 minutes (healthy)"
+  },
+  {
+    "name": "mem0-dev-qdrant-1",
+    "image": "12364fe851b9",
+    "status": "Up 29 minutes"
+  },
+  {
+    "name": "hindsight",
+    "image": "4602a7b74223",
+    "status": "Up 18 minutes (healthy)"
+  },
+  {
+    "name": "marsha",
+    "image": "zedbiz/marsha:2026.9.8-owner-scheduling-20261003",
+    "status": "Up 25 minutes (healthy)"
+  },
+  {
+    "name": "uptime-kuma",
+    "image": "c74379ac4509",
+    "status": "Up 35 minutes (healthy)"
+  },
+  {
+    "name": "caddy",
+    "image": "13b7fbadd017",
+    "status": "Up 35 minutes"
+  },
+  {
+    "name": "filebrowser",
+    "image": "a469ea076d4a",
+    "status": "Up 36 minutes (healthy)"
+  },
+  {
+    "name": "homepage",
+    "image": "643bd0be730d",
+    "status": "Up 36 minutes (healthy)"
+  },
+  {
+    "name": "docker-socket-proxy",
+    "image": "1f5038b54f06",
+    "status": "Up 36 minutes"
+  },
+  {
+    "name": "dozzle",
+    "image": "db7e19fd3618",
+    "status": "Up 36 minutes"
+  },
+  {
+    "name": "portainer",
+    "image": "4d616db18cfe",
+    "status": "Up 37 minutes"
+  },
+  {
+    "name": "terry",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "terry-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "vivian",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "inga",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 17 minutes (healthy)"
+  },
+  {
+    "name": "grogar",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 16 minutes (healthy)"
+  },
+  {
+    "name": "maggie",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 17 minutes (healthy)"
+  },
+  {
+    "name": "wilma",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "edith",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 4 minutes (healthy)"
+  },
+  {
+    "name": "victor",
+    "image": "zedbiz/openclaw-victor:2026.9.8-20261003-imapfix",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "gohzed",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 16 minutes (healthy)"
+  },
+  {
+    "name": "amanda",
+    "image": "zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "inga-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "victor-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "maggie-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "gohzed-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "marsha-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-advanced",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "edith-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard-edith-pagination-20260917",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "grogar-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "wilma-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "amanda-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-amanda-native-headings-20260929",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "vivian-asana-mcp",
+    "image": "zedbiz/asana-http-mcp:2.0.0-standard",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "z-code-notion-mirror",
+    "image": "zedbiz-z-code-allocator:1.3.0",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "z-code-allocator",
+    "image": "b371073fae29",
+    "status": "Up 2 hours (healthy)"
+  },
+  {
+    "name": "z-code-admin",
+    "image": "b371073fae29",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "rocky-restart-bridge",
+    "image": "zedbiz/rocky-tunnel-bridge:1",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "zedbiz-restart-api",
+    "image": "zedbiz-restart-api:latest",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "rocky-tunnel-bridge",
+    "image": "zedbiz/rocky-tunnel-bridge:1",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "1password-connect-api",
+    "image": "1password/connect-api:latest",
+    "status": "Up 2 hours"
+  },
+  {
+    "name": "1password-connect-sync",
+    "image": "1password/connect-sync:latest",
+    "status": "Up 2 hours"
+  }
+]

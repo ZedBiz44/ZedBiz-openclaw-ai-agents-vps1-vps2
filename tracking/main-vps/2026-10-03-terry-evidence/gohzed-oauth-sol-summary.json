@@ -1,0 +1,52 @@
+{
+  "agent": "gohzed",
+  "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+  "apiProfileRotationExcluded": true,
+  "cliExit": 0,
+  "runId": "5256bf78-bcf9-446e-9b4d-1cd52498a9c5",
+  "status": "ok",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 2,
+    "tools": [
+      "bash",
+      "agent_knowledge_recall"
+    ],
+    "failures": 0
+  },
+  "reply": "- **OS:** Debian GNU/Linux 12 (bookworm), verified from `/etc/os-release`.\n- **Memory lookup:** Succeeded. `agent_knowledge_recall` returned VPS1 records.\n\nNo messaging tools, memory writes, or file changes were used.",
+  "receipt": {
+    "runId": "5256bf78-bcf9-446e-9b4d-1cd52498a9c5",
+    "sessionId": "c085dbb7-bdf8-4ca2-ad1d-5b3aba45ebb0",
+    "turnId": "01a10294-9ec5-7630-9a26-0ad00aea67a2",
+    "requested": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol"
+    },
+    "effective": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "responseModel": "gpt-6.1-sol"
+    },
+    "successfulToolNames": [
+      "bash",
+      "agent_knowledge_recall"
+    ],
+    "assistantTranscriptIdempotencyKey": "codex-app-server:01a10294-9d4a-7a82-a346-a721560c15dc:01a10294-9ec5-7630-9a26-0ad00aea67a2:assistant",
+    "rerouted": false,
+    "terminalDisposition": "visible"
+  }
+}

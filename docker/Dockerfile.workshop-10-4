@@ -1,0 +1,9 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.4-fleet-20261018
+FROM ${BASE_IMAGE}
+USER root
+COPY scripts/patch-workshop-model-10-4.cjs scripts/verify-workshop-model-10-4.cjs /opt/zedbiz/
+RUN node /opt/zedbiz/patch-workshop-model-10-4.cjs \
+ && node --check /app/dist/skill-collection-review-monitor-D4uXmNHG.mjs \
+ && node /opt/zedbiz/verify-workshop-model-10-4.cjs
+USER node
+

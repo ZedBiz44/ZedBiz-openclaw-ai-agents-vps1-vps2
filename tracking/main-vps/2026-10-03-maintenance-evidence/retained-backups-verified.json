@@ -1,0 +1,67 @@
+[
+  {
+    "agent": "terry",
+    "archive": "/opt/openclaw/backups/terry-20261003-pre-9.8/terry-state.tar",
+    "bytes": 4248371200,
+    "checksumVerified": true
+  },
+  {
+    "agent": "amanda",
+    "archive": "/opt/openclaw/backups/amanda-20261003-pre-9.8/state.tar",
+    "bytes": 3863908864,
+    "checksumVerified": true
+  },
+  {
+    "agent": "edith",
+    "archive": "/opt/openclaw/backups/edith-20261003-pre-9.8/state.tar",
+    "bytes": 18147021312,
+    "checksumVerified": true
+  },
+  {
+    "agent": "gohzed",
+    "archive": "/opt/openclaw/backups/gohzed-20261003-pre-9.8/state.tar",
+    "bytes": 1380684288,
+    "checksumVerified": true
+  },
+  {
+    "agent": "grogar",
+    "archive": "/opt/openclaw/backups/grogar-20261003-pre-9.8/state.tar",
+    "bytes": 1376265216,
+    "checksumVerified": true
+  },
+  {
+    "agent": "inga",
+    "archive": "/opt/openclaw/backups/inga-20261003-pre-9.8/state.tar",
+    "bytes": 2127157248,
+    "checksumVerified": true
+  },
+  {
+    "agent": "maggie",
+    "archive": "/opt/openclaw/backups/maggie-20261003-pre-9.8/state.tar",
+    "bytes": 1313623552,
+    "checksumVerified": true
+  },
+  {
+    "agent": "victor",
+    "archive": "/opt/openclaw/backups/victor-20261003-pre-9.8/state.tar",
+    "bytes": 3003421184,
+    "checksumVerified": true
+  },
+  {
+    "agent": "vivian",
+    "archive": "/opt/openclaw/backups/vivian-20261003-pre-9.8/state.tar",
+    "bytes": 22908955136,
+    "checksumVerified": true
+  },
+  {
+    "agent": "wilma",
+    "archive": "/opt/openclaw/backups/wilma-20261003-pre-9.8/state.tar",
+    "bytes": 2936829952,
+    "checksumVerified": true
+  },
+  {
+    "agent": "marsha",
+    "archive": "/home/jackadmin/openclaw-backups/fleet94-20260912/marsha/full-state.tar.gz",
+    "tarEntriesVerified": 45550
+  }
+]

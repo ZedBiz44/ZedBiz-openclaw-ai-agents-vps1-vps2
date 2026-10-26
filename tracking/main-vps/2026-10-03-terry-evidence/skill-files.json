@@ -1,0 +1,80 @@
+[
+  {
+    "skill": "z-ai-skill-developer",
+    "file": "SKILL.md",
+    "before": "d5acac9c731e42e82a634190bfc06d391b9cc6df51957f5e1f7795323dcfb459",
+    "after": "5c3620a196db4e57e3f0fbd9515293ebed1f39c4072ff23e13d23d571acc402e"
+  },
+  {
+    "skill": "z-audio-production",
+    "file": "agents/openai.yaml",
+    "before": null,
+    "after": "4a29dffcf2d753c2f8ca19814aa640ea03e558254417f02a357a43dc67090309"
+  },
+  {
+    "skill": "z-biz-plan",
+    "file": "SKILL.md",
+    "before": "79984dc41bffb5261dfedc72f3fa042ea882529354342a67d0a7ceb2cde6e26f",
+    "after": "7f9bb1679a9f406ebd71af9818d64ee0eb6fcff77588844d40cc0f939bc2c47b"
+  },
+  {
+    "skill": "z-files-folders",
+    "file": "SKILL.md",
+    "before": "60128793778820dd9d558a614648ccdc2ff214d65e124f21eecbe26b2ab81bba",
+    "after": "5868b767dc9a23d8a86ab7a6fcd4c8d1d61bc13afecea4b4bf11d678e45f80dc"
+  },
+  {
+    "skill": "z-files-folders",
+    "file": "agents/openai.yaml",
+    "before": null,
+    "after": "7194556ff91be97e2866ce4ab227edf7593ca9931315189c47ed249ffa59be53"
+  },
+  {
+    "skill": "z-video-analysis",
+    "file": "SKILL.md",
+    "before": "ece9a75bb7e654a2aa966d287b42f95c811fba92460c8af3fed6f6d39f60346b",
+    "after": "8be5cb89169cdab794240f3488e5a120f06011d9783ef07ccbd5371a4fa9f2cc"
+  },
+  {
+    "skill": "z-video-analysis",
+    "file": "agents/openai.yaml",
+    "before": null,
+    "after": "9344e7bcd74c725d493a4626ea3673cc235e0fdfa6a6cefe1d42e0004ada7d98"
+  },
+  {
+    "skill": "z-video-analysis",
+    "file": "references/chatgpt-codex.md",
+    "before": null,
+    "after": "398d39e27c82842e26b30a4abe759604104ebb03753e9b66e0e60c1b737ed4b9"
+  },
+  {
+    "skill": "z-video-critique",
+    "file": "SKILL.md",
+    "before": "5451b9a7527bd825848d7aaacea902bbe6bf156ad7f0c95f1d7156124339e994",
+    "after": "3e4b736872255ea67c5357b30c70048fd245eb322eb7da1460d8b167ce29fd89"
+  },
+  {
+    "skill": "z-video-critique",
+    "file": "agents/openai.yaml",
+    "before": null,
+    "after": "0f8d5559a450fbd2125fc30fb1345c9dbd864a09c0a1b01eb69a1f1138700af3"
+  },
+  {
+    "skill": "z-notion-knowledge-publish",
+    "file": "SKILL.md",
+    "before": "c7374f55a9f9001b5cd9ec0d92ec61cbda9802eb82097ed7f1ffc588f3b47709",
+    "after": "cc23b0e2e1296315918c198ecff39a666a3dbef9f6ffb1d63d3305ff9fd896ed"
+  },
+  {
+    "skill": "z-notion-knowledge-publish",
+    "file": "references/chatgpt-codex.md",
+    "before": null,
+    "after": "4537c09d753ace6637cdcbf4ecbee8f91716bd1d4807a246c05dc3033908b34f"
+  },
+  {
+    "skill": "z-small-bite-task",
+    "file": "SKILL.md",
+    "before": "83ecdff0ab8b2153f429634bc05dd5b12adf2ef788a75c27a096cabdfc976397",
+    "after": "c111319193d4a4cd4e24eebc50de05140b90cfb0f5541964a8390188d9fec7be"
+  }
+]

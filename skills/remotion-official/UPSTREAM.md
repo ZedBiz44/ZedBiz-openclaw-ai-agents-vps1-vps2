@@ -1,9 +1,9 @@
 # Official Remotion Agent Skills
 
 - Source: https://github.com/remotion-dev/remotion/tree/main/packages/skills
-- Upstream commit: `670b222bf46c4d73e590f0995c28b7dc43221953`
-- Package version: `4.0.521`
-- Imported: 2026-09-06 Mountain Time
+- Upstream commit: `e385a83dbde54179c0457ad90b7d7c3a4b6ab44a`
+- Package version: `4.0.532`
+- Imported: 2026-10-03 Mountain Time
 - Imported by: Cody
 
 The twelve upstream skill folders are preserved with two compatibility changes:
@@ -23,3 +23,5 @@ approval, secret, and no-spend rules remain authoritative.
 
 Review the current Remotion license before commercial production use:
 https://github.com/remotion-dev/remotion/blob/main/LICENSE.md
+
+October maintenance adds the ZedBiz delivery and authorization adapter to the router. All twelve runtime skill packages validated; a local H.264/AAC render and decode passed. Existing project dependency locks remain unchanged.

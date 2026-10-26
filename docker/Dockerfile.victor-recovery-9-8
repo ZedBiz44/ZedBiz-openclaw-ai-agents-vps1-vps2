@@ -1,0 +1,13 @@
+# Reconstruct the missing rollback runtime from retained verified sources.
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.9.8-terry-20261003-imapfix
+FROM ${BASE_IMAGE}
+USER root
+RUN apt-get update -qq && apt-get install -y -q --no-install-recommends openssh-client ca-certificates curl tar \
+    && curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-29.8.2.tgz \
+      | tar -xz -C /tmp --strip-components=1 docker/docker \
+    && mv /tmp/docker /usr/local/bin/docker && chmod 0755 /usr/local/bin/docker \
+    && rm -rf /var/lib/apt/lists/*
+COPY diagnostic-after.mjs /app/dist/diagnostic-kx61_Tco.mjs
+RUN echo '8470e0b89e9188b565a2ca708974959b1002b050651ef5d9a3cc06e119fbdd49  /app/dist/diagnostic-kx61_Tco.mjs' | sha256sum -c - \
+    && node --check /app/dist/diagnostic-kx61_Tco.mjs
+USER node

@@ -1,0 +1,54 @@
+{
+  "status": "ok",
+  "runId": "1f11b41d-bbf8-44b0-a753-3fe4a6aadfb4",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 4,
+    "tools": [
+      "bash",
+      "memory_recall",
+      "asana.asana_get_user"
+    ],
+    "failures": 0
+  },
+  "reply": "- **OS:** Debian GNU/Linux 12 (bookworm).\n- **Memory lookup:** Succeeded; `memory_recall` returned two VPS1 matches.\n- **Asana identity:** Amanda zbiz \u2014 amanda@zedworks.com, GID `1213974002925107`. Verified in **ZedBiz - Local Marketing Service** (`11298561585567`).\n\nNo message tools used, memories created, files changed, or Asana records modified.",
+  "agentMeta": {
+    "provider": "openai",
+    "model": "gpt-6.1-sol",
+    "terminalReceipt": {
+      "runId": "1f11b41d-bbf8-44b0-a753-3fe4a6aadfb4",
+      "sessionId": "721e15b6-6ba8-4970-b10b-f079613fa030",
+      "turnId": "01a14d50-442e-7c72-81ac-fbceed83564c",
+      "requested": {
+        "provider": "openai",
+        "model": "gpt-6.1-sol"
+      },
+      "effective": {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "responseModel": "gpt-6.1-sol"
+      },
+      "successfulToolNames": [
+        "bash",
+        "memory_recall",
+        "asana.asana_get_user"
+      ],
+      "assistantTranscriptIdempotencyKey": "codex-app-server:01a14d50-42da-7630-ac0c-4514e3842fa4:01a14d50-442e-7c72-81ac-fbceed83564c:assistant",
+      "rerouted": false,
+      "terminalDisposition": "visible"
+    }
+  }
+}

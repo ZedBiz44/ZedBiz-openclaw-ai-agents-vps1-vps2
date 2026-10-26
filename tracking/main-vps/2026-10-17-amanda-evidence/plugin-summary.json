@@ -1,0 +1,79 @@
+[
+  {
+    "id": "codex",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "bundled",
+    "enabled": true
+  },
+  {
+    "id": "openai",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "bundled",
+    "enabled": true
+  },
+  {
+    "id": "deepseek",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "discord",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "gradium",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "memory-lancedb",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "moonshot",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "parallel",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "perplexity",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "qwen",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  },
+  {
+    "id": "tavily",
+    "version": "2026.10.4",
+    "status": "loaded",
+    "origin": "global",
+    "enabled": true
+  }
+]

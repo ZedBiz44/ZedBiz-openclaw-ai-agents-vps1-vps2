@@ -1,0 +1,22 @@
+{
+  "vps1": {
+    "host": "187.77.210.223",
+    "user": "jackadmin",
+    "hostKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIp3D9N2B0xzcC5wua7CmJpiHaI9iNhy7TFVeRX6b2oY root@srv1404026"
+  },
+  "vps2": {
+    "host": "harry.zbiz.ca",
+    "hostKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIENlXoq7YFtd/h/kQdkWPaEHP4hVsZJJqXXjwkLaKaea root@srv1677638",
+    "user": "root"
+  },
+  "vps3": {
+    "host": "2.25.210.154",
+    "hostKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAbbeK+Wp7uu4oYTAHpYparSI8q2p2lbfkPH9FS5Ehek root@srv1764917",
+    "user": "root"
+  },
+  "vps4": {
+    "host": "srv1849801.hstgr.cloud",
+    "hostKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID6i9CD5FOxA21D8MPMYu5M92HsWGBxE7epOZC250nKe root@srv1849801",
+    "user": "root"
+  }
+}

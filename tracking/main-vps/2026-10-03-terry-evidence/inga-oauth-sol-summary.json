@@ -1,0 +1,52 @@
+{
+  "agent": "inga",
+  "configuredAuthProfile": "openai:jzedbiz@gmail.com",
+  "apiProfileRotationExcluded": true,
+  "cliExit": 0,
+  "runId": "14ccd50a-8f85-4d98-9afc-854998ae3555",
+  "status": "ok",
+  "trace": {
+    "winnerProvider": "openai",
+    "winnerModel": "gpt-6.1-sol",
+    "attempts": [
+      {
+        "provider": "openai",
+        "model": "gpt-6.1-sol",
+        "result": "success",
+        "stage": "assistant"
+      }
+    ],
+    "fallbackUsed": false,
+    "runner": "embedded"
+  },
+  "tools": {
+    "calls": 2,
+    "tools": [
+      "bash",
+      "agent_knowledge_recall"
+    ],
+    "failures": 0
+  },
+  "reply": "- OS: **Debian GNU/Linux 12 (bookworm)**.\n- External memory lookup: **Succeeded**. `agent_knowledge_recall` returned VPS1 records.\n- No message tools, memory writes, or file changes were made.",
+  "receipt": {
+    "runId": "14ccd50a-8f85-4d98-9afc-854998ae3555",
+    "sessionId": "b876ce97-8212-40a4-8e4f-187e1766e74f",
+    "turnId": "01a10295-6b86-7b03-8495-9b89c4f74667",
+    "requested": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol"
+    },
+    "effective": {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "responseModel": "gpt-6.1-sol"
+    },
+    "successfulToolNames": [
+      "bash",
+      "agent_knowledge_recall"
+    ],
+    "assistantTranscriptIdempotencyKey": "codex-app-server:01a10295-68a0-7190-8cb8-f009d5c1e4e2:01a10295-6b86-7b03-8495-9b89c4f74667:assistant",
+    "rerouted": false,
+    "terminalDisposition": "visible"
+  }
+}

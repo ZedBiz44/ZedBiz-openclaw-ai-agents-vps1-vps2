@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-03",
+  "agent": "terry",
+  "method": "Isolated app-server processes; same existing OAuth access token and account; fresh temporary homes; environment allowlist excludes all API keys; no OpenClaw fallback; no production configuration change",
+  "model": "gpt-6.1-sol",
+  "authType": "chatgpt",
+  "loginType": "chatgptAuthTokens",
+  "codex_0_160_0": {
+    "executable": "/usr/local/bin/codex",
+    "modelListed": true,
+    "threadModel": "gpt-6.1-sol",
+    "turnStatus": "completed",
+    "reply": "OAUTH_SOL_OK",
+    "error": null
+  },
+  "codex_0_158_0": {
+    "executable": "/app/node_modules/.pnpm/@openai+codex@0.158.0-linux-x64/node_modules/@openai/codex/vendor/x86_64-unknown-linux-musl/bin/codex",
+    "modelListed": false,
+    "threadModel": "gpt-6.1-sol",
+    "turnStatus": "failed",
+    "httpStatus": 400,
+    "error": "The 'gpt-6.1-sol' model is not supported when using Codex with a ChatGPT account."
+  },
+  "conclusion": "Runtime version determines Sol OAuth availability in this controlled comparison. Account access is demonstrated with 0.160.0.",
+  "proposedFix": "Set plugins.entries.codex.config.appServer.command to /usr/local/bin/codex, verify version 0.160.0, then test Terry through OpenClaw with OAuth only before broader rollout.",
+  "productionFixApplied": false,
+  "sources": [
+    "https://github.com/openai/codex/issues/50287",
+    "https://docs.openclaw.ai/plugins/codex-harness/config-fields"
+  ]
+}

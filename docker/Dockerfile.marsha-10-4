@@ -1,0 +1,8 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.4-fleet-20261018
+FROM ${BASE_IMAGE}
+USER root
+COPY docker/marsha-owner-scheduling-20261018.mjs /opt/zedbiz-patches/marsha-owner-scheduling-20261018.mjs
+RUN OPENCLAW_PATCH_BACKUP=/opt/zedbiz-patches/originals node /opt/zedbiz-patches/marsha-owner-scheduling-20261018.mjs --apply \
+ && node --check /app/dist/run-attempt-D3ydB5RC.mjs \
+ && node --check /app/dist/dynamic-tool-build-D3HcDDWa.mjs
+USER node

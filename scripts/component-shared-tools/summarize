@@ -1,0 +1,2 @@
+#!/bin/sh
+exec node /opt/openclaw/shared/tools-20261018/lib/node_modules/@steipete/summarize/dist/cli.js "$@"

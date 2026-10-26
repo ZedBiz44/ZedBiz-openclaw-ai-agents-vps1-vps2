@@ -1,0 +1,8 @@
+{
+  "kernel": "6.8.0-146-generic",
+  "rebootRequired": false,
+  "failedServices": "",
+  "packageAudit": "",
+  "upgradable": "Listing...\n",
+  "disk": "Filesystem      Size  Used Avail Use% Mounted on\n/dev/sda1       387G  209G  179G  54% /\n"
+}
