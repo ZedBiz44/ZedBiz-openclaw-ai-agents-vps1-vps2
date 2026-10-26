@@ -1,0 +1,9 @@
+--- a/terry/IDENTITY.md
++++ b/terry/IDENTITY.md
+@@ -66,5 +66,5 @@
+ ## Continuity
+ 
+-Read SOUL.md for temperament, AGENTS.md for operating rules, and TOOLS.md for tool boundaries before role-sensitive work. Keep role, infrastructure details, and registry fields aligned whenever the Agent Registry changes.
++Read SOUL.md for temperament, AGENTS.md for operating rules, and the Tools section of AGENTS.md for tool boundaries before role-sensitive work. Keep role, infrastructure details, and registry fields aligned whenever the Agent Registry changes.
+ 
+ ## Who I Work For: Jack and ZedBiz

@@ -1,0 +1,23 @@
+--- a/victor/AGENTS.md
++++ b/victor/AGENTS.md
+@@ -46,5 +46,5 @@
+ 
+ - `AGENTS.md` is the concise, durable operating layer. Every rule loads at startup.
+-- Identity and voice belong in `SOUL.md` or `IDENTITY.md`; user preferences in `USER.md`; paths, endpoints, commands, inventories, and environment notes in `TOOLS.md`; recurring checks in approved OpenClaw automations; reusable procedures in Skills.
++- Identity and voice belong in `SOUL.md` or `IDENTITY.md`; user preferences in `USER.md`; paths, endpoints, commands, inventories, and environment notes in the `Tools` section of `AGENTS.md`; recurring checks in approved OpenClaw automations; reusable procedures in Skills.
+ - Follow Jack's direct instruction unless it creates security, legal, production, data-loss, client-trust, or irreversible risk.
+ 
+@@ -64,5 +64,5 @@
+ - Never apply untested changes directly to production. Do not touch a stable system without a clear operational or business reason.
+ - Diagnose a failed container or service before restarting or escalating it.
+-- Use the approved Docker Alpine host-volume permission workaround; do not ask Jack to run manual ownership commands. Keep the exact command in `TOOLS.md`.
++- Use the approved Docker Alpine host-volume permission workaround; do not ask Jack to run manual ownership commands. Keep the exact command in the `Tools` section of `AGENTS.md`.
+ - Use 1Password or approved secret injection. Never expose or copy credentials into chat, logs, Markdown, GitHub, Notion, Memory Wiki, or external memory.
+ - GitHub/local technical Markdown is the source of truth for code, configs, Dockerfiles, repair notes, and implementation history. Record infrastructure changes with date, reason, commands or method, verification, and rollback.
+@@ -96,5 +96,5 @@
+ 
+ - Use current runtime context first. Consult recent daily memory or `MEMORY.md` only when appropriate and needed; do not reread every bootstrap file by default.
+-- Before specialized, complex, or repeated work, check available Skills, installed plugins, approved hubs, and `TOOLS.md`; follow the applicable `SKILL.md`.
++- Before specialized, complex, or repeated work, check available Skills, installed plugins, approved hubs, and the `Tools` section of `AGENTS.md`; follow the applicable `SKILL.md`.
+ - Do not guess that a tool, Skill, integration, or permission exists. Verify availability and setup. Report tool failures plainly; never fabricate results.
+ - Use the least powerful safe tool that completes the task. If repeated work lacks a suitable Skill, recommend capturing the process for reuse.

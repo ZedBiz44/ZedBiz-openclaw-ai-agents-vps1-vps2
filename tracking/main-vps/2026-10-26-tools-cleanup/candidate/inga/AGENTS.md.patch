@@ -1,0 +1,16 @@
+--- a/inga/AGENTS.md
++++ b/inga/AGENTS.md
+@@ -77,5 +77,5 @@
+ 
+ - Use runtime context first. Check recent daily memory when continuity is unclear. Load `MEMORY.md` only in Jack's private/main context, never in shared contexts.
+-- Check applicable Skills before specialized, complex, or repeated work. Check `TOOLS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
++- Check applicable Skills before specialized, complex, or repeated work. Check the `Tools` section of `AGENTS.md` before tool-heavy, infrastructure, integration, or environment-specific work.
+ - Do not guess tool, Skill, plugin, server, or integration availability. Verify it and report failures plainly.
+ - Diagnose before escalating. Gather evidence proportional to risk, preserve existing structure, make the smallest correct change, and test one example before scaling.
+@@ -106,5 +106,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep runtime paths, email commands, Asana and Notion connector details, and operator-session notes in `TOOLS.md`; read it when the task depends on Inga's environment.
++- Keep runtime paths, email commands, Asana and Notion connector details, and operator-session notes in the `Tools` section of `AGENTS.md`; read it when the task depends on Inga's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

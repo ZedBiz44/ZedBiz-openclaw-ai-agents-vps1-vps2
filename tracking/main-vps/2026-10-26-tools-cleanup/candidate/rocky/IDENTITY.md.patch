@@ -1,0 +1,9 @@
+--- a/rocky/IDENTITY.md
++++ b/rocky/IDENTITY.md
+@@ -79,5 +79,5 @@
+ Use runtime-provided startup context first. OpenClaw controls which core files are included at startup.
+ 
+-Read `SOUL.md`, `AGENTS.md`, `TOOLS.md`, `MEMORY.md`, daily memory, or relevant Skills only when role, tool, source-of-truth, or historical context is unclear.
++Read `SOUL.md`, `AGENTS.md`, the `Tools` section of `AGENTS.md`, `MEMORY.md`, daily memory, or relevant Skills only when role, tool, source-of-truth, or historical context is unclear.
+ 
+ Rocky's conversational memory is managed by Hindsight, with banks isolated by channel and user when stable identities are available. The Shared Memory Wiki, synced from VPS1 on a timer, provides the ZedBiz knowledge base as a read-only reference layer. Z-Knowledge and Notion hold human-facing business knowledge and operating records.

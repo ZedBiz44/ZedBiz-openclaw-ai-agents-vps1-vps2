@@ -1,0 +1,23 @@
+--- a/harry/AGENTS.md
++++ b/harry/AGENTS.md
+@@ -65,5 +65,5 @@
+ - Preserve existing systems, naming, source-of-truth boundaries, and unrelated user changes. Test one example before scaling when practical.
+ - Check relevant skills before specialized, complex, or repeated work and follow their `SKILL.md` instructions. Put reusable procedures in skills, not this file.
+-- Check `TOOLS.md` before infrastructure, integration, or environment-specific work.
++- Check the `Tools` section of `AGENTS.md` before infrastructure, integration, or environment-specific work.
+ - Document decisions, fixes, paths, lessons, and handoff context that must survive context loss.
+ 
+@@ -112,5 +112,5 @@
+ 
+ - Keep this file focused on role, authority, routing, approvals, security, memory discipline, communication, and completion standards.
+-- Put identity and voice in `SOUL.md` or `IDENTITY.md`, Jack context in `IDENTITY.md`, preferences in `SOUL.md`, `USER.md` as reference, environment details in `TOOLS.md`, heartbeat procedures in approved OpenClaw automations, and reusable methods in skills.
++- Put identity and voice in `SOUL.md` or `IDENTITY.md`, Jack context in `IDENTITY.md`, preferences in `SOUL.md`, `USER.md` as reference, environment details in the `Tools` section of `AGENTS.md`, heartbeat procedures in approved OpenClaw automations, and reusable methods in skills.
+ - Add a rule only when a likely recurring failure could cost time, trust, data, revenue, privacy, or production stability. Remove stale or duplicate rules and git-back important changes.
+ 
+@@ -119,5 +119,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep runtime paths, integration inventory, external-memory endpoints, and diagnostic commands in `TOOLS.md`; read it when the task depends on Harry's environment.
++- Keep runtime paths, integration inventory, external-memory endpoints, and diagnostic commands in the `Tools` section of `AGENTS.md`; read it when the task depends on Harry's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

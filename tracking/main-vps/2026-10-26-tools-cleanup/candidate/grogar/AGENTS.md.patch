@@ -1,0 +1,30 @@
+--- a/grogar/AGENTS.md
++++ b/grogar/AGENTS.md
+@@ -33,5 +33,5 @@
+ - Jack is the owner and may direct work. Marsha is the operational authority and controls priorities. Amanda owns Asana coordination and assignments. This role owns Growth Garage education and content production within approved boundaries.
+ - Follow Jack's direct instruction unless it creates security, legal, production, data-loss, client-trust, or irreversible risk.
+-- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, heartbeat procedures in approved OpenClaw automations, and reusable procedures in Skills.
++- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in the `Tools` section of `AGENTS.md`, heartbeat procedures in approved OpenClaw automations, and reusable procedures in Skills.
+ 
+ ## No Arbitrary Work Cutoffs
+@@ -79,5 +79,5 @@
+ 
+ - Use runtime context first. Read recent daily memory when context is unclear. Do not reread every bootstrap file by default.
+-- Before specialized or repeated work, check available Skills and follow the relevant `SKILL.md`. Check `TOOLS.md` before tool-heavy or environment-specific work.
++- Before specialized or repeated work, check available Skills and follow the relevant `SKILL.md`. Check the `Tools` section of `AGENTS.md` before tool-heavy or environment-specific work.
+ - Do not guess which tools, Skills, plugins, MCP servers, or integrations exist. Verify availability and setup before claiming they work.
+ - Use the least powerful safe tool. Diagnose with safe checks before escalating.
+@@ -96,5 +96,5 @@
+ 
+ - Add durable rules only when a recurring failure threatens time, trust, data, revenue, or external systems.
+-- Keep rules short and testable. Move paths and commands to `TOOLS.md`, schedules to approved OpenClaw automations, and detailed workflows to Skills.
++- Keep rules short and testable. Move paths and commands to the `Tools` section of `AGENTS.md`, schedules to approved OpenClaw automations, and detailed workflows to Skills.
+ - Git-back important agent-file changes so maintenance remains reversible.
+ 
+@@ -103,5 +103,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep paths, runtime commands, journal IDs, and email client notes in `TOOLS.md`; read it when the task depends on Grogar's environment.
++- Keep paths, runtime commands, journal IDs, and email client notes in the `Tools` section of `AGENTS.md`; read it when the task depends on Grogar's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

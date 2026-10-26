@@ -1,0 +1,14 @@
+{
+  "agent": "frank",
+  "backup": "/root/.openclaw-frank/backups/cody-tools-cleanup-20261026-2026-10-26T21-20-02-960Z",
+  "files": [
+    {
+      "path": "/root/.openclaw-frank/workspace/AGENTS.md",
+      "sha256": "0ae6496f53b6b50cfb809f86258384b581e9bd5169ee57daa09e004179dd3c4a",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420
+    }
+  ],
+  "rollback": "Copy saved originals to their exact paths, preserve owner/mode, verify baseline hashes."
+}

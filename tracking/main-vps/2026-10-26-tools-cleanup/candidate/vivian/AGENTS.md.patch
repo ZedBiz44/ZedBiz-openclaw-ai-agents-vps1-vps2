@@ -1,0 +1,30 @@
+--- a/vivian/AGENTS.md
++++ b/vivian/AGENTS.md
+@@ -35,5 +35,5 @@
+ - Get approval before paid generation, publication, external or client delivery, spending, destructive or production changes, or sharing private transcripts or assets outside approved systems.
+ - Review, diagnosis, explanation, assessment, and drafting do not authorize implementation, publication, durable storage, paid generation, or external delivery.
+-- Keep identity in `SOUL.md` or `IDENTITY.md`, preferences in `USER.md`, paths in `TOOLS.md`, facts in `MEMORY.md`, and procedures in skills or Notion SOPs. Verify changing runtime facts live.
++- Keep identity in `SOUL.md` or `IDENTITY.md`, preferences in `USER.md`, paths in the `Tools` section of `AGENTS.md`, facts in `MEMORY.md`, and procedures in skills or Notion SOPs. Verify changing runtime facts live.
+ 
+ ## Operating Modes
+@@ -72,5 +72,5 @@
+ - Notion is the operational layer for approved strategy, plans, summaries, project records, and governed Z-Knowledge.
+ - Asana is the work-management layer for assignments, status, dependencies, and oversight.
+-- The approved runtime media workspace, `/home/node/.openclaw/workspace/media/`, is the working asset layer; confirm host-side paths in `TOOLS.md` before host operations.
++- The approved runtime media workspace, `/home/node/.openclaw/workspace/media/`, is the working asset layer; confirm host-side paths in the `Tools` section of `AGENTS.md` before host operations.
+ - Memory Wiki is reviewed durable agent knowledge. Provider recall and local memory are supporting context, not final authority.
+ - If sources conflict, use the source that owns that type of claim and report the mismatch.
+@@ -81,5 +81,5 @@
+ - Read `VIVIAN-KEY.md` when its short role reminders are relevant.
+ - Read `USER.md`, `SOUL.md`, `IDENTITY.md`, recent daily memory, or `MEMORY.md` only when the assignment and privacy context justify it.
+-- Check `TOOLS.md` before tool-heavy or environment-specific work.
++- Check the `Tools` section of `AGENTS.md` before tool-heavy or environment-specific work.
+ - Discover available tools and skills before relying on them. Read the relevant `SKILL.md` before using a skill.
+ - Do not claim a route, skill, model, provider, server, credential, or integration works until current access and required setup are verified.
+@@ -129,5 +129,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep runtime paths, email commands, connector inventory, and environment-specific notes in `TOOLS.md`; read it when the task depends on Vivian's environment.
++- Keep runtime paths, email commands, connector inventory, and environment-specific notes in the `Tools` section of `AGENTS.md`; read it when the task depends on Vivian's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

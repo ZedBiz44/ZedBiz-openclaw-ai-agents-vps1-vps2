@@ -1,0 +1,14 @@
+{
+  "agent": "vivian",
+  "backup": "/home/node/.openclaw/backups/cody-tools-cleanup-20261026-2026-10-26T21-19-59-556Z",
+  "files": [
+    {
+      "path": "/home/node/.openclaw/workspace/AGENTS.md",
+      "sha256": "d66bfcc8ac356c8681488050e0fc2645e6230a735175b46d238042075a6f86d5",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 420
+    }
+  ],
+  "rollback": "Copy saved originals to their exact paths, preserve owner/mode, verify baseline hashes."
+}

@@ -1,0 +1,7 @@
+--- a/amanda/IDENTITY.md
++++ b/amanda/IDENTITY.md
+@@ -55,3 +55,3 @@
+ ## Continuity
+ 
+-Read SOUL.md for temperament, AGENTS.md for operating rules, and TOOLS.md for tool boundaries before role-sensitive work.
++Read SOUL.md for temperament, AGENTS.md for operating rules, and the Tools section of AGENTS.md for tool boundaries before role-sensitive work.

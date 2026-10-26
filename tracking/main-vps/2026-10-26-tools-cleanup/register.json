@@ -1,0 +1,428 @@
+[
+  {
+    "agent": "amanda",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "ef75851331bad58e660e82189898d67675324cebd3729fcfcc802a18c2ab5567",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 17216,
+        "name": "AGENTS.md",
+        "candidate_sha256": "fcd81acad0de8778d653c43b3ba6c81969856edc5917a8b3b735eeac11441e3d",
+        "candidate_chars": 17288,
+        "replacements": 3
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "82e9f0698c1fa980a423647a462e45dbfeb33dbb50971c7234cc895783d70ee2",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 3494,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "4275b10af460482ec950d0781a7913da82108e47074da347eb3a07165fb2471c",
+        "candidate_chars": 3516,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "edith",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "8b79b4496910b494a41e656a67099199b7e78e06b032ebdc66d0d70a61910253",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 16053,
+        "name": "AGENTS.md",
+        "candidate_sha256": "1948e2fdcba5594be9747873589aa88a8ed7c84d2973bb6771aad8ae5ea7b3d4",
+        "candidate_chars": 16094,
+        "replacements": 2
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/SOUL.md",
+        "sha256": "c61882068d388bea5b39ec2fad26fff1ba881b11035e392f455a90de55ee97cf",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 2894,
+        "name": "SOUL.md",
+        "candidate_sha256": "10944e7fc1149ef0dca4b2b3ed776eae6c6c5bcfab54d772e0061abd31488049",
+        "candidate_chars": 2918,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "gohzed",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "290ca07768fd7cd5e26e39728e77218496943e0e7af3924cee043d71fc71a789",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 15093,
+        "name": "AGENTS.md",
+        "candidate_sha256": "5f5da40ddec8823c1616c6b7f0888b16431911a0fc7cdd8ecf7a549c2027a94c",
+        "candidate_chars": 15189,
+        "replacements": 4
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "fd5aefa42249c08845e7119b4b5514c817cce5e69fd82ca4a720b5056477738a",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 3445,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "545468eaac6ea74dc9739d47b0cd5f2a2d7e8b54d1ba7d50ac3d3a6fe98d51e1",
+        "candidate_chars": 3467,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "grogar",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "8bfa01c5f8840f2d2623ef7a3d2b335a724a999f2219fd0b3b05beb3840f8e5b",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 12983,
+        "name": "AGENTS.md",
+        "candidate_sha256": "4e11fb1bf095f059a2384851e44596bcbafca2263e8f2d623df63b4e55a4a64e",
+        "candidate_chars": 13079,
+        "replacements": 4
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "inga",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "b006df789a28a3dc4567c250c54fca595082ff3606b6180160185c1a008fc6b1",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 14944,
+        "name": "AGENTS.md",
+        "candidate_sha256": "947ee5b0ec6fa051f3b42a14e6dbc243c10a762691ee629df5c943858f35d5d9",
+        "candidate_chars": 14992,
+        "replacements": 2
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "maggie",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "da2e26c9c99e580d85e599f44e5b606c9d9f075dd105ddc875fa43acc85d5a14",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 13747,
+        "name": "AGENTS.md",
+        "candidate_sha256": "39d9aadd5e43faf5b9c1717f7975fec0edf4cd00a6144fb18095f05ed8d1a18c",
+        "candidate_chars": 13819,
+        "replacements": 3
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "marsha",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "16e4f964827759f4ad23a9c42425cba283c912bd4ae1f706696554fb31617fe6",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 20554,
+        "name": "AGENTS.md",
+        "candidate_sha256": "14de222358b2f7c618901685d9e7db7bb7e767f66e75757719af76385da1181b",
+        "candidate_chars": 20650,
+        "replacements": 4
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "7d4f8aea6e31a56a6b8b9ac6f7c6bffcbf5ab2b1a1f30fe0e8ed85651fe4e3f2",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 3310,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "d26829b0fbb53699e7205c2c6e3a6bc96801a7e2b4add876ed5a7deda9ac3344",
+        "candidate_chars": 3332,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "terry",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "e5d0a0c52237acfefeb5a245f7914e98d90a88c4ad5790ec0e06c669e7de6bea",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 20512,
+        "name": "AGENTS.md",
+        "candidate_sha256": "017f7ffda69f78f5f91b1038fc46e25e5e769e13ddeac5c1445542d7c3dc7db8",
+        "candidate_chars": 20546,
+        "replacements": 2
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "0f2076948d5afebae4b908d0b9d3b624c1193c281daa32d778cdc9af06efc6a7",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 5359,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "f07a5aa48f8faa39be709d182d522658e2a825bb4f7389f648b403088e95fd63",
+        "candidate_chars": 5381,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "victor",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "1466a8cb3df3e080601e4b8d1f2bd51a0b2768fcc508722300133140f1a6e3f5",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 22264,
+        "name": "AGENTS.md",
+        "candidate_sha256": "55a3dd036adff08b46c054ac574f96405d2dd4e4ff2594fe74bab5cdbd00bf8a",
+        "candidate_chars": 22336,
+        "replacements": 3
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "4a9f4054413b270380f51da6008277047ce36fafa82f5fe8d13315238a9ba5a0",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 3201,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "723de9ffa937a26cfd9b4baeb30288454a428bde755f616f649baf0b296e0874",
+        "candidate_chars": 3223,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "vivian",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "86d1829da2b75fe33bee8691d88d98be8fc5302a013dd557711d86b37b93bbc9",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 14096,
+        "name": "AGENTS.md",
+        "candidate_sha256": "d66bfcc8ac356c8681488050e0fc2645e6230a735175b46d238042075a6f86d5",
+        "candidate_chars": 14192,
+        "replacements": 4
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "wilma",
+    "server": "vps1",
+    "workspace": "/home/node/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/node/.openclaw/workspace/AGENTS.md",
+        "sha256": "12bc4fd1a2499b2d52ee08a7cc81a802389fb5a80dc332f903af38d295f7eb10",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 18986,
+        "name": "AGENTS.md",
+        "candidate_sha256": "72863ed04d2731a0117b3e02fa2d7bf09eb54b20dc7dc46dc0efa9fd0c99f349",
+        "candidate_chars": 19082,
+        "replacements": 4
+      },
+      {
+        "path": "/home/node/.openclaw/workspace/IDENTITY.md",
+        "sha256": "c95a00771d5f27aee8edcccdc2b37c12e377a7fa3933c80c8cabed5b87ee75ab",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 3436,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "c06be037b165651707061338be4fff70a87a63d0923d7099e1c3b46a968e13b1",
+        "candidate_chars": 3458,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "frank",
+    "server": "vps2",
+    "workspace": "/root/.openclaw-frank/workspace",
+    "changes": [
+      {
+        "path": "/root/.openclaw-frank/workspace/AGENTS.md",
+        "sha256": "fc79ca2fab954586e354247daf17cdb0b815af62211a1075fdb0542c9d119fbb",
+        "uid": 0,
+        "gid": 0,
+        "mode": 420,
+        "chars": 21969,
+        "name": "AGENTS.md",
+        "candidate_sha256": "0ae6496f53b6b50cfb809f86258384b581e9bd5169ee57daa09e004179dd3c4a",
+        "candidate_chars": 22017,
+        "replacements": 2
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "harry",
+    "server": "vps2",
+    "workspace": "/root/.openclaw-harry/workspace",
+    "changes": [
+      {
+        "path": "/root/.openclaw-harry/workspace/AGENTS.md",
+        "sha256": "dd73e71f1b688ea4ea7c0e1286d3d10db7cb2d0fd5e2818648ae3f4fb109c546",
+        "uid": 0,
+        "gid": 0,
+        "mode": 420,
+        "chars": 14449,
+        "name": "AGENTS.md",
+        "candidate_sha256": "b1ec1536983321e0076541e09560c810f953d849609d5eb087c5fc330f4bc72e",
+        "candidate_chars": 14521,
+        "replacements": 3
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "suzy",
+    "server": "vps2",
+    "workspace": "/root/.openclaw-suzy/workspace",
+    "changes": [
+      {
+        "path": "/root/.openclaw-suzy/workspace/AGENTS.md",
+        "sha256": "54ee662b150c12c22359dd23f00bd95c51b418e83d9475a8f7e1afa756de6d85",
+        "uid": 0,
+        "gid": 0,
+        "mode": 420,
+        "chars": 13919,
+        "name": "AGENTS.md",
+        "candidate_sha256": "5cb6f5c4cb237ff69660f28892175594b5ea435ad95cce12a86c2b2c595120bb",
+        "candidate_chars": 13967,
+        "replacements": 2
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  },
+  {
+    "agent": "rocky",
+    "server": "vps4",
+    "workspace": "/home/openclaw/.openclaw/workspace",
+    "changes": [
+      {
+        "path": "/home/openclaw/.openclaw/workspace/AGENTS.md",
+        "sha256": "8ad22ee32750cdfa3e9bed59591a5f2920028cd5f20b6ba0458670177e949a08",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 13914,
+        "name": "AGENTS.md",
+        "candidate_sha256": "0d16268417ad0e63e7530b388dbccf015305d2674daba5e7023ebae394d258ba",
+        "candidate_chars": 13962,
+        "replacements": 2
+      },
+      {
+        "path": "/home/openclaw/.openclaw/workspace/IDENTITY.md",
+        "sha256": "3a9de18fd58aeb7c28cdb705c60d822bac21316d4174bf72eff84618d6dc1526",
+        "uid": 1000,
+        "gid": 1000,
+        "mode": 420,
+        "chars": 6835,
+        "name": "IDENTITY.md",
+        "candidate_sha256": "33fe158ab66086511e336e1a5a86b186d11b456f6aa3c14f5ee911f0f69fe509",
+        "candidate_chars": 6859,
+        "replacements": 1
+      }
+    ],
+    "tools_section_byte_identical": true,
+    "legacy_tools_absent": true,
+    "preservation": "Only obsolete read/write routing replaced. All other rules and migrated notes retained. Historical migration headings and source attribution retained."
+  }
+]

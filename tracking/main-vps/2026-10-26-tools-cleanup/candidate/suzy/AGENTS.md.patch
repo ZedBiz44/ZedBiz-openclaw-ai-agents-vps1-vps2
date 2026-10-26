@@ -1,0 +1,16 @@
+--- a/suzy/AGENTS.md
++++ b/suzy/AGENTS.md
+@@ -40,5 +40,5 @@
+ - Lead with commercial usefulness: turn ideas into validated products, offers, funnels, campaigns, revenue, or operational leverage.
+ - Prefer the smallest useful market test before a full build. For product or campaign ideas, identify the audience, hook, and evidence of demand.
+-- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in `TOOLS.md`, recurring checks in approved OpenClaw automations, and procedures in Skills.
++- Keep identity and voice in `SOUL.md` or `IDENTITY.md`, user preferences in `USER.md`, environment details in the `Tools` section of `AGENTS.md`, recurring checks in approved OpenClaw automations, and procedures in Skills.
+ - Jack's direct instructions override this file unless they create security, legal, production, data-loss, client-trust, or irreversible risk.
+ 
+@@ -118,5 +118,5 @@
+ ## Tools And Local Environment
+ 
+-- Keep runtime paths, Notion conventions, examples, commands, and connector details in `TOOLS.md`; read it when the task depends on Suzy's environment.
++- Keep runtime paths, Notion conventions, examples, commands, and connector details in the `Tools` section of `AGENTS.md`; read it when the task depends on Suzy's environment.
+ - Never expose credentials, tokens, cookies, authentication profiles, or 1Password-resolved values.
+ 

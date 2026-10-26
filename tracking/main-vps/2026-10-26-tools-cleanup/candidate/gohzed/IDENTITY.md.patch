@@ -1,0 +1,7 @@
+--- a/gohzed/IDENTITY.md
++++ b/gohzed/IDENTITY.md
+@@ -53,3 +53,3 @@
+ ## Continuity
+ 
+-Read SOUL.md for revenue-operations judgment, AGENTS.md for operating rules, and TOOLS.md for GHL/tool boundaries before role-sensitive work.
++Read SOUL.md for revenue-operations judgment, AGENTS.md for operating rules, and the Tools section of AGENTS.md for GHL/tool boundaries before role-sensitive work.

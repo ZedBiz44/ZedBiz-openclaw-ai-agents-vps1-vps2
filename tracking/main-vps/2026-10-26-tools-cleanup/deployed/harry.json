@@ -1,0 +1,14 @@
+{
+  "agent": "harry",
+  "backup": "/root/.openclaw-harry/backups/cody-tools-cleanup-20261026-2026-10-26T21-20-04-041Z",
+  "files": [
+    {
+      "path": "/root/.openclaw-harry/workspace/AGENTS.md",
+      "sha256": "b1ec1536983321e0076541e09560c810f953d849609d5eb087c5fc330f4bc72e",
+      "uid": 0,
+      "gid": 0,
+      "mode": 420
+    }
+  ],
+  "rollback": "Copy saved originals to their exact paths, preserve owner/mode, verify baseline hashes."
+}

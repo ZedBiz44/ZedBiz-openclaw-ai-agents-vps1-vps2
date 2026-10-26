@@ -1,0 +1,21 @@
+{
+  "agent": "rocky",
+  "backup": "/home/openclaw/.openclaw/backups/cody-tools-cleanup-20261026-2026-10-26T21-20-06-463Z",
+  "files": [
+    {
+      "path": "/home/openclaw/.openclaw/workspace/AGENTS.md",
+      "sha256": "0d16268417ad0e63e7530b388dbccf015305d2674daba5e7023ebae394d258ba",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 420
+    },
+    {
+      "path": "/home/openclaw/.openclaw/workspace/IDENTITY.md",
+      "sha256": "33fe158ab66086511e336e1a5a86b186d11b456f6aa3c14f5ee911f0f69fe509",
+      "uid": 1000,
+      "gid": 1000,
+      "mode": 420
+    }
+  ],
+  "rollback": "Copy saved originals to their exact paths, preserve owner/mode, verify baseline hashes."
+}
