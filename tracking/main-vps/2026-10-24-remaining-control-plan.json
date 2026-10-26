@@ -1,0 +1,85 @@
+{
+  "agents": {
+    "amanda": {
+      "manifest": "/opt/openclaw/recovery/amanda-20261018/manifest.json",
+      "wrapper": "/opt/openclaw/agents/amanda/op-start-amanda.sh",
+      "wrapperSha256": "f2ea4a27a12f835d0abd6fdb1c8fa559357525444be117f4c543e7929865eea8",
+      "imagePinsMatch": true,
+      "memorySlot": "memory-lancedb",
+      "externalMemoryVerified": true,
+      "targetImage": "zedbiz/amanda:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "victor": {
+      "manifest": "/opt/openclaw/recovery/victor-20261018/manifest.json",
+      "wrapper": "/opt/openclaw/agents/victor/op-start-victor.sh",
+      "wrapperSha256": "89c1043c0873c7383c6e4cebf89e895c828d98d349cbfa38d98414dbd7bf0701",
+      "imagePinsMatch": true,
+      "memorySlot": "memory-lancedb",
+      "externalMemoryVerified": true,
+      "targetImage": "zedbiz/victor:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "wilma": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/wilma/manifest.json",
+      "wrapper": "/opt/openclaw/agents/wilma/op-start-wilma.sh",
+      "wrapperSha256": "7dc219c3322e22e8742eaa726e3921f3375356613cb19838df0e008a4b662a14",
+      "imagePinsMatch": true,
+      "memorySlot": "memory-lancedb",
+      "externalMemoryVerified": true,
+      "targetImage": "zedbiz/wilma:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "gohzed": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/gohzed/manifest.json",
+      "wrapper": "/opt/openclaw/agents/gohzed/op-start-gohzed.sh",
+      "wrapperSha256": "3c71dd59a5c9316f2806b48071dae13915fb60f7432766b560bf735efdb3b222",
+      "imagePinsMatch": true,
+      "memorySlot": "hindsight-openclaw",
+      "externalMemoryVerified": false,
+      "targetImage": "zedbiz/openclaw-base:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "grogar": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/grogar/manifest.json",
+      "wrapper": "/opt/openclaw/agents/grogar/op-start-grogar.sh",
+      "wrapperSha256": "acbeab92fdbb7f8ab647ad0b430659818641ba387f8ef05ca4b702dbec2025a5",
+      "imagePinsMatch": true,
+      "memorySlot": "hindsight-openclaw",
+      "externalMemoryVerified": false,
+      "targetImage": "zedbiz/grogar:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "inga": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/inga/manifest.json",
+      "wrapper": "/opt/openclaw/agents/inga/op-start-inga.sh",
+      "wrapperSha256": "a01fbf03f884fdc9e33bc9e331a52c681ffb4e8ce48ea9badfb0c75a57916a1c",
+      "imagePinsMatch": true,
+      "memorySlot": "hindsight-openclaw",
+      "externalMemoryVerified": false,
+      "targetImage": "zedbiz/openclaw-base:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "maggie": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/maggie/manifest.json",
+      "wrapper": "/opt/openclaw/agents/maggie/op-start-maggie.sh",
+      "wrapperSha256": "ed3fef4219ca169d97d1bf6cf8e1a517b7a8c8b5e3b35d794f0a03dc50d54d92",
+      "imagePinsMatch": true,
+      "memorySlot": "hindsight-openclaw",
+      "externalMemoryVerified": false,
+      "targetImage": "zedbiz/maggie:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    },
+    "terry": {
+      "manifest": "/opt/openclaw/recovery/fleet-20261018/terry/manifest.json",
+      "wrapper": "/opt/openclaw/agents/terry/op-start-terry.sh",
+      "wrapperSha256": "fcc0234928cae8a4f58b171c0f80266953cf0e90f4998a6a47587be261807e3a",
+      "imagePinsMatch": true,
+      "memorySlot": "openclaw-mem0",
+      "externalMemoryVerified": false,
+      "targetImage": "zedbiz/openclaw-base:2026.10.6-tools-full-20261023",
+      "targetGuardPassed": true
+    }
+  },
+  "allExistingRecoveryArchivesVerified": true
+}

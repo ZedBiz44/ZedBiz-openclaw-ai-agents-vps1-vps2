@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "agent": "wilma",
+  "image": "sha256:ec895e063597cb56e93f77d61948275a9de7954b249bbd65850092eca0176a8a",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ],
+    "telegram": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": null,
+        "activeRuns": null
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

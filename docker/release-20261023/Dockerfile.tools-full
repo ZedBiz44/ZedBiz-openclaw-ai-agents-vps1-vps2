@@ -1,0 +1,20 @@
+ARG BASE_IMAGE=zedbiz/openclaw-base:2026.10.6-core-20261023
+FROM zedbiz/openclaw-base:2026.10.6-tools-20261023 AS cli
+FROM ${BASE_IMAGE}
+USER root
+ENV NODE_VERSION=24.22.1
+RUN rm -rf /usr/local/lib/node_modules/@openai/codex /usr/local/lib/node_modules/@google/gemini-cli /usr/local/lib/node_modules/npm
+COPY --from=cli /usr/local/lib/node_modules/@openai/ /usr/local/lib/node_modules/@openai/
+COPY --from=cli /usr/local/lib/node_modules/@google/ /usr/local/lib/node_modules/@google/
+COPY --from=cli /usr/local/lib/node_modules/npm/ /usr/local/lib/node_modules/npm/
+COPY tool-assets/gh tool-assets/pandoc tool-assets/fzf tool-assets/just tool-assets/uv tool-assets/uvx tool-assets/yt-dlp tool-assets/camsnap tool-assets/goplaces /usr/local/bin/
+COPY tool-assets/rclone /usr/bin/rclone
+COPY tool-assets.json tool-assets-proof.json /opt/zedbiz/
+RUN test "$(node --version)" = v24.22.1 \
+ && codex --version && gemini --version && npm --version \
+ && gh --version && rclone version && pandoc --version \
+ && uv --version && uvx --version && fzf --version && just --version \
+ && yt-dlp --version && camsnap --version && goplaces --version \
+ && printf 'alpha\nbeta\n' | fzf --filter alpha | grep -qx alpha \
+ && printf '# Release proof\n' | pandoc -f markdown -t html | grep -q '<h1'
+USER node

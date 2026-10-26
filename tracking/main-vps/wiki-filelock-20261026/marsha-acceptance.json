@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "agent": "marsha",
+  "image": "sha256:76a811c366aa493c924f0339f2575bdf53f8aee2fad3cfc09f96c169390d29e4",
+  "healthy": true,
+  "wikiSearch": {
+    "ready": 200,
+    "http": 200,
+    "ok": true,
+    "isError": false
+  },
+  "channels": {
+    "discord": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": false,
+        "activeRuns": 0
+      }
+    ],
+    "slack": [
+      {
+        "enabled": true,
+        "configured": false,
+        "running": false,
+        "connected": null,
+        "busy": null,
+        "activeRuns": null
+      }
+    ],
+    "telegram": [
+      {
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true,
+        "busy": null,
+        "activeRuns": null
+      }
+    ]
+  },
+  "wrapperAndAgentConfigUnchanged": true,
+  "asanaContainerUnchanged": true
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "image": "sha256:d5f2bd431a1cd5927368316d35cb496b0817fcbafea63518c0c908a94fdf03e2",
+  "pluginVersion": "1.2.1",
+  "sdkVersion": "3.3.1",
+  "qdrantClientVersion": "1.18.0",
+  "customPluginCodeSha256": "0e7205db54c8790c1aff7b09786ec0b7578db08181b5394a7137df4e530297c2",
+  "vendorPackage": "mem0-openclaw-mem0-1.2.1.tgz",
+  "vendorSha256": "2cf14e3725c9913275d3a5a72db83f05462721f9ae4cb1ad05ad85b7ef70c941",
+  "lockSha256": "e4180c3b5587246e6b6f04d4a3ec52c85432f00c87dc6d79ab2134601a9e519c",
+  "cleanNpmCiReproduced": true,
+  "files": 4658,
+  "bytes": 37092929,
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "productionChanged": false
+}

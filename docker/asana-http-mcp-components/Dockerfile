@@ -1,4 +1,4 @@
-FROM node:24.22.0-bookworm-slim AS build
+FROM node:24.22.1-bookworm-slim@sha256:2dd9a4f758e173b65fee15388f7706af6fb01ef50cf7a2c0538711d67a6981ae AS build
 
 WORKDIR /app
 COPY package.json package-lock.json ./
@@ -8,7 +8,7 @@ COPY build.js tsconfig.json ./
 COPY src ./src
 RUN npm run typecheck && npm run build && npm run test:catalog && npm audit --omit=dev && npm prune --omit=dev
 
-FROM node:24.22.0-bookworm-slim
+FROM node:24.22.1-bookworm-slim@sha256:2dd9a4f758e173b65fee15388f7706af6fb01ef50cf7a2c0538711d67a6981ae
 
 ENV NODE_ENV=production
 ENV PORT=8080

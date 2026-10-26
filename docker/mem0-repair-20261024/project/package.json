@@ -1,0 +1,13 @@
+{
+  "name": "zedbiz-mem0-managed-project",
+  "version": "2026.10.24",
+  "private": true,
+  "dependencies": {
+    "@mem0/openclaw-mem0": "file:vendor/mem0-openclaw-mem0-1.2.1.tgz",
+    "@qdrant/js-client-rest": "1.18.0",
+    "better-sqlite3": "12.11.1"
+  },
+  "overrides": {
+    "zod": "4.6.6"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "status": "candidate-built-not-activated",
+  "sourceCommit": "33c987fdc59d38b1f337e7bcad3c80c1f1bc87a1",
+  "image": "zedbiz/openclaw-base:2026.10.6-core-20261023",
+  "imageId": "sha256:a3b7ccff1fa7244683fd93e0b1baf12b53ac435723ce89ce235c9dde6ba9b69b",
+  "upstream": "ghcr.io/openclaw/openclaw@sha256:7dbff0fe5f5359b1badefe90a23efa9f203cd0d3c36bee095f4896c7a1d3864b",
+  "base": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023",
+  "baseId": "sha256:0060deb6eccd9d33108c1b2bc8bd9a608428695e943f0c32c4eb4a0c62cf1202",
+  "buildArgs": {
+    "UPSTREAM_IMAGE": "ghcr.io/openclaw/openclaw@sha256:7dbff0fe5f5359b1badefe90a23efa9f203cd0d3c36bee095f4896c7a1d3864b",
+    "BASE_IMAGE": "zedbiz/openclaw-base:2026.10.4-wikilock-20261023"
+  },
+  "checksums": {
+    "Dockerfile.core": "98255f28378def6067ddcdd9fb2b695739776448da8b16f656e65d2545e58d2d",
+    "patch-core.py": "152b32ebf4c71e6df379a79c071dc6d2fe1f1e73f60379447ed340c998182b35",
+    "patch-dynamic-memory.cjs": "75715dc0cc8fd0072f287705ddf0930e8e65fd433adbe159992dc9c6a2c4bb58"
+  },
+  "tests": {
+    "node": "24.22.1",
+    "openclaw": "2026.10.6 (fe06181)",
+    "dynamicMemoryAssertions": 6,
+    "wikiLockBuildGate": true
+  },
+  "terryCheckpoint": {
+    "path": "/opt/openclaw/backups/release-20261023/terry/state-before.tar.gz",
+    "sha256": "fc5f8bceef56b7f85df9571564a99bb305339b676e997d8d18e38d870cb262ce",
+    "restoredDatabases": 4,
+    "integrityPassed": true,
+    "originalServiceHealthy": true
+  },
+  "attempts": [
+    "Chroot helper could not connect to systemd bus; no live stop occurred. Host namespace helper verified active/success and used for checkpoint.",
+    "SCP inherited read-only permission on release build directory; restored owner write on that exact source directory and recopied missing Mem0 guard. Rehearsal Mem0 guard then passed.",
+    "Canonical contents API input normalized to exact local source bytes; only final newlines differed, with no semantic build change."
+  ],
+  "pending": [
+    "migration comparison",
+    "plugin gate",
+    "isolated Wiki regression",
+    "cold image restore",
+    "live pilot acceptance"
+  ]
+}
