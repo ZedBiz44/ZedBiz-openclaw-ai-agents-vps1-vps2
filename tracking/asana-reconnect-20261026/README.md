@@ -1,6 +1,6 @@
 # Asana reconnect repair, October 26, 2026
 
-Date: 2026-10-26 | Agent: [Manus] | Status: Live rollout in progress
+Date: 2026-10-26 | Agent: [Manus] | Status: Applied fleet-wide; Rocky memory and next scheduled acceptance pending
 
 ## Purpose
 
@@ -45,3 +45,9 @@ Terry’s first isolated fixture could not read its test file because umask left
 ## Remaining acceptance
 
 Tomorrow’s ordinary daily journals cannot be claimed passed today. Existing scheduled results still need review even after all current deployment checks pass. Main-branch status and final per-agent rollout receipts will be linked from issue 493. Until a PR is merged, this branch is implementation evidence, not an assertion that main already reflects every live change.
+
+## Final deployment checkpoint
+
+All fifteen agents have the exact repair, remain on 2026.10.6 / Node 24.22.1 and passed the final read-only runtime/hash/health inventory. Fourteen passed actual Asana, Codex Notion and existing memory reads. Rocky passed Asana, Notion, health and all required channel probes, but his memory test is not verified because the remote operator call lacks the stable authenticated sender required by his unchanged provider-separated policy. No sender spoofing or memory-policy change is allowed to obtain a test pass. See `FINAL-STATUS.md`, `proof/native-live-acceptance.json` and `proof/final-runtime-audit.json`.
+
+Jack’s normal message to Rocky is the remaining actual memory check. Victor retains already assigned next-cycle scheduled/recurrence review. Issue 493 stays open; PR 494 is open and main is unchanged. Future software replacement can overwrite a local hotfix, so retain this guard and regression proof with the upgrade record.
