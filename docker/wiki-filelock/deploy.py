@@ -34,11 +34,16 @@ const r=await fetch(base+'/tools/invoke',{method:'POST',signal:AbortSignal.timeo
 const d=await r.json();console.log(JSON.stringify({ready:ready.status,http:r.status,ok:d.ok,isError:d.result?.isError===true}));})().catch(()=>process.exit(1));
 '''
 def verify(agent,row,image,asana):
- for attempt in range(36):
+ readyjs="const fs=require('fs');const c=JSON.parse(fs.readFileSync('/home/node/.openclaw/openclaw.json'));fetch('http://127.0.0.1:'+(c.gateway.port||18789)+'/readyz',{signal:AbortSignal.timeout(5000)}).then(r=>console.log(r.status)).catch(()=>process.exit(1));"
+ for attempt in range(60):
   d=inspect(agent)
-  if d['State'].get('Health',{}).get('Status')=='healthy':break
+  if d['State'].get('Health',{}).get('Status')=='healthy':
+   try:
+    ready=subprocess.run(['docker','exec',agent,'node','-e',readyjs],capture_output=True,text=True,timeout=10)
+    if ready.returncode==0 and ready.stdout.strip()=='200':break
+   except subprocess.TimeoutExpired:pass
   time.sleep(5)
- else:raise RuntimeError(agent+' unhealthy after startup')
+ else:raise RuntimeError(agent+' did not become healthy and ready after startup')
  assert d['Image']==image['id']
  run(['docker','exec',agent,'python3','-I','-B','/opt/zedbiz/wiki-lock/verify.py'],agent+'-gate',40)
  result=json.loads(run(['docker','exec',agent,'node','-e',PROBE],agent+'-wiki',150))
@@ -59,8 +64,11 @@ def deploy(agent):
  m=json.loads(manifest.read_text());assert m['images']==row['images'] and m['archive']==row['archive'] and m['sha256']==row['sha256']
  archive=json.loads((ROOT/'archive.json').read_text());assert P(archive['archive']).is_file()
  assert json.loads((ROOT/'cold-restore-proof.json').read_text())['passed']
- idle(agent);asana=inspect(agent+'-asana-mcp');backup=ROOT/'rollback'/agent;backup.mkdir(parents=True)
- for file in [compose,post,manifest]:shutil.copy2(file,backup/file.name)
+ idle(agent);asana=inspect(agent+'-asana-mcp');backup=ROOT/'rollback'/agent;backup.mkdir(parents=True,exist_ok=True)
+ for file in [compose,post,manifest]:
+  saved=backup/file.name
+  if saved.exists():assert sha(saved)==sha(file),'Retry must match the preserved rollback files'
+  else:shutil.copy2(file,saved)
  text=compose.read_text();assert text.count(row['imageRef'])==1
  script=post.read_text();assert script.count(OLD_GUARD)==1
  selected=[i for i in m['images'] if i['ref']==row['imageRef']];assert len(selected)==1

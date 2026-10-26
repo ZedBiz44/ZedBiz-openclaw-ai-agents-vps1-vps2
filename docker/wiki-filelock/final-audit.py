@@ -3,10 +3,13 @@ import hashlib,json,pathlib,subprocess
 P=pathlib.Path;ROOT=P('/opt/openclaw/recovery/wiki-filelock-20261026');rows=[]
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 inventory=json.loads((ROOT/'inventory.json').read_text());images=json.loads((ROOT/'images.json').read_text())
+archive=json.loads((ROOT/'archive.json').read_text())
+with P(archive['archive']).open('rb') as f:assert hashlib.file_digest(f,'sha256').hexdigest()==archive['sha256'],'Recovery archive checksum changed'
 for row in inventory:
  agent=row['agent'];base=P('/opt/openclaw/agents')/agent;image=next(i for i in images if i['agent']==agent)
  d=json.loads(subprocess.check_output(['docker','inspect',agent]))[0]
  assert d['Image']==image['id'] and d['State']['Health']['Status']=='healthy'
+ assert any('post-start.sh &&' in arg for arg in d['Config']['Cmd']),'Startup command must gate gateway launch on post-start success'
  assert sha(base/'config/openclaw.json')==row['configSha'] and sha(P(row['wrapper']))==row['wrapperSha']
  assert 'filelock-fd-v2' in (base/'workspace/post-start.sh').read_text()
  m=json.loads(P(row['manifest']).read_text());a=json.loads((ROOT/'archive.json').read_text());assert m['archive']==a['archive'] and m['sha256']==a['sha256']
