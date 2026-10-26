@@ -83,7 +83,7 @@ for name,rows in c.get('channelAccounts',{}).items():
   channels.append({'channel':name,'running':x.get('running'),'connected':x.get('connected'),'probeOk':x.get('probe',{}).get('ok'),'auditOk':x.get('audit',{}).get('ok')})
 assert all(x['running'] and x['connected'] and x['probeOk'] and x['auditOk'] is not False for x in channels),'Native channel check failed; stop'
 record['channels']=channels;record['currentHealthOk']=h.get('ok') is True
-KEY='agent:main:manus-native-reconnect-rollout-acceptance-20261026'
+KEY='agent:main:main:direct:manus-native-reconnect-rollout-acceptance-20261026'
 def transcript():
  db=sqlite3.connect('file:'+str(state/'agents/main/agent/openclaw-agent.sqlite')+'?mode=ro',uri=True);row=db.execute('select current_session_id from session_nodes where session_key=?',(KEY,)).fetchone();result={'sessionId':row[0] if row else None,'tools':[],'final':None}
  if row:
@@ -109,7 +109,7 @@ if not initial['final'] or 'NATIVE_ROLLOUT_FEATURE_CHECK_COMPLETE' not in initia
   print(a+': '+str(len(current['tools']))+' saved tool results',flush=True);time.sleep(10)
 else:current=initial
 record['features']=current;tools=current['tools'];final=current['final'] or ''
-asana=[x for x in tools if x['name']=='asana.asana_get_user'];notion=[x for x in tools if x['name']=='codex_apps.notion.fetch'];memory=[x for x in tools if x['name']=='mem0_search' or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(s in x['name'] for s in ['search','recall','retrieve']))]
+asana=[x for x in tools if x['name']=='asana.asana_get_user'];notion=[x for x in tools if x['name']=='codex_apps.notion.fetch'];memory=[x for x in tools if x['name'] in ['mem0_search','hindsight_recall'] or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(s in x['name'] for s in ['search','recall','retrieve']))]
 passed=len(asana)==1 and not asana[0]['isError'] and asana[0]['workspaceMatched'] and any(not x['isError'] and x['technicalDocumentationMatched'] for x in notion) and any(not x['isError'] for x in memory) and all(x in final for x in ['ASANA_PASS','NOTION_PASS','MEMORY_READ_PASS'])
 record['state']='deployment_and_current_features_pass' if passed else 'deployment_done_feature_issue_stop';(proof/'deployment.json').write_text(json.dumps(record,indent=2)+'\n');print('NATIVE_BEGIN');print(json.dumps(record));print('NATIVE_END')
 if not passed:raise SystemExit(4)

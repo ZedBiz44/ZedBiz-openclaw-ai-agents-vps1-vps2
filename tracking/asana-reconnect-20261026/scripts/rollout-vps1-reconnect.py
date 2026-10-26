@@ -33,7 +33,7 @@ def settings():
  r=subprocess.run(['docker','exec',a,'node','-e',s],capture_output=True,text=True,timeout=20);assert r.returncode==0;return json.loads(r.stdout)
 def envhash(x):return hashlib.sha256(json.dumps(sorted(x['Config'].get('Env',[]))).encode()).hexdigest()
 def safe(d):
- return d.get('activeOnlyQuery') is True and d.get('listReportedTotal')==0 and d.get('listHasMore') is False and d.get('sessions')==[] and not any(x.get('runningAtMs') for x in d.get('jobs',[])) and not any(x.get('busy') or x.get('activeRuns',0) for x in d.get('channels',[])) and all(x.get('running') and x.get('connected') for x in d.get('channels',[]))
+ return d.get('activeOnlyQuery') is True and d.get('listReportedTotal')==0 and d.get('listHasMore') is False and d.get('sessions')==[] and not any(x.get('runningAtMs') for x in d.get('jobs',[])) and not any(x.get('busy') or x.get('activeRuns',0) for x in d.get('channels',[])) and all(x.get('running') and x.get('connected') for x in d.get('channels',[]) if x.get('configured') is not False and x.get('enabled') is not False)
 before=inspect(a);assert inspect(candidate)['Id']==candidateId,'Candidate changed; stop'
 assert before['Image'] in [parentId,candidateId],'Running source image changed; stop'
 if before['Image']==candidateId:
@@ -77,8 +77,14 @@ r=subprocess.run(['docker','exec',a,'node','-e',s],capture_output=True,text=True
 assert loaded['version']=='2026.10.6' and loaded['node']=='v24.22.1' and all(x['sha256']==m['patchedSha256'] for x,m in zip(loaded['files'],manifest)),'Loaded upgrade or patch differs; stop'
 result['loaded']=loaded
 healthCode=idle.replace("const sessions=await req('sessions.list'", "const currentHealth=await req('health',{});const sessions=await req('sessions.list'").replace("channels,jobs:","health:{ok:currentHealth.ok,eventLoop:currentHealth.eventLoop},channels,jobs:")
-check=node(healthCode);assert check.get('health',{}).get('ok') is True and not check.get('health',{}).get('eventLoop',{}).get('degraded'),'Current health failed; stop'
-assert all(x.get('running') and x.get('connected') for x in check['channels']),'Current messaging connection failed; stop'
+check=None
+for attempt in range(4):
+ try:check=node(healthCode);break
+ except RuntimeError:
+  if attempt==3:raise
+  print(a+': startup settling; repeating only the read-only health query',flush=True);time.sleep(5)
+assert check.get('health',{}).get('ok') is True and not check.get('health',{}).get('eventLoop',{}).get('degraded'),'Current health failed; stop'
+assert all(x.get('running') and x.get('connected') for x in check['channels'] if x.get('configured') is not False and x.get('enabled') is not False),'Current messaging connection failed; stop'
 result['currentHealthAndConnections']=check;result['state']='deployed_static_health_pass_needs_native_reads';(root/'manus-deployment.json').write_text(json.dumps(result,indent=2)+'\n')
 print('DEPLOY_BEGIN');print(json.dumps(result));print('DEPLOY_END')
 '''.replace('AGENT',repr(a)).replace('MANIFEST',repr(MANIFEST)).replace('IDLE',repr(IDLE))

@@ -1,7 +1,7 @@
-import json,subprocess,time,re
+import json,subprocess,time,re,hashlib
 from pathlib import Path
 
-KEY='agent:main:manus-asana-reconnect-rollout-acceptance-20261026'
+KEY='agent:main:main:direct:manus-asana-reconnect-rollout-acceptance-20261026'
 
 def remote(code,server='vps1',timeout=60):
  p=subprocess.run(['vps-access','-ssh','access',server],input="python3 - <<'PY'\n"+code+'\nPY\nexit\n',text=True,capture_output=True,timeout=timeout)
@@ -45,7 +45,7 @@ print('FEATURE_BEGIN');print(json.dumps(r));print('FEATURE_END')
        'read existing ZedBiz memories with the installed memory_recall tool or your approved equivalent memory read. Empty memory search may be noted but is not permission to create memories. '
        'No task/Notion/file/memory writes, external messages, delegation, credential/config/model changes, raw Asana API substitute or failed-operation replay. '
        'Return ASANA_PASS or ASANA_FAIL, NOTION_PASS or NOTION_FAIL, MEMORY_READ_PASS or MEMORY_READ_FAIL. Do not quote memory or page content. Explain only sanitized failures. Finish ROLLOUT_FEATURE_CHECK_COMPLETE.')
-  params={'agentId':'main','message':msg,'sessionKey':KEY,'deliver':False,'timeout':0,'idempotencyKey':'manus-'+agent+'-reconnect-rollout-acceptance-20261026'}
+  params={'agentId':'main','message':msg,'sessionKey':KEY,'deliver':False,'timeout':0,'idempotencyKey':'manus-'+agent+'-reconnect-acceptance-'+hashlib.sha256(KEY.encode()).hexdigest()[:12]}
   code="import subprocess,json\np=subprocess.run(['docker','exec',AGENT,'openclaw','gateway','call','agent','--params',PARAM,'--json'],capture_output=True,text=True);print('REQUEST_BEGIN');print(json.dumps({'exit':p.returncode,'stdout':p.stdout,'stderr':p.stderr[-400:]}));print('REQUEST_END')".replace('AGENT',repr(agent)).replace('PARAM',repr(json.dumps(params)))
   out=remote(code);request=json.loads(out.split('REQUEST_BEGIN\n',1)[1].split('\nREQUEST_END',1)[0])
   if request['exit']!=0:return {'state':'request_failed_no_retry','request':request}
@@ -58,7 +58,7 @@ print('FEATURE_BEGIN');print(json.dumps(r));print('FEATURE_END')
  final=events['final'] or '';tools=events['tools']
  asana=[x for x in tools if x['name']=='asana.asana_get_user']
  notion=[x for x in tools if x['name']=='codex_apps.notion.fetch']
- memory=[x for x in tools if x['name']=='mem0_search' or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(y in x['name'] for y in ['search','recall','retrieve']))]
+ memory=[x for x in tools if x['name'] in ['mem0_search','hindsight_recall'] or 'memory_recall' in x['name'] or ('memory' in x['name'] and any(y in x['name'] for y in ['search','recall','retrieve']))]
  passed=len(asana)==1 and not asana[0]['isError'] and asana[0]['expectedGidMatched'] and asana[0]['expectedWorkspaceMatched'] and any(not x['isError'] and x['technicalDocumentationMatched'] for x in notion) and any(not x['isError'] for x in memory) and all(x in final for x in ['ASANA_PASS','NOTION_PASS','MEMORY_READ_PASS'])
  result={'state':'passed_current_features' if passed else 'feature_acceptance_failed','request':request,'events':events}
  path=Path('/home/ubuntu/reconnect-current-feature-'+agent+'.json');path.write_text(json.dumps(result,indent=2)+'\n')
