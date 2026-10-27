@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import sqlite3
 import time
 import urllib.error
 import urllib.parse
@@ -22,6 +23,59 @@ class NotionMirror:
         self.topic_database_id = topic_database_id
 
     def request(self, method: str, path: str, payload: dict[str, Any] | None = None) -> dict[str, Any]:
+        # Keep the repair scoped to Edith's marketing lane. Notion query indexing
+        # can lag behind a successful create; retain page identity across retries.
+        identity = None
+        if method == "POST" and payload:
+            if path.endswith("/query"):
+                field = payload.get("filter", {}).get("property")
+                value = payload.get("filter", {}).get("rich_text", {}).get("equals", "")
+                database_id = path.split("/")[2]
+                if field in {"Z-Code", "Topic-Key"} and value.startswith("ZMMW-40000-"):
+                    identity = (database_id, field, value)
+            elif path == "/pages":
+                database_id = payload.get("parent", {}).get("database_id")
+                for field in ("Z-Code", "Topic-Key"):
+                    parts = payload.get("properties", {}).get(field, {}).get("rich_text", [])
+                    value = "".join(p.get("text", {}).get("content", "") for p in parts)
+                    if database_id and value.startswith("ZMMW-40000-"):
+                        identity = (database_id, field, value)
+                        break
+        if not identity:
+            return self._request(method, path, payload)
+        store = os.getenv("ZCODE_MIRROR_IDENTITY_PATH", "/data/mirror-identities.sqlite3")
+        with sqlite3.connect(store, timeout=60) as cache:
+            cache.execute("CREATE TABLE IF NOT EXISTS pages (database_id TEXT, field TEXT, value TEXT, page_id TEXT, PRIMARY KEY(database_id,field,value))")
+            cache.execute("BEGIN IMMEDIATE")
+            row = cache.execute("SELECT page_id FROM pages WHERE database_id=? AND field=? AND value=?", identity).fetchone()
+            if row and row[0]:
+                page = self._request("GET", f"/pages/{row[0]}")
+                parts = page.get("properties", {}).get(identity[1], {}).get("rich_text", [])
+                actual = "".join(p.get("plain_text", p.get("text", {}).get("content", "")) for p in parts)
+                parent = page.get("parent", {}).get("database_id", "").replace("-", "")
+                if page.get("archived") or page.get("in_trash") or actual != identity[2] or parent != identity[0].replace("-", ""):
+                    raise RuntimeError("Cached mirror identity changed; controlled review required")
+                if path.endswith("/query"):
+                    return {"results": [page], "has_more": False}
+                return self._request("PATCH", f"/pages/{row[0]}", {"properties": payload["properties"]})
+            if path.endswith("/query"):
+                result = self._request(method, path, payload)
+                pages = result.get("results", [])
+                if pages:
+                    cache.execute("INSERT OR REPLACE INTO pages VALUES (?,?,?,?)", (*identity, pages[0]["id"]))
+                elif row:
+                    raise RuntimeError("Prior mirror create outcome unknown; refusing duplicate create until reconciliation")
+                return result
+            if row:
+                raise RuntimeError("Prior mirror create outcome unknown; reconcile before retry")
+            cache.execute("INSERT INTO pages VALUES (?,?,?,NULL)", identity)
+            cache.commit()
+            # A persisted intent prevents another worker from retrying an uncertain POST.
+            result = self._request(method, path, payload, retry_create=False)
+            cache.execute("UPDATE pages SET page_id=? WHERE database_id=? AND field=? AND value=?", (result["id"], *identity))
+            return result
+
+    def _request(self, method: str, path: str, payload: dict[str, Any] | None = None, *, retry_create: bool = True) -> dict[str, Any]:
         body = json.dumps(payload).encode("utf-8") if payload is not None else None
         for attempt in range(6):
             request = urllib.request.Request(
@@ -39,7 +93,7 @@ class NotionMirror:
                     return json.loads(response.read().decode("utf-8"))
             except urllib.error.HTTPError as exc:
                 detail = exc.read().decode("utf-8", errors="replace")
-                if attempt < 5 and (exc.code == 429 or exc.code >= 500):
+                if attempt < 5 and (exc.code == 429 or exc.code >= 500) and retry_create:
                     retry_after = exc.headers.get("Retry-After")
                     delay = float(retry_after) if retry_after else min(2**attempt, 15)
                     time.sleep(max(delay, 0.5))
