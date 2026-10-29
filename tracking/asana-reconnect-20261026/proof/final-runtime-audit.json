@@ -1,0 +1,171 @@
+{
+  "capturedUTC": "2026-10-26T16:41:16.323861+00:00",
+  "agents": [
+    {
+      "server": "vps1",
+      "agent": "amanda",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "wilma",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "victor",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "terry",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "marsha",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "edith",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "vivian",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "gohzed",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "grogar",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "inga",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps1",
+      "agent": "maggie",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "health": "healthy",
+      "crashRestarts": 0,
+      "oom": false
+    },
+    {
+      "server": "vps2",
+      "agent": "frank",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "healthOk": true,
+      "eventLoopDegraded": false,
+      "automaticRestarts": "0"
+    },
+    {
+      "server": "vps2",
+      "agent": "harry",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "healthOk": true,
+      "eventLoopDegraded": false,
+      "automaticRestarts": "0"
+    },
+    {
+      "server": "vps2",
+      "agent": "suzy",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "healthOk": true,
+      "eventLoopDegraded": false,
+      "automaticRestarts": "0"
+    },
+    {
+      "server": "vps4",
+      "agent": "rocky",
+      "version": "2026.10.6",
+      "node": "v24.22.1",
+      "repairHashesMatch": true,
+      "running": true,
+      "healthOk": true,
+      "eventLoopDegraded": false,
+      "automaticRestarts": "0"
+    }
+  ],
+  "scope": "Read-only final runtime/hash/health inventory; not future scheduled acceptance; Rocky actual memory read remains unverified."
+}

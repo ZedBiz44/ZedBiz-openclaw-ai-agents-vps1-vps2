@@ -1,0 +1,730 @@
+[
+  {
+    "agent": "victor",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1014.8046420000028,
+        "delayP99Ms": 31.1,
+        "delayMaxMs": 31.1,
+        "utilization": 0.144,
+        "cpuCoreRatio": 0.414,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.128,
+          "hostUtilization": 0.215,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.042,
+          "otherThreadsCoreRatio": 0.244
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": null,
+        "configured": null,
+        "running": true,
+        "connected": true
+      },
+      {
+        "channel": "telegram",
+        "enabled": null,
+        "configured": null,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      },
+      {
+        "name": "memory_recall",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      }
+    ]
+  },
+  {
+    "agent": "terry",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1012.7621290000097,
+        "delayP99Ms": 22.5,
+        "delayMaxMs": 22.5,
+        "utilization": 0.058,
+        "cpuCoreRatio": 0.353,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.059,
+          "hostUtilization": 0.211,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.066,
+          "otherThreadsCoreRatio": 0.228
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": null,
+        "configured": null,
+        "running": true,
+        "connected": true
+      },
+      {
+        "channel": "slack",
+        "enabled": null,
+        "configured": null,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "mem0_search",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      }
+    ]
+  },
+  {
+    "agent": "marsha",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1005.1878359999973,
+        "delayP99Ms": 22.2,
+        "delayMaxMs": 22.2,
+        "utilization": 0.06,
+        "cpuCoreRatio": 0.105,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.062,
+          "hostUtilization": 0.197,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.039,
+          "otherThreadsCoreRatio": 0.004
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      },
+      {
+        "channel": "slack",
+        "enabled": true,
+        "configured": false,
+        "running": false,
+        "connected": null
+      },
+      {
+        "channel": "telegram",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      },
+      {
+        "name": "memory_search",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      }
+    ]
+  },
+  {
+    "agent": "edith",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1004.6875639999926,
+        "delayP99Ms": 22.2,
+        "delayMaxMs": 22.2,
+        "utilization": 0.077,
+        "cpuCoreRatio": 0.225,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.079,
+          "hostUtilization": 0.199,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.051,
+          "otherThreadsCoreRatio": 0.095
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": null,
+        "configured": null,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      },
+      {
+        "name": "mem0_search",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      }
+    ]
+  },
+  {
+    "agent": "vivian",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1009.1448789999995,
+        "delayP99Ms": 21.9,
+        "delayMaxMs": 21.9,
+        "utilization": 0.024,
+        "cpuCoreRatio": 0.041,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.026,
+          "hostUtilization": 0.137,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.01,
+          "otherThreadsCoreRatio": 0.005
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "memory_recall",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      }
+    ]
+  },
+  {
+    "agent": "gohzed",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1008.889897999994,
+        "delayP99Ms": 22.1,
+        "delayMaxMs": 22.1,
+        "utilization": 0.024,
+        "cpuCoreRatio": 0.032,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.026,
+          "hostUtilization": 0.242,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.006,
+          "otherThreadsCoreRatio": 0
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "hindsight_recall",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      }
+    ]
+  },
+  {
+    "agent": "grogar",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1006.1435239999992,
+        "delayP99Ms": 21.7,
+        "delayMaxMs": 21.7,
+        "utilization": 0.031,
+        "cpuCoreRatio": 0.593,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.033,
+          "hostUtilization": 0.157,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.137,
+          "otherThreadsCoreRatio": 0.423
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "hindsight_recall",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      }
+    ]
+  },
+  {
+    "agent": "inga",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1007.6508900000044,
+        "delayP99Ms": 23.5,
+        "delayMaxMs": 23.5,
+        "utilization": 0.031,
+        "cpuCoreRatio": 0.049,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.033,
+          "hostUtilization": 0.073,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.015,
+          "otherThreadsCoreRatio": 0.001
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      },
+      {
+        "channel": "telegram",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      },
+      {
+        "name": "memory_search",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      }
+    ]
+  },
+  {
+    "agent": "maggie",
+    "server": "vps1",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "crashRestarts": 0,
+    "oom": false,
+    "loadedFiles": [
+      {
+        "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+        "sha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610"
+      },
+      {
+        "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+        "sha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38"
+      },
+      {
+        "path": "/app/dist/worker/sqlite-store.worker.mjs",
+        "sha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10"
+      }
+    ],
+    "health": {
+      "ok": true,
+      "eventLoop": {
+        "degraded": false,
+        "degradedSinceMs": null,
+        "reasons": [],
+        "intervalMs": 1009.7098660000047,
+        "delayP99Ms": 22.7,
+        "delayMaxMs": 22.7,
+        "utilization": 0.032,
+        "cpuCoreRatio": 0.044,
+        "cpuBreakdown": {
+          "mainThreadCoreRatio": 0.034,
+          "hostUtilization": 0.177,
+          "hostCpuCount": 8,
+          "workerCoreRatio": 0.008,
+          "otherThreadsCoreRatio": 0.002
+        }
+      }
+    },
+    "channels": [
+      {
+        "channel": "discord",
+        "enabled": true,
+        "configured": true,
+        "running": true,
+        "connected": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "expectedGidMatched": true,
+        "expectedWorkspaceMatched": true,
+        "technicalDocumentationMatched": false
+      },
+      {
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": true
+      },
+      {
+        "name": "hindsight_recall",
+        "isError": false,
+        "expectedGidMatched": false,
+        "expectedWorkspaceMatched": false,
+        "technicalDocumentationMatched": false
+      }
+    ]
+  }
+]

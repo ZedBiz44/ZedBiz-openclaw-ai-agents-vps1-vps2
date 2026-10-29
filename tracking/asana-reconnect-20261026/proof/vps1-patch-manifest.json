@@ -1,0 +1,29 @@
+[
+  {
+    "path": "/app/dist/agents/agent-bundle-mcp-runtime.js",
+    "originalSha256": "98c038c6d7df2563cd203323ae04bf8edb1c8a99c3d06ffb9b813977aa8a9bb2",
+    "patchedSha256": "5a5390cf6205844400d5a3f67ea0e78ff7e73c6fe1f5256bcc747dbc38cfe610",
+    "originalSnippet": "await racePromiseWithAbortSignal(getCatalog(), signal);\n\t\treturn requireConnectedSession();",
+    "replacement": "await racePromiseWithAbortSignal(getCatalog(), signal);\n\t\tif (!currentSession?.connected || !currentSession?.toolMetadata) await racePromiseWithAbortSignal(loadCatalog(), signal);\n\t\treturn requireConnectedSession();",
+    "syntaxPass": true,
+    "replacementCount": 1
+  },
+  {
+    "path": "/app/dist/worker/worker-chunk-D6AJSTHa.mjs",
+    "originalSha256": "ca3e20016fa90a6bab13e641c58420aa18c606adc5baea00e3968be59119c343",
+    "patchedSha256": "9ec12299282d89b2ad11fea4dd0f84f8efaac0801b92260f40fc2264fb3ebe38",
+    "originalSnippet": "await h(getCatalog(),t),requireConnectedSession()",
+    "replacement": "await h(getCatalog(),t),x?.connected&&x.toolMetadata||await h(loadCatalog(),t),requireConnectedSession()",
+    "syntaxPass": true,
+    "replacementCount": 1
+  },
+  {
+    "path": "/app/dist/worker/sqlite-store.worker.mjs",
+    "originalSha256": "d878ddc72dd0c593e4d94aaa099420f59e82109dbee31a38580d2707a644444c",
+    "patchedSha256": "915381b7a38874eb30043f0aca5afdd46f2f29de916aa8dabde03fc561726c10",
+    "originalSnippet": "await racePromiseWithAbortSignal(getCatalog(),Kt),requireConnectedSession()",
+    "replacement": "await racePromiseWithAbortSignal(getCatalog(),Kt),Si?.connected&&Si.toolMetadata||await racePromiseWithAbortSignal(loadCatalog(),Kt),requireConnectedSession()",
+    "syntaxPass": true,
+    "replacementCount": 1
+  }
+]

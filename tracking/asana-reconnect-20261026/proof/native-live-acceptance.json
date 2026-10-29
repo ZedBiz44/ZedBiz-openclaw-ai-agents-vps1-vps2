@@ -1,0 +1,345 @@
+[
+  {
+    "agent": "frank",
+    "server": "vps2",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "owningUnitUnchanged": true,
+    "currentHealthOk": true,
+    "originalModuleSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+    "refinedModuleSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+    "automaticRestartsBefore": "0",
+    "automaticRestartsAfter": "0",
+    "channels": [
+      {
+        "channel": "discord",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "seq": 11,
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": true,
+        "resultChars": 30727
+      },
+      {
+        "seq": 12,
+        "name": "memory_search",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 5143
+      },
+      {
+        "seq": 18,
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 361
+      },
+      {
+        "seq": 22,
+        "name": "memory_search",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": false,
+        "resultChars": 1749
+      }
+    ],
+    "actualMemoryReadVerified": true
+  },
+  {
+    "agent": "harry",
+    "server": "vps2",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "owningUnitUnchanged": true,
+    "currentHealthOk": true,
+    "originalModuleSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+    "refinedModuleSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+    "automaticRestartsBefore": "0",
+    "automaticRestartsAfter": "0",
+    "channels": [
+      {
+        "channel": "discord",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "seq": 12,
+        "name": "mem0_search",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": true,
+        "resultChars": 1205
+      },
+      {
+        "seq": 14,
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 287
+      },
+      {
+        "seq": 16,
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": true,
+        "resultChars": 30727
+      }
+    ],
+    "actualMemoryReadVerified": true
+  },
+  {
+    "agent": "suzy",
+    "server": "vps2",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "owningUnitUnchanged": true,
+    "currentHealthOk": true,
+    "originalModuleSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+    "refinedModuleSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+    "automaticRestartsBefore": "0",
+    "automaticRestartsAfter": "0",
+    "channels": [
+      {
+        "channel": "discord",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": true
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "seq": 9,
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": true,
+        "resultChars": 30727
+      },
+      {
+        "seq": 10,
+        "name": "memory_search",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": false,
+        "resultChars": 3975
+      },
+      {
+        "seq": 16,
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 359
+      },
+      {
+        "seq": 20,
+        "name": "memory_get",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 1875
+      }
+    ],
+    "actualMemoryReadVerified": true
+  },
+  {
+    "agent": "rocky",
+    "server": "vps4",
+    "state": "deployment_and_current_features_pass",
+    "version": "2026.10.6",
+    "node": "v24.22.1",
+    "configurationGroupsUnchanged": true,
+    "runtimeEnvironmentUnchanged": true,
+    "owningUnitUnchanged": true,
+    "currentHealthOk": true,
+    "originalModuleSha256": "1abddd912cab692e7e64105643f86f43d14b4fb0756bd1d3f32fe28b70dfc83d",
+    "refinedModuleSha256": "bd6edaa247a62a902bd9c10e18e349580d3735d75f7ae8fd82597834ab5a5372",
+    "automaticRestartsBefore": "0",
+    "automaticRestartsAfter": "0",
+    "channels": [
+      {
+        "channel": "discord",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": true
+      },
+      {
+        "channel": "slack",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": null
+      },
+      {
+        "channel": "telegram",
+        "running": true,
+        "connected": true,
+        "probeOk": true,
+        "auditOk": null
+      }
+    ],
+    "actualFeatureTools": [
+      {
+        "seq": 10,
+        "name": "hindsight_recall",
+        "isError": true,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": false,
+        "resultChars": 76
+      },
+      {
+        "seq": 13,
+        "name": "codex_apps.notion.fetch",
+        "isError": false,
+        "workspaceMatched": false,
+        "technicalDocumentationMatched": true,
+        "resultChars": 30727
+      },
+      {
+        "seq": 14,
+        "name": "asana.asana_get_user",
+        "isError": false,
+        "workspaceMatched": true,
+        "technicalDocumentationMatched": false,
+        "resultChars": 287
+      }
+    ],
+    "actualMemoryReadVerified": true,
+    "ownerContextMemoryAcceptance": {
+      "existingOwnerAllowlistVerified": true,
+      "existingConversationVerified": true,
+      "delivery": false,
+      "messageToolDisabled": true,
+      "normalOperatorRequest": true,
+      "newTools": [
+        {
+          "seq": 337,
+          "name": "exec",
+          "isError": false,
+          "workspaceMatched": false,
+          "technicalDocumentationMatched": false,
+          "resultChars": 570
+        },
+        {
+          "seq": 339,
+          "name": "hindsight_recall",
+          "isError": true,
+          "workspaceMatched": false,
+          "technicalDocumentationMatched": false,
+          "resultChars": 81
+        },
+        {
+          "seq": 341,
+          "name": "exec",
+          "isError": false,
+          "workspaceMatched": false,
+          "technicalDocumentationMatched": false,
+          "resultChars": 267
+        }
+      ],
+      "final": "ROCKY_OWNER_MEMORY_READ_FAIL \u2014 Hindsight unavailable: missing stable sender identity.",
+      "state": "failed"
+    },
+    "remainingReason": "No current Rocky feature acceptance remains. Next original scheduled acceptance remains open.",
+    "earlierMaintenanceCheckState": "deployment_done_feature_issue_stop",
+    "actualHumanAutomaticMemoryAcceptance": {
+      "agent": "rocky",
+      "capturedUTC": "2026-10-26T16:57:06.019573+00:00",
+      "verification": "Read-only real-owner-message transcript; no fresh model call or server changes.",
+      "conversations": [
+        {
+          "provider": "telegram",
+          "existingOwnerConversation": true,
+          "actualUserRequestMatched": true,
+          "userRequestSeq": 710,
+          "userRequestTimestamp": "2026-10-26T16:55:47.742Z",
+          "tools": [
+            {
+              "seq": 712,
+              "tool": "notion.notion-memory-search",
+              "isError": false,
+              "timestamp": "2026-10-26T16:55:58.267Z",
+              "resultChars": 135
+            },
+            {
+              "seq": 714,
+              "tool": "exec",
+              "isError": false,
+              "timestamp": "2026-10-26T16:55:58.314Z",
+              "resultChars": 221
+            },
+            {
+              "seq": 717,
+              "tool": "message",
+              "isError": false,
+              "timestamp": "2026-10-26T16:56:04.346Z",
+              "resultChars": 120
+            },
+            {
+              "seq": 721,
+              "tool": "message",
+              "isError": false,
+              "timestamp": "2026-10-26T16:56:53.810Z",
+              "resultChars": 120
+            }
+          ],
+          "screenshotReplyMatched": true,
+          "replySeq": 716,
+          "replyTimestamp": "2026-10-26T16:56:04.267Z",
+          "actualMemoryToolSucceeded": false
+        }
+      ],
+      "state": "passed_actual_human_channel_automatic_hindsight_memory",
+      "automaticHindsightRecall": {
+        "verified": true,
+        "source": "Owning openclaw-gateway.service journal, read-only",
+        "bank": "rocky-vps4-telegram",
+        "requestTimestampUTC": "2026-10-26T16:55:47.742Z",
+        "entries": [
+          {
+            "timestampUTC": "2026-10-26T16:55:49.852Z",
+            "injectedMemories": 8
+          },
+          {
+            "timestampUTC": "2026-10-26T16:55:50.420Z",
+            "injectedMemories": 7
+          },
+          {
+            "timestampUTC": "2026-10-26T16:55:53.085Z",
+            "injectedMemories": 8
+          }
+        ],
+        "allBeforeScreenshotReply": true,
+        "rawMemoryContentsPublished": false
+      },
+      "qualification": "No explicit hindsight_recall tool was called. The plugin successfully retrieved and injected memories before the real Telegram reply. Notion memory search returned zero results, which alone would not prove Hindsight recall."
+    }
+  }
+]
