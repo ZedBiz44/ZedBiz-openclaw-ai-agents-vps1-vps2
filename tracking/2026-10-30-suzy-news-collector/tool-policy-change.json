@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-30",
+  "agent": "Suzy",
+  "issue": "https://github.com/ZedBiz44/ZedBiz-openclaw-ai-agents-vps1-vps2/issues/561",
+  "jobId": "8c76360a-4d79-44bc-bd55-74f31d0fb5bb",
+  "change": {
+    "payload.toolsAllow": {
+      "before": [
+        "exec",
+        "read",
+        "write",
+        "web_search",
+        "web_fetch",
+        "skills_read",
+        "memory_search",
+        "wiki_search",
+        "wiki_get",
+        "wiki_apply",
+        "wiki_lint",
+        "mcp__codex_apps__notion_fetch",
+        "mcp__codex_apps__notion_search",
+        "mcp__codex_apps__notion_query_data_sources",
+        "mcp__codex_apps__notion_notion_create_pages",
+        "mcp__codex_apps__notion_notion_update_page"
+      ],
+      "after": [
+        "*"
+      ]
+    }
+  },
+  "reason": "Restricted run tool policies suppress native Codex Apps without captured scheduled app authority. Matches the existing working 08:00 report; normal account and agent access controls still apply.",
+  "preserved": [
+    "schedule 45 7,15 * * * America/Edmonton",
+    "existing collector instructions",
+    "delivery",
+    "model and authentication",
+    "timeoutSeconds 0"
+  ],
+  "backup": "/root/.openclaw-suzy/backups/cody-suzy-news-20261030/collector-before.json",
+  "deployment": "Supported openclaw cron edit --tools '*'; no service restart or core patch",
+  "rollback": "Use supported cron edit with original payload.toolsAllow from protected backup; do not write scheduler SQLite directly.",
+  "acceptance": "See issue comments for live run receipts and readback; configuration alone is not completion."
+}
