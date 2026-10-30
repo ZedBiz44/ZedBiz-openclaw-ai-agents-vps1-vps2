@@ -97,3 +97,7 @@ Commit only safe references:
 - credential location
 - permission needed
 - date verified
+
+## Activity Logging
+
+- Use the Z-Agent-Activity-Log Skill to record meaningful work and retrieve past activity.
